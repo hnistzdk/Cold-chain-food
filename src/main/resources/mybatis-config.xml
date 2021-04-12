@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!--究极之恶心的  如果xml文件的第一行的 encoding=UTF-8就会报错   改成UTF8才不会报错-->
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    配置数据源：交给spring去做-->
+    <typeAliases>
+        <package name="com.com.zdk.pojo"/>
+    </typeAliases>
+    <mappers>
+        <mapper class="com.com.zdk.dao.BookMapper"/>
+    </mappers>
+</configuration>
