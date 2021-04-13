@@ -6,14 +6,21 @@ import com.zdk.pojo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 /**
  * @Description
  * @Author zdk
  * @Date 2021/4/12 18:37
  */
+@Service
 public class UserServiceImpl implements UserService{
-    @Autowired
     private UserMapper userMapper;
+    @Autowired
+    public void setUserMapper(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
+
     @Override
     public User login(String username, String pwd) {
         return userMapper.login(username, pwd);
@@ -30,5 +37,13 @@ public class UserServiceImpl implements UserService{
     @Override
     public Food queryFoodById(int id) {
         return userMapper.queryFoodById(id);
+        //return new Food();
+    }
+    @Override
+    public List<Food> queryFoodList() {
+//        List<Food> list=new ArrayList<>();
+//        list.add(new Food());
+//        return list;
+        return userMapper.queryFoodList();
     }
 }

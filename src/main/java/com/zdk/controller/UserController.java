@@ -1,11 +1,9 @@
 package com.zdk.controller;
 
-import com.sun.org.apache.xpath.internal.SourceTree;
 import com.zdk.pojo.Food;
 import com.zdk.pojo.User;
-import com.zdk.service.UserServiceImpl;
+import com.zdk.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,9 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 @RequestMapping("/user")
 public class UserController {
-    @Autowired(required = false)
-    @Qualifier(value = "userServiceImpl")
-    private UserServiceImpl userService;
+//    @Autowired(required = false)
+//    @Qualifier(value = "userServiceImpl")
+
+    private UserService userService;
+    @Autowired
+    public void setUserService(UserService userService) {
+        this.userService = userService;
+    }
 
     @PostMapping("/login")
     public String login(@RequestParam("username") String username, @RequestParam("password") String pwd){

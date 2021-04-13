@@ -2,9 +2,9 @@ package com.zdk.dao;
 
 import com.zdk.pojo.Food;
 import com.zdk.pojo.User;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
+
+import java.util.List;
 
 /**
  * @Description
@@ -14,5 +14,6 @@ import org.apache.ibatis.annotations.Select;
 public interface UserMapper {
     User login(@Param("username") String username, @Param("pwd") String pwd);
     boolean register(@Param("username") String username, @Param("pwd") String pwd);
-    Food queryFoodById(int id);
+    Food queryFoodById(@Param("id")int id);
+    List<Food> queryFoodList();
 }

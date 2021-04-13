@@ -7,7 +7,6 @@
         http://www.springframework.org/schema/context
         https://www.springframework.org/schema/context/spring-context.xsd">
 
-
     <!--    1.扫描service下的包-->
     <context:component-scan base-package="com.zdk.service"/>
 

@@ -4,15 +4,24 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdk.dao.UserMapper">
-    <select id="login" resultType="user">
-        select * from tb_user where username=#{username} and pwd=#{pwd};
-    </select>
+    <!--    <select id="login" resultType="user">-->
+    <!--        select * from tb_user where username=#{username} and pwd=#{pwd};-->
+    <!--    </select>-->
+
+    <!--    <select id="queryFoodById" resultType="food">-->
+    <!--        select * from tb_food where id=1;-->
+    <!--    </select>-->
+
     <select id="queryFoodById" resultType="food">
-        select * from tb_food where id=#{id};
+        select * from tb_food where id = #{id};
     </select>
-    <insert id="register" parameterType="java.lang.String">
-        insert into tb_user
-            (username, position, pwd, tel, register_date, last_login_time, login_times, real_name, gender)
-            VALUES (#{username},null,#{pwd},null,null,null,null,null,null);
-    </insert>
+
+    <select id="queryFoodList" resultType="food">
+        select * from tb_food;
+    </select>
+    <!--    <insert id="register" parameterType="java.lang.String">-->
+    <!--        insert into tb_user-->
+    <!--            (username, position, pwd, tel, register_date, last_login_time, login_times, real_name, gender)-->
+    <!--            VALUES (#{username},null,#{pwd},null,null,null,null,null,null);-->
+    <!--    </insert>-->
 </mapper>
