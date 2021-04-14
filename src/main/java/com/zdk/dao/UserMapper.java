@@ -12,6 +12,7 @@ import java.util.List;
  * @Author zdk
  * @Date 2021/4/12 18:37
  */
+@Repository
 public interface UserMapper {
     Food queryFoodById(int id);
     List<Food> queryFoodList();
