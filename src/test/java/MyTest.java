@@ -1,6 +1,8 @@
 import com.zdk.pojo.Food;
+import com.zdk.service.UserService;
 import com.zdk.service.UserServiceImpl;
-import org.springframework.core.io.buffer.LimitedDataBufferList;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import java.util.List;
 
@@ -11,9 +13,8 @@ import java.util.List;
  */
 public class MyTest {
     public static void main(String[] args) {
-        UserServiceImpl userService = new UserServiceImpl();
-        //Food food = userService.queryFoodById(1);
-        //System.out.println(food);
+        ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+        UserService userService = (UserServiceImpl) context.getBean("UserServiceImpl");
         List<Food> list=userService.queryFoodList();
         for (Food food : list) {
             System.out.println(food);

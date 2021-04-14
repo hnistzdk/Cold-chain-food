@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF8" ?>
-<!--究极之恶心的  如果xml文件的第一行的 encoding=UTF-8就会报错   改成UTF8才不会报错-->
+<!--如果xml文件的第一行的 encoding=UTF-8就会报错   改成UTF8才不会报错-->
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -13,11 +13,11 @@
     <!--    </select>-->
 
     <select id="queryFoodById" resultType="food">
-        select * from tb_food where id = #{id};
+        select * from food.tb_food where id = #{id};
     </select>
 
     <select id="queryFoodList" resultType="food">
-        select * from tb_food;
+        select * from food.tb_food;
     </select>
     <!--    <insert id="register" parameterType="java.lang.String">-->
     <!--        insert into tb_user-->

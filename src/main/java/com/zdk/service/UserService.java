@@ -10,8 +10,6 @@ import java.util.List;
  * @date 2021/4/12 19:27
  */
 public interface UserService {
-    User login(String username, String pwd);
-    boolean register(String username,String pwd);
     Food queryFoodById(int id);
     List<Food> queryFoodList();
 }

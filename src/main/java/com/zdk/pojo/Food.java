@@ -22,5 +22,5 @@ public class Food {
     private String producer;
     private String phone;
     private int storageId;
-    private String riskDegree;
+    private int riskDegree;
 }

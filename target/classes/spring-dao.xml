@@ -23,33 +23,43 @@
 -->
 <!--    配置数据源-->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
-        <property name="driverClass" value="${driver}"/>
-        <property name="jdbcUrl" value="${url}"/>
-        <property name="user" value="${username}"/>
-        <property name="password" value="${password}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
 
-        <!--    c3p0连接池的私有属性示例-->
-        <property name="maxPoolSize" value="30"/>
-        <property name="minPoolSize" value="10"/>
-        <!--    设置为关闭连接不自动提交-->
-        <property name="autoCommitOnClose" value="false"/>
-        <!--     获取连接超时时间-->
-        <property name="checkoutTimeout" value="10000"/>
-        <!--     获取连接失败重试次数-->
-        <property name="acquireRetryAttempts" value="2"/>
+<!--            c3p0连接池的私有属性示例-->
+<!--        <property name="maxPoolSize" value="20"/>-->
+<!--        <property name="minPoolSize" value="5"/>-->
+<!--        &lt;!&ndash;    设置为关闭连接不自动提交&ndash;&gt;-->
+<!--        <property name="autoCommitOnClose" value="false"/>-->
+<!--        &lt;!&ndash;     获取连接超时时间&ndash;&gt;-->
+<!--        <property name="checkoutTimeout" value="10000"/>-->
+<!--        &lt;!&ndash;     获取连接失败重试次数&ndash;&gt;-->
+<!--        <property name="acquireRetryAttempts" value="2"/>-->
     </bean>
+
+<!--    配置数据源的属性时 要么在db.properties文件里的每个属性前都加上jdbc.xxx,然后使用${jdbc.url}这种方式-->
+<!--    要么直接在value写这些属性的字符串值-->
+
+<!--    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">-->
+<!--        <property name="driverClassName" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="url" value="jdbc:mysql://localhost:3306/food?useSSL=false&amp;useUnicode=true&amp;characterEncoding=UTF-8&amp;serverTimezone=UTC"/>-->
+<!--        <property name="username" value="root"/>-->
+<!--        <property name="password" value="root"/>-->
+<!--    </bean>-->
 
 <!--    3.sqlSessionFactory-->
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
 <!--        绑定mybatis的配置文件-->
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+<!--        扫描pojo-->
+        <property name="typeAliasesPackage" value="com.zdk.pojo"/>
     </bean>
 
 <!--    4.配置dao接口扫描包,动态实现Dao接口,可以注入Spring容器中-->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-<!--        注入sqlSessionFactory-->
-        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
 <!--        要扫描的包-->
         <property name="basePackage" value="com.zdk.dao"/>
     </bean>
