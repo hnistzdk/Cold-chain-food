@@ -15,29 +15,42 @@
       <el-aside :width="isCollapse? '64px':'200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!--        侧菜单栏-->
-        <el-menu background-color="#333744" text-color="#fff" active-text-color="#ffd04b" unique-opened :collapse="isCollapse"
-                 :collapse-transition="false" :router="true" :default-active="activePath">
-          <!--          一级菜单-->
-          <!--          为菜单绑定数据嵌套，获取接口中的数据-->
-          <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
-            <!--            一级菜单的模板区域-->
+        <el-menu
+          default-active="2"
+          class="el-menu-vertical-demo"
+          background-color="#333744"
+          text-color="#fff"
+          active-text-color="#ffd04b"
+        :collapse-transition="false" :router="true">
+          <el-submenu index="1">
             <template slot="title">
-              <!--              图标-->
-              <i :class="iconsObj[item.id]"></i>
-              <!--              文本-->
-              <span>{{ item.authName }}</span>
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
             </template>
-            <!--            二级菜单-->
-            <el-menu-item :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
-              <template slot="title">
-                <!--              图标-->
-                <i class="el-icon-menu"></i>
-                <!--              文本-->
-                <span>{{ subItem.authName }}</span>
-              </template>
+            <el-menu-item>
+              <template slot="title">用户信息</template>
+
+              </el-menu-item>
+          </el-submenu>
+          <el-submenu index="2">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item>
+              <template slot="title">用户信息</template>
 
             </el-menu-item>
+          </el-submenu>
+          <el-submenu index="3">
+            <template slot="title">
+              <i class="el-icon-location"></i>
+              <span>用户管理</span>
+            </template>
+            <el-menu-item>
+              <template slot="title">用户信息</template>
 
+            </el-menu-item>
           </el-submenu>
 
         </el-menu>
@@ -131,7 +144,7 @@ export default {
 }
 .el-aside{
   background-color: #333744;
-
+height: 750px;
 }
 .el_main{
   background-color: #cb2020;
@@ -142,6 +155,7 @@ export default {
 }
 .el-menu{
   border-right: none;
+
 }
 .toggle-button{
   background-color: #4A5064;

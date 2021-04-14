@@ -56,7 +56,7 @@ export default {
 
   display: flex;
   left: 50%;
-  transform: translate(980%,-20%);
+  transform: translate(800%,-20%);
 
 
 
