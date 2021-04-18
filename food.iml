@@ -72,5 +72,6 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-jdbc:5.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-tx:5.3.5" level="project" />
     <orderEntry type="library" name="Maven: org.aspectj:aspectjweaver:1.9.6" level="project" />
+    <orderEntry type="library" name="Maven: com.alibaba:fastjson:1.2.75" level="project" />
   </component>
 </module>

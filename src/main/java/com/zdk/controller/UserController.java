@@ -1,13 +1,19 @@
 package com.zdk.controller;
 
 
+import com.alibaba.fastjson.JSON;
 import com.zdk.pojo.Food;
 import com.zdk.service.UserService;
+import com.zdk.vo.Meta;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
 
 @Controller
@@ -17,32 +23,19 @@ public class UserController {
     @Qualifier("UserServiceImpl")
     private UserService userService;
 
-    @RequestMapping("/test")
-    public String test(){
-        return "index.jsp";
-    }
-    @RequestMapping("/toFood")
-    public String toFood(){
-        return "queryFood.jsp";
-    }
-    @RequestMapping("/queryFood")
-    public String queryFoodList(Model model){
-        List<Food> foods = userService.queryFoodList();
-        System.out.println(foods);
-        model.addAttribute("foods",foods);
-        return "FoodList.jsp";
-    }
-
-    @RequestMapping("/queryFoodById")
-    public String queryFoodById(int id,Model model){
-        Food food = userService.queryFoodById(id);
-        System.out.println(food);
-        if (food!=null){
-            model.addAttribute("food",food);
-            return "FoodList.jsp";
+//@Param("username") String username, @Param("password") String password
+    @PostMapping("/login")
+    @ResponseBody
+    @CrossOrigin
+    public Object login(String username, String password){
+        Meta meta = new Meta();
+        HashMap<String, String> map = new HashMap<>();
+        if("admin".equals(username)&& "123".equals(password)){
+            map.put("status","200");
         }else {
-            model.addAttribute("isnull","莫有查到数据(>~<)");
-            return "queryFood.jsp";
+            map.put("status","404");
         }
+        meta.setMeta(map);
+        return JSON.toJSONString(meta);
     }
 }

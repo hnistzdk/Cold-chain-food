@@ -13,13 +13,4 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
-    @Override
-    public Food queryFoodById(int id) {
-        return userMapper.queryFoodById(id);
-    }
-
-    @Override
-    public List<Food> queryFoodList() {
-        return userMapper.queryFoodList();
-    }
 }
