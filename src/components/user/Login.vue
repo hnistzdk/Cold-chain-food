@@ -1,5 +1,8 @@
 <template>
   <div class="login_container">
+    <div class="Register_button">
+      <el-button type="danger" @click="register_request">注册</el-button>
+    </div>
     <div class="login_box">
       <!--    头像区-->
       <div class="avatar_box">
@@ -65,6 +68,9 @@ export  default {
         this.$router.push('/home');
 
 
+    },
+    register_request(){
+      this.$router.push('/register');
     }
   }
 
@@ -121,5 +127,10 @@ export  default {
   top: 60%;
   transform: translate(-50%,-50%);
 }
-
+.Register_button{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transform: translate(95%,50%);
+}
 </style>
