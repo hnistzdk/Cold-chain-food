@@ -1,6 +1,5 @@
-package com.zdk.vo;
+package com.zdk.dto;
 
-import com.sun.javafx.binding.StringFormatter;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

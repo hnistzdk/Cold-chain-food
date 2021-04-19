@@ -9,9 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39281671-4a97-49b7-b0b0-142fb00e1015.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39281671-4a97-49b7-b0b0-142fb00e1015.xml" afterDir="false" />
+    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.18">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/food_Web_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/food_Web_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" afterDir="false" />
@@ -37,28 +36,24 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/food.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/FoodList.jsp" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/pojo/Food.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sql/food.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/vo/Meta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/jsp/error.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/jsp/test.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/login.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/queryFood.jsp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/statics/js/jquery-1.8.3.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/pojo/Food.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/vo/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/dto/Meta.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/MyTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/pojo/Food.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/MyTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/MyTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/vo/Meta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/MyTest.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,13 +84,14 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\apache-maven-3.6.3\maven-repo" />
-        <option name="mavenHome" value="D:\apache-maven-3.6.3" />
         <option name="userSettingsFile" value="D:\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectId" id="1r7DYowUTEHfPpmkkbyWjTCNY5B" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
@@ -109,7 +105,7 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/sql" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="模块" />
+    <property name="project.structure.last.edited" value="工件" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.1275862" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -118,6 +114,9 @@
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Project\food\sql" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
     </key>
   </component>
   <component name="RunManager" selected="Tomcat Server.Tomcat 9">
@@ -142,10 +141,26 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="MyTest.test" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="food" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value=".*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="MyTest" />
+      <option name="METHOD_NAME" value="test" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="Login.vue" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/food/page/src/components/user/Login.vue" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.43" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="food:Web exploded">
@@ -237,10 +252,12 @@
       <item itemvalue="JavaScript 调试.Login.vue" />
       <item itemvalue="JUnit.MyTest.test" />
       <item itemvalue="Tomcat Server.Tomcat 9" />
+      <item itemvalue="JUnit.MyTest.test (1)" />
     </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.MyTest.test" />
+        <item itemvalue="JUnit.MyTest.test (1)" />
         <item itemvalue="JavaScript 调试.Login.vue" />
       </list>
     </recent_temporary>
