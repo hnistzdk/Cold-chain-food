@@ -1,10 +1,8 @@
 package com.zdk.mapper;
 
-import com.zdk.pojo.Food;
 
-import java.util.List;
-
+import org.apache.ibatis.annotations.Param;
 
 public interface UserMapper {
-
+    int login(@Param("id") String id,@Param("password") String password);
 }

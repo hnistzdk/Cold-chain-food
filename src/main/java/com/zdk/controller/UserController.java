@@ -2,40 +2,47 @@ package com.zdk.controller;
 
 
 import com.alibaba.fastjson.JSON;
-import com.zdk.pojo.Food;
 import com.zdk.service.UserService;
 import com.zdk.vo.Meta;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
-import java.util.List;
 
-@Controller
+@RestController
 public class UserController {
 
     @Autowired
     @Qualifier("UserServiceImpl")
     private UserService userService;
 
-//@Param("username") String username, @Param("password") String password
     @PostMapping("/login")
-    @ResponseBody
     @CrossOrigin
-    public Object login(String username, String password){
+    public Object login(String id, String password){
+        System.out.println("id："+id);
         Meta meta = new Meta();
         HashMap<String, String> map = new HashMap<>();
-        if("admin".equals(username)&& "123".equals(password)){
+        int result= userService.login(id, password);
+        System.out.println("result:"+result);
+        if(result>0){
             map.put("status","200");
         }else {
             map.put("status","404");
         }
         meta.setMeta(map);
         return JSON.toJSONString(meta);
+    }
+
+    @PostMapping("/getMenuList")
+    @CrossOrigin
+    public Object getMenuList(){
+
+        return null;
     }
 }
