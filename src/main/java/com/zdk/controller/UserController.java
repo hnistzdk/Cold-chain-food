@@ -57,7 +57,6 @@ public class UserController {
                 "\"children\":[{\"id\":146,\"authName\":\"数据报表\",\"path\":\"reports\"," +
                 "\"children\":[],\"order\":null}],\"order\":5}],\"meta\":{\"msg\":\"获取菜单列表成功\",\"status\":200}}\n";
         String result = StringEscapeUtils.unescapeJava(returnMenu);
-        System.out.println(JSON.toJSON(result));
         return JSON.toJSON(result);
     }
 }

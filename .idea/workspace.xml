@@ -9,8 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.18">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.19">
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -255,7 +254,14 @@
       <option name="project" value="LOCAL" />
       <updated>1618832995634</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="4.19">
+      <created>1618834092056</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1618834092056</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -279,6 +285,7 @@
       <path value="$PROJECT_DIR$/page/node_module" />
     </ignored-roots>
     <MESSAGE value="4.18" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.18" />
+    <MESSAGE value="4.19" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.19" />
   </component>
 </project>
