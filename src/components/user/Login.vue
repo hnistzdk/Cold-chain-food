@@ -11,8 +11,8 @@
       <!--      登录表单区域-->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0" class="login_form">
         <!--        用户名-->
-        <el-form-item prop="username">
-          <el-input v-model="loginForm.username" prefix-icon="el-icon-user"></el-input>
+        <el-form-item prop="id">
+          <el-input v-model="loginForm.id" prefix-icon="el-icon-user"></el-input>
         </el-form-item>
         <!--        密码-->
         <el-form-item prop="password">
@@ -33,11 +33,11 @@ export  default {
   data(){
     return{
       loginForm:{
-        username:"admin",
+        id:"369365576",
         password:"123456"
       },
       loginFormRules:{
-        username:[
+        id:[
           { required: true, message: '请输入账号', trigger: 'blur'},//blur 鼠标焦点事件
           {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
         ],
