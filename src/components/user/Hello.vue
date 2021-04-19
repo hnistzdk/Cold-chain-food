@@ -1,14 +1,14 @@
 <template>
 <div class="Hello_container">
   <div class="el-header">
-
-
     <div class="btn">
       <el-button type="primary" @click="login_request">登录</el-button>
       <el-button type="primary" @click="register_request">注册</el-button>
     </div>
+    <div class="System_introduce">
 
 
+    </div>
   </div>
 
 </div>

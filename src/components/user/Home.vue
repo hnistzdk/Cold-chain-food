@@ -3,7 +3,7 @@
     <!--    头部区域-->
     <el-header>
       <div>
-        <span>电商后台管理系统</span>
+        <span>冷链食品管理系统</span>
       </div>
       <!--  点击”退出“按钮,将token删除，使用户页面跳转至登录页面-->
       <el-button type="info" @click="logout">退出</el-button>
@@ -15,43 +15,28 @@
       <el-aside :width="isCollapse? '40px':'200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!--        侧菜单栏-->
-        <el-menu
-          default-active="2"
-          class="el-menu-vertical-demo"
-          background-color="#333744"
-          text-color="#fff"
-          active-text-color="#ffd04b"
-        :collapse-transition="false" :router="true">
-          <el-submenu index="1">
+        <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#333744" text-color="#fff"
+          active-text-color="#ffd04b" :collapse-transition="false" :router="true" unique-opened :collapse="isCollapse">
+          <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
+            <!--            一级菜单的模板区域-->
             <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>用户管理</span>
+              <!--              图标-->
+              <i :class="iconsObj[item.id]"></i>
+              <!--              文本-->
+              <span>{{ item.authName }}</span>
             </template>
-            <el-menu-item>
-              <template slot="title">用户信息</template>
-
-              </el-menu-item>
-          </el-submenu>
-          <el-submenu index="2">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>用户管理</span>
-            </template>
-            <el-menu-item>
-              <template slot="title">用户信息</template>
+            <!--            二级菜单-->
+            <el-menu-item :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" >
+              <template slot="title">
+                <!--              图标-->
+                <i class="el-icon-menu"></i>
+                <!--              文本-->
+                <span>{{ subItem.authName }}</span>
+              </template>
 
             </el-menu-item>
           </el-submenu>
-          <el-submenu index="3">
-            <template slot="title">
-              <i class="el-icon-location"></i>
-              <span>用户管理</span>
-            </template>
-            <el-menu-item>
-              <template slot="title">用户信息</template>
 
-            </el-menu-item>
-          </el-submenu>
 
         </el-menu>
 

@@ -56,20 +56,21 @@ export  default {
     },
     login(){
       //axios发送客户端请求
-      var qs = require('querystring');
-     this.$refs.loginFormRef.validate(async valid=>{
+     /* const qs = require('querystring');
+      this.$refs.loginFormRef.validate(async valid=>{
         if(!valid) return;
-        const {data:res }=await this.$http.post("login",qs.stringify(this.loginForm));
-       console.log(this.loginForm);
-       console.log(res);
-       console.log(res.meta.status)
+        const {data:res }=await this.$http.post("login",qs.stringify(this.loginForm));*/
+      // console.log(this.loginForm);
+     /*  console.log(res);*/
+       //console.log(res.meta.status)
         //判断登录是否成功并弹出提示框
-        if(res.meta.status!=="200") return this.$message.error("登陆失败");
-        this.$message.success("登陆成功");
+       /* if(res.meta.status!=="200") return this.$message.error("登陆失败");
+        this.$message.success("登陆成功");*/
         //alert("登陆成功");
         //window.sessionStorage.setItem('token',res.data.token);
-        this.$router.push('/home');
-     })
+        /*await*/
+      this.$router.push('/home');
+     /*})*/
     },
     register_request(){
       this.$router.push('/register');
