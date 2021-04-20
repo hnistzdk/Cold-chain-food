@@ -18,7 +18,14 @@
         <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-key"></el-input>
         </el-form-item>
+<!--        角色选择-->
+        <el-radio-group v-model="radio" class="radio" >
+          <el-radio :label="1">普通用户</el-radio>
+          <el-radio :label="2">企业用户</el-radio>
+          <el-radio :label="3">管理员</el-radio>
+        </el-radio-group>
 
+<!--登录组件-->
         <el-form-item class="btn">
           <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
@@ -32,9 +39,11 @@
 export  default {
   data(){
     return{
-      loginForm:{
+        radio:1,
+        loginForm:{
         id:"369365576",
-        password:"123456"
+        password:"123456",
+
       },
       loginFormRules:{
         id:[
@@ -55,25 +64,33 @@ export  default {
       this.$refs.loginFormRef.resetFields();
     },
     login(){
-      //axios发送客户端请求
-     const qs = require('querystring');
-      this.$refs.loginFormRef.validate(async valid=>{
-        if(!valid) return;
-        const {data:res }=await this.$http.post("login",qs.stringify(this.loginForm));
-       console.log(this.loginForm);
-       console.log(res);
-       console.log(res.meta.status)
-        //判断登录是否成功并弹出提示框
-       if(res.meta.status!=="200") return this.$message.error("登陆失败");
-        this.$message.success("登陆成功");
-        alert("登陆成功");
-        window.sessionStorage.setItem('token',res.data.token);await
-      this.$router.push('/home');
-     })
+      if(this.radio===3){
+        //axios发送客户端请求
+        const qs = require('querystring');
+        this.$refs.loginFormRef.validate(async valid=>{
+          if(!valid) return;
+          const {data:res }=await this.$http.post("login",qs.stringify(this.loginForm));
+          console.log(this.loginForm);
+          console.log(res);
+          console.log(res.meta.status)
+          //判断登录是否成功并弹出提示框
+          if(res.meta.status!=="200") return this.$message.error("登陆失败");
+          this.$message.success("登陆成功");
+          alert("登陆成功");
+          window.sessionStorage.setItem('token',res.data.token);await
+            this.$router.push('/home');
+        })
+      }
+      else if(this.radio===1){
+        this.$router.push('/primaryHome')
+      }
+
+
     },
     register_request(){
       this.$router.push('/register');
     }
+
   }
 
 };
@@ -91,7 +108,7 @@ export  default {
 .login_box{
 
   width: 450px;
-  height: 300px;
+  height: 350px;
   background-color: white;
   border-radius:3px ;
   position: absolute;
@@ -124,6 +141,7 @@ export  default {
 
 }
 .login_form{
+  width: 300px;
   position: absolute;
   left: 50%;
   top: 60%;
@@ -134,5 +152,8 @@ export  default {
   align-items: center;
   justify-content: space-between;
   transform: translate(95%,50%);
+}
+.radio{
+  line-height: 20px;
 }
 </style>

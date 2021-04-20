@@ -6,6 +6,8 @@ import Register from '@/components/user/Register'
 import Home from '@/components/user/Home'
 import Welcome from '@/components/user/Welcome'
 import Users from '@/components/user/Users'
+import PrimaryHome from '@/components/PriUser/PrimaryHome'
+
 Vue.use(Router)
 
 const router=new  Router({
@@ -19,7 +21,8 @@ const router=new  Router({
       children:[
         {path:'/welcome',component:Welcome},
         {path:'/users',component:Users}
-      ]}
+      ]},
+    {path:'/primaryHome',component:PrimaryHome}
 
   ]
 
