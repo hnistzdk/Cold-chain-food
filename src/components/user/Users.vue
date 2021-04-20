@@ -26,7 +26,7 @@
         <el-table-column label="性别" prop="gender"></el-table-column>
         <el-table-column label="电话" prop="tel"></el-table-column>
         <el-table-column label="角色" prop="role"></el-table-column>
-        <el-table-column label="状态" >
+        <el-table-column label="状态">
           <template >
             <el-switch >
             </el-switch>
@@ -63,6 +63,8 @@
 </template>
 
 <script>
+import * as qs from "qs";
+
 export default {
   name: 'Users',
   data(){
@@ -91,9 +93,10 @@ export default {
   },
   methods:{
     async getUserList(){
+      const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
       const {data:res} = await this.$http.get('users', {
-        params:this.queryInfo
+        params:qs.stringify(this.queryInfo)
       })
       console.log(res)
       if(res.meta.status !== 200){
@@ -104,9 +107,9 @@ export default {
       console.log(res)
     },
     async getUserListPage(){
+
       this.queryInfo.pagenum=1
-      const {data:res} = await this.$http.get('users', {
-        params:this.queryInfo
+      const {data:res} = await this.$http.get('users', { params: qs.stringify(this.queryInfo)
       })
       console.log(res)
       if(res.meta.status !== 200){
