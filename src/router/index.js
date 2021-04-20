@@ -27,5 +27,17 @@ const router=new  Router({
   ]
 
 });
+//挂载路由导航守卫
+router.beforeEach((to,form,next)=>{
+  //to 将要访问的路径
+  // form 代表从哪个路径跳转而来
+  //next 是一个函数，表示放行
+  if(to.path=='/login') return next();
+  //获取token,如果token存在，则允许跳转至home页，否则回退回login页面
+  const tokenStr = window.sessionStorage.getItem('token')
+  if(!tokenStr) return next('/login')
+  next()
+
+})
 
 export default router
