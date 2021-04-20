@@ -18,14 +18,14 @@
         <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-key"></el-input>
         </el-form-item>
-<!--        角色选择-->
-        <el-radio-group v-model="radio" class="radio" >
+        <!--        角色选择-->
+        <el-radio-group v-model="radio" class="radio">
           <el-radio :label="1">普通用户</el-radio>
           <el-radio :label="2">企业用户</el-radio>
           <el-radio :label="3">管理员</el-radio>
         </el-radio-group>
 
-<!--登录组件-->
+        <!--登录组件-->
         <el-form-item class="btn">
           <el-button type="primary" @click="login">登录</el-button>
           <el-button type="info" @click="resetLoginForm">重置</el-button>
@@ -36,120 +36,109 @@
 </template>
 
 <script>
-export  default {
-  data(){
-    return{
-        radio:1,
-        loginForm:{
-        id:"369365576",
-        password:"123456",
+export default {
+  data () {
+    return {
+      radio: 1,
+      loginForm: {
+        id: '369365576',
+        password: '123456',
 
       },
-      loginFormRules:{
-        id:[
-          { required: true, message: '请输入账号', trigger: 'blur'},//blur 鼠标焦点事件
-          {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+      loginFormRules: {
+        id: [
+          { required: true, message: '请输入账号', trigger: 'blur' },//blur 鼠标焦点事件
+          { min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur' }
         ],
         //验证账号和密码是否合法
-        password:[
-          { required: true, message: '请输入密码', trigger: 'blur'},
-          {min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur'}
+        password: [
+          { required: true, message: '请输入密码', trigger: 'blur' },
+          { min: 3, max: 12, message: '长度在 3 到 12 个字符', trigger: 'blur' }
         ]
       }
-    };
+    }
   },
-  methods:{
-    resetLoginForm(){
+  methods: {
+    resetLoginForm () {
       //重置表单
-      this.$refs.loginFormRef.resetFields();
+      this.$refs.loginFormRef.resetFields()
     },
-    login(){
+    login () {
 
-        //axios发送客户端请求
-        const qs = require('querystring');
-        this.$refs.loginFormRef.validate(async valid=>{
-          if(!valid) return;
-          if(this.radio===1)
-          {
-            const {data:res }=await this.$http.post("primaryLogin",qs.stringify(this.loginForm));
-            console.log(this.loginForm);
-            console.log(res);
-            console.log(res.meta.status)
-            //判断登录是否成功并弹出提示框
-            if(res.meta.status!=="200") return this.$message.error("登陆失败");
-            this.$message.success("登陆成功");
-            alert("登陆成功");
-            window.sessionStorage.setItem('token',res.data.token);
-            await this.$router.push('/home');
-          }
-          else if(this.radio===2){
-            const {data:res }=await this.$http.post("enterpriseLogin",qs.stringify(this.loginForm));
-            console.log(this.loginForm);
-            console.log(res);
-            console.log(res.meta.status)
-            //判断登录是否成功并弹出提示框
-            if(res.meta.status!=="200") return this.$message.error("登陆失败");
-            this.$message.success("登陆成功");
-            alert("登陆成功");
-            window.sessionStorage.setItem('token',res.data.token);
-            await this.$router.push('/home');
-          }
-          else {
-            const {data:res }=await this.$http.post("adminLogin",qs.stringify(this.loginForm));
-            console.log(this.loginForm);
-            console.log(res);
-            console.log(res.meta.status)
-            //判断登录是否成功并弹出提示框
-            if(res.meta.status!=="200") return this.$message.error("登陆失败");
-            this.$message.success("登陆成功");
-            alert("登陆成功");
-            window.sessionStorage.setItem('token',res.data.token);
-            await this.$router.push('/home');
-
-          }
-
-
-
-
-
-        })
-
-
-
-
+      //axios发送客户端请求
+      const qs = require('querystring')
+      this.$refs.loginFormRef.validate(async valid => {
+        if (!valid) return
+        if (this.radio === 1) {
+          const { data: res } = await this.$http.post('primaryLogin', qs.stringify(this.loginForm))
+          console.log(this.loginForm)
+          console.log(res)
+          console.log(res.meta.status)
+          //判断登录是否成功并弹出提示框
+          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          this.$message.success('登陆成功')
+          alert('登陆成功')
+          window.sessionStorage.setItem('token', res.data.token)
+          await this.$router.push('/home')
+        } else if (this.radio === 2) {
+          const { data: res } = await this.$http.post('enterpriseLogin', qs.stringify(this.loginForm))
+          console.log(this.loginForm)
+          console.log(res)
+          console.log(res.meta.status)
+          //判断登录是否成功并弹出提示框
+          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          this.$message.success('登陆成功')
+          alert('登陆成功')
+          window.sessionStorage.setItem('token', res.data.token)
+          await this.$router.push('/home')
+        } else {
+          const { data: res } = await this.$http.post('adminLogin', qs.stringify(this.loginForm))
+          console.log(this.loginForm)
+          console.log(res)
+          console.log(res.meta.status)
+          //判断登录是否成功并弹出提示框
+          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          this.$message.success('登陆成功')
+          alert('登陆成功')
+          window.sessionStorage.setItem('token', res.data.token)
+          await this.$router.push('/home')
+        }
+      })
     },
-    register_request(){
-      this.$router.push('/register');
+    register_request () {
+      this.$router.push('/register')
     }
 
   }
 
-};
+}
 </script>
 
 
 <style Lang="less" scoped>
-                   .login_container{
+.login_container {
 
-                     height: 800px;
-                     background-color: #0093E9;
-                     background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
+  height: 800px;
+  background-color: #0093E9;
+  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
 
-                   }
-.login_box{
+}
+
+.login_box {
 
   width: 450px;
   height: 350px;
   background-color: white;
-  border-radius:3px ;
+  border-radius: 3px;
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   opacity: 0.9;
 
 }
-.avatar_box{
+
+.avatar_box {
   height: 130px;
   width: 130px;
   border: 1px solid #eee;
@@ -158,33 +147,38 @@ export  default {
   box-shadow: 0 0 10px #ddd;
   position: absolute;
   left: 50%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
   background-color: #fff;
 }
-.avatar_box img{
+
+.avatar_box img {
   height: 100%;
   width: 100%;
   border-radius: 50%;
   background-color: #eee;
 }
-.btn{
+
+.btn {
   display: flex;
 
 }
-.login_form{
+
+.login_form {
   width: 300px;
   position: absolute;
   left: 50%;
   top: 60%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%, -50%);
 }
-.Register_button{
+
+.Register_button {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transform: translate(95%,50%);
+  transform: translate(95%, 50%);
 }
-.radio{
+
+.radio {
   line-height: 20px;
 }
 </style>
