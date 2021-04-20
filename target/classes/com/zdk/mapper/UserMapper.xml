@@ -4,6 +4,12 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdk.mapper.UserMapper">
     <select id="login" resultType="int">
+        select * from food.tb_user where id=#{id} and pwd=#{password};
+    </select>
+    <select id="enterpriseLogin" resultType="int">
+        select * from food.tb_enterprise_user where eid=#{eid} and pwd=#{password};
+    </select>
+    <select id="adminLogin" resultType="int">
         select * from food.tb_admin where id=#{id} and pwd=#{password};
     </select>
 </mapper>

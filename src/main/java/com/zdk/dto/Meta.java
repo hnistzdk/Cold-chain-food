@@ -15,4 +15,5 @@ import java.util.Map;
 @NoArgsConstructor
 public class Meta {
     private Map<String, String> meta;
+    private Map<String, String> data;
 }

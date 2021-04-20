@@ -10,9 +10,18 @@ public class UserServiceImpl implements UserService{
     @Autowired
     private UserMapper userMapper;
 
-    @Transactional
     @Override
     public int login(String id, String password) {
         return userMapper.login(id,password);
+    }
+
+    @Override
+    public int enterpriseLogin(String id, String password) {
+        return userMapper.enterpriseLogin(id, password);
+    }
+
+    @Override
+    public int adminLogin(String id, String password) {
+        return userMapper.adminLogin(id, password);
     }
 }
