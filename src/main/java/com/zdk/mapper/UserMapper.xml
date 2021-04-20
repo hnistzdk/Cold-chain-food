@@ -7,9 +7,19 @@
         select * from food.tb_user where id=#{id} and pwd=#{password};
     </select>
     <select id="enterpriseLogin" resultType="int">
-        select * from food.tb_enterprise_user where eid=#{eid} and pwd=#{password};
+        select * from food.tb_enterprise_user where id=#{id} and pwd=#{password};
     </select>
     <select id="adminLogin" resultType="int">
         select * from food.tb_admin where id=#{id} and pwd=#{password};
+    </select>
+
+    <select id="getAdminList" parameterType="map" resultType="AdminMeta">
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        from food.tb_admin limit #{startIndex},#{pageSize};
+    </select>
+
+<!--    总记录数-->
+    <select id="adminTotalPage" resultType="int">
+        select count(*) from food.tb_admin;
     </select>
 </mapper>

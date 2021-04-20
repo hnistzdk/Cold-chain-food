@@ -1,0 +1,186 @@
+Index: src/main/java/com/zdk/controller/UserController.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.zdk.controller;\r\n\r\nimport com.alibaba.fastjson.JSON;\r\nimport com.zdk.dto.MyMenu;\r\nimport com.zdk.dto.ReturnMenu;\r\nimport com.zdk.service.UserService;\r\nimport com.zdk.dto.Meta;\r\nimport org.apache.commons.lang.StringEscapeUtils;\r\nimport org.springframework.beans.factory.annotation.Autowired;\r\nimport org.springframework.beans.factory.annotation.Qualifier;\r\nimport org.springframework.web.bind.annotation.CrossOrigin;\r\nimport org.springframework.web.bind.annotation.GetMapping;\r\nimport org.springframework.web.bind.annotation.PostMapping;\r\nimport org.springframework.web.bind.annotation.RestController;\r\n\r\nimport java.util.HashMap;\r\n\r\n@RestController\r\npublic class UserController {\r\n\r\n    @Autowired\r\n    @Qualifier(\"UserServiceImpl\")\r\n    private UserService userService;\r\n\r\n    @PostMapping(\"/login\")\r\n    @CrossOrigin\r\n    public Object login(String id, String password){\r\n        System.out.println(\"id：\"+id);\r\n        Meta meta = new Meta();\r\n        HashMap<String, String> map = new HashMap<>();\r\n        int result= userService.login(id, password);\r\n        System.out.println(\"result:\"+result);\r\n        if(result>0){\r\n            map.put(\"status\",\"200\");\r\n        }else {\r\n            map.put(\"status\",\"404\");\r\n        }\r\n        meta.setMeta(map);\r\n        return JSON.toJSONString(meta);\r\n    }\r\n\r\n    @GetMapping(\"/menus\")\r\n    @CrossOrigin\r\n    public Object getMenuList(){\r\n        String returnMenu=\"{\\\"data\\\":[{\\\"id\\\":125,\\\"authName\\\":\\\"用户管理\\\",\\\"path\\\":\\\"users\\\",\" +\r\n                \"\\\"children\\\":[{\\\"id\\\":110,\\\"authName\\\":\\\"用户列表\\\",\\\"path\\\":\\\"users\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":null}],\\\"order\\\":1},{\\\"id\\\":103,\\\"authName\\\":\\\"权限管理\\\",\\\"path\\\":\\\"rights\\\",\" +\r\n                \"\\\"children\\\":[{\\\"id\\\":111,\\\"authName\\\":\\\"角色列表\\\",\\\"path\\\":\\\"roles\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":null},{\\\"id\\\":112,\\\"authName\\\":\\\"权限列表\\\",\\\"path\\\":\\\"rights\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":null}],\\\"order\\\":2},{\\\"id\\\":101,\\\"authName\\\":\\\"商品管理\\\",\\\"path\\\":\\\"goods\\\",\" +\r\n                \"\\\"children\\\":[{\\\"id\\\":104,\\\"authName\\\":\\\"商品列表\\\",\\\"path\\\":\\\"goods\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":1},{\\\"id\\\":115,\\\"authName\\\":\\\"分类参数\\\",\\\"path\\\":\\\"params\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":2},{\\\"id\\\":121,\\\"authName\\\":\\\"商品分类\\\",\\\"path\\\":\\\"categories\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":3}],\\\"order\\\":3},{\\\"id\\\":102,\\\"authName\\\":\\\"订单管理\\\",\\\"path\\\":\\\"orders\\\",\" +\r\n                \"\\\"children\\\":[{\\\"id\\\":107,\\\"authName\\\":\\\"订单列表\\\",\\\"path\\\":\\\"orders\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":null}],\\\"order\\\":4},{\\\"id\\\":145,\\\"authName\\\":\\\"数据统计\\\",\\\"path\\\":\\\"reports\\\",\" +\r\n                \"\\\"children\\\":[{\\\"id\\\":146,\\\"authName\\\":\\\"数据报表\\\",\\\"path\\\":\\\"reports\\\",\" +\r\n                \"\\\"children\\\":[],\\\"order\\\":null}],\\\"order\\\":5}],\\\"meta\\\":{\\\"msg\\\":\\\"获取菜单列表成功\\\",\\\"status\\\":200}}\\n\";\r\n        String result = StringEscapeUtils.unescapeJava(returnMenu);\r\n        return JSON.toJSON(result);\r\n    }\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/zdk/controller/UserController.java b/src/main/java/com/zdk/controller/UserController.java
+--- a/src/main/java/com/zdk/controller/UserController.java	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
++++ b/src/main/java/com/zdk/controller/UserController.java	(date 1618913162658)
+@@ -1,10 +1,8 @@
+ package com.zdk.controller;
+ 
+ import com.alibaba.fastjson.JSON;
+-import com.zdk.dto.MyMenu;
+-import com.zdk.dto.ReturnMenu;
+-import com.zdk.service.UserService;
+ import com.zdk.dto.Meta;
++import com.zdk.service.UserService;
+ import org.apache.commons.lang.StringEscapeUtils;
+ import org.springframework.beans.factory.annotation.Autowired;
+ import org.springframework.beans.factory.annotation.Qualifier;
+@@ -25,20 +23,20 @@
+     @PostMapping("/login")
+     @CrossOrigin
+     public Object login(String id, String password){
+-        System.out.println("id："+id);
+-        Meta meta = new Meta();
+-        HashMap<String, String> map = new HashMap<>();
++        HashMap<String, String> map1 = new HashMap<>();
++        HashMap<String, String> map2 = new HashMap<>();
+         int result= userService.login(id, password);
+         System.out.println("result:"+result);
+         if(result>0){
+-            map.put("status","200");
++            map1.put("status","200");
++            map2.put("id", id);
++            map2.put("token", TokenProcessor.getUUID());
+         }else {
+-            map.put("status","404");
++            map1.put("status","404");
+         }
+-        meta.setMeta(map);
++        Meta meta = new Meta(map1,map2);
+         return JSON.toJSONString(meta);
+     }
+-
+     @GetMapping("/menus")
+     @CrossOrigin
+     public Object getMenuList(){
+Index: src/main/java/com/zdk/dto/Meta.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.zdk.dto;\r\n\r\nimport lombok.AllArgsConstructor;\r\nimport lombok.Data;\r\nimport lombok.NoArgsConstructor;\r\n\r\nimport java.util.Map;\r\n\r\n/**\r\n * @author zdk\r\n * @date 2021/4/18 18:08\r\n */\r\n@Data\r\n@AllArgsConstructor\r\n@NoArgsConstructor\r\npublic class Meta {\r\n    private Map<String, String> meta;\r\n}\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/com/zdk/dto/Meta.java b/src/main/java/com/zdk/dto/Meta.java
+--- a/src/main/java/com/zdk/dto/Meta.java	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
++++ b/src/main/java/com/zdk/dto/Meta.java	(date 1618835262676)
+@@ -15,4 +15,5 @@
+ @NoArgsConstructor
+ public class Meta {
+     private Map<String, String> meta;
++    private Map<String, String> data;
+ }
+Index: src/main/java/com/zdk/dto/ReturnMenu.java
+===================================================================
+diff --git a/src/main/java/com/zdk/dto/ReturnMenu.java b/src/main/java/com/zdk/dto/ReturnMenu.java
+deleted file mode 100644
+--- a/src/main/java/com/zdk/dto/ReturnMenu.java	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
++++ /dev/null	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
+@@ -1,17 +0,0 @@
+-package com.zdk.dto;
+-
+-import lombok.AllArgsConstructor;
+-import lombok.Data;
+-import lombok.NoArgsConstructor;
+-
+-/**
+- * @author zdk
+- * @date 2021/4/19 18:08
+- */
+-@Data
+-@AllArgsConstructor
+-@NoArgsConstructor
+-public class ReturnMenu {
+-    private MyMenu[] data;
+-    private Meta meta;
+-}
+Index: src/main/java/com/zdk/dto/MyMenu.java
+===================================================================
+diff --git a/src/main/java/com/zdk/dto/MyMenu.java b/src/main/java/com/zdk/dto/MyMenu.java
+deleted file mode 100644
+--- a/src/main/java/com/zdk/dto/MyMenu.java	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
++++ /dev/null	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
+@@ -1,20 +0,0 @@
+-package com.zdk.dto;
+-
+-import lombok.AllArgsConstructor;
+-import lombok.Data;
+-import lombok.NoArgsConstructor;
+-
+-/**
+- * @author zdk
+- * @date 2021/4/19 18:09
+- */
+-@Data
+-@AllArgsConstructor
+-@NoArgsConstructor
+-public class MyMenu {
+-    private String authName;
+-    private MyMenu[] children;
+-    private Integer id;
+-    private Integer order;
+-    private String path;
+-}
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<project version=\"4\">\r\n  <component name=\"ArtifactsWorkspaceSettings\">\r\n    <artifacts-to-build>\r\n      <artifact name=\"food:Web exploded\" />\r\n    </artifacts-to-build>\r\n  </component>\r\n  <component name=\"AutoImportSettings\">\r\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\r\n  </component>\r\n  <component name=\"ChangeListManager\">\r\n    <list default=\"true\" id=\"e93ea774-79c6-47a4-928d-6a10e232932a\" name=\"默认变更列表\" comment=\"4.19\">\r\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java\" afterDir=\"false\" />\r\n    </list>\r\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\r\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\r\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\r\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\r\n  </component>\r\n  <component name=\"CompilerWorkspaceConfiguration\">\r\n    <option name=\"MAKE_PROJECT_ON_SAVE\" value=\"true\" />\r\n  </component>\r\n  <component name=\"FileTemplateManagerImpl\">\r\n    <option name=\"RECENT_TEMPLATES\">\r\n      <list>\r\n        <option value=\"Class\" />\r\n      </list>\r\n    </option>\r\n  </component>\r\n  <component name=\"Git.Settings\">\r\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\r\n  </component>\r\n  <component name=\"LogFilters\">\r\n    <option name=\"FILTER_ERRORS\" value=\"false\" />\r\n    <option name=\"FILTER_WARNINGS\" value=\"false\" />\r\n    <option name=\"FILTER_INFO\" value=\"true\" />\r\n    <option name=\"FILTER_DEBUG\" value=\"true\" />\r\n    <option name=\"CUSTOM_FILTER\" />\r\n  </component>\r\n  <component name=\"MavenImportPreferences\">\r\n    <option name=\"generalSettings\">\r\n      <MavenGeneralSettings>\r\n        <option name=\"localRepository\" value=\"D:\\apache-maven-3.6.3\\maven-repo\" />\r\n        <option name=\"userSettingsFile\" value=\"D:\\apache-maven-3.6.3\\conf\\settings.xml\" />\r\n      </MavenGeneralSettings>\r\n    </option>\r\n  </component>\r\n  <component name=\"ProjectId\" id=\"1r7DYowUTEHfPpmkkbyWjTCNY5B\" />\r\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\">\r\n    <ConfirmationsSetting value=\"1\" id=\"Add\" />\r\n  </component>\r\n  <component name=\"ProjectViewState\">\r\n    <option name=\"showLibraryContents\" value=\"true\" />\r\n  </component>\r\n  <component name=\"PropertiesComponent\">\r\n    <property name=\"ASKED_ADD_EXTERNAL_FILES\" value=\"true\" />\r\n    <property name=\"DatabaseDriversLRU\" value=\"mysql\" />\r\n    <property name=\"RunOnceActivity.OpenProjectViewOnStart\" value=\"true\" />\r\n    <property name=\"RunOnceActivity.ShowReadmeOnStart\" value=\"true\" />\r\n    <property name=\"SHARE_PROJECT_CONFIGURATION_FILES\" value=\"true\" />\r\n    <property name=\"WebServerToolWindowFactoryState\" value=\"false\" />\r\n    <property name=\"aspect.path.notification.shown\" value=\"true\" />\r\n    <property name=\"last_opened_file_path\" value=\"$USER_HOME$/Desktop/jbolt_platform_2\" />\r\n    <property name=\"nodejs_package_manager_path\" value=\"npm\" />\r\n    <property name=\"project.structure.last.edited\" value=\"工件\" />\r\n    <property name=\"project.structure.proportion\" value=\"0.15\" />\r\n    <property name=\"project.structure.side.proportion\" value=\"0.1275862\" />\r\n    <property name=\"settings.editor.selected.configurable\" value=\"MavenSettings\" />\r\n    <property name=\"vue.rearranger.settings.migration\" value=\"true\" />\r\n  </component>\r\n  <component name=\"RecentsManager\">\r\n    <key name=\"CopyFile.RECENT_KEYS\">\r\n      <recent name=\"D:\\Project\\food\\sql\" />\r\n    </key>\r\n    <key name=\"MoveClassesOrPackagesDialog.RECENTS_KEY\">\r\n      <recent name=\"\" />\r\n    </key>\r\n  </component>\r\n  <component name=\"RunManager\" selected=\"Tomcat Server.Tomcat 9\">\r\n    <configuration default=\"true\" type=\"ArquillianJUnit\" factoryName=\"\" nameIsGenerated=\"true\">\r\n      <option name=\"arquillianRunConfiguration\">\r\n        <value>\r\n          <option name=\"containerStateName\" value=\"\" />\r\n        </value>\r\n      </option>\r\n      <option name=\"TEST_OBJECT\" value=\"class\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MyTest.test\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"food\" />\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"MyTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"test\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"MyTest.test\" type=\"JUnit\" factoryName=\"JUnit\" temporary=\"true\" nameIsGenerated=\"true\">\r\n      <module name=\"food\" />\r\n      <extension name=\"coverage\">\r\n        <pattern>\r\n          <option name=\"PATTERN\" value=\".*\" />\r\n          <option name=\"ENABLED\" value=\"true\" />\r\n        </pattern>\r\n      </extension>\r\n      <option name=\"PACKAGE_NAME\" value=\"\" />\r\n      <option name=\"MAIN_CLASS_NAME\" value=\"MyTest\" />\r\n      <option name=\"METHOD_NAME\" value=\"test\" />\r\n      <option name=\"TEST_OBJECT\" value=\"method\" />\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n      </method>\r\n    </configuration>\r\n    <configuration name=\"Login.vue\" type=\"JavascriptDebugType\" temporary=\"true\" nameIsGenerated=\"true\" uri=\"http://localhost:63342/food/page/src/components/user/Login.vue\" useBuiltInWebServerPort=\"true\">\r\n      <method v=\"2\" />\r\n    </configuration>\r\n    <configuration name=\"Tomcat 9\" type=\"#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory\" factoryName=\"Local\" APPLICATION_SERVER_NAME=\"Tomcat 9.0.37\" ALTERNATIVE_JRE_ENABLED=\"false\">\r\n      <option name=\"UPDATING_POLICY\" value=\"restart-server\" />\r\n      <deployment>\r\n        <artifact name=\"food:Web exploded\">\r\n          <settings>\r\n            <option name=\"CONTEXT_PATH\" value=\"/\" />\r\n          </settings>\r\n        </artifact>\r\n      </deployment>\r\n      <server-settings>\r\n        <option name=\"BASE_DIRECTORY_NAME\" value=\"1201ce29-7786-4872-846a-7449d38a6982\" />\r\n        <option name=\"HTTP_PORT\" value=\"8088\" />\r\n      </server-settings>\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat\" />\r\n      <predefined_log_file enabled=\"true\" id=\"Tomcat Catalina\" />\r\n      <predefined_log_file id=\"Tomcat Manager\" />\r\n      <predefined_log_file id=\"Tomcat Host Manager\" />\r\n      <predefined_log_file id=\"Tomcat Localhost Access\" />\r\n      <RunnerSettings RunnerId=\"Debug\">\r\n        <option name=\"DEBUG_PORT\" value=\"59577\" />\r\n      </RunnerSettings>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Cover\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Debug\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Profile\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <ConfigurationWrapper VM_VAR=\"JAVA_OPTS\" RunnerId=\"Run\">\r\n        <option name=\"USE_ENV_VARIABLES\" value=\"true\" />\r\n        <STARTUP>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </STARTUP>\r\n        <SHUTDOWN>\r\n          <option name=\"USE_DEFAULT\" value=\"true\" />\r\n          <option name=\"SCRIPT\" value=\"\" />\r\n          <option name=\"VM_PARAMETERS\" value=\"\" />\r\n          <option name=\"PROGRAM_PARAMETERS\" value=\"\" />\r\n        </SHUTDOWN>\r\n      </ConfigurationWrapper>\r\n      <method v=\"2\">\r\n        <option name=\"Make\" enabled=\"true\" />\r\n        <option name=\"BuildArtifacts\" enabled=\"true\">\r\n          <artifact name=\"food:Web exploded\" />\r\n        </option>\r\n      </method>\r\n    </configuration>\r\n    <list>\r\n      <item itemvalue=\"JavaScript 调试.Login.vue\" />\r\n      <item itemvalue=\"JUnit.MyTest.test\" />\r\n      <item itemvalue=\"Tomcat Server.Tomcat 9\" />\r\n      <item itemvalue=\"JUnit.MyTest.test (1)\" />\r\n    </list>\r\n    <recent_temporary>\r\n      <list>\r\n        <item itemvalue=\"JUnit.MyTest.test\" />\r\n        <item itemvalue=\"JUnit.MyTest.test (1)\" />\r\n        <item itemvalue=\"JavaScript 调试.Login.vue\" />\r\n      </list>\r\n    </recent_temporary>\r\n  </component>\r\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\r\n  <component name=\"TaskManager\">\r\n    <task active=\"true\" id=\"Default\" summary=\"默认任务\">\r\n      <changelist id=\"e93ea774-79c6-47a4-928d-6a10e232932a\" name=\"默认变更列表\" comment=\"\" />\r\n      <created>1618318289232</created>\r\n      <option name=\"number\" value=\"Default\" />\r\n      <option name=\"presentableId\" value=\"Default\" />\r\n      <updated>1618318289232</updated>\r\n      <workItem from=\"1618318291229\" duration=\"826000\" />\r\n      <workItem from=\"1618321349357\" duration=\"1666000\" />\r\n      <workItem from=\"1618387653738\" duration=\"2935000\" />\r\n      <workItem from=\"1618391829271\" duration=\"237000\" />\r\n      <workItem from=\"1618392968357\" duration=\"1305000\" />\r\n      <workItem from=\"1618394497515\" duration=\"2654000\" />\r\n      <workItem from=\"1618732293354\" duration=\"2081000\" />\r\n      <workItem from=\"1618737324918\" duration=\"2020000\" />\r\n      <workItem from=\"1618739433120\" duration=\"323000\" />\r\n      <workItem from=\"1618739834841\" duration=\"6566000\" />\r\n      <workItem from=\"1618747437992\" duration=\"795000\" />\r\n      <workItem from=\"1618819157591\" duration=\"5047000\" />\r\n    </task>\r\n    <task id=\"LOCAL-00001\" summary=\"4.18\">\r\n      <created>1618832916744</created>\r\n      <option name=\"number\" value=\"00001\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618832916744</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00002\" summary=\"4.18\">\r\n      <created>1618832995634</created>\r\n      <option name=\"number\" value=\"00002\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618832995634</updated>\r\n    </task>\r\n    <task id=\"LOCAL-00003\" summary=\"4.19\">\r\n      <created>1618834092056</created>\r\n      <option name=\"number\" value=\"00003\" />\r\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\r\n      <option name=\"project\" value=\"LOCAL\" />\r\n      <updated>1618834092056</updated>\r\n    </task>\r\n    <option name=\"localTasksCounter\" value=\"4\" />\r\n    <servers />\r\n  </component>\r\n  <component name=\"TypeScriptGeneratedFilesManager\">\r\n    <option name=\"version\" value=\"3\" />\r\n  </component>\r\n  <component name=\"Vcs.Log.Tabs.Properties\">\r\n    <option name=\"TAB_STATES\">\r\n      <map>\r\n        <entry key=\"MAIN\">\r\n          <value>\r\n            <State />\r\n          </value>\r\n        </entry>\r\n      </map>\r\n    </option>\r\n    <option name=\"oldMeFiltersMigrated\" value=\"true\" />\r\n  </component>\r\n  <component name=\"VcsManagerConfiguration\">\r\n    <ignored-roots>\r\n      <path value=\"$PROJECT_DIR$/page\" />\r\n      <path value=\"$PROJECT_DIR$/page/node_module\" />\r\n    </ignored-roots>\r\n    <MESSAGE value=\"4.18\" />\r\n    <MESSAGE value=\"4.19\" />\r\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"4.19\" />\r\n  </component>\r\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 2adbbe15dd3a5784f50b205f93a9a418b521478c)
++++ b/.idea/workspace.xml	(date 1618913162709)
+@@ -10,7 +10,11 @@
+   </component>
+   <component name="ChangeListManager">
+     <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.19">
++      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/dto/Meta.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/MyMenu.java" beforeDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/ReturnMenu.java" beforeDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -77,13 +81,15 @@
+     </key>
+   </component>
+   <component name="RunManager" selected="Tomcat Server.Tomcat 9">
+-    <configuration default="true" type="ArquillianJUnit" factoryName="" nameIsGenerated="true">
++    <configuration default="true" type="ArquillianTestNG" factoryName="" nameIsGenerated="true">
+       <option name="arquillianRunConfiguration">
+         <value>
+           <option name="containerStateName" value="" />
+         </value>
+       </option>
+-      <option name="TEST_OBJECT" value="class" />
++      <option name="TEST_OBJECT" value="CLASS" />
++      <properties />
++      <listeners />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+@@ -209,12 +215,10 @@
+       <item itemvalue="JavaScript 调试.Login.vue" />
+       <item itemvalue="JUnit.MyTest.test" />
+       <item itemvalue="Tomcat Server.Tomcat 9" />
+-      <item itemvalue="JUnit.MyTest.test (1)" />
+     </list>
+     <recent_temporary>
+       <list>
+         <item itemvalue="JUnit.MyTest.test" />
+-        <item itemvalue="JUnit.MyTest.test (1)" />
+         <item itemvalue="JavaScript 调试.Login.vue" />
+       </list>
+     </recent_temporary>
+@@ -261,7 +265,14 @@
+       <option name="project" value="LOCAL" />
+       <updated>1618834092056</updated>
+     </task>
+-    <option name="localTasksCounter" value="4" />
++    <task id="LOCAL-00004" summary="4.19">
++      <created>1618834113418</created>
++      <option name="number" value="00004" />
++      <option name="presentableId" value="LOCAL-00004" />
++      <option name="project" value="LOCAL" />
++      <updated>1618834113418</updated>
++    </task>
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
