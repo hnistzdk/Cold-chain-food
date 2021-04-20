@@ -36,8 +36,6 @@
 
             </el-menu-item>
           </el-submenu>
-
-
         </el-menu>
 
       </el-aside>
@@ -88,7 +86,6 @@ export default {
       //200是接口的状态码，如果res.meta.status不等于200,则数据请求成功
       if(res.meta.status != 200) return this.$message.error(res.meta.msg)
       this.menuList = res.data
-      console.log(res);
     },
     //点击按钮，操作菜单的折叠与展开
     toggleCollapse(){

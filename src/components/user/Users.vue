@@ -52,7 +52,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pagenum"
-        :page-sizes="[1, 2, 5, 8]"
+        :page-sizes="[1, 2, 5, 12]"
         :page-size="queryInfo.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total"  >
@@ -73,7 +73,7 @@ export default {
       //获取用户列表的参数对象
       queryInfo:{
         query:'',
-        pagenum:1,
+        pagenum:0,
         pagesize:2
       },
       userList:[],
@@ -95,29 +95,26 @@ export default {
     async getUserList(){
       const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
-      const {data:res} = await this.$http.get('users', {
-        params:qs.stringify(this.queryInfo)
-      })
-      console.log(res)
-      if(res.meta.status !== 200){
+      const {data:res} = await this.$http.post('users',
+        qs.stringify(this.queryInfo)
+      )
+      if(res.meta.status !== "200"){
         return this.$message.error('获取用户列表失败！')
       }
-      this.userList=res.data.users
+      this.userList=res.data.users;
       this.total =res.data.total
-      console.log(res)
     },
     async getUserListPage(){
 
       this.queryInfo.pagenum=1
-      const {data:res} = await this.$http.get('users', { params: qs.stringify(this.queryInfo)
-      })
-      console.log(res)
+      const {data:res} = await this.$http.post('users',
+        qs.stringify(this.queryInfo)
+      )
       if(res.meta.status !== 200){
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users
       this.total =res.data.total
-      console.log(res)
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize=newSize
