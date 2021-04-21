@@ -20,7 +20,7 @@ const router=new  Router({
       redirect:'/welcome',
       children:[
         {path:'/welcome',component:Welcome},
-        {path:'/us',component:Users}
+        {path:'/user/admin',component:Users}
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
