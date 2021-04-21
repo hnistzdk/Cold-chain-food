@@ -36,7 +36,7 @@
                   <span>{{ subItem.authName }}</span>
                 </template>
 
-                <el-menu-item :index="'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" >
+                <el-menu-item :index="'/'+subItem.path+'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" @click="saveNavState('/'+subItem.path+'/'+subItem1.path)" >
                   <template slot="title">
 
                     <!--              文本-->
