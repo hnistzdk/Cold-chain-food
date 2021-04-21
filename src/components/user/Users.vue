@@ -189,10 +189,12 @@ export default {
     }
   },
   created() {
-    this.getUserList()
+    this.getAdminList(),
+    this.getPrimaryUserList(),
+     this.getEnterpriseList()
   },
   methods:{
-    async getUserList(){
+    async getAdminList(){
       const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
       const {data:res} = await this.$http.post('users',
@@ -218,11 +220,11 @@ export default {
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize=newSize
-      this.getUserList()
+      this.getAdminList()
     },
     handleCurrentChange(newPage) {
       this.queryInfo.pagenum=newPage
-      this.getUserList()
+      this.getAdminList()
     },
     //关闭表单后，将表单里的内容清空
     addCloseDialog(){
@@ -250,7 +252,7 @@ export default {
         //将对话框隐藏
         this.addDialogVisible = false
         //重置表单
-        await this.getUserList()
+        await this.getAdminList()
       } )
     },
     editUser(){
@@ -268,7 +270,7 @@ export default {
         else
           this.$message.success('修改用户信息成功！')
         this.editDialogVisible =false
-        await  this.getUserList()
+        await  this.getAdminList()
 
       })
     },
@@ -312,7 +314,7 @@ export default {
       else
         this.$message.success('删除成功!')
       //重置表单
-      await  this.getUserList()
+      await  this.getAdminList()
     }
 
 
