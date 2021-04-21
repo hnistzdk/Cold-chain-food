@@ -33,6 +33,15 @@
                 <!--              文本-->
                 <span>{{ subItem.authName }}</span>
               </template>
+            </el-menu-item>
+              <!--            三级菜单-->
+              <el-menu-item :index="'/'+subItem.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" @click="saveNavState('/'+subItem1.path)" >
+                <template slot="title">
+                  <!--              图标-->
+                  <i class="el-icon-menu"></i>
+                  <!--              文本-->
+                  <span>{{ subItem1.authName }}</span>
+                </template>
 
             </el-menu-item>
           </el-submenu>
