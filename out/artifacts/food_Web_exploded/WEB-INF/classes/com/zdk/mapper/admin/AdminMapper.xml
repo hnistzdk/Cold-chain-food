@@ -16,4 +16,9 @@
     <select id="adminTotalPage" resultType="int">
         select count(*) from food.tb_admin;
     </select>
+
+    <select id="fuzzyQueryAdminList" parameterType="map" resultType="AdminMeta">
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        from food.tb_admin where food.tb_admin.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
+    </select>
 </mapper>

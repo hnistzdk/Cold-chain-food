@@ -3,6 +3,7 @@ package com.zdk.service.admin;
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.admin.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -31,9 +32,17 @@ public class AdminServiceImpl implements AdminService{
         map.put("pageSize", pageSize);
         return adminMapper.getAdminList(map);
     }
-
     @Override
     public int adminTotalPage() {
         return adminMapper.adminTotalPage();
+    }
+
+    @Override
+    public List<AdminMeta> fuzzyQueryAdminList(String query, Integer pageNum, Integer pageSize) {
+        Map map=new HashMap<>();
+        map.put("query", query);
+        map.put("startIndex", pageNum);
+        map.put("pageSize", pageSize);
+        return adminMapper.fuzzyQueryAdminList(map);
     }
 }

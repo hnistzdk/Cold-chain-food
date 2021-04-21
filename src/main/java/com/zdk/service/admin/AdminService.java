@@ -25,6 +25,7 @@ public interface AdminService {
      */
     List<AdminMeta> getAdminList(Integer pageNum, Integer pageSize);
 
+    List<AdminMeta> fuzzyQueryAdminList(String query,Integer pageNum, Integer pageSize);
     /**
      *获取管理员用户的人数
      * @return 人数

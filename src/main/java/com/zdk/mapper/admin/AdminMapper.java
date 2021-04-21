@@ -31,4 +31,11 @@ public interface AdminMapper {
      * @return 人数
      */
     int adminTotalPage();
+
+    /**
+     *模糊查询管理员用户的列表
+     * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
+     * @return 返回类型为AdminMeta的list
+     */
+    List<AdminMeta> fuzzyQueryAdminList(Map<String,Integer> map);
 }
