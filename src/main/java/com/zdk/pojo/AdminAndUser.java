@@ -13,13 +13,14 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Admin {
+public class AdminAndUser {
     private String id;
     private String username;
     private String trueName;
     private String gender;
     private String pwd;
     private String tel;
+    private String email;
     private String registerTime;
     private String lastLoginTime;
     private String loginTimes;

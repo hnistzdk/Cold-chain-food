@@ -782,256 +782,268 @@
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="249" parent="235" name="register_time">
+    <column id="249" parent="235" name="email">
       <Position>7</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="250" parent="235" name="last_login_time">
+    <column id="250" parent="235" name="register_time">
       <Position>8</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="251" parent="235" name="login_times">
+    <column id="251" parent="235" name="last_login_time">
       <Position>9</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="252" parent="235" name="login_times">
+      <Position>10</Position>
       <DataType>int(30)|0s</DataType>
     </column>
-    <column id="252" parent="235" name="role">
-      <Position>10</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <key id="253" parent="235" name="PRIMARY">
-      <NameSurrogate>1</NameSurrogate>
-      <ColNames>id</ColNames>
-      <Primary>1</Primary>
-    </key>
-    <column id="254" parent="236" name="name">
-      <Position>1</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="255" parent="236" name="gender">
-      <Position>2</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="256" parent="236" name="tel">
-      <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="257" parent="237" name="id">
-      <Position>1</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="258" parent="237" name="username">
-      <Position>2</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="259" parent="237" name="true_name">
-      <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
-    </column>
-    <column id="260" parent="237" name="gender">
-      <Position>4</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="261" parent="237" name="pwd">
-      <Position>5</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="262" parent="237" name="enterprise_name">
-      <Position>6</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="263" parent="237" name="tel">
-      <Position>7</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="264" parent="237" name="register_time">
-      <Position>8</Position>
-      <DataType>date|0s</DataType>
-    </column>
-    <column id="265" parent="237" name="last_login_time">
-      <Position>9</Position>
-      <DataType>date|0s</DataType>
-    </column>
-    <column id="266" parent="237" name="login_times">
-      <Position>10</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="267" parent="237" name="role">
+    <column id="253" parent="235" name="role">
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <key id="268" parent="237" name="PRIMARY">
+    <key id="254" parent="235" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="269" parent="238" name="id">
+    <column id="255" parent="236" name="name">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="256" parent="236" name="gender">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="257" parent="236" name="tel">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="258" parent="237" name="id">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="270" parent="238" name="food_name">
+    <column id="259" parent="237" name="username">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="271" parent="238" name="production_date">
+    <column id="260" parent="237" name="true_name">
       <Position>3</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="272" parent="238" name="expiry_date">
+    <column id="261" parent="237" name="gender">
       <Position>4</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="273" parent="238" name="address">
+    <column id="262" parent="237" name="pwd">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="274" parent="238" name="producer">
+    <column id="263" parent="237" name="enterprise_name">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="275" parent="238" name="phone">
+    <column id="264" parent="237" name="tel">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="276" parent="238" name="storage_id">
+    <column id="265" parent="237" name="email">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="277" parent="238" name="risk_degree">
+    <column id="266" parent="237" name="register_time">
       <Position>9</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="267" parent="237" name="last_login_time">
+      <Position>10</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="268" parent="237" name="login_times">
+      <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <key id="278" parent="238" name="PRIMARY">
+    <column id="269" parent="237" name="role">
+      <Position>12</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <key id="270" parent="237" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="279" parent="239" name="consignor_name">
+    <column id="271" parent="238" name="id">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
+      <NotNull>1</NotNull>
     </column>
-    <column id="280" parent="239" name="starting_site">
+    <column id="272" parent="238" name="food_name">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="281" parent="239" name="travel_status">
+    <column id="273" parent="238" name="production_date">
       <Position>3</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>date|0s</DataType>
     </column>
-    <column id="282" parent="239" name="consignee_name">
+    <column id="274" parent="238" name="expiry_date">
       <Position>4</Position>
-      <DataType>varchar(20)|0s</DataType>
+      <DataType>date|0s</DataType>
     </column>
-    <column id="283" parent="239" name="recieving_site">
+    <column id="275" parent="238" name="address">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="284" parent="239" name="arrval_point">
+    <column id="276" parent="238" name="producer">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="285" parent="239" name="manifest_id">
+    <column id="277" parent="238" name="phone">
+      <Position>7</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="278" parent="238" name="storage_id">
+      <Position>8</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="279" parent="238" name="risk_degree">
+      <Position>9</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <key id="280" parent="238" name="PRIMARY">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>id</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="281" parent="239" name="consignor_name">
+      <Position>1</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="282" parent="239" name="starting_site">
+      <Position>2</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="283" parent="239" name="travel_status">
+      <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="284" parent="239" name="consignee_name">
+      <Position>4</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="285" parent="239" name="recieving_site">
+      <Position>5</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="286" parent="239" name="arrval_point">
+      <Position>6</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="287" parent="239" name="manifest_id">
       <Position>7</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="286" parent="239" name="consignor_id">
+    <column id="288" parent="239" name="consignor_id">
       <Position>8</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="287" parent="239" name="consignee_id">
+    <column id="289" parent="239" name="consignee_id">
       <Position>9</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="288" parent="239" name="food_id">
+    <column id="290" parent="239" name="food_id">
       <Position>10</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <index id="289" parent="239" name="food_id">
+    <index id="291" parent="239" name="food_id">
       <ColNames>food_id</ColNames>
       <Type>btree</Type>
     </index>
-    <key id="290" parent="239" name="PRIMARY">
+    <key id="292" parent="239" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>manifest_id</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="291" parent="239" name="food_id">
+    <foreign-key id="293" parent="239" name="food_id">
       <ColNames>food_id</ColNames>
       <RefTableName>tb_food</RefTableName>
       <RefColNames>id</RefColNames>
       <OnUpdate>cascade</OnUpdate>
       <OnDelete>cascade</OnDelete>
     </foreign-key>
-    <column id="292" parent="240" name="name">
+    <column id="294" parent="240" name="name">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="293" parent="240" name="gender">
+    <column id="295" parent="240" name="gender">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="294" parent="240" name="tel">
+    <column id="296" parent="240" name="tel">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="295" parent="241" name="id">
+    <column id="297" parent="241" name="id">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="296" parent="241" name="username">
+    <column id="298" parent="241" name="username">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="297" parent="241" name="true_name">
+    <column id="299" parent="241" name="true_name">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="298" parent="241" name="gender">
+    <column id="300" parent="241" name="gender">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="299" parent="241" name="pwd">
+    <column id="301" parent="241" name="pwd">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="300" parent="241" name="tel">
+    <column id="302" parent="241" name="tel">
       <Position>6</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="301" parent="241" name="register_time">
+    <column id="303" parent="241" name="email">
       <Position>7</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="302" parent="241" name="last_login_time">
+    <column id="304" parent="241" name="register_time">
       <Position>8</Position>
       <DataType>date|0s</DataType>
     </column>
-    <column id="303" parent="241" name="login_times">
+    <column id="305" parent="241" name="last_login_time">
       <Position>9</Position>
+      <DataType>date|0s</DataType>
+    </column>
+    <column id="306" parent="241" name="login_times">
+      <Position>10</Position>
       <DataType>int(30)|0s</DataType>
     </column>
-    <column id="304" parent="241" name="role">
-      <Position>10</Position>
+    <column id="307" parent="241" name="role">
+      <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <key id="305" parent="241" name="PRIMARY">
+    <key id="308" parent="241" name="PRIMARY">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>id</ColNames>
       <Primary>1</Primary>
     </key>
-    <column id="306" parent="242" name="name">
+    <column id="309" parent="242" name="name">
       <Position>1</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="307" parent="242" name="gender">
+    <column id="310" parent="242" name="gender">
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="308" parent="242" name="tel">
+    <column id="311" parent="242" name="tel">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
