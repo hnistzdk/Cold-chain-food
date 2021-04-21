@@ -11,7 +11,7 @@
       <!--    查询框布局区域-->
       <el-row :gutter="20">
         <el-col :span="6">
-          <el-input  placeholder="请输入内容" >
+          <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getAdminList()">
             <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
           </el-input></el-col>
         <el-col :span="4">
@@ -189,9 +189,9 @@ export default {
     }
   },
   created() {
-    this.getAdminList(),
-    this.getPrimaryUserList(),
-     this.getEnterpriseList()
+    this.getAdminList()
+    /*this.getPrimaryUserList(),
+     this.getEnterpriseList()*/
   },
   methods:{
     async getAdminList(){
