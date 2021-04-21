@@ -110,7 +110,7 @@ export default {
       const {data:res} = await this.$http.post('users',
         qs.stringify(this.queryInfo)
       )
-      if(res.meta.status !== 200){
+      if(res.meta.status !== "200"){
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users
@@ -127,7 +127,7 @@ export default {
  /*   async userStateChanged(userinfo){
       console.log(userinfo)
       const {data:res}=await  this.$http.put(`users/${userinfo.id}/state/${userinfo.mg_state}`)
-      if(res.meta.status !==200){
+      if(res.meta.status !=="200"){
         userinfo.mg_state =!userinfo.mg_state
         return this.$message.error('更新用户状态失败!')
       }
