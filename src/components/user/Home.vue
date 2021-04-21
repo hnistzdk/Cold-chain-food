@@ -33,15 +33,13 @@
                 <!--              文本-->
                 <span>{{ subItem.authName }}</span>
               </template>
-              <!--            三级菜单-->
-              <el-menu-item :index="3" v-for="subItem1 in subItem.children" :key="subItem1.id"  >
-                <template slot="title">
-                  <!--              图标-->
 
-                  <!--              文本-->
+
+              <!--            三级菜单-->
+              <el-menu-item :index="'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id"  >
+                <template slot="title">
                   <span>{{ subItem1.authName }}</span>
                 </template>
-
               </el-menu-item>
 
             </el-menu-item>
