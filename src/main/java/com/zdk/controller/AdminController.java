@@ -3,7 +3,8 @@ package com.zdk.controller;
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
-import com.zdk.service.UserService;
+import com.zdk.service.admin.AdminServiceImpl;
+import com.zdk.service.user.UserService;
 import com.zdk.utils.LoginMessage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +25,13 @@ import java.util.List;
 @RestController
 public class AdminController {
     @Autowired
-    @Qualifier("UserServiceImpl")
-    private UserService userService;
+    @Qualifier("AdminServiceImpl")
+    private AdminServiceImpl adminService;
 
     @PostMapping("/adminLogin")
     @CrossOrigin
     public Object login(String id, String password){
-        int result= userService.adminLogin(id, password);
+        int result= adminService.adminLogin(id, password);
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }
@@ -38,9 +39,9 @@ public class AdminController {
     @PostMapping("/users")
     @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
-        int adminTotalPage= userService.adminTotalPage();
+        int adminTotalPage= adminService.adminTotalPage();
         System.out.println(adminTotalPage);
-        List<AdminMeta> result = userService.getAdminList(pagenum, pagesize);
+        List<AdminMeta> result = adminService.getAdminList(pagenum, pagesize);
         Object[] users = result.toArray();
         HashMap data = new HashMap<>();
         HashMap<String, String> msg = new HashMap<>();

@@ -2,7 +2,7 @@ package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
-import com.zdk.service.UserService;
+import com.zdk.service.user.UserService;
 import com.zdk.utils.LoginMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

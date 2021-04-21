@@ -1,5 +1,4 @@
-package com.zdk.mapper;
-
+package com.zdk.mapper.admin;
 
 import com.zdk.dto.AdminMeta;
 import org.apache.ibatis.annotations.Param;
@@ -9,24 +8,9 @@ import java.util.Map;
 
 /**
  * @author zdk
+ * @date 2021/4/21 18:40
  */
-public interface UserMapper {
-    /**
-     *普通用户的登录
-     * @param  id:账号
-     * @param  password:密码
-     * @return 登录成功的结果>0则成功
-     */
-    int login(@Param("id") String id,@Param("password") String password);
-
-    /**
-     *企业用户的登录
-     * @param  id:账号
-     * @param  password:密码
-     * @return 登录成功的结果>0则成功
-     */
-    int enterpriseLogin(@Param("id") String id,@Param("password") String password);
-
+public interface AdminMapper {
     /**
      *管理员用户的登录
      * @param  id:账号

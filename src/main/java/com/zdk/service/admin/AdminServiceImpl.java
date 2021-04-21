@@ -1,7 +1,7 @@
-package com.zdk.service;
+package com.zdk.service.admin;
 
 import com.zdk.dto.AdminMeta;
-import com.zdk.mapper.UserMapper;
+import com.zdk.mapper.admin.AdminMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,25 +11,17 @@ import java.util.Map;
 
 /**
  * @author zdk
+ * @date 2021/4/21 18:42
  */
-@Service("UserServiceImpl")
-public class UserServiceImpl implements UserService{
+@Service("AdminServiceImpl")
+public class AdminServiceImpl implements AdminService{
+
     @Autowired
-    private UserMapper userMapper;
-
-    @Override
-    public int login(String id, String password) {
-        return userMapper.login(id,password);
-    }
-
-    @Override
-    public int enterpriseLogin(String id, String password) {
-        return userMapper.enterpriseLogin(id, password);
-    }
+    private AdminMapper adminMapper;
 
     @Override
     public int adminLogin(String id, String password) {
-        return userMapper.adminLogin(id, password);
+        return adminMapper.adminLogin(id, password);
     }
 
     @Override
@@ -37,11 +29,11 @@ public class UserServiceImpl implements UserService{
         Map<String, Integer> map=new HashMap<>();
         map.put("startIndex", pageNum);
         map.put("pageSize", pageSize);
-        return userMapper.getAdminList(map);
+        return adminMapper.getAdminList(map);
     }
 
     @Override
     public int adminTotalPage() {
-        return userMapper.adminTotalPage();
+        return adminMapper.adminTotalPage();
     }
 }

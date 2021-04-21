@@ -1,5 +1,5 @@
 import com.zdk.dto.AdminMeta;
-import com.zdk.service.UserServiceImpl;
+import com.zdk.service.user.UserServiceImpl;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -15,9 +15,5 @@ public class MyTest {
     public void test(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserServiceImpl userServiceImpl = context.getBean("UserServiceImpl", UserServiceImpl.class);
-        List<AdminMeta> adminList = userServiceImpl.getAdminList(0, 2);
-        for (AdminMeta userListMeta : adminList) {
-            System.out.println(userListMeta);
-        }
     }
 }

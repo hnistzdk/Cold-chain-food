@@ -1,5 +1,4 @@
-package com.zdk.service;
-
+package com.zdk.service.admin;
 
 import com.zdk.dto.AdminMeta;
 
@@ -7,24 +6,9 @@ import java.util.List;
 
 /**
  * @author zdk
+ * @date 2021/4/21 18:42
  */
-public interface UserService {
-    /**
-     *普通用户的登录
-    * @param  id：账号
-    * @param  password：密码
-    * @return 登录成功的结果>0则成功
-    */
-    int login(String id, String password);
-
-    /**
-     *企业用户的登录
-     * @param  id：账号
-     * @param  password：密码
-     * @return 登录成功的结果>0则成功
-     */
-    int enterpriseLogin(String id, String password);
-
+public interface AdminService {
     /**
      *管理员用户的登录
      * @param  id：账号
