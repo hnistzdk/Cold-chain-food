@@ -26,22 +26,26 @@
               <span>{{ item.authName }}</span>
             </template>
             <!--            二级菜单-->
-            <el-menu-item :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
-              <template slot="title">
-                <!--              图标-->
-                <i class="el-icon-menu"></i>
-                <!--              文本-->
-                <span>{{ subItem.authName }}</span>
-              </template>
+            <el-submenu :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
 
-              <el-menu-item :index="'/'+subItem.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" >
+
                 <template slot="title">
-
+                  <!--              图标-->
+                  <i class="el-icon-menu"></i>
                   <!--              文本-->
-                  <span>{{ subItem1.authName }}</span>
+                  <span>{{ subItem.authName }}</span>
                 </template>
-                </el-menu-item>
-            </el-menu-item>
+
+                <el-menu-item :index="'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" >
+                  <template slot="title">
+
+                    <!--              文本-->
+                    <span>{{ subItem1.authName }}</span>
+                  </template>
+
+              </el-menu-item>
+            </el-submenu>
+
 
           </el-submenu>
         </el-menu>
