@@ -140,7 +140,7 @@ export default {
       //获取用户列表的参数对象
       queryInfo:{
         query:'',
-        pagenum:0,
+        pagenum:1,
         pagesize:2
       },
       userList:[],
@@ -200,6 +200,7 @@ export default {
       const {data:res} = await this.$http.post('PrimaryUsers',
         qs.stringify(this.queryInfo)
       )
+      console.log(res);
       if(res.meta.status !== "200"){
         return this.$message.error('获取用户列表失败！')
       }

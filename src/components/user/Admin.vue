@@ -135,7 +135,6 @@ export default {
       }
       cb(new Error('请输入合法的电话号码'))
     }
-
     return{
       //获取用户列表的参数对象
       queryInfo:{
@@ -205,6 +204,7 @@ export default {
       }
       this.userList=res.data.users;
       this.total =res.data.total
+      console.log(this.total)
     },
     async getUserListPage(){
       this.queryInfo.pagenum=1
