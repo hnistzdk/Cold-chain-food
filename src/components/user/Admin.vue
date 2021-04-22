@@ -28,19 +28,18 @@
         <el-table-column label="角色" prop="role"></el-table-column>
         <el-table-column label="状态">
           <template  v-slot:default="scope">
-                <!--编辑按钮-->
+
               <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"> </el-switch>
-            <!--          删除按钮-->
-            <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
+
 
           </template  >
         </el-table-column>
         <el-table-column label="操作" width="200px">
-          <template >
+          <template slot-scope="scope">
             <!--          编辑按钮-->
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit"></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
             <!--          删除按钮-->
-            <el-button type="danger" icon="el-icon-delete" size="small" ></el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
             <!--          分配角色按钮-->
             <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable="false">
               <el-button type="warning" icon="el-icon-share" size="small"></el-button>
