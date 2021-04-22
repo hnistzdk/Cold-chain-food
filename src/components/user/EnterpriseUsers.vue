@@ -11,7 +11,7 @@
       <!--    查询框布局区域-->
       <el-row :gutter="20">
         <el-col :span="6">
-          <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getPrimaryUsersList()">
+          <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getEnterpriseList()">
             <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
           </el-input></el-col>
         <el-col :span="4">
@@ -194,12 +194,11 @@ export default {
     }
   },
   created() {
-    this.getPrimaryUsersList()
-    /*this.getPrimaryUserList(),
-     this.getEnterpriseList()*/
+
+     this.getEnterpriseList()
   },
   methods:{
-    async getPrimaryUsersList(){
+    async getEnterpriseList(){
       const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
       const {data:res} = await this.$http.post('enterpriseUsers',
@@ -214,7 +213,7 @@ export default {
     async getUserListPage(){
 
       this.queryInfo.pagenum=1
-      const {data:res} = await this.$http.post('PrimaryUsers',
+      const {data:res} = await this.$http.post('enterpriseUsers',
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
@@ -225,11 +224,11 @@ export default {
     },
     handleSizeChange(newSize) {
       this.queryInfo.pagesize=newSize
-      this.getPrimaryUsersList()
+      this.getEnterpriseList()
     },
     handleCurrentChange(newPage) {
       this.queryInfo.pagenum=newPage
-      this.getPrimaryUsersList()
+      this.getEnterpriseList()
     },
     //关闭表单后，将表单里的内容清空
     addCloseDialog(){
@@ -249,7 +248,7 @@ export default {
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
         //console.log(valid)
-        const {data:res}= await this.$http.post('PrimaryUsers',this.addForm)
+        const {data:res}= await this.$http.post('enterpriseUsers',this.addForm)
         if(res.meta.status!==201)
           this.$message.error('添加用户失败！')
         else
@@ -257,7 +256,7 @@ export default {
         //将对话框隐藏
         this.addDialogVisible = false
         //重置表单
-        await this.getPrimaryUsersList()
+        await this.getEnterpriseList()
       } )
     },
     editUser(){
@@ -275,7 +274,7 @@ export default {
         else
           this.$message.success('修改用户信息成功！')
         this.editDialogVisible =false
-        await  this.getPrimaryUsersList()
+        await  this.getEnterpriseList()
 
       })
     },
@@ -319,7 +318,7 @@ export default {
       else
         this.$message.success('删除成功!')
       //重置表单
-      await  this.getPrimaryUsersList()
+      await  this.getEnterpriseList()
     }
 
 

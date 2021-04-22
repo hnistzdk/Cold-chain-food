@@ -208,7 +208,7 @@ export default {
     },
     async getUserListPage(){
       this.queryInfo.pagenum=1
-      const {data:res} = await this.$http.post('users',
+      const {data:res} = await this.$http.post('adminUsers',
         qs.stringify(this.queryInfo)
       )
       console.log(res);
@@ -244,7 +244,7 @@ export default {
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
         //console.log(valid)
-        const {data:res}= await this.$http.post('users',this.addForm)
+        const {data:res}= await this.$http.post('adminUsers',this.addForm)
         if(res.meta.status!=="201")
           this.$message.error('添加用户失败！')
         else
