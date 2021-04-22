@@ -55,10 +55,10 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pagenum"
-        :page-sizes="[1, 2, 5, 12]"
+        :page-sizes="[1, 2, 5, 8]"
         :page-size="queryInfo.pagesize"
         layout="total, sizes, prev, pager, next, jumper"
-        :total="total"  >
+        :total="total" >
       </el-pagination>
       <!--    添加用户的对话框-->
       <el-dialog
@@ -322,6 +322,13 @@ export default {
 }
 </script>
 
-<style scoped>
+<style Lang="less" scoped>
+.el-pagination{
+  padding-top: 20px;
+  height: 30px;
+}
+.el-input{
+  width: 50%;
+}
 
 </style>
