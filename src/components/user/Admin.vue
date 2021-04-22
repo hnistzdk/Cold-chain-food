@@ -197,7 +197,7 @@ export default {
     async getAdminList(){
       const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
-      const {data:res} = await this.$http.post('users',
+      const {data:res} = await this.$http.post('adminUsers',
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){

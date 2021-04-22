@@ -202,7 +202,7 @@ export default {
     async getPrimaryUsersList(){
       const qs = require('querystring');
       //await this.$http.get('users',{params:this.queryInfo })
-      const {data:res} = await this.$http.post('PrimaryUsers',
+      const {data:res} = await this.$http.post('enterpriseUsers',
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
