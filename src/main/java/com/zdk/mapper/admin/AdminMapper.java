@@ -38,4 +38,11 @@ public interface AdminMapper {
      * @return 返回类型为AdminMeta的list
      */
     List<AdminMeta> fuzzyQueryAdminList(Map<String,Integer> map);
+
+    /**
+     *删除管理员
+     * @param  id
+     * @return 返回类型条数
+     */
+    int removeAdmin(@Param("id") int id);
 }

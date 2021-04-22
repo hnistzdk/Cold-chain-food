@@ -1,6 +1,7 @@
 package com.zdk.service.admin;
 
 import com.zdk.dto.AdminMeta;
+import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
 
@@ -25,10 +26,24 @@ public interface AdminService {
      */
     List<AdminMeta> getAdminList(Integer pageNum, Integer pageSize);
 
+    /**
+     *模糊查询管理员用户的列表
+     * @param  query:模糊查询条件
+     * @param  pageNum:开始条
+     * @param  pageSize:页条数
+     * @return 返回类型为AdminMeta的list
+     */
     List<AdminMeta> fuzzyQueryAdminList(String query,Integer pageNum, Integer pageSize);
     /**
      *获取管理员用户的人数
      * @return 人数
      */
     int adminTotalPage();
+
+    /**
+     *删除管理员
+     * @param  id
+     * @return 返回类型条数
+     */
+    int removeAdmin(int id);
 }

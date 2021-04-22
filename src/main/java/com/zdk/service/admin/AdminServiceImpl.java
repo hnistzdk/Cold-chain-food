@@ -45,4 +45,9 @@ public class AdminServiceImpl implements AdminService{
         map.put("pageSize", pageSize);
         return adminMapper.fuzzyQueryAdminList(map);
     }
+
+    @Override
+    public int removeAdmin(int id) {
+        return adminMapper.removeAdmin(id);
+    }
 }

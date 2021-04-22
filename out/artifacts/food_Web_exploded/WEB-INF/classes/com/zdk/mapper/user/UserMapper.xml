@@ -6,4 +6,20 @@
     <select id="login" resultType="int">
         select * from food.tb_user where id=#{id} and pwd=#{password};
     </select>
+
+    <select id="getUserList" parameterType="map" resultType="AdminMeta">
+        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role
+        from food.tb_user limit #{startIndex},#{pageSize};
+    </select>
+
+
+    <select id="fuzzyQueryUserList" parameterType="map" resultType="AdminMeta">
+        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role
+        from food.tb_user where food.tb_user.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
+    </select>
+
+    <!--    总记录数-->
+    <select id="userTotalPage" resultType="int">
+        select count(*) from food.tb_user;
+    </select>
 </mapper>

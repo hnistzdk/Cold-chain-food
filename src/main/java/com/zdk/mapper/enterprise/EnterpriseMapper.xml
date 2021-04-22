@@ -6,4 +6,19 @@
     <select id="enterpriseLogin" resultType="int">
         select * from food.tb_enterprise_user where id=#{id} and pwd=#{password};
     </select>
+    <select id="getEnterpriseList" parameterType="map" resultType="EnterpriseMeta">
+        select food.tb_enterprise_user.id,food.tb_enterprise_user.username,food.tb_enterprise_user.gender,
+               food.tb_enterprise_user.tel,food.tb_enterprise_user.role,food.tb_enterprise_user.enterprise_name
+        from food.tb_enterprise_user limit #{startIndex},#{pageSize};
+    </select>
+
+    <select id="fuzzyQueryEnterpriseList" parameterType="map" resultType="EnterpriseMeta">
+        select food.tb_enterprise_user.id,food.tb_enterprise_user.username,food.tb_enterprise_user.gender,
+               food.tb_enterprise_user.tel,food.tb_enterprise_user.role,food.tb_enterprise_user.enterprise_name
+        from food.tb_enterprise_user where food.tb_enterprise_user.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
+    </select>
+    <!--    总记录数-->
+    <select id="enterpriseTotalPage" resultType="int">
+        select count(*) from food.tb_enterprise_user;
+    </select>
 </mapper>
