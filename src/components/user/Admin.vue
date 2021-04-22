@@ -80,9 +80,7 @@
             <el-input v-model="addForm.mobile"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
-            <el-radio v-model="addForm.role" label="1">普通用户</el-radio>
-            <el-radio v-model="addForm.role" label="2">企业用户</el-radio>
-            <el-radio v-model="addForm.role" label="3">管理员</el-radio>
+            <el-input v-model="addForm.email"></el-input>
           </el-form-item>
         </el-form>
         <!--      底部区域-->
