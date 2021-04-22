@@ -5,9 +5,9 @@ import Hello from '@/components/user/Hello'
 import Register from '@/components/user/Register'
 import Home from '@/components/user/Home'
 import Welcome from '@/components/user/Welcome'
-import Users from '@/components/user/Users'
+import Admin from '@/components/user/Admin'
 import PrimaryHome from '@/components/PriUser/PrimaryHome'
-
+import PrimaryUsers from "@/components/user/PrimaryUsers";
 Vue.use(Router)
 
 const router=new  Router({
@@ -20,7 +20,8 @@ const router=new  Router({
       redirect:'/welcome',
       children:[
         {path:'/welcome',component:Welcome},
-        {path:'/user/admin',component:Users}
+        {path:'/user/admin',component:Admin},
+        {path:'/user/users',component:PrimaryUsers }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
