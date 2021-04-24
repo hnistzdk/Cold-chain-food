@@ -233,7 +233,7 @@ export default {
     },
     async userStateChanged(userinfo){
       console.log(userinfo)
-      const {data:res}=await  this.$http.put(`users/${userinfo.id}/state/${userinfo.mg_state}`)
+      const {data:res}=await  this.$http.put(`PrimaryUsers/${userinfo.id}/state/${userinfo.mg_state}`)
       if(res.meta.status !=="200"){
         userinfo.mg_state =!userinfo.mg_state
         return this.$message.error('更新用户状态失败!')
@@ -246,7 +246,7 @@ export default {
         if(!valid) return
         //console.log(valid)
         const {data:res}= await this.$http.post('PrimaryUsers',this.addForm)
-        if(res.meta.status!==201)
+        if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
           this.$message.success('添加用户成功！')
@@ -261,12 +261,12 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("users/"+this.editForm.id,{
+        const {data:res}= await  this.$http.put("PrimaryUsers/"+this.editForm.id,{
           email:this.editForm.email,
           mobile:this.editForm.mobile
         })
         //console.log(this.editForm.id)
-        if(res.meta.status!==200)
+        if(res.meta.status!=="200")
           this.$message.error('修改用户信息失败！')
         else
           this.$message.success('修改用户信息成功！')
@@ -280,7 +280,7 @@ export default {
 
       //console.log(this.editForm.id)
       const {data:res} = await this.$http.get("PrimaryUsers/"+id)
-      if(res.meta.status!==200)
+      if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
       this.editDialogVisible =true
@@ -309,7 +309,7 @@ export default {
       }
       //console.log('确认了删除')
       const {data:res} = await this.$http.delete("PrimaryUsers/"+id)
-      if(res.meta.status!==200){
+      if(res.meta.status!=="200"){
         this.$message.error('删除失败!')
       }
       else
@@ -317,8 +317,6 @@ export default {
       //重置表单
       await  this.getPrimaryUsersList()
     }
-
-
   }
 }
 </script>
