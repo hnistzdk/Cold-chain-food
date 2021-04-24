@@ -236,7 +236,7 @@ export default {
     },
     async userStateChanged(userinfo){
       console.log(userinfo)
-      const {data:res}=await  this.$http.put(`users/${userinfo.id}/state/${userinfo.mg_state}`)
+      const {data:res}=await  this.$http.put(`enterpriseUsers/${userinfo.id}/state/${userinfo.mg_state}`)
       if(res.meta.status !=="200"){
         userinfo.mg_state =!userinfo.mg_state
         return this.$message.error('更新用户状态失败!')
@@ -264,7 +264,7 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("users/"+this.editForm.id,{
+        const {data:res}= await  this.$http.put("enterpriseUsers/"+this.editForm.id,{
           email:this.editForm.email,
           mobile:this.editForm.mobile
         })
@@ -282,7 +282,7 @@ export default {
     async showEdit(id){
 
       //console.log(this.editForm.id)
-      const {data:res} = await this.$http.get("PrimaryUsers/"+id)
+      const {data:res} = await this.$http.get("enterpriseUsers/"+id)
       if(res.meta.status!==200)
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
@@ -311,8 +311,8 @@ export default {
         return this.$message.info('已取消删除')
       }
       //console.log('确认了删除')
-      const {data:res} = await this.$http.delete("PrimaryUsers/"+id)
-      if(res.meta.status!==200){
+      const {data:res} = await this.$http.delete("enterpriseUsers/"+id)
+      if(res.meta.status!=="200"){
         this.$message.error('删除失败!')
       }
       else
