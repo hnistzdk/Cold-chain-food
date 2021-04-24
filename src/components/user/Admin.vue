@@ -242,7 +242,7 @@ export default {
         if(!valid) return
         //console.log(valid)
         const {data:res}= await this.$http.post('adminUsers',this.addForm)
-        if(res.meta.status!=="201")
+        if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
           this.$message.success('添加用户成功！')

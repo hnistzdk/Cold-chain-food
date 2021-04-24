@@ -249,7 +249,7 @@ export default {
         if(!valid) return
         //console.log(valid)
         const {data:res}= await this.$http.post('enterpriseUsers',this.addForm)
-        if(res.meta.status!==201)
+        if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
           this.$message.success('添加用户成功！')
@@ -269,7 +269,7 @@ export default {
           mobile:this.editForm.mobile
         })
         //console.log(this.editForm.id)
-        if(res.meta.status!==200)
+        if(res.meta.status!=="200")
           this.$message.error('修改用户信息失败！')
         else
           this.$message.success('修改用户信息成功！')
@@ -283,7 +283,7 @@ export default {
 
       //console.log(this.editForm.id)
       const {data:res} = await this.$http.get("enterpriseUsers/"+id)
-      if(res.meta.status!==200)
+      if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
       this.editDialogVisible =true
@@ -320,8 +320,6 @@ export default {
       //重置表单
       await  this.getEnterpriseList()
     }
-
-
   }
 }
 </script>
