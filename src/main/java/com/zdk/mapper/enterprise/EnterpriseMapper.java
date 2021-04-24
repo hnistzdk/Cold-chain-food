@@ -1,7 +1,7 @@
 package com.zdk.mapper.enterprise;
 
-import com.zdk.dto.AdminMeta;
 import com.zdk.dto.EnterpriseMeta;
+import com.zdk.dto.AddEnterpriseMeta;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -38,4 +38,18 @@ public interface EnterpriseMapper {
      * @return 人数
      */
     int enterpriseTotalPage();
+
+    /**
+     *删除企业用户
+     * @param  id
+     * @return 返回类型条数
+     */
+    int removeEnterprise(@Param("id") int id);
+
+    /**
+     *添加企业用户
+     * @param  enterpriseUser:添加时dto对象
+     * @return 返回类型条数
+     */
+    int addEnterprise(AddEnterpriseMeta enterpriseUser);
 }

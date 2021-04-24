@@ -1,28 +1,21 @@
-package com.zdk.pojo;
+package com.zdk.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
- * @Description
- * @Author zdk
- * @Date 2021/4/19 16:46
+ * @author zdk
+ * @date 2021/4/24 19:50
  */
-
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AdminAndUser {
+public class AddEnterpriseMeta {
     private String id;
     private String username;
     private String pwd;
-    private String trueName;
     private String gender;
     private String tel;
     private String email;
-    private String registerTime;
-    private String lastLoginTime;
-    private String loginTimes;
-    private String role;
 }

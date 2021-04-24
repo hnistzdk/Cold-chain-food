@@ -1,5 +1,6 @@
 package com.zdk.service.enterprise;
 
+import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.mapper.enterprise.EnterpriseMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -44,5 +45,15 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     @Override
     public int enterpriseTotalPage() {
         return enterpriseMapper.enterpriseTotalPage();
+    }
+
+    @Override
+    public int removeEnterprise(int id) {
+        return enterpriseMapper.removeEnterprise(id);
+    }
+
+    @Override
+    public int addEnterprise(AddEnterpriseMeta enterpriseUser) {
+        return enterpriseMapper.addEnterprise(enterpriseUser);
     }
 }

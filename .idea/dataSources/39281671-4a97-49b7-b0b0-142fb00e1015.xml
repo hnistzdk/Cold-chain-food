@@ -766,15 +766,15 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="245" parent="235" name="true_name">
+    <column id="245" parent="235" name="pwd">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="246" parent="235" name="gender">
+    <column id="246" parent="235" name="true_name">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="247" parent="235" name="pwd">
+    <column id="247" parent="235" name="gender">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
@@ -828,16 +828,16 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="260" parent="237" name="true_name">
+    <column id="260" parent="237" name="pwd">
       <Position>3</Position>
+      <DataType>varchar(20)|0s</DataType>
+    </column>
+    <column id="261" parent="237" name="true_name">
+      <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="261" parent="237" name="gender">
-      <Position>4</Position>
-      <DataType>varchar(20)|0s</DataType>
-    </column>
-    <column id="262" parent="237" name="pwd">
+    <column id="262" parent="237" name="gender">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
@@ -994,15 +994,15 @@
       <Position>2</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="299" parent="241" name="true_name">
+    <column id="299" parent="241" name="pwd">
       <Position>3</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="300" parent="241" name="gender">
+    <column id="300" parent="241" name="true_name">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="301" parent="241" name="pwd">
+    <column id="301" parent="241" name="gender">
       <Position>5</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>

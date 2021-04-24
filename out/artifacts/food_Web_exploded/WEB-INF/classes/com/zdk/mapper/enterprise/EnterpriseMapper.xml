@@ -21,4 +21,8 @@
     <select id="enterpriseTotalPage" resultType="int">
         select count(*) from food.tb_enterprise_user;
     </select>
+
+    <delete id="removeEnterprise">
+        delete from tb_enterprise_user where id=#{id};
+    </delete>
 </mapper>

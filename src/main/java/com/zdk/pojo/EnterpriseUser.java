@@ -14,9 +14,9 @@ import lombok.NoArgsConstructor;
 public class EnterpriseUser {
     private String id;
     private String username;
+    private String pwd;
     private String trueName;
     private String gender;
-    private String pwd;
     private String enterpriseName;
     private String tel;
     private String email;

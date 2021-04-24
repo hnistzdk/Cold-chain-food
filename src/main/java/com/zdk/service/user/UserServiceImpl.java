@@ -44,4 +44,9 @@ public class UserServiceImpl implements UserService {
     public int userTotalPage() {
         return userMapper.userTotalPage();
     }
+
+    @Override
+    public int removeUser(int id) {
+        return userMapper.removeUser(id);
+    }
 }

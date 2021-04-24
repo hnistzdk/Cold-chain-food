@@ -39,4 +39,11 @@ public interface UserService {
      * @return 人数
      */
     int userTotalPage();
+
+    /**
+     *删除普通用户
+     * @param  id
+     * @return 返回类型条数
+     */
+    int removeUser(int id);
 }

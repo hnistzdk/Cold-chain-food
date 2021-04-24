@@ -37,4 +37,11 @@ public interface UserMapper {
      * @return 人数
      */
     int userTotalPage();
+
+    /**
+     *删除普通用户
+     * @param  id
+     * @return 返回类型条数
+     */
+    int removeUser(@Param("id") int id);
 }

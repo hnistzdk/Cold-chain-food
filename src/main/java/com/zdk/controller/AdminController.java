@@ -63,22 +63,17 @@ public class AdminController {
         int count = adminService.removeAdmin(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
+        data.put("pagenum",2);
+        int adminTotalPage= adminService.adminTotalPage();
+        data.put("total",adminTotalPage);
+        List<AdminMeta> result = adminService.getAdminList(0,2);
+        data.put("users",JSON.toJSON(result.toArray()));
         if(count>0){
-            data.put("pagenum",2);
-            int adminTotalPage= adminService.adminTotalPage();
-            data.put("total",adminTotalPage);
-            List<AdminMeta> result = adminService.getAdminList(0,2);
-            data.put("users",JSON.toJSON(result.toArray()));
             msg.put("msg", "获取成功");
             msg.put("status", "200");
             Meta meta = new Meta(msg,data);
             return JSON.toJSONString(meta);
         }else {
-            data.put("pagenum",2);
-            int adminTotalPage= adminService.adminTotalPage();
-            data.put("total",adminTotalPage);
-            List<AdminMeta> result = adminService.getAdminList(0,2);
-            data.put("users",JSON.toJSON(result.toArray()));
             msg.put("msg", "获取失败");
             msg.put("status", "201");
             Meta meta = new Meta(msg,data);
