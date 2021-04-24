@@ -3,6 +3,7 @@ package com.zdk.controller;
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
+import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.utils.LoginMessage;
 import org.apache.ibatis.annotations.Param;
@@ -59,7 +60,7 @@ public class AdminController {
 
     @DeleteMapping("/users/{id}")
     @CrossOrigin
-    public Object removeAdmin(@PathVariable Integer id){
+    public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -84,8 +85,19 @@ public class AdminController {
     @PutMapping("/users/{id}/state/{mg_state}")
     @CrossOrigin
     public Object modifyState(@PathVariable String id,@PathVariable String mg_state){
-
-        return null;
+        AdminAndUser admin = adminService.getAdminById(id);
+        Meta returnMeta=new Meta();
+        HashMap data=returnMeta.getData();
+        HashMap meta=returnMeta.getMeta();
+        data.put("id", id);
+        data.put("rid", id);
+        data.put("username", admin.getUsername());
+        data.put("mobile", admin.getTel());
+        data.put("email", admin.getEmail());
+        data.put("mg_state", 0);
+        meta.put("msg", "设置状态成功");
+        meta.put("status", "200");
+        return meta;
     }
 
 }

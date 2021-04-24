@@ -2,6 +2,7 @@ package com.zdk.service.admin;
 
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.admin.AdminMapper;
+import com.zdk.pojo.AdminAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
@@ -47,7 +48,12 @@ public class AdminServiceImpl implements AdminService{
     }
 
     @Override
-    public int removeAdmin(int id) {
+    public int removeAdmin(String id) {
         return adminMapper.removeAdmin(id);
+    }
+
+    @Override
+    public AdminAndUser getAdminById(String id) {
+        return adminMapper.getAdminById(id);
     }
 }

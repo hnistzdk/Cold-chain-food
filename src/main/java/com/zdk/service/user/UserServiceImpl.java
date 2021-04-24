@@ -46,7 +46,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int removeUser(int id) {
+    public int removeUser(String id) {
         return userMapper.removeUser(id);
     }
 }

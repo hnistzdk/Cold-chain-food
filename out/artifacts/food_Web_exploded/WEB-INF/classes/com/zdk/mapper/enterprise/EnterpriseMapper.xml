@@ -25,4 +25,9 @@
     <delete id="removeEnterprise">
         delete from tb_enterprise_user where id=#{id};
     </delete>
+
+    <insert id="addEnterprise" parameterType="AddEnterpriseMeta">
+        insert into tb_enterprise_user (id,username,pwd,gender,tel,email)
+        values(#{id},#{username},#{pwd},#{gender},#{tel},#{email});
+    </insert>
 </mapper>

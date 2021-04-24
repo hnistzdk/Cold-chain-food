@@ -45,5 +45,5 @@ public interface UserService {
      * @param  id
      * @return 返回类型条数
      */
-    int removeUser(int id);
+    int removeUser(String id);
 }

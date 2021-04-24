@@ -43,5 +43,5 @@ public interface UserMapper {
      * @param  id
      * @return 返回类型条数
      */
-    int removeUser(@Param("id") int id);
+    int removeUser(@Param("id") String id);
 }

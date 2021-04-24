@@ -24,4 +24,8 @@
     <delete id="removeAdmin">
         delete from tb_admin where id=#{id};
     </delete>
+
+    <select id="getAdminById" resultType="AdminAndUser">
+        select * from tb_admin where id=#{id};
+    </select>
 </mapper>

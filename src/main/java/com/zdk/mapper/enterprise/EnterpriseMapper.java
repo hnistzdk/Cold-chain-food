@@ -44,7 +44,7 @@ public interface EnterpriseMapper {
      * @param  id
      * @return 返回类型条数
      */
-    int removeEnterprise(@Param("id") int id);
+    int removeEnterprise(@Param("id") String id);
 
     /**
      *添加企业用户

@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Map;
+import java.util.HashMap;
 
 /**
  * @author zdk
@@ -14,6 +14,6 @@ import java.util.Map;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Meta {
-    private Map<String, String> meta;
-    private Map<String, String> data;
+    private HashMap meta;
+    private HashMap data;
 }

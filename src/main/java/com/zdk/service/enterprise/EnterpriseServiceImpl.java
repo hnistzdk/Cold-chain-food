@@ -48,7 +48,7 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     }
 
     @Override
-    public int removeEnterprise(int id) {
+    public int removeEnterprise(String id) {
         return enterpriseMapper.removeEnterprise(id);
     }
 

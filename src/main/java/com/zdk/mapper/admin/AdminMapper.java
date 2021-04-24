@@ -1,6 +1,7 @@
 package com.zdk.mapper.admin;
 
 import com.zdk.dto.AdminMeta;
+import com.zdk.pojo.AdminAndUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -44,5 +45,12 @@ public interface AdminMapper {
      * @param  id
      * @return 返回类型条数
      */
-    int removeAdmin(@Param("id") int id);
+    int removeAdmin(@Param("id") String id);
+
+    /**
+     *根据id查询管理员
+     * @param  id
+     * @return 返回类型条数
+     */
+    AdminAndUser getAdminById(@Param("id") String id);
 }

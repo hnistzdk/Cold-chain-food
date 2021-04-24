@@ -59,7 +59,7 @@ public class UserController {
 
     @DeleteMapping("/PrimaryUsers/{id}")
     @CrossOrigin
-    public Object removeEnterprise(@PathVariable Integer id){
+    public Object removeEnterprise(@PathVariable String id){
         int count = userService.removeUser(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
