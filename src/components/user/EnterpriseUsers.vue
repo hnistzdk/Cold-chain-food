@@ -25,7 +25,7 @@
         <el-table-column label="昵称" prop="username"></el-table-column>
         <el-table-column label="性别" prop="gender"></el-table-column>
         <el-table-column label="电话" prop="tel"></el-table-column>
-        <el-table-column label="企业" prop="enterprise_name"></el-table-column>
+        <el-table-column label="企业" prop="enterpriseName"></el-table-column>
         <el-table-column label="角色" prop="role"></el-table-column>
         <el-table-column label="状态">
           <template  v-slot:default="scope">
@@ -83,7 +83,7 @@
             <el-input v-model="addForm.email"></el-input>
           </el-form-item>
           <el-form-item label="企业" prop="enterprise_name">
-            <el-input v-model="addForm.enterprise_name"></el-input>
+            <el-input v-model="addForm.enterpriseName"></el-input>
           </el-form-item>
         </el-form>
         <!--      底部区域-->
@@ -160,8 +160,7 @@ export default {
         gender:'',
         tel:'',
         email:'',
-        enterprise_name:'',
-        role:''
+        enterpriseName:''
       },
       editForm:{
 
