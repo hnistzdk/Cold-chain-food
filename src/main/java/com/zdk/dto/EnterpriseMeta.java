@@ -16,6 +16,6 @@ public class EnterpriseMeta {
     private String username;
     private String gender;
     private String tel;
-    private String role;
     private String enterpriseName;
+    private String role;
 }

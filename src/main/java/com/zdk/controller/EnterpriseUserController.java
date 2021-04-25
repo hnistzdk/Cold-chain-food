@@ -7,6 +7,7 @@ import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.LoginMessage;
+import com.zdk.utils.UUIDUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -87,26 +88,26 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser){
         System.out.println("传来的参数对象为："+enterpriseUser);
-//        enterpriseUser.setId(UUIDUtil.getUUID(6));
-//        int count = enterpriseService.addEnterprise(enterpriseUser);
-//        HashMap data = new HashMap<>();
-//        HashMap msg = new HashMap<>();
-//        data.put("pagenum",2);
-//        int enterpriseTotalPage= enterpriseService.enterpriseTotalPage();
-//        data.put("total",enterpriseTotalPage);
-//        List<EnterpriseMeta> result = enterpriseService.getEnterpriseList(0,2);
-//        data.put("users",JSON.toJSON(result.toArray()));
-//        if(count>0){
-//            msg.put("msg", "获取成功");
-//            msg.put("status", "200");
-//            Meta meta = new Meta(msg,data);
-//            return JSON.toJSONString(meta);
-//        }else {
-//            msg.put("msg", "获取失败");
-//            msg.put("status", "201");
-//            Meta meta = new Meta(msg,data);
-//            return JSON.toJSONString(meta);
-//        }
+        enterpriseUser.setId(UUIDUtil.getUUID(6));
+        int count = enterpriseService.addEnterprise(enterpriseUser);
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        data.put("pagenum",2);
+        int enterpriseTotalPage= enterpriseService.enterpriseTotalPage();
+        data.put("total",enterpriseTotalPage);
+        List<EnterpriseMeta> result = enterpriseService.getEnterpriseList(0,2);
+        data.put("users",JSON.toJSON(result.toArray()));
+        if(count>0){
+            msg.put("msg", "获取成功");
+            msg.put("status", "200");
+            Meta meta = new Meta(msg,data);
+            //return JSON.toJSONString(meta);
+        }else {
+            msg.put("msg", "获取失败");
+            msg.put("status", "201");
+            Meta meta = new Meta(msg,data);
+            //return JSON.toJSONString(meta);
+        }
         return null;
     }
 }
