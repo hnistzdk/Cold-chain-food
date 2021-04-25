@@ -25,7 +25,7 @@
         <el-table-column label="昵称" prop="username"></el-table-column>
         <el-table-column label="性别" prop="gender"></el-table-column>
         <el-table-column label="电话" prop="tel"></el-table-column>
-        <el-table-column label="企业" prop="enterprise"></el-table-column>
+        <el-table-column label="企业" prop="enterprise_name"></el-table-column>
         <el-table-column label="角色" prop="role"></el-table-column>
         <el-table-column label="状态">
           <template  v-slot:default="scope">
@@ -160,7 +160,8 @@ export default {
         gender:'',
         tel:'',
         email:'',
-        enterprise_name:''
+        enterprise_name:'',
+        role:''
       },
       editForm:{
 
@@ -284,7 +285,6 @@ export default {
     },
     //显示编辑用户的对话框
     async showEdit(id){
-
       //console.log(this.editForm.id)
       const {data:res} = await this.$http.get("enterpriseUsers/"+id)
       if(res.meta.status!=="200")
