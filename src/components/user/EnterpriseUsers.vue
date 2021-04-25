@@ -72,6 +72,9 @@
           <el-form-item label="密码" prop="pwd">
             <el-input v-model="addForm.pwd"></el-input>
           </el-form-item>
+          <el-form-item label="真实姓名" prop="trueName">
+            <el-input v-model="addForm.trueName"></el-input>
+          </el-form-item>
           <el-form-item label="性别" prop="gender">
             <el-radio v-model="addForm.gender" label="男">男</el-radio>
             <el-radio v-model="addForm.gender" label="女">女</el-radio>
@@ -158,6 +161,7 @@ export default {
         id:'',
         username:'',
         pwd:'',
+        trueName:'',
         gender:'',
         tel:'',
         email:'',
