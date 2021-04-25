@@ -69,15 +69,15 @@
           <el-form-item label="用户名" prop="username">
             <el-input v-model="addForm.username"></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="addForm.password"></el-input>
+          <el-form-item label="密码" prop="pwd">
+            <el-input v-model="addForm.pwd"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="email">
             <el-radio v-model="addForm.gender" label="男">男</el-radio>
             <el-radio v-model="addForm.gender" label="女">女</el-radio>
           </el-form-item>
-          <el-form-item label="电话" prop="mobile">
-            <el-input v-model="addForm.mobile"></el-input>
+          <el-form-item label="电话" prop="tel">
+            <el-input v-model="addForm.tel"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="addForm.email"></el-input>
@@ -157,7 +157,7 @@ export default {
       addForm:{
         id:'',
         username:'',
-        password:'',
+        pwd:'',
         gender:'',
         tel:'',
         email:'',
