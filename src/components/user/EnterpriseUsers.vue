@@ -129,7 +129,7 @@ export default {
   name: 'Users',
   data(){
     const checkMobile = (rule, value, cb) => {
-      const regMobile = /^(0|86|17951)?(13[0-9]|15[012356789]|17[678]|18[0-9]|14[57])[0-9]{8}$/
+      const regMobile = /^1[0-9]{10}$/
       if (regMobile.test(value)) {
         return cb()
       }
