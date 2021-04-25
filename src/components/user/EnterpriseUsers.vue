@@ -73,8 +73,8 @@
             <el-input v-model="addForm.password"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="email">
-            <el-radio v-model="addForm.gender" label="1">男</el-radio>
-            <el-radio v-model="addForm.gender" label="2">女</el-radio>
+            <el-radio v-model="addForm.gender" label="男">男</el-radio>
+            <el-radio v-model="addForm.gender" label="女">女</el-radio>
           </el-form-item>
           <el-form-item label="电话" prop="mobile">
             <el-input v-model="addForm.mobile"></el-input>
