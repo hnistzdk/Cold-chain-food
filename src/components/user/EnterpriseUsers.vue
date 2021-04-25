@@ -72,7 +72,7 @@
           <el-form-item label="密码" prop="pwd">
             <el-input v-model="addForm.pwd"></el-input>
           </el-form-item>
-          <el-form-item label="性别" prop="email">
+          <el-form-item label="性别" prop="gender">
             <el-radio v-model="addForm.gender" label="男">男</el-radio>
             <el-radio v-model="addForm.gender" label="女">女</el-radio>
           </el-form-item>
@@ -82,7 +82,7 @@
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="addForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="企业" prop="enterprise_name">
+          <el-form-item label="企业" prop="enterpriseName">
             <el-input v-model="addForm.enterpriseName"></el-input>
           </el-form-item>
         </el-form>
@@ -171,14 +171,14 @@ export default {
           {required:true,message:'请输入用户名',trigger:'blur'},
           {min:3,max:10,message: '用户名的长度在3~10个字符之间',trigger:'blur'}
         ],
-        password: [
+        pwd: [
           {required:true,message:'请输入密码',trigger:'blur'},
           {min:3,max:12,message: '密码的长度在3~12个字符之间',trigger:'blur'}
         ],
         gender:[
           {required:true,message:'请点击单选框!',trigger:'blur'},
         ],
-        mobile: [
+        tel: [
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}
         ],
