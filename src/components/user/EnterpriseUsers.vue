@@ -109,8 +109,8 @@
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="editForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="电话" prop="mobile">
-            <el-input v-model="editForm.mobile"></el-input>
+          <el-form-item label="电话" prop="tel">
+            <el-input v-model="editForm.tel"></el-input>
           </el-form-item>
         </el-form>
 
@@ -168,7 +168,9 @@ export default {
         enterpriseName:''
       },
       editForm:{
-
+        username:'',
+        email:'',
+        tel:''
       },
       addFormRules:{
         username:[
@@ -273,9 +275,9 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("enterpriseUsers/"+this.editForm.id,{
+        const {data:res}= await  this.$http.put("editEnterpriseUsers/"+this.editForm.id,{
           email:this.editForm.email,
-          mobile:this.editForm.mobile
+          tel:this.editForm.tel
         })
         //console.log(this.editForm.id)
         if(res.meta.status!=="200")
@@ -290,7 +292,7 @@ export default {
     //显示编辑用户的对话框
     async showEdit(id){
       //console.log(this.editForm.id)
-      const {data:res} = await this.$http.get("enterpriseUsers/"+id)
+      const {data:res} = await this.$http.get("editEnterpriseUsers/"+id)
       if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
