@@ -66,20 +66,21 @@
           <el-form-item label="用户名" prop="username">
             <el-input v-model="addForm.username"></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="addForm.password"></el-input>
+          <el-form-item label="密码" prop="pwd">
+            <el-input v-model="addForm.pwd"></el-input>
+          </el-form-item>
+          <el-form-item label="真实姓名" prop="trueName">
+            <el-input v-model="addForm.trueName"></el-input>
+          </el-form-item>
+          <el-form-item label="性别" prop="gender">
+            <el-radio v-model="addForm.gender" label="男">男</el-radio>
+            <el-radio v-model="addForm.gender" label="女">女</el-radio>
+          </el-form-item>
+          <el-form-item label="电话" prop="tel">
+            <el-input v-model="addForm.tel"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
-            <el-radio v-model="addForm.gender" label="1">男</el-radio>
-            <el-radio v-model="addForm.gender" label="2">女</el-radio>
-          </el-form-item>
-          <el-form-item label="电话" prop="mobile">
-            <el-input v-model="addForm.mobile"></el-input>
-          </el-form-item>
-          <el-form-item label="邮箱" prop="email">
-            <el-radio v-model="addForm.role" label="1">普通用户</el-radio>
-            <el-radio v-model="addForm.role" label="2">企业用户</el-radio>
-            <el-radio v-model="addForm.role" label="3">管理员</el-radio>
+            <el-input v-model="addForm.email"></el-input>
           </el-form-item>
         </el-form>
         <!--      底部区域-->
@@ -131,6 +132,13 @@ export default {
       }
       cb(new Error('请输入合法的电话号码'))
     }
+    const checkEmail = (rule, value, cb) => {
+      const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
+      if (regEmail.test(value)) {
+        return cb()
+      }
+      cb(new Error('请输入合法的邮箱'))
+    }
 
     return{
       //获取用户列表的参数对象
@@ -146,9 +154,11 @@ export default {
       addForm:{
         id:'',
         username:'',
+        pwd:'',
+        trueName:'',
         gender:'',
         tel:'',
-        role:''
+        email:''
       },
       editForm:{
 
@@ -163,14 +173,15 @@ export default {
           {min:3,max:12,message: '密码的长度在3~12个字符之间',trigger:'blur'}
         ],
         gender:[
-          {required:true,message:'请点击单选框!',trigger:'blur'},
+          {required:true,message:'请点击单选框',trigger:'blur'},
         ],
-        mobile: [
+       tel: [
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}
         ],
-        rule:[
-          {required:true,message:'请点击单选框!',trigger:'blur'}
+        email:[
+          {required:true,message:'请输入邮箱',trigger:'blur'},
+          {validator:checkEmail,trigger: 'blur'}
         ]
 
       },
@@ -241,7 +252,7 @@ export default {
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
         //console.log(valid)
-        const {data:res}= await this.$http.post('PrimaryUsers',this.addForm)
+        const {data:res}= await this.$http.post('addUsers',this.addForm)
         if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
