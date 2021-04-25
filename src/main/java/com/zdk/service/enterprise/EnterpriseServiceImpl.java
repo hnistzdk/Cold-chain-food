@@ -3,6 +3,7 @@ package com.zdk.service.enterprise;
 import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.mapper.enterprise.EnterpriseMapper;
+import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,7 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     private EnterpriseMapper enterpriseMapper;
 
     @Override
-    public int enterpriseLogin(String id, String password) {
+    public EnterpriseUser enterpriseLogin(String id, String password) {
         return enterpriseMapper.enterpriseLogin(id, password);
     }
 

@@ -2,6 +2,8 @@ package com.zdk.mapper.user;
 
 
 import com.zdk.dto.AdminMeta;
+import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -15,9 +17,9 @@ public interface UserMapper {
      *普通用户的登录
      * @param  id:账号
      * @param  password:密码
-     * @return 登录成功的结果>0则成功
+     * @return 登录成功的结果不为空则成功
      */
-    int login(@Param("id") String id,@Param("password") String password);
+    AdminAndUser login(@Param("id") String id, @Param("password") String password);
 
     /**
      *获取普通用户的列表

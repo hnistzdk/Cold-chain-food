@@ -4,11 +4,13 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.utils.LoginMessage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -28,14 +30,14 @@ public class AdminController {
     @PostMapping("/adminLogin")
     @CrossOrigin
     public Object login(String id, String password){
-        int result= adminService.adminLogin(id, password);
+        AdminAndUser result= adminService.adminLogin(id, password);
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }
 
     @PostMapping("/adminUsers")
     @CrossOrigin
-    public Object adminList(String query,@Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
+    public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         data.put("pagenum",pagenum);

@@ -3,8 +3,8 @@ package com.zdk.service.admin;
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.admin.AdminMapper;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -22,7 +22,7 @@ public class AdminServiceImpl implements AdminService{
     private AdminMapper adminMapper;
 
     @Override
-    public int adminLogin(String id, String password) {
+    public AdminAndUser adminLogin(String id, String password) {
         return adminMapper.adminLogin(id, password);
     }
 

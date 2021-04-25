@@ -4,9 +4,9 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
 import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.LoginMessage;
-import com.zdk.utils.UUIDUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -29,7 +29,7 @@ public class EnterpriseUserController {
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
     public Object login(String id, String password){
-        int result= enterpriseService.enterpriseLogin(id, password);
+        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password);
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }

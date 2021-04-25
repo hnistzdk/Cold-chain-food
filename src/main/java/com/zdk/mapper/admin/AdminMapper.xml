@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdk.mapper.admin.AdminMapper">
-    <select id="adminLogin" resultType="int">
+    <select id="adminLogin" resultType="AdminAndUser">
         select * from food.tb_admin where id=#{id} and pwd=#{password};
     </select>
 

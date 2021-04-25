@@ -3,6 +3,7 @@ package com.zdk.service.enterprise;
 import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.EnterpriseMeta;
+import com.zdk.pojo.EnterpriseUser;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface EnterpriseService {
      * @param  password：密码
      * @return 登录成功的结果>0则成功
      */
-    int enterpriseLogin(String id, String password);
+    EnterpriseUser enterpriseLogin(String id, String password);
 
     /**
      *获取企业用户的列表

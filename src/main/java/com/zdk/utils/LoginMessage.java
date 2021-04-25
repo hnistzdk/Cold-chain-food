@@ -10,10 +10,10 @@ import java.util.HashMap;
  * @Date 2021/4/20 17:05
  */
 public class LoginMessage {
-    public static Meta returnMsg(int result){
+    public static Meta returnMsg(Object result){
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, String> map1 = new HashMap<>();
-        if(result>0){
+        if(result!=null){
             map.put("status","200");
             map1.put("token", UUIDUtil.getUUID());
         }else {

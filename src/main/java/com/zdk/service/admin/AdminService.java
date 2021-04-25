@@ -2,6 +2,7 @@ package com.zdk.service.admin;
 
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -17,7 +18,7 @@ public interface AdminService {
      * @param  password：密码
      * @return 登录成功的结果>0则成功
      */
-    int adminLogin(String id,String password);
+    AdminAndUser adminLogin(String id, String password);
 
     /**
      *获取管理员用户的列表

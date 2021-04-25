@@ -1,8 +1,9 @@
 package com.zdk.service.user;
 
 import com.zdk.dto.AdminMeta;
-import com.zdk.dto.EnterpriseMeta;
 import com.zdk.mapper.user.UserMapper;
+import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,7 +20,7 @@ public class UserServiceImpl implements UserService {
     private UserMapper userMapper;
 
     @Override
-    public int login(String id, String password) {
+    public AdminAndUser login(String id, String password) {
         return userMapper.login(id,password);
     }
 

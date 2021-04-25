@@ -2,6 +2,7 @@ package com.zdk.mapper.admin;
 
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,9 +17,9 @@ public interface AdminMapper {
      *管理员用户的登录
      * @param  id:账号
      * @param  password:密码
-     * @return 登录成功的结果>0则成功
+     * @return 登录成功的结果不为空则成功
      */
-    int adminLogin(@Param("id") String id,@Param("password") String password);
+    AdminAndUser adminLogin(@Param("id") String id, @Param("password") String password);
 
     /**
      *获取管理员用户的列表

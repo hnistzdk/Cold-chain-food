@@ -2,8 +2,9 @@ package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AdminMeta;
-import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
+import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.LoginMessage;
 import org.apache.ibatis.annotations.Param;
@@ -27,7 +28,7 @@ public class UserController {
     @PostMapping("/primaryLogin")
     @CrossOrigin
     public Object login(String id, String password){
-        int result= userService.login(id, password);
+        AdminAndUser result= userService.login(id, password);
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }

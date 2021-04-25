@@ -2,6 +2,7 @@ package com.zdk.mapper.enterprise;
 
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -16,9 +17,9 @@ public interface EnterpriseMapper {
      *企业用户的登录
      * @param  id:账号
      * @param  password:密码
-     * @return 登录成功的结果>0则成功
+     * @return 登录成功的结果不为空则成功
      */
-    int enterpriseLogin(@Param("id") String id, @Param("password") String password);
+    EnterpriseUser enterpriseLogin(@Param("id") String id, @Param("password") String password);
 
     /**
      *获取企业用户的列表
