@@ -1,6 +1,7 @@
 package com.zdk.service.user;
 
 
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.EnterpriseUser;
@@ -48,4 +49,11 @@ public interface UserService {
      * @return 返回类型条数
      */
     int removeUser(String id);
+
+    /**
+     *添加普通用户
+     * @param  user:添加时dto对象
+     * @return 返回类型条数
+     */
+    int addUser(AdminAndUser user);
 }

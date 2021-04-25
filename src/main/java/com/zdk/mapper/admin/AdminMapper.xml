@@ -13,7 +13,7 @@
     </select>
 
     <!--    总记录数-->
-    <select id="adminTotalPage" resultType="int">
+    <select id="adminTotalPage" resultType="_int">
         select count(*) from food.tb_admin;
     </select>
 

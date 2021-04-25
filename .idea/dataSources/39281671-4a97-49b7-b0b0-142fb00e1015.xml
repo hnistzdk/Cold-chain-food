@@ -788,11 +788,11 @@
     </column>
     <column id="250" parent="235" name="register_time">
       <Position>8</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="251" parent="235" name="last_login_time">
       <Position>9</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="252" parent="235" name="login_times">
       <Position>10</Position>
@@ -835,7 +835,6 @@
     <column id="261" parent="237" name="true_name">
       <Position>4</Position>
       <DataType>varchar(20)|0s</DataType>
-      <NotNull>1</NotNull>
     </column>
     <column id="262" parent="237" name="gender">
       <Position>5</Position>
@@ -855,11 +854,11 @@
     </column>
     <column id="266" parent="237" name="register_time">
       <Position>9</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="267" parent="237" name="last_login_time">
       <Position>10</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="268" parent="237" name="login_times">
       <Position>11</Position>
@@ -885,11 +884,11 @@
     </column>
     <column id="273" parent="238" name="production_date">
       <Position>3</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="274" parent="238" name="expiry_date">
       <Position>4</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="275" parent="238" name="address">
       <Position>5</Position>
@@ -1016,11 +1015,11 @@
     </column>
     <column id="304" parent="241" name="register_time">
       <Position>8</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="305" parent="241" name="last_login_time">
       <Position>9</Position>
-      <DataType>date|0s</DataType>
+      <DataType>varchar(20)|0s</DataType>
     </column>
     <column id="306" parent="241" name="login_times">
       <Position>10</Position>

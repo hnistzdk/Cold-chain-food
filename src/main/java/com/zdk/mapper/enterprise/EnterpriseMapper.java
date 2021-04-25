@@ -52,5 +52,5 @@ public interface EnterpriseMapper {
      * @param  enterpriseUser:添加时dto对象
      * @return 返回类型条数
      */
-    int addEnterprise(AddEnterpriseMeta enterpriseUser);
+    int addEnterprise(EnterpriseUser enterpriseUser);
 }

@@ -26,4 +26,9 @@
     <delete id="removeUser">
         delete from tb_user where id=#{id};
     </delete>
+
+    <insert id="addUser" parameterType="AdminAndUser">
+        insert into tb_user (id,username,pwd,true_name,gender,tel,email,register_time,role,login_times)
+        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{registerTime},#{role},#{loginTimes});
+    </insert>
 </mapper>

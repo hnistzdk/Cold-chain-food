@@ -4,6 +4,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @Description
  * @Author zdk
@@ -23,6 +25,6 @@ public class AdminAndUser {
     private String email;
     private String registerTime;
     private String lastLoginTime;
-    private String loginTimes;
+    private int loginTimes;
     private String role;
 }

@@ -27,7 +27,7 @@
     </delete>
 
     <insert id="addEnterprise" parameterType="AddEnterpriseMeta">
-        insert into tb_enterprise_user (id,username,pwd,gender,tel,email)
-        values(#{id},#{username},#{pwd},#{gender},#{tel},#{email});
+        insert into tb_enterprise_user (id,username,pwd,true_name,gender,tel,email,enterprise_name,register_time,role,login_times)
+        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{enterpriseName},#{registerTime},#{role},#{loginTimes});
     </insert>
 </mapper>

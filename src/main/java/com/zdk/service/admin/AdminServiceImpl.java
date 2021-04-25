@@ -3,7 +3,6 @@ package com.zdk.service.admin;
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.admin.AdminMapper;
 import com.zdk.pojo.AdminAndUser;
-import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -54,7 +54,7 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     }
 
     @Override
-    public int addEnterprise(AddEnterpriseMeta enterpriseUser) {
+    public int addEnterprise(EnterpriseUser enterpriseUser) {
         return enterpriseMapper.addEnterprise(enterpriseUser);
     }
 }

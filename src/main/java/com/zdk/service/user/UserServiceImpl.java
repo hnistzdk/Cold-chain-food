@@ -3,7 +3,6 @@ package com.zdk.service.user;
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.user.UserMapper;
 import com.zdk.pojo.AdminAndUser;
-import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -49,5 +48,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public int removeUser(String id) {
         return userMapper.removeUser(id);
+    }
+
+    @Override
+    public int addUser(AdminAndUser user) {
+        return userMapper.addUser(user);
     }
 }

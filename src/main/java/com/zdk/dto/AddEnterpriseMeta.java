@@ -15,7 +15,9 @@ public class AddEnterpriseMeta {
     private String id;
     private String username;
     private String pwd;
+    private String trueName;
     private String gender;
     private String tel;
     private String email;
+    private String enterpriseName;
 }

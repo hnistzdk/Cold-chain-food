@@ -1,6 +1,8 @@
 package com.zdk.mapper.user;
 
 
+import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.EnterpriseUser;
@@ -46,4 +48,11 @@ public interface UserMapper {
      * @return 返回类型条数
      */
     int removeUser(@Param("id") String id);
+
+    /**
+     *添加普通用户
+     * @param  user:添加时dto对象
+     * @return 返回类型条数
+     */
+    int addUser(AdminAndUser user);
 }
