@@ -29,10 +29,8 @@
         <el-table-column label="角色" prop="role"></el-table-column>
         <el-table-column label="状态">
           <template  v-slot:default="scope">
-            <!--编辑按钮-->
+
             <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"> </el-switch>
-            <!--          删除按钮-->
-            <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
 
           </template  >
         </el-table-column>
@@ -84,8 +82,8 @@
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="addForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="企业" prop="enterprise">
-            <el-input v-model="addForm.enterprise"></el-input>
+          <el-form-item label="企业" prop="enterprise_name">
+            <el-input v-model="addForm.enterprise_name"></el-input>
           </el-form-item>
         </el-form>
         <!--      底部区域-->
@@ -162,7 +160,7 @@ export default {
         gender:'',
         tel:'',
         email:'',
-        enterprise:''
+        enterprise_name:''
       },
       editForm:{
 
