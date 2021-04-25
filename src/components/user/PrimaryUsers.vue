@@ -252,7 +252,7 @@ export default {
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
         //console.log(valid)
-        const {data:res}= await this.$http.post('addUsers',this.addForm)
+        const {data:res}= await this.$http.post('addUsers',qs.stringify(this.addForm))
         if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
