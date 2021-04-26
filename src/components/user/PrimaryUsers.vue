@@ -210,7 +210,6 @@ export default {
       const {data:res} = await this.$http.post('PrimaryUsers',
         qs.stringify(this.queryInfo)
       )
-      console.log(res);
       if(res.meta.status !== "200"){
         return this.$message.error('获取用户列表失败！')
       }
