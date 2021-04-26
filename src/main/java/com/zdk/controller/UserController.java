@@ -1,7 +1,6 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
@@ -87,7 +86,7 @@ public class UserController {
 
     @PostMapping("/addUsers")
     @CrossOrigin
-    public Object addUser(AddUserMeta user) throws JsonProcessingException {
+    public Object addUser(AddUserMeta user) {
         System.out.println("传来的参数对象为："+user);
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));

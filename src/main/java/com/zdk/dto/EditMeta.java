@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class EditMeta {
-    private String id;
     private String username;
     private String tel;
     private String email;

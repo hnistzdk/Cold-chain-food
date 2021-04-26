@@ -31,8 +31,8 @@
         values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{enterpriseName},#{registerTime},#{role},#{loginTimes});
     </insert>
 
-    <select id="showEnterprise" resultType="EditMeta">
-        select food.tb_enterprise_user.id,food.tb_enterprise_user.username,food.tb_enterprise_user.tel,
+    <select id="showEnterpriseUser" resultType="EditMeta">
+        select food.tb_enterprise_user.username,food.tb_enterprise_user.tel,
                food.tb_enterprise_user.email,food.tb_enterprise_user.enterprise_name
         from tb_enterprise_user where id=#{id};
     </select>

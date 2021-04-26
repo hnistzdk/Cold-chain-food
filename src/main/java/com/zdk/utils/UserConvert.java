@@ -1,6 +1,5 @@
 package com.zdk.utils;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.AddUserMeta;
 import com.zdk.pojo.AdminAndUser;
@@ -14,7 +13,7 @@ import lombok.Data;
 
 @Data
 public class UserConvert {
-    public static AdminAndUser getAddUser(AddUserMeta addUserMeta, String role) throws JsonProcessingException {
+    public static AdminAndUser getAddUser(AddUserMeta addUserMeta, String role) {
         AdminAndUser user = new AdminAndUser();
         user.setId(addUserMeta.getId());
         user.setUsername(addUserMeta.getUsername());
@@ -28,7 +27,7 @@ public class UserConvert {
         user.setLoginTimes(0);
         return user;
     }
-    public static EnterpriseUser getAddUser(AddEnterpriseMeta addEnterpriseMeta, String role) throws JsonProcessingException {
+    public static EnterpriseUser getAddUser(AddEnterpriseMeta addEnterpriseMeta, String role) {
         EnterpriseUser user = new EnterpriseUser();
         user.setId(addEnterpriseMeta.getId());
         user.setUsername(addEnterpriseMeta.getUsername());
