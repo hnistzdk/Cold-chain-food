@@ -68,22 +68,15 @@ public class EnterpriseUserController {
         int count = enterpriseService.removeEnterprise(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        data.put("pagenum",2);
-        int enterpriseTotalPage= enterpriseService.enterpriseTotalPage();
-        data.put("total",enterpriseTotalPage);
-        List<EnterpriseMeta> result = enterpriseService.getEnterpriseList(0,2);
-        data.put("users",JSON.toJSON(result.toArray()));
         if(count>0){
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }else {
             msg.put("msg", "获取失败");
             msg.put("status", "201");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }
+        Meta meta = new Meta(msg,data);
+        return JSON.toJSONString(meta);
     }
 
     @PostMapping("/addEnterpriseUsers")
@@ -97,22 +90,15 @@ public class EnterpriseUserController {
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        data.put("pagenum",2);
-        int enterpriseTotalPage= enterpriseService.enterpriseTotalPage();
-        data.put("total",enterpriseTotalPage);
-        List<EnterpriseMeta> result = enterpriseService.getEnterpriseList(0,2);
-        data.put("users",JSON.toJSON(result.toArray()));
         if(count>0){
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }else {
             msg.put("msg", "获取失败");
             msg.put("status", "201");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }
+        Meta meta = new Meta(msg,data);
+        return JSON.toJSONString(meta);
     }
 
     @GetMapping("/showEditEnterpriseUsers/{id}")
@@ -123,6 +109,7 @@ public class EnterpriseUserController {
         HashMap data = new HashMap<>();
         if(editMeta!=null){
             msg.put("status", "200");
+            data.put("id", id);
             data.put("username", editMeta.getUsername());
             data.put("tel", editMeta.getTel());
             data.put("email", editMeta.getEmail());
@@ -135,20 +122,17 @@ public class EnterpriseUserController {
         return JSON.toJSONString(meta);
     }
 
-    @PutMapping("/editEnterpriseUsers/{id}")
+    @PostMapping("/editEnterpriseUsers/{id}")
     @CrossOrigin
-    public Object editEnterpriseUsers(@PathVariable String id,EditMeta user){
-        System.out.println("接收到的user"+user);
-        //int count = enterpriseService.modifyEnterpriseUser(user);
-//        HashMap msg = new HashMap<>();
-//        if(count>0){
-//            msg.put("status", "200");
-//            Meta meta = new Meta(msg, null);
-//        }else {
-//            msg.put("status", "201");
-//        }
-//        Meta meta = new Meta(msg, null);
-        //return JSON.toJSONString(meta);
-        return null;
+    public Object editEnterpriseUsers(EditMeta user){
+        int count = enterpriseService.modifyEnterpriseUser(user);
+        HashMap msg = new HashMap<>();
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg, null);
+        return JSON.toJSONString(meta);
     }
 }

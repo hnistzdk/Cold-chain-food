@@ -9,80 +9,29 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.26">
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_annotations_2_12_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_core_2_12_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_fasterxml_jackson_core_jackson_databind_2_12_2.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__commons_lang_commons_lang_2_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jsp_api_2_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jstl_jstl_api_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jsp_jstl_jstl_api_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_jstl_1_2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__javax_servlet_servlet_api_2_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__junit_junit_4_12.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_47.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_47.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_aspectj_aspectjweaver_1_9_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_hamcrest_hamcrest_core_1_3.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_3_5_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_mybatis_mybatis_spring_2_0_6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_projectlombok_lombok_1_18_20.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_aop_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_beans_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_context_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_core_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_expression_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jcl_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_jdbc_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_19_17_58____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_22_29____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_22_29____.xml" afterDir="false" />
+    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.26..">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/food.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/EnterpriseUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/EnterpriseUserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/dto/EditMeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/dto/EditMeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/utils/DateConversion.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/utils/DateConversion.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/utils/UserConvert.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/utils/UserConvert.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserServiceImpl.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/EnterpriseUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/EnterpriseUserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/EditMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/dto/EditMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/enterprise/EnterpriseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/enterprise/EnterpriseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/utils/DateConversion.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/utils/DateConversion.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/utils/UserConvert.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/utils/UserConvert.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/AdminController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/EnterpriseUserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/PageController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/AddEnterpriseMeta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/AddUserMeta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/AdminMeta.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/EnterpriseUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/EnterpriseUserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/EditMeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/dto/EditMeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/EnterpriseMeta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/Meta.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/admin/AdminMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/enterprise/EnterpriseMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/pojo/AdminAndUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/pojo/EnterpriseUser.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/admin/AdminService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/admin/AdminServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/enterprise/EnterpriseService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/enterprise/EnterpriseServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserService.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserServiceImpl.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/utils/DateConversion.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/utils/LoginMessage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/utils/UUIDUtil.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/utils/UserConvert.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/MyTest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserServiceImpl.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,6 +82,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/json" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="工件" />
@@ -425,7 +375,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619429132564</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="4.26..">
+      <created>1619431772406</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1619431772406</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -456,6 +413,7 @@
     <MESSAGE value="4.24" />
     <MESSAGE value="4.25" />
     <MESSAGE value="4.26" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.26" />
+    <MESSAGE value="4.26.." />
+    <option name="LAST_COMMIT_MESSAGE" value="4.26.." />
   </component>
 </project>

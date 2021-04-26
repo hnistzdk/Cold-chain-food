@@ -3,6 +3,7 @@ package com.zdk.controller;
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.user.UserService;
@@ -48,16 +49,14 @@ public class UserController {
             data.put("users",JSON.toJSON(result.toArray()));
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }else {
             List<AdminMeta> result = userService.fuzzyQueryUserList(query,(pagenum-1)*pagesize, pagesize);
             data.put("users",JSON.toJSON(result.toArray()));
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }
+        Meta meta = new Meta(msg,data);
+        return JSON.toJSONString(meta);
     }
 
     @DeleteMapping("/PrimaryUsers/{id}")
@@ -66,47 +65,66 @@ public class UserController {
         int count = userService.removeUser(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        data.put("pagenum",2);
-        int userTotalPage= userService.userTotalPage();
-        data.put("total",userTotalPage);
-        List<AdminMeta> result = userService.getUserList(0,2);
-        data.put("users",JSON.toJSON(result.toArray()));
         if(count>0){
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }else {
             msg.put("msg", "获取失败");
             msg.put("status", "201");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }
+        Meta meta = new Meta(msg,data);
+        return JSON.toJSONString(meta);
     }
 
     @PostMapping("/addUsers")
     @CrossOrigin
     public Object addUser(AddUserMeta user) {
-        System.out.println("传来的参数对象为："+user);
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        data.put("pagenum",2);
-        int userTotalPage= userService.userTotalPage();
-        data.put("total",userTotalPage);
-        List<AdminMeta> result = userService.getUserList(0,2);
-        data.put("users",JSON.toJSON(result.toArray()));
         if(count>0){
             msg.put("msg", "获取成功");
             msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }else {
             msg.put("msg", "获取失败");
             msg.put("status", "201");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
         }
+        Meta meta = new Meta(msg,data);
+        return JSON.toJSONString(meta);
+    }
+
+    @GetMapping("/showEditPrimaryUsers/{id}")
+    @CrossOrigin
+    public Object showEnterpriseUsers(@PathVariable String id){
+        EditMeta editMeta = userService.showPrimaryUser(id);
+        HashMap msg = new HashMap<>();
+        HashMap data = new HashMap<>();
+        if(editMeta!=null){
+            msg.put("status", "200");
+            data.put("id", id);
+            data.put("username", editMeta.getUsername());
+            data.put("tel", editMeta.getTel());
+            data.put("email", editMeta.getEmail());
+        }else{
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg, data);
+        return JSON.toJSONString(meta);
+    }
+
+    @PostMapping("/editPrimaryUsers/{id}")
+    @CrossOrigin
+    public Object editEnterpriseUsers(EditMeta user){
+        System.out.println("接收到的user:"+user);
+        int count = userService.modifyPrimaryUser(user);
+        HashMap msg = new HashMap<>();
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg, null);
+        return JSON.toJSONString(meta);
     }
 }

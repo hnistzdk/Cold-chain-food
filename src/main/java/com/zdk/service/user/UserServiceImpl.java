@@ -1,6 +1,7 @@
 package com.zdk.service.user;
 
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.mapper.user.UserMapper;
 import com.zdk.pojo.AdminAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -53,5 +54,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public int addUser(AdminAndUser user) {
         return userMapper.addUser(user);
+    }
+
+    @Override
+    public EditMeta showPrimaryUser(String id) {
+        return userMapper.showPrimaryUser(id);
+    }
+
+    @Override
+    public int modifyPrimaryUser(EditMeta user) {
+        return userMapper.modifyPrimaryUser(user);
     }
 }

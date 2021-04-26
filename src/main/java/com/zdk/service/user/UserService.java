@@ -3,6 +3,7 @@ package com.zdk.service.user;
 
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.EnterpriseUser;
 
@@ -56,4 +57,18 @@ public interface UserService {
      * @return 返回类型条数
      */
     int addUser(AdminAndUser user);
+
+    /**
+     *显示普通用户编辑信息
+     * @param  id:普通用户id
+     * @return 返回编辑对象
+     */
+    EditMeta showPrimaryUser(String id);
+
+    /**
+     *修改普通用户信息
+     * @param  user:编辑普通用户对象
+     * @return 返回修改条数
+     */
+    int modifyPrimaryUser(EditMeta user);
 }

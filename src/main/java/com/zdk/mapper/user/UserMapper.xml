@@ -31,4 +31,12 @@
         insert into tb_user (id,username,pwd,true_name,gender,tel,email,register_time,role,login_times)
         values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{registerTime},#{role},#{loginTimes});
     </insert>
+
+    <select id="showPrimaryUser" resultType="EditMeta">
+        select food.tb_user.username,food.tb_user.tel,food.tb_user.email from tb_user where id=#{id};
+    </select>
+
+    <update id="modifyPrimaryUser" parameterType="EditMeta">
+        update tb_user set username=#{username},tel=#{tel},email=#{email} where id=#{id};
+    </update>
 </mapper>
