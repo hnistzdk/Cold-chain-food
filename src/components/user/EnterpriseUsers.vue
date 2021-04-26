@@ -277,12 +277,12 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("editEnterpriseUsers/"+this.editForm.id,{
+        const {data:res}= await  this.$http.post("editEnterpriseUsers/"+this.editForm.id,qs.stringify({
           username:this.editForm.username,
           email:this.editForm.email,
           tel:this.editForm.tel,
           enterpriseName:this.editForm.enterpriseName
-        })
+        }))
         //console.log(this.editForm.id)
         if(res.meta.status!=="200")
           this.$message.error('修改用户信息失败！')
