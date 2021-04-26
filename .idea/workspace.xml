@@ -9,29 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.26..">
+    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.26删除冗余代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/EnterpriseUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/EnterpriseUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/dto/EditMeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/dto/EditMeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/service/user/UserServiceImpl.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/EnterpriseUserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/EnterpriseUserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/EditMeta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/dto/EditMeta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/user/UserServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/EnterpriseUserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/EnterpriseUserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/dto/EditMeta.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/dto/EditMeta.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserServiceImpl.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/service/user/UserServiceImpl.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sql/food.sql" beforeDir="false" afterPath="$PROJECT_DIR$/sql/food.sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -382,7 +362,14 @@
       <option name="project" value="LOCAL" />
       <updated>1619431772406</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="4.26删除冗余代码">
+      <created>1619434384344</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1619434384344</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -414,6 +401,7 @@
     <MESSAGE value="4.25" />
     <MESSAGE value="4.26" />
     <MESSAGE value="4.26.." />
-    <option name="LAST_COMMIT_MESSAGE" value="4.26.." />
+    <MESSAGE value="4.26删除冗余代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.26删除冗余代码" />
   </component>
 </project>
