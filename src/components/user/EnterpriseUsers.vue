@@ -298,7 +298,7 @@ export default {
     async showEdit(id){
       //console.log(this.editForm.id)
 
-      const {data:res} = await this.$http.get("showEditEnterpriseUsers/"+this.editForm.id)
+      const {data:res} = await this.$http.get("showEditEnterpriseUsers/"+id)
       if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
