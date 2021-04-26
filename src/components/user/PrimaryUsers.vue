@@ -270,7 +270,7 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("editPrimaryUsers/"+this.editForm.id,qs.stringify({
+        const {data:res}= await  this.$http.post("editPrimaryUsers/"+this.editForm.id,qs.stringify({
           username:this.editForm.username,
           tel:this.editForm.tel,
           email:this.editForm.email
