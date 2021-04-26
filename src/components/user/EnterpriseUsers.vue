@@ -171,11 +171,7 @@ export default {
         enterpriseName:''
       },
       editForm:{
-        id:'',
-        username:'',
-        tel:'',
-        email:'',
-        enterpriseName: ''
+
       },
       addFormRules:{
         username:[
