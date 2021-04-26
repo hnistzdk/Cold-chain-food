@@ -104,7 +104,7 @@
         <!--      内容主体区域-->
         <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="editForm.username" disabled></el-input>
+            <el-input v-model="editForm.username" ></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="editForm.email"></el-input>

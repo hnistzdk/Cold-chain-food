@@ -34,7 +34,7 @@
         <el-table-column label="操作" width="200px">
           <template  slot-scope="scope">
             <!--          编辑按钮-->
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit"></el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
             <!--          删除按钮-->
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
             <!--          分配角色按钮-->
@@ -288,7 +288,8 @@ export default {
     async showEdit(id){
 
       //console.log(this.editForm.id)
-      const {data:res} = await this.$http.get("editPrimaryUsers/"+id)
+      const {data:res} = await this.$http.get("showEditPrimaryUsers/"+id)
+      console.log(res)
       if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
