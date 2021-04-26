@@ -100,11 +100,11 @@
           <el-form-item label="用户名" prop="username">
             <el-input v-model="editForm.username" disabled></el-input>
           </el-form-item>
-          <el-form-item label="邮箱" prop="email">
-            <el-input v-model="editForm.email"></el-input>
-          </el-form-item>
           <el-form-item label="电话" prop="tel">
             <el-input v-model="editForm.tel"></el-input>
+          </el-form-item>
+          <el-form-item label="邮箱" prop="email">
+            <el-input v-model="editForm.email"></el-input>
           </el-form-item>
         </el-form>
 
@@ -161,9 +161,10 @@ export default {
         email:''
       },
       editForm:{
+
        username:'',
-        email:'',
-        tel:''
+        tel:'',
+        email:''
       },
       addFormRules:{
         username:[
@@ -271,8 +272,9 @@ export default {
         console.log(valid)
         //发起修改用户信息的数据请求
         const {data:res}= await  this.$http.put("editPrimaryUsers/"+this.editForm.id,{
-          email:this.editForm.email,
-          tel:this.editForm.tel
+          username:this.editForm.username,
+          tel:this.editForm.tel,
+          email:this.editForm.email
         })
         //console.log(this.editForm.id)
         if(res.meta.status!=="200")
