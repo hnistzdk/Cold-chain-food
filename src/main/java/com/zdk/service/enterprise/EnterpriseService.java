@@ -1,9 +1,6 @@
 package com.zdk.service.enterprise;
 
-import com.zdk.dto.AddEnterpriseMeta;
-import com.zdk.dto.AddUserMeta;
-import com.zdk.dto.AdminMeta;
-import com.zdk.dto.EnterpriseMeta;
+import com.zdk.dto.*;
 import com.zdk.pojo.EnterpriseUser;
 
 import java.util.List;
@@ -57,4 +54,18 @@ public interface EnterpriseService {
      * @return 返回类型条数
      */
     int addEnterprise(EnterpriseUser enterpriseUser);
+
+    /**
+     *显示企业用户编辑信息
+     * @param  id:企业用户id
+     * @return 返回编辑对象
+     */
+    EditMeta showEnterprise(String id);
+
+    /**
+     *修改企业用户信息
+     * @param  user:编辑企业用户对象
+     * @return 返回修改条数
+     */
+    int modifyEnterpriseUser(EditMeta user);
 }

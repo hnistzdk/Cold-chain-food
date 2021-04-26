@@ -2,9 +2,10 @@ package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
-import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.LoginMessage;
@@ -89,6 +90,9 @@ public class EnterpriseUserController {
     @PostMapping("/addEnterpriseUsers")
     @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) throws JsonProcessingException {
+
+        //BeanUtils.copyProperties(, );
+
         System.out.println("传来的参数对象为："+enterpriseUser);
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
@@ -110,5 +114,41 @@ public class EnterpriseUserController {
             Meta meta = new Meta(msg,data);
             return JSON.toJSONString(meta);
         }
+    }
+
+    @GetMapping("/showEditEnterpriseUsers/{id}")
+    @CrossOrigin
+    public Object showEnterpriseUsers(@PathVariable String id){
+        EditMeta editMeta = enterpriseService.showEnterprise(id);
+        HashMap msg = new HashMap<>();
+        HashMap data = new HashMap<>();
+        if(editMeta!=null){
+            msg.put("status", "200");
+            data.put("username", editMeta.getUsername());
+            data.put("tel", editMeta.getTel());
+            data.put("email", editMeta.getEmail());
+            data.put("enterpriseName", editMeta.getEnterpriseName());
+
+        }else{
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg, data);
+        return JSON.toJSONString(meta);
+    }
+
+    @PutMapping("/editEnterpriseUsers/{id}")
+    @CrossOrigin
+    public Object editEnterpriseUsers(EditMeta user){
+        System.out.println("接收到的user"+user);
+        int count = enterpriseService.modifyEnterpriseUser(user);
+        HashMap msg = new HashMap<>();
+        if(count>0){
+            msg.put("status", "200");
+            Meta meta = new Meta(msg, null);
+        }else {
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg, null);
+        return JSON.toJSONString(meta);
     }
 }

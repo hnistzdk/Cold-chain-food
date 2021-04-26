@@ -1,6 +1,6 @@
 package com.zdk.service.enterprise;
 
-import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.mapper.enterprise.EnterpriseMapper;
 import com.zdk.pojo.EnterpriseUser;
@@ -56,5 +56,15 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     @Override
     public int addEnterprise(EnterpriseUser enterpriseUser) {
         return enterpriseMapper.addEnterprise(enterpriseUser);
+    }
+
+    @Override
+    public EditMeta showEnterprise(String id) {
+        return enterpriseMapper.showEnterpriseUser(id);
+    }
+
+    @Override
+    public int modifyEnterpriseUser(EditMeta user) {
+        return enterpriseMapper.modifyEnterpriseUser(user);
     }
 }
