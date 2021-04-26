@@ -161,7 +161,7 @@ export default {
         email:''
       },
       editForm:{
-
+        id:'',
        username:'',
         tel:'',
         email:''

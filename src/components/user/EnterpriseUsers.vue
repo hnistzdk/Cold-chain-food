@@ -171,6 +171,7 @@ export default {
         enterpriseName:''
       },
       editForm:{
+        id:'',
         username:'',
         tel:'',
         email:'',
@@ -299,13 +300,11 @@ export default {
     //显示编辑用户的对话框
     async showEdit(id){
       //console.log(this.editForm.id)
-
       const {data:res} = await this.$http.get("showEditEnterpriseUsers/"+id)
       if(res.meta.status!=="200")
         return this.$message.error('查询用户信息失败!')
       this.editForm = res.data
       this.editDialogVisible =true
-
     },
 
     //重置编辑表单
