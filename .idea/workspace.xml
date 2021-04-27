@@ -9,7 +9,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.26">
+    <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="4.27">
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_alibaba_fastjson_1_2_75.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_c3p0_0_9_5_2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_mchange_mchange_commons_java_0_2_11.xml" afterDir="false" />
@@ -35,26 +35,11 @@
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_tx_5_3_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_web_5_3_5.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_springframework_spring_webmvc_5_3_5.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_19_22_19____.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_20_18_06____2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_20_18_06____2.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_24_22_45____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_24_22_45____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_18_06____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_18_06____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_22_29____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_25_22_29____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_17_58____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_17_58____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_18_00____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_18_00____.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_4_19_22_19_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_29____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_29____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_30____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_30____.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_31____.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_31____.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/food.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/AdminController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/AdminController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/PageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/PageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/controller/UserController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/dto/Meta.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/dto/Meta.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/admin/AdminMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/admin/AdminMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/enterprise/EnterpriseMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/enterprise/EnterpriseMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/mapper/user/UserMapper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/zdk/service/enterprise/EnterpriseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/zdk/service/enterprise/EnterpriseService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/PageController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/PageController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/controller/UserController.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/META-INF/MANIFEST.MF" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -86,7 +71,6 @@
     <option name="generalSettings">
       <MavenGeneralSettings>
         <option name="localRepository" value="D:\apache-maven-3.6.3\maven-repo" />
-        <option name="mavenHome" value="D:\apache-maven-3.6.3" />
         <option name="userSettingsFile" value="D:\apache-maven-3.6.3\conf\settings.xml" />
       </MavenGeneralSettings>
     </option>
@@ -109,7 +93,7 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/json" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="工件" />
+    <property name="project.structure.last.edited" value="模块" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.1275862" />
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
@@ -168,7 +152,7 @@
     <configuration name="Login.vue" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/food/page/src/components/user/Login.vue" useBuiltInWebServerPort="true">
       <method v="2" />
     </configuration>
-    <configuration name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.43" ALTERNATIVE_JRE_ENABLED="false">
+    <configuration name="Tomcat 9" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.37" ALTERNATIVE_JRE_ENABLED="false">
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="food:Web exploded">
@@ -269,6 +253,9 @@
     </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringBeansView">
+    <option name="beanDetailsProportion" value="0.3" />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="默认任务">
       <changelist id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="" />
@@ -293,7 +280,7 @@
       <workItem from="1619340129447" duration="2646000" />
       <workItem from="1619361259108" duration="374000" />
       <workItem from="1619423400774" duration="5527000" />
-      <workItem from="1619509521773" duration="1105000" />
+      <workItem from="1619509521773" duration="3996000" />
     </task>
     <task id="LOCAL-00001" summary="4.18">
       <created>1618832916744</created>
@@ -414,11 +401,28 @@
       <option name="project" value="LOCAL" />
       <updated>1619434384344</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="4.27">
+      <created>1619510658695</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1619510658695</updated>
+    </task>
+    <task id="LOCAL-00019" summary="4.27">
+      <created>1619510667762</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1619510667762</updated>
+    </task>
+    <option name="localTasksCounter" value="20" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="SHOW_OTHER_BRANCHES" value="true" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -447,6 +451,11 @@
     <MESSAGE value="4.26" />
     <MESSAGE value="4.26.." />
     <MESSAGE value="4.26删除冗余代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="4.26删除冗余代码" />
+    <MESSAGE value="4.27" />
+    <option name="LAST_COMMIT_MESSAGE" value="4.27" />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
   </component>
 </project>
