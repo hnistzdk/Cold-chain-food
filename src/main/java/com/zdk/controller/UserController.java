@@ -44,17 +44,15 @@ public class UserController {
         int userTotalPage= userService.userTotalPage();
         data.put("total",userTotalPage);
         data.put("pagenum",pagenum);
+        List<AdminMeta> result;
         if(query==null){
-            List<AdminMeta> result = userService.getUserList((pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
+            result = userService.getUserList((pagenum - 1) * pagesize, pagesize);
         }else {
-            List<AdminMeta> result = userService.fuzzyQueryUserList(query,(pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
+            result = userService.fuzzyQueryUserList(query, (pagenum - 1) * pagesize, pagesize);
         }
+        data.put("users",JSON.toJSON(result.toArray()));
+        msg.put("msg", "获取成功");
+        msg.put("status", "200");
         Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
     }

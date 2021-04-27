@@ -2,7 +2,6 @@ package com.zdk.mapper.enterprise;
 
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
-import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
@@ -27,14 +26,14 @@ public interface EnterpriseMapper {
      * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
      * @return 返回类型为AdminMeta的list
      */
-    List<EnterpriseMeta> getEnterpriseList(Map<String,Integer> map);
+    List<EnterpriseMeta> getEnterpriseList(Map map);
 
     /**
      *模糊查询企业用户的列表
      * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
      * @return 返回类型为AdminMeta的list
      */
-    List<EnterpriseMeta> fuzzyQueryEnterpriseList(Map<String,Integer> map);
+    List<EnterpriseMeta> fuzzyQueryEnterpriseList(Map map);
     /**
      *获取企业用户的人数
      * @return 人数
@@ -43,7 +42,7 @@ public interface EnterpriseMapper {
 
     /**
      *删除企业用户
-     * @param  id
+     * @param  id:id
      * @return 返回类型条数
      */
     int removeEnterprise(@Param("id") String id);

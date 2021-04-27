@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -38,8 +39,8 @@ public class AdminController {
     @PostMapping("/adminUsers")
     @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
+        Map data = new HashMap<>();
+        Map msg = new HashMap<>();
         data.put("pagenum",pagenum);
         int adminTotalPage= adminService.adminTotalPage();
         data.put("total",adminTotalPage);
@@ -64,8 +65,8 @@ public class AdminController {
     @CrossOrigin
     public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
+        Map data = new HashMap<>();
+        Map msg = new HashMap<>();
         data.put("pagenum",2);
         int adminTotalPage= adminService.adminTotalPage();
         data.put("total",adminTotalPage);
@@ -89,8 +90,8 @@ public class AdminController {
     public Object modifyState(@PathVariable String id,@PathVariable String mg_state){
         AdminAndUser admin = adminService.getAdminById(id);
         Meta returnMeta=new Meta();
-        HashMap data=returnMeta.getData();
-        HashMap meta=returnMeta.getMeta();
+        Map data=returnMeta.getData();
+        Map meta=returnMeta.getMeta();
         data.put("id", id);
         data.put("rid", id);
         data.put("username", admin.getUsername());

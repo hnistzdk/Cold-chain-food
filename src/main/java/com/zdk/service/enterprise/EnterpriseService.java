@@ -43,7 +43,7 @@ public interface EnterpriseService {
 
     /**
      *删除企业用户
-     * @param  id
+     * @param  id:id
      * @return 返回类型条数
      */
     int removeEnterprise(String id);

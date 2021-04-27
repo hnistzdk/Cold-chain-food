@@ -36,7 +36,7 @@ public interface UserMapper {
      * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
      * @return 返回类型为AdminMeta的list
      */
-    List<AdminMeta> fuzzyQueryUserList(Map<String,Integer> map);
+    List<AdminMeta> fuzzyQueryUserList(Map map);
     /**
      *获取企业用户的人数
      * @return 人数

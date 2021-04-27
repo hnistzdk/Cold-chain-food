@@ -26,7 +26,7 @@ public interface AdminMapper {
      * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
      * @return 返回类型为AdminMeta的list
      */
-    List<AdminMeta> getAdminList(Map<String,Integer> map);
+    List<AdminMeta> getAdminList(Map map);
 
     /**
      *获取管理员用户的人数
@@ -39,7 +39,7 @@ public interface AdminMapper {
      * @param  map:map中有两个键值对,key分别为startIndex,pageSize,开始条,页条数
      * @return 返回类型为AdminMeta的list
      */
-    List<AdminMeta> fuzzyQueryAdminList(Map<String,Integer> map);
+    List<AdminMeta> fuzzyQueryAdminList(Map map);
 
     /**
      *删除管理员
