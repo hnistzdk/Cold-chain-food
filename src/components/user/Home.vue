@@ -12,7 +12,7 @@
     <el-container>
       <!--      侧边栏-->
       <!--      为侧边栏动态的设置宽度，如果点击按钮,则进行侧边栏宽度的转换-->
-      <el-aside :width="isCollapse? '40px':'200px'">
+      <el-aside :width="isCollapse? '64px':'200px'">
         <div class="toggle-button" @click="toggleCollapse">|||</div>
         <!--        侧菜单栏-->
         <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#333744" text-color="#fff"
