@@ -98,7 +98,7 @@
         <!--      内容主体区域-->
         <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
           <el-form-item label="用户名" prop="username">
-            <el-input v-model="editForm.username" disabled></el-input>
+            <el-input v-model="editForm.username"></el-input>
           </el-form-item>
           <el-form-item label="电话" prop="tel">
             <el-input v-model="editForm.tel"></el-input>
@@ -267,11 +267,11 @@ export default {
         if(!valid) return
         console.log(valid)
         //发起修改用户信息的数据请求
-        const {data:res}= await  this.$http.put("editPrimaryUsers/"+this.editForm.id,{
+        const {data:res}= await  this.$http.post("editPrimaryUsers/"+this.editForm.id,qs.stringify({
           username:this.editForm.username,
           tel:this.editForm.tel,
           email:this.editForm.email
-        })
+        }))
         //console.log(this.editForm.id)
         if(res.meta.status!=="200")
           this.$message.error('修改用户信息失败！')
