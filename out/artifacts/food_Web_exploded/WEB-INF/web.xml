@@ -16,7 +16,6 @@
         <load-on-startup>1</load-on-startup>
     </servlet>
 
-
     <!--所有请求都会被springmvc拦截 -->
     <servlet-mapping>
         <servlet-name>SpringMVC</servlet-name>
