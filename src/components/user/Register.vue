@@ -42,6 +42,8 @@
 </template>
 
 <script>
+import * as qs from 'qs'
+
 export  default {
   data(){
     //密码的合法检验
@@ -144,10 +146,10 @@ export  default {
     login_request(){
       this.$router.push('/login');
     },
-    verification_request(){
-
-      const {data : res} = this.$http.post('sendCode',this.RegisterForm.email)
-      this.verification = res
+    async verification_request(){
+      console.log(this.RegisterForm.email)
+      const {data : res} = await this.$http.post('sendCode/'+this.RegisterForm.email)
+      this.verification=res;
     }
   }
 
