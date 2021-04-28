@@ -145,7 +145,8 @@ export  default {
       this.$router.push('/login');
     },
     verification_request(){
-      const {data : res} = this.$http.post('sendCode',this.resetRegisterForm.email)
+
+      const {data : res} = this.$http.post('sendCode',this.RegisterForm.email)
       this.verification = res
     }
   }
