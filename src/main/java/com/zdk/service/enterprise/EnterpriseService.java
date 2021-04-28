@@ -49,7 +49,7 @@ public interface EnterpriseService {
     int removeEnterprise(String id);
 
     /**
-     *添加企业用户
+     *添加注册企业用户
      * @param  enterpriseUser:添加时dto对象
      * @return 返回类型条数
      */
@@ -68,4 +68,5 @@ public interface EnterpriseService {
      * @return 返回修改条数
      */
     int modifyEnterpriseUser(EditMeta user);
+
 }

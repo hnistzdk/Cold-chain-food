@@ -1,6 +1,7 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.corba.se.impl.ior.OldJIDLObjectKeyTemplate;
 import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
@@ -8,9 +9,12 @@ import com.zdk.dto.Meta;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.LoginMessage;
+import com.zdk.utils.SendEmail;
 import com.zdk.utils.UUIDUtil;
 import com.zdk.utils.UserConvert;
+import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
+import org.junit.internal.runners.ErrorReportingRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -84,17 +88,15 @@ public class EnterpriseUserController {
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
 
         //BeanUtils.copyProperties(, );
-
-        System.out.println("传来的参数对象为："+enterpriseUser);
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         if(count>0){
-            msg.put("msg", "获取成功");
+            msg.put("msg", "添加成功");
             msg.put("status", "200");
         }else {
-            msg.put("msg", "获取失败");
+            msg.put("msg", "添加失败");
             msg.put("status", "201");
         }
         Meta meta = new Meta(msg,data);
@@ -133,6 +135,22 @@ public class EnterpriseUserController {
             msg.put("status", "201");
         }
         Meta meta = new Meta(msg, null);
+        return JSON.toJSONString(meta);
+    }
+
+    @PostMapping("/enterpriseRegister")
+    @CrossOrigin
+    public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
+        enterpriseUser.setId(UUIDUtil.getUUID(6));
+        int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
     }
 }

@@ -48,7 +48,7 @@ public interface EnterpriseMapper {
     int removeEnterprise(@Param("id") String id);
 
     /**
-     *添加企业用户
+     *添加注册企业用户
      * @param  enterpriseUser:添加时dto对象
      * @return 返回类型条数
      */

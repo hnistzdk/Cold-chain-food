@@ -1,10 +1,8 @@
-import com.zdk.dto.AdminMeta;
 import com.zdk.service.user.UserServiceImpl;
+import com.zdk.utils.SendEmail;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import java.util.List;
 
 /**
  * @author zdk
@@ -15,5 +13,9 @@ public class MyTest {
     public void test(){
         ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
         UserServiceImpl userServiceImpl = context.getBean("UserServiceImpl", UserServiceImpl.class);
+    }
+    @Test
+    public void testEmail(){
+        SendEmail.sendEmail("369365576@qq.com");
     }
 }

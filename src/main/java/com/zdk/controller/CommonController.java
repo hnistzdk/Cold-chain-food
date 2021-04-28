@@ -1,10 +1,9 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zdk.utils.SendEmail;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @Description
@@ -14,7 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SuppressWarnings("all")
 @RestController
-public class PageController {
+public class CommonController {
+    @PostMapping("/sendCode/{email}")
+    @CrossOrigin
+    public Object getEmailCode(@PathVariable String email){
+        System.out.println(email);
+        String coed= SendEmail.sendEmail(email);
+        return JSON.toJSONString(coed);
+    }
+
     @GetMapping("/menus")
     @CrossOrigin
     public Object getMenuList() {
