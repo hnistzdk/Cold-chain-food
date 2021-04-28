@@ -6,7 +6,7 @@
     <div class="register_box">
       <div class="register_Form">
         <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px" class="Register_Form">
-          <el-form-item label="账号" prop="username">
+          <el-form-item label="昵称" prop="username">
             <el-input  type="username" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pass">
@@ -18,6 +18,12 @@
           <el-form-item label="邮箱" prop="email">
             <el-input type="text"  v-model="RegisterForm.email"></el-input>
           </el-form-item>
+          <!--        角色选择-->
+            <el-radio-group v-model="radio" class="radio" prop="role">
+            <el-radio :label="1">普通用户</el-radio>
+            <el-radio :label="2">企业用户</el-radio>
+            </el-radio-group>
+
           <el-form-item>
             <el-button type="primary" @click="commit">提交</el-button>
             <el-button  @click="resetRegisterForm">重置</el-button>
@@ -62,11 +68,13 @@ export  default {
       cb(new Error('请输入合法的邮箱'))
     }
     return{
+      radio:1,
       RegisterForm:{
         username:"",
         pass:"",
         checkPass:"",
-        email:""
+        email:"",
+        role:""
       },
       registerFormRules:{
         username:[
@@ -85,7 +93,10 @@ export  default {
         ],
         email:[
           { validator: checkEmail, trigger: 'blur' }
-        ]
+        ],
+        rule:[
+          { required: true, message: '请填写角色框！', trigger: 'blur'}
+          ]
       }
     };
 
@@ -96,7 +107,25 @@ export  default {
       this.$refs.registerFormRef.resetFields();
     },
     commit(){
-      this.$message.success("注册成功！")
+
+      const  qs =require('querystring')
+      this.$refs.registerFormRef.validate(async valid =>{
+        if(!valid) return
+        if(this.radio === 1){
+          const {data : res} = await  this.$http.post('primaryRegister',qs.stringify(this.RegisterForm))
+          //判断注册是否成功并弹出提示框
+          if(res.meta.status !==  '200') return this.$message.error('注册失败')
+          this.$message.success('注册成功！即将跳转至登陆页面进行登录')
+          await this.$router.push('/login')
+        }else if(this.radio === 2){
+          const {data : res} = await  this.$http.post('enterpriseRegister',qs.stringify(this.RegisterForm))
+        //判断注册是否成功并弹出提示框
+          if(res.meta.status !=='200') return this.$message.error('注册失败')
+          this.$message.success('注册成功！即将跳转至登陆页面进行登录')
+          await this.$router.push('/login')
+        }
+      })
+
     },
     login_request(){
       this.$router.push('/login');
@@ -118,7 +147,7 @@ export  default {
 
 .register_box{
   width: 550px;
-  height: 400px;
+  height: 500px;
   background-color: white;
   border-radius:3px ;
   position: absolute;
@@ -137,7 +166,7 @@ export  default {
   position: absolute;
   left: 30%;
   top: 60%;
-  transform: translate(-50%,-50%);
+  transform: translate(-50%,-60%);
 
 
 }
@@ -148,5 +177,11 @@ export  default {
   transform: translate(95%,50%);
 
 }
+.radio{
+  margin-top: 40px;
 
+  display: flex;
+  left: 50%;
+  transform: translate(45%,-100%);
+}
 </style>
