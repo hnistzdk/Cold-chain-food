@@ -10,10 +10,10 @@
             <el-input  type="username" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pass">
-            <el-input type="password"  v-model="RegisterForm.pass"></el-input>
+            <el-input type="password"  v-model="RegisterForm.pwd"></el-input>
           </el-form-item>
           <el-form-item label="确认密码" prop="checkPass">
-            <el-input type="password" v-model="RegisterForm.checkPass" ></el-input>
+            <el-input type="password" v-model="RegisterForm.checkPwd" ></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input type="text"  v-model="RegisterForm.email"></el-input>
@@ -71,8 +71,8 @@ export  default {
       radio:1,
       RegisterForm:{
         username:"",
-        pass:"",
-        checkPass:"",
+        pwd:"",
+        checkPwd:"",
         email:"",
         role:""
       },
@@ -82,11 +82,11 @@ export  default {
           {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
         ],
         //验证账号和密码是否合法
-        pass:[
+        pwd:[
           { validator: validatePass, trigger: 'blur' },
           {min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur'}
         ],
-        checkPass: [
+        checkPwd: [
 
           { validator: validatePass2, trigger: 'blur' },
 
