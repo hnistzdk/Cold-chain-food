@@ -4,8 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.AdminAndUser;
-import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.admin.AdminServiceImpl;
+import com.zdk.utils.DateConversion;
 import com.zdk.utils.LoginMessage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -32,6 +33,7 @@ public class AdminController {
     @CrossOrigin
     public Object login(String id, String password){
         AdminAndUser result= adminService.adminLogin(id, password);
+        adminService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }

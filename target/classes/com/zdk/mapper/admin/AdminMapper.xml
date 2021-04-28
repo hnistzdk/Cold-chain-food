@@ -28,4 +28,11 @@
     <select id="getAdminById" resultType="AdminAndUser">
         select * from tb_admin where id=#{id};
     </select>
+
+    <update id="updateLoginInfo">
+        update tb_admin
+        set login_times=login_times+1,
+            last_login_time=#{date}
+        where id=#{id};
+    </update>
 </mapper>

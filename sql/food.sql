@@ -11,7 +11,7 @@
  Target Server Version : 50639
  File Encoding         : 65001
 
- Date: 26/04/2021 18:55:38
+ Date: 28/04/2021 21:14:59
 */
 
 SET NAMES utf8mb4;
@@ -33,20 +33,21 @@ CREATE TABLE `tb_admin`  (
   `last_login_time` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `login_times` int(30) NULL DEFAULT NULL,
   `role` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
+  `rights` varchar(20) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_admin
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('277804 ', '张五风', '444444', '王恩龙', '男', '18492857685', '369365576@qq.com', '2021-04-04', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('298137 ', 'junming', '666666', '王俊明', '男', '12647535213', '369365576@qq.com', '2021-04-06', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('369365576', 'zdk', '123456', '张迪凯', '男', '13696086376', '369365576@qq.com', '2021-04-03', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('436839 ', 'fawai', '123456', '张三', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('701670', 'fengli', '888888', '李兴峰', '男', '13859375831', '369365576@qq.com', '2021-04-10', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('763366', 'xiaxia', '777777', '夏雅慧', '女', '18594738675', '369365576@qq.com', '2021-04-08', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('941623 ', 'kuangtu', '222222', '李四', '男', '14672849303', '369365576@qq.com', '2021-04-01', '2021-04-23', 5, '管理员');
-INSERT INTO `tb_admin` VALUES ('981498 ', 'xiaoyu', '333333', '李玉婷', '女', '18435758454', '369365576@qq.com', '2021-04-03', '2021-04-23', 5, '管理员');
+INSERT INTO `tb_admin` VALUES ('277804 ', '张五风', '444444', '王恩龙', '男', '18492857685', '369365576@qq.com', '2021-04-04', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('298137 ', 'junming', '666666', '王俊明', '男', '12647535213', '369365576@qq.com', '2021-04-06', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('369365576', 'zdk', '123456', '张迪凯', '男', '13696086376', '369365576@qq.com', '2021-04-03', '2021-04-28', 6, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('436839 ', 'fawai', '123456', '张三', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('701670', 'fengli', '888888', '李兴峰', '男', '13859375831', '369365576@qq.com', '2021-04-10', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('763366', 'xiaxia', '777777', '夏雅慧', '女', '18594738675', '369365576@qq.com', '2021-04-08', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('941623 ', 'kuangtu', '222222', '李四', '男', '14672849303', '369365576@qq.com', '2021-04-01', '2021-04-23', 5, '管理员', NULL);
+INSERT INTO `tb_admin` VALUES ('981498 ', 'xiaoyu', '333333', '李玉婷', '女', '18435758454', '369365576@qq.com', '2021-04-03', '2021-04-23', 5, '管理员', NULL);
 
 -- ----------------------------
 -- Table structure for tb_buyer
@@ -95,11 +96,13 @@ CREATE TABLE `tb_enterprise_user`  (
 -- ----------------------------
 -- Records of tb_enterprise_user
 -- ----------------------------
+INSERT INTO `tb_enterprise_user` VALUES ('1f9fbf', '注册测试', '111111', NULL, NULL, '苹果', '13696086376', 'qqq@qq.com', '2021-04-28', NULL, 0, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('2518 ', 'jialing', '777777', '张嘉玲', '女', '安丰', '18594738675', '369365576@qq.com', '2021-04-09', '2021-04-12', 6, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('508cd6', '张振明', '13515', '张振明', '男', '小米', '11111111111', '222@qq.com', '2021-04-25', NULL, 0, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('5632 ', 'yihui', '888888', '蔡宜慧', '女', '华环', '13859375831', '369365576@qq.com', '2021-04-07', '2021-04-11', 5, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('6933 ', 'xiaowen', '555555', '黄静雯', '女', '庆万', '19284736584', '369365576@qq.com', '2021-04-06', '2021-04-10', 5, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('7225 ', 'daniao', '111111', '张鸿信', '男', '腾达', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '企业用户');
+INSERT INTO `tb_enterprise_user` VALUES ('76636d', '邮箱测试', '1111', NULL, NULL, '腾讯', '16161718181', '369365576@qq.com', '2021-04-28', '2021-04-28', 1, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('8729', 'jiajia', '999999', '何佳佳', '女', '生源', '13958475869', '369365576@qq.com', '2021-04-10', '2021-04-12', 2, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('8893 ', 'junan', '444444', '苏俊安', '男', '振韦', '18492857685', '369365576@qq.com', '2021-04-05', '2021-04-12', 15, '企业用户');
 INSERT INTO `tb_enterprise_user` VALUES ('9422 ', 'liangchen', '333333', '徐辰航', '男', '龙广', '18435758454', '369365576@qq.com', '2021-04-03', '2021-04-06', 4, '企业用户');
@@ -226,6 +229,7 @@ INSERT INTO `tb_user` VALUES ('80383 ', 'shengwang', '444444', '王圣如', '男
 INSERT INTO `tb_user` VALUES ('81963 ', 'rongge', '777777', '陈伟荣', '男', '18594738675', '369365576@qq.com', '2021-04-08', '2021-04-12', 6, '普通用户');
 INSERT INTO `tb_user` VALUES ('87375 ', 'zihao', '333333', '郭子豪', '男', '18435758454', '369365576@qq.com', '2021-04-03', '2021-04-06', 4, '普通用户');
 INSERT INTO `tb_user` VALUES ('95001', 'jiege', '111111', '张冠杰', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '普通用户');
+INSERT INTO `tb_user` VALUES ('c2751', '普通邮箱测试', '1111', NULL, NULL, NULL, '369365576@qq.com', '2021-04-28', '2021-04-28', 1, '普通用户');
 
 -- ----------------------------
 -- Table structure for tb_worker

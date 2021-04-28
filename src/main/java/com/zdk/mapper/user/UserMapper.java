@@ -70,4 +70,12 @@ public interface UserMapper {
      * @return 返回修改条数
      */
     int modifyPrimaryUser(EditMeta user);
+
+    /**
+     *改变登录次数和最后登录时间
+     * @param  id:用户id
+     * @param date:当前日期
+     * @return 返回类型条数
+     */
+    int updateLoginInfo(@Param("id") String id,@Param("date") String date);
 }

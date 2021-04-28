@@ -41,4 +41,11 @@
         update tb_enterprise_user set username=#{username},tel=#{tel},
                email=#{email},enterprise_name=#{enterpriseName} where id=#{id};
     </update>
+
+    <update id="updateLoginInfo">
+        update tb_enterprise_user
+        set login_times=login_times+1,
+            last_login_time=#{date}
+        where id=#{id};
+    </update>
 </mapper>

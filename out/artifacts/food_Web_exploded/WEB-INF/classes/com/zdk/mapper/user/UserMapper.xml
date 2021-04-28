@@ -39,4 +39,11 @@
     <update id="modifyPrimaryUser" parameterType="EditMeta">
         update tb_user set username=#{username},tel=#{tel},email=#{email} where id=#{id};
     </update>
+
+    <update id="updateLoginInfo">
+        update tb_user
+        set login_times=login_times+1,
+            last_login_time=#{date}
+        where id=#{id};
+    </update>
 </mapper>

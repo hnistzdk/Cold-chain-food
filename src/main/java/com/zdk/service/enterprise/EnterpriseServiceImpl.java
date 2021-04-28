@@ -68,4 +68,8 @@ public class EnterpriseServiceImpl implements EnterpriseService{
         return enterpriseMapper.modifyEnterpriseUser(user);
     }
 
+    @Override
+    public int updateLoginInfo(String id, String date) {
+        return enterpriseMapper.updateLoginInfo(id, date);
+    }
 }

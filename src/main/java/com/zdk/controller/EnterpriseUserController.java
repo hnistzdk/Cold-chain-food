@@ -8,10 +8,7 @@ import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
-import com.zdk.utils.LoginMessage;
-import com.zdk.utils.SendEmail;
-import com.zdk.utils.UUIDUtil;
-import com.zdk.utils.UserConvert;
+import com.zdk.utils.*;
 import org.apache.ibatis.annotations.CacheNamespace;
 import org.apache.ibatis.annotations.Param;
 import org.junit.internal.runners.ErrorReportingRunner;
@@ -37,6 +34,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object login(String id, String password){
         EnterpriseUser result= enterpriseService.enterpriseLogin(id, password);
+        enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }

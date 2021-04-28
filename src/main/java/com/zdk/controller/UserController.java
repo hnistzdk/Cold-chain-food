@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.*;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.user.UserService;
+import com.zdk.utils.DateConversion;
 import com.zdk.utils.LoginMessage;
 import com.zdk.utils.UUIDUtil;
 import com.zdk.utils.UserConvert;
@@ -29,6 +30,7 @@ public class UserController {
     @CrossOrigin
     public Object login(String id, String password){
         AdminAndUser result= userService.login(id, password);
+        userService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }
@@ -111,7 +113,6 @@ public class UserController {
     @PostMapping("/editPrimaryUsers/{id}")
     @CrossOrigin
     public Object editEnterpriseUsers(EditMeta user){
-        System.out.println("接收到的user:"+user);
         int count = userService.modifyPrimaryUser(user);
         HashMap msg = new HashMap<>();
         if(count>0){

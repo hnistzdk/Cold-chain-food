@@ -55,4 +55,9 @@ public class AdminServiceImpl implements AdminService{
     public AdminAndUser getAdminById(String id) {
         return adminMapper.getAdminById(id);
     }
+
+    @Override
+    public int updateLoginInfo(String id, String date) {
+        return adminMapper.updateLoginInfo(id, date);
+    }
 }

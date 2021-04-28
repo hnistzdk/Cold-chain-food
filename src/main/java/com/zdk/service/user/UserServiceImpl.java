@@ -66,4 +66,8 @@ public class UserServiceImpl implements UserService {
     public int modifyPrimaryUser(EditMeta user) {
         return userMapper.modifyPrimaryUser(user);
     }
+    @Override
+    public int updateLoginInfo(String id, String date) {
+        return userMapper.updateLoginInfo(id, date);
+    }
 }
