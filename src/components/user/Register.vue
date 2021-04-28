@@ -17,13 +17,17 @@
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input type="text"  v-model="RegisterForm.email"></el-input>
+                      <el-button  type="warning" id="verification_button" @click="verification_request">获取验证码</el-button>
+          </el-form-item>
+
+          <el-form-item label="验证码" prop="code" class="email_verification">
+            <el-input type="text"  v-model="RegisterForm.code" placeholder="请输入验证码"></el-input>
           </el-form-item>
           <!--        角色选择-->
             <el-radio-group v-model="radio" class="radio" prop="role">
             <el-radio :label="1">普通用户</el-radio>
             <el-radio :label="2">企业用户</el-radio>
             </el-radio-group>
-
           <el-form-item>
             <el-button type="primary" @click="commit">提交</el-button>
             <el-button  @click="resetRegisterForm">重置</el-button>
@@ -69,12 +73,15 @@ export  default {
     }
     return{
       radio:1,
+      verification:'',
       RegisterForm:{
         username:"",
         pwd:"",
         checkPwd:"",
         email:"",
+        code:'',
         role:""
+
       },
       registerFormRules:{
         username:[
@@ -112,23 +119,34 @@ export  default {
       this.$refs.registerFormRef.validate(async valid =>{
         if(!valid) return
         if(this.radio === 1){
-          const {data : res} = await  this.$http.post('primaryRegister',qs.stringify(this.RegisterForm))
-          //判断注册是否成功并弹出提示框
-          if(res.meta.status !==  '200') return this.$message.error('注册失败')
-          this.$message.success('注册成功！即将跳转至登陆页面进行登录')
-          await this.$router.push('/login')
+          if(this.verification === this.RegisterForm.code)
+          {
+            const {data : res} = await  this.$http.post('primaryRegister',qs.stringify(this.RegisterForm))
+            //判断注册是否成功并弹出提示框
+            if(res.meta.status !==  '200') return this.$message.error('注册失败')
+            this.$message.success('注册成功！即将跳转至登陆页面进行登录')
+            await this.$router.push('/login')
+          }
+          else return  this.$message.error('验证码验证错误!')
+
         }else if(this.radio === 2){
-          const {data : res} = await  this.$http.post('enterpriseRegister',qs.stringify(this.RegisterForm))
-        //判断注册是否成功并弹出提示框
-          if(res.meta.status !=='200') return this.$message.error('注册失败')
-          this.$message.success('注册成功！即将跳转至登陆页面进行登录')
-          await this.$router.push('/login')
+          if(this.verification === this.RegisterForm.code){
+            const {data : res} = await  this.$http.post('enterpriseRegister',qs.stringify(this.RegisterForm))
+            //判断注册是否成功并弹出提示框
+            if(res.meta.status !=='200') return this.$message.error('注册失败')
+            this.$message.success('注册成功！即将跳转至登陆页面进行登录')
+            await this.$router.push('/login')
+          }else  return  this.$message.error('验证码验证错误!')
         }
       })
 
     },
     login_request(){
       this.$router.push('/login');
+    },
+    verification_request(){
+      const {data : res} = this.$http.post('sendCode',this.resetRegisterForm.email)
+      this.verification = res
     }
   }
 
@@ -167,8 +185,6 @@ export  default {
   left: 30%;
   top: 60%;
   transform: translate(-50%,-60%);
-
-
 }
 .login_button{
   display: flex;
@@ -179,9 +195,16 @@ export  default {
 }
 .radio{
   margin-top: 40px;
-
   display: flex;
   left: 50%;
   transform: translate(45%,-100%);
+}
+#verification_button{
+  display: flex;
+  left: 70%;
+  transform: translate(180%,-100%);
+}
+.email_verification{
+  margin-bottom: 20px;
 }
 </style>
