@@ -47,25 +47,25 @@ export default {
   name: 'PwdChange',
   data(){
     //密码的合法检验
-    // const validatePass = (rule, value, callback) => {
-    //   if (value === '') {
-    //     callback(new Error('请输入密码'));
-    //   } else {
-    //     if (this.changeForm.pwd !=='') {
-    //       this.$refs.ruleForm.validateField('checkPwd');
-    //     }
-    //     callback();
-    //   }
-    // };
-    // const validatePass2 = (rule, value, callback) => {
-    //   if (value === '') {
-    //     callback(new Error('请再次输入密码'));
-    //   } else if (value !== this.changeForm.pwd) {
-    //     callback(new Error('两次输入密码不一致!'));
-    //   } else {
-    //     callback();
-    //   }
-    // };
+     const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+       } else {
+         if (this.changeForm.pwd !=='') {
+           this.$refs.changeFormRef.validateField('checkPwd');
+         }
+         callback();
+       }
+     };
+     const validatePass2 = (rule, value, callback) => {
+       if (value === '') {
+         callback(new Error('请再次输入密码'));
+       } else if (value !== this.changeForm.pwd) {
+         callback(new Error('两次输入密码不一致!'));
+       } else {
+         callback();
+      }
+     };
     const checkEmail = (rule, value, cb) => {
       const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
@@ -84,15 +84,15 @@ export default {
       },
       changeFormRules:{
         //验证账号和密码是否合法
-        // pwd:[
-        //   { validator: validatePass, trigger: 'blur' },
-        //   {min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur'}
-        // ],
-        // checkPwd: [
-        //
-        //   { validator: validatePass2, trigger: 'blur' },
-        //
-        // ],
+         pwd:[
+           { validator: validatePass, trigger: 'blur' },
+          {min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur'}
+         ],
+         checkPwd: [
+
+           { validator: validatePass2, trigger: 'blur' },
+
+         ],
         email:[
           { validator: checkEmail, trigger: 'blur' }
         ],
