@@ -18,6 +18,7 @@
         <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-key"></el-input>
         </el-form-item>
+        <el-button type="warning" @click="pwd_Forget">忘记密码</el-button>
         <!--        角色选择-->
         <el-radio-group v-model="radio" class="radio">
           <el-radio :label="1">普通用户</el-radio>
@@ -95,6 +96,9 @@ export default {
     },
     register_request () {
       this.$router.push('/register')
+    },
+    pwd_Forget(){
+      this.$router.push('/pwdChange')
     }
 
   }

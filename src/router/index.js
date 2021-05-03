@@ -9,6 +9,7 @@ import Admin from '@/components/user/Admin'
 import PrimaryHome from '@/components/PriUser/PrimaryHome'
 import PrimaryUsers from "@/components/user/PrimaryUsers";
 import EnterpriseUsers from "@/components/user/EnterpriseUsers";
+import PwdChange from '@/components/user/PwdChange'
 Vue.use(Router)
 
 const router=new  Router({
@@ -16,6 +17,7 @@ const router=new  Router({
     {path:'/',redirect:'/hello'},
     {path:'/hello',component:Hello},
     { path: '/login',component: Login },
+    {path:'/pwdChange',component:PwdChange},
     {path:'/register',component:Register},
     {path:'/home',component:Home,
       redirect:'/welcome',
@@ -35,6 +37,7 @@ router.beforeEach((to,form,next)=>{
   //to 将要访问的路径
   // form 代表从哪个路径跳转而来
   //next 是一个函数，表示放行
+  if(to.path=='/pwdChange') return next();
   if(to.path=='/hello') return next();
   if(to.path=='/login') return next();
   if(to.path=='/register') return next();
