@@ -17,9 +17,8 @@
         <!--        密码-->
         <el-form-item prop="password">
           <el-input type="password" v-model="loginForm.password" prefix-icon="el-icon-key"></el-input>
-          <el-button @click="pwd_find" id="pwdFindButton">忘记密码</el-button>
         </el-form-item>
-
+        <el-button type="warning" @click="pwd_Forget">忘记密码</el-button>
         <!--        角色选择-->
         <el-radio-group v-model="radio" class="radio">
           <el-radio :label="1">普通用户</el-radio>
@@ -98,8 +97,8 @@ export default {
     register_request () {
       this.$router.push('/register')
     },
-    pwd_find(){
-      this.$router.push('/pwdFind')
+    pwd_Forget(){
+      this.$router.push('/pwdChange')
     }
 
   }
@@ -173,8 +172,5 @@ export default {
 
 .radio {
   line-height: 20px;
-}
-#pwdFindButton{
-  border: none;
 }
 </style>
