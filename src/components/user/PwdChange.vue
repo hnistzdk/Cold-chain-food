@@ -2,7 +2,7 @@
 <div class="pwdChange_container">
   <div class="pwdChange_box">
     <div class="pwdChange_Form">
-      <el-form :model="changeForm" ref="changeFormRef" :rules="changeFormRules"  >
+      <el-form :model="changeForm" ref="changeFormRef" :rules="changeFormRules" label-width="100px" >
         <el-form-item prop="id" label="id">
           <el-input v-model="changeForm.id" ></el-input>
         </el-form-item>
@@ -147,8 +147,8 @@ export default {
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
 }
 .pwdChange_box{
-  width: 450px;
-  height: 700px;
+  width: 550px;
+  height: 600px;
   background-color: white;
   border-radius:3px ;
   position: absolute;
@@ -167,7 +167,8 @@ export default {
   position: absolute;
   left: 30%;
   top: 60%;
-  transform: translate(-50%,-60%);
+  transform: translate(-50%,-70%);
+
 }
 
 .radio{

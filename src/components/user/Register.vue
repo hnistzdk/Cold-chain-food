@@ -5,7 +5,7 @@
     </div>
     <div class="register_box">
       <div class="register_Form">
-        <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px" class="Register_Form">
+        <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px"  class="Register_Form">
           <el-form-item label="昵称" prop="username">
             <el-input  type="username" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
@@ -188,6 +188,7 @@ export  default {
   left: 30%;
   top: 60%;
   transform: translate(-50%,-60%);
+
 }
 .login_button{
   display: flex;
