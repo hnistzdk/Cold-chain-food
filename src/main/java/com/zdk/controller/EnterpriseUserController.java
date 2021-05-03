@@ -32,8 +32,8 @@ public class EnterpriseUserController {
 
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
-    public Object login(String id, String password){
-        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password);
+    public Object login(String id, String password,String email){
+        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password,email);
         enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
@@ -157,7 +157,7 @@ public class EnterpriseUserController {
     public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
         System.out.println("接收到的对象："+enterpriseUser);
         HashMap msg = new HashMap<>();
-        if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null)!=null){
+        if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
             if(count>0){
                 msg.put("status", "200");

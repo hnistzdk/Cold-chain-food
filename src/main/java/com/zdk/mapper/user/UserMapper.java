@@ -20,9 +20,10 @@ public interface UserMapper {
      *普通用户的登录
      * @param  id:账号
      * @param  password:密码
+     * @param email:修改密码时接口的重用
      * @return 登录成功的结果不为空则成功
      */
-    AdminAndUser login(@Param("id") String id, @Param("password") String password);
+    AdminAndUser login(@Param("id") String id, @Param("password") String password,@Param("email") String email);
 
     /**
      *获取普通用户的列表

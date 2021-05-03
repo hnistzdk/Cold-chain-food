@@ -18,9 +18,10 @@ public interface EnterpriseMapper {
      *企业用户的登录
      * @param  id:账号
      * @param  password:密码
+     * @param email:修改密码时接口的重用
      * @return 登录成功的结果不为空则成功
      */
-    EnterpriseUser enterpriseLogin(@Param("id") String id, @Param("password") String password);
+    EnterpriseUser enterpriseLogin(@Param("id") String id, @Param("password") String password,@Param("email") String email);
 
     /**
      *获取企业用户的列表

@@ -28,8 +28,8 @@ public class UserController {
 
     @PostMapping("/primaryLogin")
     @CrossOrigin
-    public Object login(String id, String password){
-        AdminAndUser result= userService.login(id, password);
+    public Object login(String id, String password,String email){
+        AdminAndUser result= userService.login(id, password,email);
         userService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
@@ -145,7 +145,7 @@ public class UserController {
     public Object primaryPwdChange(AddUserMeta user){
         System.out.println("接收到的对象："+user);
         HashMap msg = new HashMap<>();
-        if(userService.login(user.getId(), null)!=null){
+        if(userService.login(user.getId(), null,user.getEmail())!=null){
             int count = userService.modifyUserPwd(user);
             if(count>0){
                 msg.put("status", "200");

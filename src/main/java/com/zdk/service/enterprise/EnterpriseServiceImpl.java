@@ -23,8 +23,8 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     private EnterpriseMapper enterpriseMapper;
 
     @Override
-    public EnterpriseUser enterpriseLogin(String id, String password) {
-        return enterpriseMapper.enterpriseLogin(id, password);
+    public EnterpriseUser enterpriseLogin(String id, String password,String email) {
+        return enterpriseMapper.enterpriseLogin(id, password,email);
     }
 
     @Override
