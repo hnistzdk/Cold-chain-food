@@ -5,6 +5,7 @@ import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -77,4 +78,11 @@ public interface EnterpriseService {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id, @Param("date") String date);
+
+    /**
+     *修改企业用户密码
+     * @param  enterpriseUser:企业用户对象
+     * @return 返回修改条数
+     */
+    int modifyEnterprisePwd(AddEnterpriseMeta enterpriseUser);
 }

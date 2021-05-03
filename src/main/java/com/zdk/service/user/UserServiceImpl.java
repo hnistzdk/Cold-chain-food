@@ -1,5 +1,6 @@
 package com.zdk.service.user;
 
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.mapper.user.UserMapper;
@@ -69,5 +70,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public int updateLoginInfo(String id, String date) {
         return userMapper.updateLoginInfo(id, date);
+    }
+
+    @Override
+    public int modifyUserPwd(AddUserMeta user) {
+        HashMap map=new HashMap();
+        map.put("id", user.getId());
+        map.put("pwd", user.getPwd());
+        return userMapper.modifyUserPwd(map);
     }
 }

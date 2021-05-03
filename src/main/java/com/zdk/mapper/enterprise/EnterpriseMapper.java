@@ -1,5 +1,6 @@
 package com.zdk.mapper.enterprise;
 
+import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
@@ -75,4 +76,11 @@ public interface EnterpriseMapper {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
+
+    /**
+     *修改企业用户密码
+     * @param  map:id和新密码
+     * @return 返回修改条数
+     */
+    int modifyEnterprisePwd(Map map);
 }

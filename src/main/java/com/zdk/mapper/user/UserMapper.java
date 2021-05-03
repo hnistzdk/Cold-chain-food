@@ -78,4 +78,11 @@ public interface UserMapper {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
+
+    /**
+     *修改普通用户密码
+     * @param  map:id和新密码
+     * @return 返回修改条数
+     */
+    int modifyUserPwd(Map map);
 }

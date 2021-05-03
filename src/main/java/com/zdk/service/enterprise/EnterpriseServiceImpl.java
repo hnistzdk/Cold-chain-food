@@ -1,5 +1,6 @@
 package com.zdk.service.enterprise;
 
+import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.mapper.enterprise.EnterpriseMapper;
@@ -71,5 +72,13 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     @Override
     public int updateLoginInfo(String id, String date) {
         return enterpriseMapper.updateLoginInfo(id, date);
+    }
+
+    @Override
+    public int modifyEnterprisePwd(AddEnterpriseMeta enterpriseUser) {
+        HashMap map=new HashMap();
+        map.put("id", enterpriseUser.getId());
+        map.put("pwd", enterpriseUser.getPwd());
+        return enterpriseMapper.modifyEnterprisePwd(map);
     }
 }

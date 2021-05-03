@@ -139,4 +139,20 @@ public class UserController {
         Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
     }
+
+    @PostMapping("/primaryPwdChange")
+    @CrossOrigin
+    public Object primaryPwdChange(AddUserMeta user){
+        System.out.println("接收到的对象："+user);
+        HashMap msg = new HashMap<>();
+        if(userService.login(user.getId(), null)!=null){
+            int count = userService.modifyUserPwd(user);
+            if(count>0){
+                msg.put("status", "200");
+            }else {
+                msg.put("status", "201");
+            }
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
 }

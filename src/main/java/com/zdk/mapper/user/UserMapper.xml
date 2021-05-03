@@ -4,7 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.zdk.mapper.user.UserMapper">
     <select id="login" resultType="AdminAndUser">
-        select * from food.tb_user where id=#{id} and pwd=#{password};
+        select * from food.tb_user
+        <where>
+            <if test="id!=null">
+                and id=#{id}
+            </if>
+            <if test="password!=null">
+                and pwd=#{password}
+            </if>
+        </where>
     </select>
 
     <select id="getUserList" parameterType="map" resultType="AdminMeta">
@@ -45,5 +53,10 @@
         set login_times=login_times+1,
             last_login_time=#{date}
         where id=#{id};
+    </update>
+    <update id="modifyUserPwd" parameterType="map">
+        update tb_user
+        set pwd=#{pwd}
+        where id=#{id}
     </update>
 </mapper>

@@ -151,4 +151,20 @@ public class EnterpriseUserController {
         Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
     }
+
+    @PostMapping("/enterprisePwdChange")
+    @CrossOrigin
+    public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
+        System.out.println("接收到的对象："+enterpriseUser);
+        HashMap msg = new HashMap<>();
+        if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null)!=null){
+            int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
+            if(count>0){
+                msg.put("status", "200");
+            }else {
+                msg.put("status", "201");
+            }
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
 }
