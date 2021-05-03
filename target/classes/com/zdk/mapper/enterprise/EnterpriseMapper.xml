@@ -12,6 +12,9 @@
             <if test="password!=null">
                 and pwd=#{password}
             </if>
+            <if test="email!=null">
+                and email=#{email}
+            </if>
         </where>
     </select>
     <select id="getEnterpriseList" parameterType="map" resultType="EnterpriseMeta">

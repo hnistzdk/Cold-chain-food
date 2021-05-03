@@ -58,7 +58,7 @@ public class UserController {
 
     @DeleteMapping("/PrimaryUsers/{id}")
     @CrossOrigin
-    public Object removeEnterprise(@PathVariable String id){
+    public Object removePrimaryUsers(@PathVariable String id){
         int count = userService.removeUser(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -93,7 +93,7 @@ public class UserController {
 
     @GetMapping("/showEditPrimaryUsers/{id}")
     @CrossOrigin
-    public Object showEnterpriseUsers(@PathVariable String id){
+    public Object showEditPrimaryUsers(@PathVariable String id){
         EditMeta editMeta = userService.showPrimaryUser(id);
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
@@ -112,7 +112,7 @@ public class UserController {
 
     @PostMapping("/editPrimaryUsers/{id}")
     @CrossOrigin
-    public Object editEnterpriseUsers(EditMeta user){
+    public Object editPrimaryUsers(EditMeta user){
         int count = userService.modifyPrimaryUser(user);
         HashMap msg = new HashMap<>();
         if(count>0){
@@ -126,7 +126,7 @@ public class UserController {
 
     @PostMapping("/primaryRegister")
     @CrossOrigin
-    public Object enterpriseRegister(AddUserMeta user){
+    public Object primaryRegister(AddUserMeta user){
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
         HashMap data = new HashMap<>();
