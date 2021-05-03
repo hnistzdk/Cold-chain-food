@@ -1,17 +1,17 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.corba.se.impl.ior.OldJIDLObjectKeyTemplate;
 import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
-import com.zdk.utils.*;
-import org.apache.ibatis.annotations.CacheNamespace;
+import com.zdk.utils.DateConversion;
+import com.zdk.utils.LoginMessage;
+import com.zdk.utils.UUIDUtil;
+import com.zdk.utils.UserConvert;
 import org.apache.ibatis.annotations.Param;
-import org.junit.internal.runners.ErrorReportingRunner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -32,8 +32,8 @@ public class EnterpriseUserController {
 
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
-    public Object login(String id, String password){
-        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password);
+    public Object login(String id, String password,String email){
+        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password,email);
         enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
@@ -150,5 +150,21 @@ public class EnterpriseUserController {
         }
         Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
+    }
+
+    @PostMapping("/enterprisePwdChange")
+    @CrossOrigin
+    public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
+        System.out.println("接收到的对象："+enterpriseUser);
+        HashMap msg = new HashMap<>();
+        if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
+            int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
+            if(count>0){
+                msg.put("status", "200");
+            }else {
+                msg.put("status", "201");
+            }
+        }
+        return JSON.toJSONString(new Meta(msg,null));
     }
 }

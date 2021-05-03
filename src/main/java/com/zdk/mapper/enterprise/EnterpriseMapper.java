@@ -1,5 +1,6 @@
 package com.zdk.mapper.enterprise;
 
+import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
@@ -17,9 +18,10 @@ public interface EnterpriseMapper {
      *企业用户的登录
      * @param  id:账号
      * @param  password:密码
+     * @param email:修改密码时接口的重用
      * @return 登录成功的结果不为空则成功
      */
-    EnterpriseUser enterpriseLogin(@Param("id") String id, @Param("password") String password);
+    EnterpriseUser enterpriseLogin(@Param("id") String id, @Param("password") String password,@Param("email") String email);
 
     /**
      *获取企业用户的列表
@@ -75,4 +77,11 @@ public interface EnterpriseMapper {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
+
+    /**
+     *修改企业用户密码
+     * @param  map:id和新密码
+     * @return 返回修改条数
+     */
+    int modifyEnterprisePwd(Map map);
 }

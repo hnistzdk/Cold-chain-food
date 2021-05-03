@@ -28,8 +28,8 @@ public class UserController {
 
     @PostMapping("/primaryLogin")
     @CrossOrigin
-    public Object login(String id, String password){
-        AdminAndUser result= userService.login(id, password);
+    public Object login(String id, String password,String email){
+        AdminAndUser result= userService.login(id, password,email);
         userService.updateLoginInfo(id, DateConversion.getNowDate());
         Meta meta = LoginMessage.returnMsg(result);
         return JSON.toJSONString(meta);
@@ -58,7 +58,7 @@ public class UserController {
 
     @DeleteMapping("/PrimaryUsers/{id}")
     @CrossOrigin
-    public Object removeEnterprise(@PathVariable String id){
+    public Object removePrimaryUsers(@PathVariable String id){
         int count = userService.removeUser(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -93,7 +93,7 @@ public class UserController {
 
     @GetMapping("/showEditPrimaryUsers/{id}")
     @CrossOrigin
-    public Object showEnterpriseUsers(@PathVariable String id){
+    public Object showEditPrimaryUsers(@PathVariable String id){
         EditMeta editMeta = userService.showPrimaryUser(id);
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
@@ -112,7 +112,7 @@ public class UserController {
 
     @PostMapping("/editPrimaryUsers/{id}")
     @CrossOrigin
-    public Object editEnterpriseUsers(EditMeta user){
+    public Object editPrimaryUsers(EditMeta user){
         int count = userService.modifyPrimaryUser(user);
         HashMap msg = new HashMap<>();
         if(count>0){
@@ -126,7 +126,7 @@ public class UserController {
 
     @PostMapping("/primaryRegister")
     @CrossOrigin
-    public Object enterpriseRegister(AddUserMeta user){
+    public Object primaryRegister(AddUserMeta user){
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
         HashMap data = new HashMap<>();
@@ -138,5 +138,21 @@ public class UserController {
         }
         Meta meta = new Meta(msg,data);
         return JSON.toJSONString(meta);
+    }
+
+    @PostMapping("/primaryPwdChange")
+    @CrossOrigin
+    public Object primaryPwdChange(AddUserMeta user){
+        System.out.println("接收到的对象："+user);
+        HashMap msg = new HashMap<>();
+        if(userService.login(user.getId(), null,user.getEmail())!=null){
+            int count = userService.modifyUserPwd(user);
+            if(count>0){
+                msg.put("status", "200");
+            }else {
+                msg.put("status", "201");
+            }
+        }
+        return JSON.toJSONString(new Meta(msg,null));
     }
 }

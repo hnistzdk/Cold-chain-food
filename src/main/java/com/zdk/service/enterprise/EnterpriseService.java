@@ -5,6 +5,7 @@ import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -15,9 +16,10 @@ public interface EnterpriseService {
      *企业用户的登录
      * @param  id：账号
      * @param  password：密码
+     * @param email:修改密码时接口的重用
      * @return 登录成功的结果>0则成功
      */
-    EnterpriseUser enterpriseLogin(String id, String password);
+    EnterpriseUser enterpriseLogin(String id, String password,String email);
 
     /**
      *获取企业用户的列表
@@ -77,4 +79,11 @@ public interface EnterpriseService {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id, @Param("date") String date);
+
+    /**
+     *修改企业用户密码
+     * @param  enterpriseUser:企业用户对象
+     * @return 返回修改条数
+     */
+    int modifyEnterprisePwd(AddEnterpriseMeta enterpriseUser);
 }
