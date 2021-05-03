@@ -9,6 +9,8 @@ import Admin from '@/components/user/Admin'
 import PrimaryHome from '@/components/PriUser/PrimaryHome'
 import PrimaryUsers from "@/components/user/PrimaryUsers";
 import EnterpriseUsers from "@/components/user/EnterpriseUsers";
+import Roles from "@/components/power/Roles";
+import pwdFind from "@/components/user/pwdFind";
 Vue.use(Router)
 
 const router=new  Router({
@@ -17,13 +19,15 @@ const router=new  Router({
     {path:'/hello',component:Hello},
     { path: '/login',component: Login },
     {path:'/register',component:Register},
+    {path:'/pwdFind',component:pwdFind},
     {path:'/home',component:Home,
       redirect:'/welcome',
       children:[
         {path:'/welcome',component:Welcome},
         {path:'/user/admin',component:Admin},
         {path:'/user/primary',component:PrimaryUsers },
-        {path:'/user/enterprise',component:EnterpriseUsers }
+        {path:'/user/enterprise',component:EnterpriseUsers },
+        {path:'/power/roles',component:Roles }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
@@ -38,6 +42,7 @@ router.beforeEach((to,form,next)=>{
   if(to.path=='/hello') return next();
   if(to.path=='/login') return next();
   if(to.path=='/register') return next();
+  if(to.path=='/pwdFind') return next();
   //获取token,如果token存在，则允许跳转至home页，否则回退回login页面
   const tokenStr = window.sessionStorage.getItem('token')
   if(!tokenStr) return next('/login')

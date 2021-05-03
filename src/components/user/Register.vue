@@ -147,7 +147,7 @@ export  default {
       this.$router.push('/login');
     },
     async verification_request(){
-      console.log(this.RegisterForm.email)
+      //console.log(this.RegisterForm.email)
       const {data : res} = await this.$http.post('sendCode/'+this.RegisterForm.email)
       this.verification=res;
     }

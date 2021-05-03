@@ -17,7 +17,7 @@
         <!--        侧菜单栏-->
         <el-menu default-active="2" class="el-menu-vertical-demo" background-color="#333744" text-color="#fff"
           active-text-color="#ffd04b" :collapse-transition="false" :router="true" unique-opened :collapse="isCollapse">
-          <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id">
+          <el-submenu :index="item.id+''" v-for="item in menuList" :key="item.id" >
             <!--            一级菜单的模板区域-->
             <template slot="title">
               <!--              图标-->
