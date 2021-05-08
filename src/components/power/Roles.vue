@@ -86,7 +86,105 @@
 
 <script>
 export default {
-  name: "Role"
+  name: "Role",
+  data(){
+    return{
+      roleList:[],
+      addDialogVisible:false,
+      editDialogVisible:false,
+      addForm:{
+        roleName:'',
+        roleDesc:''
+      },
+      addFormRules:{
+        roleName: [],
+        roleDesc: []
+      },
+      //编辑用户的表单
+      editForm:{
+
+      }
+
+    }
+
+  },
+  created() {
+    this.getRoleList()
+  },
+  methods:{
+    //获取角色列表
+    async getRoleList(){
+      const {data:res} = await this.$http.get("roles")
+      if(res.meta.status !==200){
+        return this.$message.error('获取角色列表失败!')
+      }
+      this.roleList = res.data
+    },
+    //添加角色
+    addUser(){
+      this.$refs.addFormRef.validate(async valid =>{
+        if(!valid) return
+
+        const {data:res} = await this.$http.post('roles',this.addForm)
+        if(res.meta.status !== 201)
+          this.$message.error('添加角色失败!')
+        else
+          this.$message.success('添加角色成功!')
+        //将对话框隐藏
+        this.addDialogVisible = false
+        //重置表单
+        await this.getRoleList()
+      })
+    },
+    //展示编辑角色的信息
+    async showEdit(id){
+      const {data:res} = await  this.$http.get('roles/'+id)
+      if(res.meta.status !== 200)
+        return this.$message.error('查询角色信息失败!')
+      this.editForm = res.da
+      this.editDialogVisible = true
+    },
+    //编辑角色
+    editUser(){
+      this.$refs.edirFormRef.validate(async valid =>{
+        if(!valid) return
+        const {data:res}= await  this.$http.put('roles/'+this.editForm.roleId,{
+          roleName:this.editForm.roleName,
+          roleDesc:this.editForm.roleDesc
+        })
+        if(res.meta.status !==200)
+          this.$message.error('修改角色信息失败!')
+        else
+          this.$message.success('修改角色信息成功!')
+        this.editDialogVisible =false
+        await  this.getRoleList()
+      })
+    },
+    //删除角色
+    async removeUserById(id){
+      const confirmResult = await this.$confirm('此操作将永久删除角色,是否继续?','提示',{
+        confirmButtonText:'确定',
+        cancelButtonText:'取消',
+        type:"warning"
+      }).catch(err => err)
+      //如果用户确定删除，则返回值为字符串confirm
+      //如果用户取消删除，则返回值为字符串cancel
+      if(confirmResult !=='confirm'){
+        return this.message.info('已取消删除')
+      }
+      const {data:res} = await this.$http.delete('roles/'+id)
+      if(res.meta.status!==200){
+        this.$message.error('删除失败!')
+      }
+      else
+        this.$message.success('删除成功!')
+      //重置表单
+      await this.getRoleList()
+
+
+    }
+
+  }
 }
 </script>
 
