@@ -10,11 +10,24 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e93ea774-79c6-47a4-928d-6a10e232932a" name="默认变更列表" comment="5.3完善">
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/dataSources/39281671-4a97-49b7-b0b0-142fb00e1015.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/39281671-4a97-49b7-b0b0-142fb00e1015.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/libraries/Maven__mysql_mysql_connector_java_5_1_47.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_17_58____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_26_18_00____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_12_31____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/_2021_4_27_17_57____.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_4_26_17_58_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_4_26_18_00_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_4_27_12_31_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/shelf/在进行更新之前于_2021_4_27_17_57_取消提交了变更_[默认变更列表]/shelved.patch" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/admin/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/admin/AdminMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/food.iml" beforeDir="false" afterPath="$PROJECT_DIR$/food.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/admin/AdminMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/admin/AdminMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/enterprise/EnterpriseMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/com/zdk/mapper/user/UserMapper.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/mybatis-config.xml" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/food_Web_exploded/WEB-INF/classes/mybatis-config.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -477,7 +490,14 @@
       <option name="project" value="LOCAL" />
       <updated>1620012251814</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="5.3完善">
+      <created>1620024673978</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1620024673978</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
