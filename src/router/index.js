@@ -27,7 +27,7 @@ const router=new  Router({
         {path:'/admin',component:Admin},
         {path:'/primary',component:PrimaryUsers },
         {path:'/enterprise',component:EnterpriseUsers },
-        {path:'/enterprise',component:Roles }
+        {path:'/roles',component:Roles }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
