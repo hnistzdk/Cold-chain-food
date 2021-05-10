@@ -33,30 +33,22 @@ public class CommonController {
                 "            \"path\": \"users\",\n" +
                 "            \"children\": [\n" +
                 "                {\n" +
-                "                    \"id\": 110,\n" +
-                "                    \"authName\": \"用户列表\",\n" +
-                "                    \"path\": \"user\",\n" +
-                "                    \"children\": [\n" +
-                "                        {\n" +
-                "                            \"id\": 111,\n" +
-                "                            \"authName\": \"管理员\",\n" +
-                "                            \"path\": \"admin\",\n" +
-                "                            \"children\": []\n" +
-                "                        },\n" +
-                "                        {\n" +
-                "                            \"id\": 112,\n" +
-                "                            \"authName\": \"普通用户\",\n" +
-                "                            \"path\": \"primary\",\n" +
-                "                            \"children\": []\n" +
-                "                        },\n" +
-                "                        {\n" +
-                "                            \"id\": 113,\n" +
-                "                            \"authName\": \"企业用户\",\n" +
-                "                            \"path\": \"enterprise\",\n" +
-                "                            \"children\": []\n" +
-                "                        }\n" +
-                "                    ],\n" +
-                "                    \"order\": null\n" +
+                "                    \"id\": 111,\n" +
+                "                    \"authName\": \"管理员\",\n" +
+                "                    \"path\": \"admin\",\n" +
+                "                    \"children\": []\n" +
+                "                },\n" +
+                "                {\n" +
+                "                    \"id\": 112,\n" +
+                "                    \"authName\": \"普通用户\",\n" +
+                "                    \"path\": \"primary\",\n" +
+                "                    \"children\": []\n" +
+                "                },\n" +
+                "                {\n" +
+                "                    \"id\": 113,\n" +
+                "                    \"authName\": \"企业用户\",\n" +
+                "                    \"path\": \"enterprise\",\n" +
+                "                    \"children\": []\n" +
                 "                }\n" +
                 "            ],\n" +
                 "            \"order\": 1\n" +
