@@ -13,11 +13,10 @@
       <el-button type="primary" @click="addDialogVisible=true">添加角色</el-button>
       <!--    角色列表区域-->
       <el-table :data="roleList" border stripe>
-
         <!--      索引列-->
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
-        <el-table-column label="角色描述" prop="roleDesc"></el-table-column>
+        <el-table-column label="角色描述" prop="roleDescription"></el-table-column>
         <el-table-column label="操作" >
           <template >
             <el-button type="primary" icon="el-icon-edit" size="small" >编辑</el-button>
@@ -67,18 +66,18 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-      <!--    分配权限的对话框-->
+<!--      &lt;!&ndash;    分配权限的对话框&ndash;&gt;
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
-        <!--      树形控件-->
+        &lt;!&ndash;      树形控件&ndash;&gt;
         <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>
         <span slot="footer" class="dialog-footer">
     <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="allotRights">确 定</el-button>
   </span>
-      </el-dialog>
+      </el-dialog>-->
 
     </el-card>
 </div>
@@ -94,11 +93,11 @@ export default {
       editDialogVisible:false,
       addForm:{
         roleName:'',
-        roleDesc:''
+        roleDescription:''
       },
       addFormRules:{
         roleName: [],
-        roleDesc: []
+        roleDescription: []
       },
       //编辑用户的表单
       editForm:{

@@ -19,7 +19,7 @@
         </el-col>
       </el-row>
       <!--    用户列表区域-->
-      <el-table :data="userList" border stripe>
+      <el-table :data="userList"  border stripe>
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="账号" prop="id"></el-table-column>
         <el-table-column label="昵称" prop="username"></el-table-column>
