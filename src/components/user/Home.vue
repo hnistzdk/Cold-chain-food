@@ -36,14 +36,14 @@
                   <span>{{ subItem.authName }}</span>
                 </template>
 
-                <el-menu-item :index="'/'+subItem.path+'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" @click="saveNavState('/'+subItem.path+'/'+subItem1.path)" >
+<!--                <el-menu-item :index="'/'+subItem.path+'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" @click="saveNavState('/'+subItem.path+'/'+subItem1.path)" >
                   <template slot="title">
 
-                    <!--              文本-->
+                    &lt;!&ndash;              文本&ndash;&gt;
                     <span>{{ subItem1.authName }}</span>
                   </template>
 
-              </el-menu-item>
+              </el-menu-item>-->
             </el-submenu>
 
 
