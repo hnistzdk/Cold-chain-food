@@ -78,12 +78,13 @@
     <el-button type="primary" @click="allotRights">确 定</el-button>
   </span>
       </el-dialog>-->
-
     </el-card>
 </div>
 </template>
 
 <script>
+import Login from '@/components/user/Login'
+
 export default {
   name: "Role",
   data(){
@@ -101,9 +102,7 @@ export default {
       },
       //编辑用户的表单
       editForm:{
-
       }
-
     }
 
   },
@@ -116,10 +115,12 @@ export default {
     async getRoleList(){
       const qs = require('querystring')
       const {data:res} = await this.$http.get("roles")
-      if(res.meta.status !==200){
+      //console.log(res);
+      if(res.meta.status !=="200"){
         return this.$message.error('获取角色列表失败!')
       }
-      this.roleList = res.data
+      this.roleList = res.data.roleList
+      console.log(this.roleList)
     },
     //添加角色
     addUser(){
@@ -128,7 +129,7 @@ export default {
         if(!valid) return
 
         const {data:res} = await this.$http.post('roles',qs.stringify( this.addForm))
-        if(res.meta.status !== 201)
+        if(res.meta.status !== "201")
           this.$message.error('添加角色失败!')
         else
           this.$message.success('添加角色成功!')
@@ -141,7 +142,7 @@ export default {
     //展示编辑角色的信息
     async showEdit(id){
       const {data:res} = await  this.$http.get('roles/'+id)
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
         return this.$message.error('查询角色信息失败!')
       this.editForm = res.da
       this.editDialogVisible = true
@@ -154,7 +155,7 @@ export default {
           roleName:this.editForm.roleName,
           roleDesc:this.editForm.roleDesc
         })
-        if(res.meta.status !==200)
+        if(res.meta.status !=="200")
           this.$message.error('修改角色信息失败!')
         else
           this.$message.success('修改角色信息成功!')
@@ -175,7 +176,7 @@ export default {
         return this.message.info('已取消删除')
       }
       const {data:res} = await this.$http.delete('roles/'+id)
-      if(res.meta.status!==200){
+      if(res.meta.status!=="200"){
         this.$message.error('删除失败!')
       }
       else
