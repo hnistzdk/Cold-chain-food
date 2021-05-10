@@ -24,10 +24,10 @@ const router=new  Router({
       redirect:'/welcome',
       children:[
         {path:'/welcome',component:Welcome},
-        {path:'/user/admin',component:Admin},
-        {path:'/user/primary',component:PrimaryUsers },
-        {path:'/user/enterprise',component:EnterpriseUsers },
-        {path:'/user/enterprise',component:Roles }
+        {path:'/admin',component:Admin},
+        {path:'/primary',component:PrimaryUsers },
+        {path:'/enterprise',component:EnterpriseUsers },
+        {path:'/enterprise',component:Roles }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
