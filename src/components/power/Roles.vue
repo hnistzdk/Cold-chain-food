@@ -112,8 +112,10 @@ export default {
     this.getRoleList()
   },
   methods:{
+
     //获取角色列表
     async getRoleList(){
+      const qs = require('querystring')
       const {data:res} = await this.$http.get("roles")
       if(res.meta.status !==200){
         return this.$message.error('获取角色列表失败!')
@@ -122,10 +124,11 @@ export default {
     },
     //添加角色
     addUser(){
+      const qs = require('querystring')
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
 
-        const {data:res} = await this.$http.post('roles',this.addForm)
+        const {data:res} = await this.$http.post('roles',qs.stringify( this.addForm))
         if(res.meta.status !== 201)
           this.$message.error('添加角色失败!')
         else
