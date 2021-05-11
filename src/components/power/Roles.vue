@@ -114,7 +114,7 @@ export default {
 
     //获取角色列表
     async getRoleList(){
-      const qs = require('querystring')
+
       const {data:res} = await this.$http.get("roles")
       if(res.meta.status !==200){
         return this.$message.error('获取角色列表失败!')
