@@ -85,6 +85,7 @@ export default {
     //获取所有的表单
     async getMenuList(){
       const {data:res}= await this.$http.get('menus')
+      console.log(res)
       //200是接口的状态码，如果res.meta.status不等于200,则数据请求成功
       if(res.meta.status != 200) return this.$message.error(res.meta.msg)
       this.menuList = res.data
