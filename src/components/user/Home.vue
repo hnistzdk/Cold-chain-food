@@ -26,25 +26,15 @@
               <span>{{ item.authName }}</span>
             </template>
             <!--            二级菜单-->
-            <el-submenu :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
+            <el-menu-item :index="'/'+subItem.path+''" v-for="subItem in item.children" :key="subItem.id" @click="saveNavState('/'+subItem.path)">
+              <template slot="title">
+                <!--              图标-->
+                <i class="el-icon-menu"></i>
+                <!--              文本-->
+                <span>{{ subItem.authName }}</span>
+              </template>
 
-
-                <template slot="title">
-                  <!--              图标-->
-                  <i class="el-icon-menu"></i>
-                  <!--              文本-->
-                  <span>{{ subItem.authName }}</span>
-                </template>
-
-                <el-menu-item :index="'/'+subItem.path+'/'+subItem1.path+''" v-for="subItem1 in subItem.children" :key="subItem1.id" @click="saveNavState('/'+subItem.path+'/'+subItem1.path)" >
-                  <template slot="title">
-
-                    <!--              文本-->
-                    <span>{{ subItem1.authName }}</span>
-                  </template>
-
-              </el-menu-item>
-            </el-submenu>
+            </el-menu-item>
 
 
           </el-submenu>
@@ -95,6 +85,7 @@ export default {
     //获取所有的表单
     async getMenuList(){
       const {data:res}= await this.$http.get('menus')
+      console.log(res)
       //200是接口的状态码，如果res.meta.status不等于200,则数据请求成功
       if(res.meta.status != 200) return this.$message.error(res.meta.msg)
       this.menuList = res.data

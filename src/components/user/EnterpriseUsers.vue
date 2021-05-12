@@ -196,7 +196,6 @@ export default {
 
       },
       editFormRules:{
-
         mobile: [
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}

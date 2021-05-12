@@ -65,7 +65,6 @@ export default {
       this.$refs.loginFormRef.resetFields()
     },
     login () {
-
       //axios发送客户端请求
       const qs = require('querystring')
       this.$refs.loginFormRef.validate(async valid => {
@@ -100,7 +99,6 @@ export default {
     pwd_Forget(){
       this.$router.push('/pwdChange')
     }
-
   }
 
 }

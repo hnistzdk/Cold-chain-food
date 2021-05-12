@@ -10,6 +10,7 @@ import PrimaryHome from '@/components/PriUser/PrimaryHome'
 import PrimaryUsers from "@/components/user/PrimaryUsers";
 import EnterpriseUsers from "@/components/user/EnterpriseUsers";
 import PwdChange from '@/components/user/PwdChange'
+import Roles from "@/components/power/Roles";
 Vue.use(Router)
 
 const router=new  Router({
@@ -23,9 +24,10 @@ const router=new  Router({
       redirect:'/welcome',
       children:[
         {path:'/welcome',component:Welcome},
-        {path:'/user/admin',component:Admin},
-        {path:'/user/primary',component:PrimaryUsers },
-        {path:'/user/enterprise',component:EnterpriseUsers }
+        {path:'/admin',component:Admin},
+        {path:'/primary',component:PrimaryUsers },
+        {path:'/enterprise',component:EnterpriseUsers },
+        {path:'/roles',component:Roles }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
