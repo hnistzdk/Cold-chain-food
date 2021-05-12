@@ -13,7 +13,6 @@
       <el-button type="primary" @click="addDialogVisible=true">添加角色</el-button>
       <!--    角色列表区域-->
       <el-table :data="roleList" border stripe>
-
         <!--      索引列-->
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
@@ -86,7 +85,27 @@
 
 <script>
 export default {
-  name: "Role"
+  name: "Role",
+  data(){
+        return{
+          //角色列表
+          rolelist:[],
+          //添加的表单
+          addForm:{
+            roleName:'',
+            roleDesc:''
+          },
+          //表单添加校验的规则
+          addFormRules:{
+            roleName: [],
+            roleDesc: []
+          },
+
+        }
+  },
+  created(){
+    this.getRoleList()
+  }
 }
 </script>
 
