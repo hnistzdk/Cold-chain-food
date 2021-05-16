@@ -11,6 +11,7 @@ import PrimaryUsers from "@/components/user/PrimaryUsers";
 import EnterpriseUsers from "@/components/user/EnterpriseUsers";
 import PwdChange from '@/components/user/PwdChange'
 import Roles from "@/components/power/Roles";
+import Right from "../components/power/Right";
 Vue.use(Router)
 
 const router=new  Router({
@@ -27,7 +28,8 @@ const router=new  Router({
         {path:'/admin',component:Admin},
         {path:'/primary',component:PrimaryUsers },
         {path:'/enterprise',component:EnterpriseUsers },
-        {path:'/roles',component:Roles }
+        {path:'/roles',component:Roles },
+        {path:'/right',component:Right },
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
