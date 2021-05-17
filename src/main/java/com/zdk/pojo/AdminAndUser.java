@@ -27,4 +27,5 @@ public class AdminAndUser {
     private String lastLoginTime;
     private int loginTimes;
     private String role;
+    private Integer roleId;
 }

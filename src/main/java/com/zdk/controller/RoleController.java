@@ -6,9 +6,7 @@ import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -27,12 +25,68 @@ public class RoleController {
     @GetMapping("/roles")
     @CrossOrigin
     public Object getRoles(){
-        List<Role> roles = roleService.getRoles();
+        List<Role> roles = roleService.getRoles(null);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         data.put("roleList", JSON.toJSON(roles.toArray()));
         msg.put("status", "200");
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(new Meta(msg,data));
+    }
+
+    @PostMapping("/roles")
+    @CrossOrigin
+    public Object addRoles(Role role){
+        HashMap msg = new HashMap<>();
+        int result = roleService.addRoles(role);
+        if(result>0){
+            msg.put("status", "200");
+        }else{
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
+
+    @GetMapping("/roles/{id}")
+    @CrossOrigin
+    public Object showRoles(@PathVariable Integer id){
+        System.out.println("show里的id："+id);
+        List<Role> roles = roleService.getRoles(id);
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        if(roles!=null){
+            msg.put("status", "200");
+            data.put("role", roles.get(0));
+        }else {
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,data));
+    }
+
+    @PostMapping("/roles/{id}")
+    @CrossOrigin
+    public Object modifyRoles(Role role){
+        System.out.println("role:"+role);
+        System.out.println("id:"+role.getId());
+        HashMap msg = new HashMap<>();
+        int result = roleService.modifyRoles(role);
+        if(result>0){
+            msg.put("status", "200");
+        }else{
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
+
+    @DeleteMapping("/roles/{id}")
+    @CrossOrigin
+    public Object deleteRoles(@PathVariable Integer id){
+        HashMap msg = new HashMap<>();
+        int result=roleService.deleteRoles(id);
+        if(result>0){
+            msg.put("status", "200");
+        }else{
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
     }
 }

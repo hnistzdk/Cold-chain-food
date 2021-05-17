@@ -2,6 +2,7 @@ package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.*;
+import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.DateConversion;
@@ -35,6 +36,7 @@ public class UserController {
         return JSON.toJSONString(meta);
     }
 
+    @RightInfo("用户列表")
     @PostMapping("/PrimaryUsers")
     @CrossOrigin
     public Object userList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
