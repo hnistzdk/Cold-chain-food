@@ -17,13 +17,13 @@
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDescription"></el-table-column>
-        <el-table-clumn label="操作" >
+        <el-table-column label="操作" >
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)" >编辑</el-button>
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)">删除</el-button>
             <el-button type="warning" icon="el-icon-share" size="small" @click="showSetRightDialog(scope.row)" >分配权限</el-button>
           </template>
-        </el-table-clumn>
+        </el-table-column>
       </el-table>
 
       <!--    添加角色的对话框-->
