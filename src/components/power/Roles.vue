@@ -84,6 +84,8 @@
 <script>
 
 
+import * as qs from 'qs'
+
 export default {
   name: "Role",
   data(){
@@ -162,11 +164,11 @@ export default {
     },
     //编辑角色
     editUser(){
-      this.$refs.edirFormRef.validate(async valid =>{
+      this.$refs.editFormRef.validate(async valid =>{
         if(!valid) return
-        const {data:res}= await  this.$http.post('roles/'+this.editForm.roleId,qs.stringify({
+        const {data:res}= await  this.$http.post('roles/'+this.editForm.id,qs.stringify({
           roleName:this.editForm.roleName,
-          roleDesc:this.editForm.roleDesc
+          roleDescription:this.editForm.roleDescription
         }))
         if(res.meta.status !=="200")
           this.$message.error('修改角色信息失败!')
@@ -200,10 +202,10 @@ export default {
     },
     async showSetRightDialog(role)
     {
-      this.roleId = role.id;
+      this.id = role.id;
       //获取所有权限的数据
       const {data : res} = await this.$http.get('rights/tree')
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
       //把获取到的权限保存到data中
       this.rightsList = res.data
@@ -228,7 +230,7 @@ export default {
         ...this.$refs.treeRef.getHalfCheckedKeys()
       ]
       const  idStr  = keys.join(',')
-      const {data:res}= await this.$http.post(`roles/${this.roleId}/rights`,
+      const {data:res}= await this.$http.post(`roles/${this.id}/rights`,
         {rids:idStr})
       console.log(res)
       if(res.meta.status !== 200){
