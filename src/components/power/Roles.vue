@@ -36,8 +36,8 @@
           <el-form-item label="角色名称" prop="roleName">
             <el-input v-model="addForm.roleName"></el-input>
           </el-form-item>
-          <el-form-item label="角色描述" prop="roleDesc">
-            <el-input v-model="addForm.roleDesc"></el-input>
+          <el-form-item label="角色描述" prop="roleDescription">
+            <el-input v-model="addForm.roleDescription"></el-input>
           </el-form-item>
         </el-form>
 
@@ -54,10 +54,9 @@
           <el-form-item label="角色名称" prop="roleName">
             <el-input v-model="editForm.roleName" ></el-input>
           </el-form-item>
-          <el-form-item label="角色描述" prop="roleDesc">
-            <el-input v-model="editForm.roleDesc" ></el-input>
+          <el-form-item label="角色描述" prop="roleDescription">
+            <el-input v-model="editForm.roleDescription" ></el-input>
           </el-form-item>
-
         </el-form>
 
         <!--      底部栏-->
@@ -101,7 +100,7 @@ export default {
       },
       addFormRules:{
         roleName: [],
-        roleDescription: []
+        roleDescription:[]
       },
       //编辑用户的表单
       editForm:{
@@ -136,9 +135,9 @@ export default {
       const qs = require('querystring')
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
-
-        const {data:res} = await this.$http.post('roles',qs.stringify( this.addForm))
-        if(res.meta.status !== "201")
+        const {data:res} = await this.$http.post('roles',qs.stringify(this.addForm))
+        console.log("添加表"+qs.stringify(this.addForm));
+        if(res.meta.status !== "200")
           this.$message.error('添加角色失败!')
         else
           this.$message.success('添加角色成功!')
