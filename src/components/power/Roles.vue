@@ -30,7 +30,7 @@
       <el-dialog
         title="添加用户"
         :visible.sync="addDialogVisible"
-        width="30%"  >
+        width="30%" @close="addCloseDialog" >
         <!--      内容主体区域-->
         <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
           <el-form-item label="角色名称" prop="roleName">
@@ -217,8 +217,25 @@ export default {
       node.children.forEach(item=>
       this.getLeafKeys(item,arr))
     },
-    allotRights(){
-
+    async allotRights(){
+      const  keys = [
+        ...this.$refs.treeRef.getCheckedKeys(),
+        ...this.$refs.treeRef.getHalfCheckedKeys()
+      ]
+      const  idStr  = keys.join(',')
+      const {data:res}= await this.$http.post(`roles/${this.roleId}/rights`,
+        {rids:idStr})
+      console.log(res)
+      if(res.meta.status !== 200){
+        return this.$message.error('分配权限失败')
+      }
+      this.$message.success('分配权限成功')
+      await this.getRoleList()
+      this.showSetRightDialogVisible = false
+    },
+    addCloseDialog()
+    {
+      this.$refs.addFormRef.resetFields();
     }
 
   }
