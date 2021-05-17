@@ -17,13 +17,13 @@
         <el-table-column type="index" label="#"></el-table-column>
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDescription"></el-table-column>
-        <el-table-co0lumn label="操作" >
+        <el-table-clumn label="操作" >
           <template slot-scope="scope">
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="s8howEdit(0scope.row.id)" >编辑</el-button>
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)" >编辑</el-button>
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)">删除</el-button>
             <el-button type="warning" icon="el-icon-share" size="small" @click="showSetRightDialog(scope.row)" >分配权限</el-button>
           </template>
-        </el-table-co0lumn>
+        </el-table-clumn>
       </el-table>
 
       <!--    添加角色的对话框-->
@@ -66,18 +66,18 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-      <!--    分配权限的对话框-->
-<!--      <el-dialog-->
-<!--        title="分配权限"-->
-<!--        :visible.sync="showSetRightDialogVisible"-->
-<!--        width="30%" >-->
-<!--        &lt;!&ndash;      树形控件&ndash;&gt;-->
-<!--        <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>-->
-<!--        <span slot="footer" class="dialog-footer">-->
-<!--    <el-button @click="showSetRightDialogVisible = false">取 消</el-button>-->
-<!--    <el-button type="primary" @click="allotRights">确 定</el-button>-->
-<!--  </span>-->
-<!--      </el-dialog>-->
+          分配权限的对话框
+      <el-dialog
+        title="分配权限"
+        :visible.sync="showSetRightDialogVisible"
+        width="30%" >
+        <!--      树形控件-->
+        <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="allotRights">确 定</el-button>
+  </span>
+      </el-dialog>
     </el-card>
 </div>
 </template>
@@ -109,7 +109,9 @@ export default {
       treeProps:{
         label:'authName',
         children:'children'
-      }
+      },
+      defKeys:[],
+      roleId:''
     }
 
   },
