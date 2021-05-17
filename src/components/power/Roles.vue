@@ -84,6 +84,8 @@
 <script>
 
 
+import * as qs from 'qs'
+
 export default {
   name: "Role",
   data(){
@@ -152,17 +154,18 @@ export default {
       const {data:res} = await  this.$http.get('roles/'+id)
       if(res.meta.status !== "200")
         return this.$message.error('查询角色信息失败!')
-      this.editForm = res.da
+      this.editForm = res.data.role
       this.editDialogVisible = true
     },
     //编辑角色
     editUser(){
       this.$refs.edirFormRef.validate(async valid =>{
         if(!valid) return
-        const {data:res}= await  this.$http.put('roles/'+this.editForm.roleId,{
+        console.log("是否return")
+        const {data:res}= await  this.$http.post('roles/'+this.editForm.roleId,qs.stringify({
           roleName:this.editForm.roleName,
           roleDesc:this.editForm.roleDesc
-        })
+        }))
         if(res.meta.status !=="200")
           this.$message.error('修改角色信息失败!')
         else
