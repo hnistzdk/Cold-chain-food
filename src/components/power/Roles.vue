@@ -67,17 +67,17 @@
   </span>
       </el-dialog>
       <!--    分配权限的对话框-->
-      <el-dialog
-        title="分配权限"
-        :visible.sync="showSetRightDialogVisible"
-        width="30%" >
-        <!--      树形控件-->
-        <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>
-        <span slot="footer" class="dialog-footer">
-    <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="allotRights">确 定</el-button>
-  </span>
-      </el-dialog>
+<!--      <el-dialog-->
+<!--        title="分配权限"-->
+<!--        :visible.sync="showSetRightDialogVisible"-->
+<!--        width="30%" >-->
+<!--        &lt;!&ndash;      树形控件&ndash;&gt;-->
+<!--        <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>-->
+<!--        <span slot="footer" class="dialog-footer">-->
+<!--    <el-button @click="showSetRightDialogVisible = false">取 消</el-button>-->
+<!--    <el-button type="primary" @click="allotRights">确 定</el-button>-->
+<!--  </span>-->
+<!--      </el-dialog>-->
     </el-card>
 </div>
 </template>
