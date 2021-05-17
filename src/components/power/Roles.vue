@@ -50,7 +50,7 @@
       <!--    修改权限信息的对话框-->
       <el-dialog title="编辑信息" :visible.sync="editDialogVisible" width="30%">
 
-        <el-form :model="editForm"  ref="editFormRef" label-width="70px">
+        <el-form :model="editForm"  ref="editFormRef" :rules="editFormRules"  label-width="70px">
           <el-form-item label="角色名称" prop="roleName">
             <el-input v-model="editForm.roleName" ></el-input>
           </el-form-item>
@@ -65,7 +65,7 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-          分配权限的对话框
+
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
@@ -104,6 +104,11 @@ export default {
       },
       //编辑用户的表单
       editForm:{
+
+      },
+      editFormRules:{
+        roleName: [],
+        roleDescription:[]
       },
       treeProps:{
         label:'authName',
@@ -152,17 +157,17 @@ export default {
       const {data:res} = await  this.$http.get('roles/'+id)
       if(res.meta.status !== "200")
         return this.$message.error('查询角色信息失败!')
-      this.editForm = res.da
+      this.editForm = res.data.role
       this.editDialogVisible = true
     },
     //编辑角色
     editUser(){
       this.$refs.edirFormRef.validate(async valid =>{
         if(!valid) return
-        const {data:res}= await  this.$http.put('roles/'+this.editForm.roleId,{
+        const {data:res}= await  this.$http.post('roles/'+this.editForm.roleId,qs.stringify({
           roleName:this.editForm.roleName,
           roleDesc:this.editForm.roleDesc
-        })
+        }))
         if(res.meta.status !=="200")
           this.$message.error('修改角色信息失败!')
         else
