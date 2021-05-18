@@ -7,6 +7,7 @@ import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
@@ -20,14 +21,18 @@ import java.util.List;
 public class RightInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
-//        if(request.getMethod().equals("OPTIONS")){
-//            return true;
-//        }
         System.out.println("进入拦截器============");
+        Cookie[] cookies = request.getCookies();
+        for (Cookie cookie : cookies) {
+            System.out.println("cookie:"+ cookie);
+        }
         List<Right> rights= (List<Right>) request.getSession().getAttribute("functions");
         System.out.println("拦截器中获取的权限集合:"+request.getSession().getAttribute("functions"));
         AdminAndUser admin=(AdminAndUser)request.getSession().getAttribute("admin");
         System.out.println("拦截器中获取的用户"+admin);
+        if("OPTIONS".equals(request.getMethod())){
+            return true;
+        }
         if(admin!=null&&rights!=null){
             if(handler instanceof HandlerMethod){
                 HandlerMethod handlerMethod=(HandlerMethod) handler;

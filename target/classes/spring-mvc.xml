@@ -17,11 +17,16 @@
     <!--支持mvc注解驱动-->
     <mvc:annotation-driven/>
 
-    <!-- 视图解析器 -->
-<!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
-<!--        &lt;!&ndash; 前缀 &ndash;&gt;-->
-<!--        <property name="prefix" value="/"/>-->
-<!--        &lt;!&ndash; 后缀 &ndash;&gt;-->
-<!--        <property name="suffix" value=".jsp"/>-->
-<!--    </bean>-->
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/adminLogin"/>
+            <mvc:exclude-mapping path="/enterpriseLogin"/>
+            <mvc:exclude-mapping path="/primaryLogin"/>
+            <mvc:exclude-mapping path="/sendCode/*"/>
+            <mvc:exclude-mapping path="/menus"/>
+            <bean class="com.zdk.interceptor.RightInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 </beans>
