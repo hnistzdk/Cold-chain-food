@@ -113,7 +113,6 @@ export default {
 
     //获取角色列表
     async getRoleList(){
-
       const {data:res} = await this.$http.get("roles")
       //console.log(res);
       if(res.meta.status !=="200"){

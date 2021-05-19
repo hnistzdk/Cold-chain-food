@@ -86,6 +86,7 @@ export default {
         } else {
           const { data: res } = await this.$http.post('adminLogin', qs.stringify(this.loginForm))
           //判断登录是否成功并弹出提示框
+
           if (res.meta.status !== '200') return this.$message.error('登陆失败')
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
