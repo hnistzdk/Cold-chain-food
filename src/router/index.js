@@ -1,16 +1,18 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/user/Login.vue'
-import Hello from '@/components/user/Hello'
-import Register from '@/components/user/Register'
-import Home from '@/components/user/Home'
-import Welcome from '@/components/user/Welcome'
-import Admin from '@/components/user/Admin'
-import PrimaryHome from '@/components/PriUser/PrimaryHome'
-import PrimaryUsers from "@/components/user/PrimaryUsers";
-import EnterpriseUsers from "@/components/user/EnterpriseUsers";
-import PwdChange from '@/components/user/PwdChange'
-import Roles from "@/components/power/Roles";
+import Hello from '../components/user/Hello'
+import Register from '../components/user/Register'
+import Home from '../components/user/Home'
+import Welcome from '../components/user/Welcome'
+import Admin from '../components/user/Admin'
+import PrimaryHome from '../components/PriUser/PrimaryHome'
+import PrimaryUsers from "../components/user/PrimaryUsers";
+import EnterpriseUsers from "../components/user/EnterpriseUsers";
+import PwdChange from '../components/user/PwdChange'
+import Roles from "../components/power/Roles";
+import Right from "../components/power/Right";
+import Cate from "../components/goods/Cate";
 Vue.use(Router)
 
 const router=new  Router({
@@ -27,7 +29,9 @@ const router=new  Router({
         {path:'/admin',component:Admin},
         {path:'/primary',component:PrimaryUsers },
         {path:'/enterprise',component:EnterpriseUsers },
-        {path:'/roles',component:Roles }
+        {path:'/roles',component:Roles },
+        {path:'/right',component:Right },
+        {path:'/cate',component:Cate },
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

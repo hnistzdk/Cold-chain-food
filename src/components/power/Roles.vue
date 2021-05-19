@@ -18,10 +18,10 @@
         <el-table-column label="角色名称" prop="roleName"></el-table-column>
         <el-table-column label="角色描述" prop="roleDescription"></el-table-column>
         <el-table-column label="操作" >
-          <template >
-            <el-button type="primary" icon="el-icon-edit" size="small" >编辑</el-button>
-            <el-button type="danger" icon="el-icon-delete" size="small" >删除</el-button>
-            <el-button type="warning" icon="el-icon-share" size="small" >分配权限</el-button>
+          <template slot-scope="scope">
+            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)" >编辑</el-button>
+            <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)">删除</el-button>
+            <el-button type="warning" icon="el-icon-share" size="small" @click="showSetRightDialog(scope.row)" >分配权限</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -30,14 +30,14 @@
       <el-dialog
         title="添加用户"
         :visible.sync="addDialogVisible"
-        width="30%"  >
+        width="30%" @close="addCloseDialog" >
         <!--      内容主体区域-->
         <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
           <el-form-item label="角色名称" prop="roleName">
             <el-input v-model="addForm.roleName"></el-input>
           </el-form-item>
-          <el-form-item label="角色描述" prop="roleDesc">
-            <el-input v-model="addForm.roleDesc"></el-input>
+          <el-form-item label="角色描述" prop="roleDescription">
+            <el-input v-model="addForm.roleDescription"></el-input>
           </el-form-item>
         </el-form>
 
@@ -50,14 +50,13 @@
       <!--    修改权限信息的对话框-->
       <el-dialog title="编辑信息" :visible.sync="editDialogVisible" width="30%">
 
-        <el-form :model="editForm"  ref="editFormRef" label-width="70px">
+        <el-form :model="editForm"  ref="editFormRef" :rules="editFormRules"  label-width="70px">
           <el-form-item label="角色名称" prop="roleName">
             <el-input v-model="editForm.roleName" ></el-input>
           </el-form-item>
-          <el-form-item label="角色描述" prop="roleDesc">
-            <el-input v-model="editForm.roleDesc" ></el-input>
+          <el-form-item label="角色描述" prop="roleDescription">
+            <el-input v-model="editForm.roleDescription" ></el-input>
           </el-form-item>
-
         </el-form>
 
         <!--      底部栏-->
@@ -66,30 +65,35 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-<!--      &lt;!&ndash;    分配权限的对话框&ndash;&gt;
+
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
-        &lt;!&ndash;      树形控件&ndash;&gt;
+        <!--      树形控件-->
         <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>
         <span slot="footer" class="dialog-footer">
     <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="allotRights">确 定</el-button>
   </span>
-      </el-dialog>-->
+      </el-dialog>
     </el-card>
 </div>
 </template>
 
 <script>
-import Login from '@/components/user/Login'
+
+
+import * as qs from 'qs'
 
 export default {
   name: "Role",
   data(){
     return{
       roleList:[],
+      //所有权限的数据
+      rightsList:[],
+      showSetRightDialogVisible:false,
       addDialogVisible:false,
       editDialogVisible:false,
       addForm:{
@@ -98,11 +102,22 @@ export default {
       },
       addFormRules:{
         roleName: [],
-        roleDescription: []
+        roleDescription:[]
       },
       //编辑用户的表单
       editForm:{
-      }
+
+      },
+      editFormRules:{
+        roleName: [],
+        roleDescription:[]
+      },
+      treeProps:{
+        label:'authName',
+        children:'children'
+      },
+      defKeys:[],
+      roleId:''
     }
 
   },
@@ -126,9 +141,9 @@ export default {
       const qs = require('querystring')
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
-
-        const {data:res} = await this.$http.post('roles',qs.stringify( this.addForm))
-        if(res.meta.status !== "201")
+        const {data:res} = await this.$http.post('roles',qs.stringify(this.addForm))
+        console.log("添加表"+qs.stringify(this.addForm));
+        if(res.meta.status !== "200")
           this.$message.error('添加角色失败!')
         else
           this.$message.success('添加角色成功!')
@@ -143,17 +158,17 @@ export default {
       const {data:res} = await  this.$http.get('roles/'+id)
       if(res.meta.status !== "200")
         return this.$message.error('查询角色信息失败!')
-      this.editForm = res.da
+      this.editForm = res.data.role
       this.editDialogVisible = true
     },
     //编辑角色
     editUser(){
-      this.$refs.edirFormRef.validate(async valid =>{
+      this.$refs.editFormRef.validate(async valid =>{
         if(!valid) return
-        const {data:res}= await  this.$http.put('roles/'+this.editForm.roleId,{
+        const {data:res}= await  this.$http.post('roles/'+this.editForm.id,qs.stringify({
           roleName:this.editForm.roleName,
-          roleDesc:this.editForm.roleDesc
-        })
+          roleDescription:this.editForm.roleDescription
+        }))
         if(res.meta.status !=="200")
           this.$message.error('修改角色信息失败!')
         else
@@ -183,7 +198,50 @@ export default {
       //重置表单
       await this.getRoleList()
 
-
+    },
+    async showSetRightDialog(role)
+    {
+      this.id = role.id;
+      //获取所有权限的数据
+      const {data : res} = await this.$http.get('rights/tree')
+      if(res.meta.status !== "200")
+      return this.$message.error('获取权限信息失败!')
+      //把获取到的权限保存到data中
+      this.rightsList = res.data
+      this.defKeys=[]
+      //递归获取三级节点的id
+      this.getLeafKeys(role,this.defKeys)
+      console.log(this.defKeys)
+      this.showSetRightDialogVisible=true
+    },
+    getLeafKeys(node,arr)
+    {
+      //如果当前node属性不包含children属性，则是三级节点
+      if(!node.children){
+        return arr.push(node.id)
+      }
+      node.children.forEach(item=>
+      this.getLeafKeys(item,arr))
+    },
+    async allotRights(){
+      const  keys = [
+        ...this.$refs.treeRef.getCheckedKeys(),
+        ...this.$refs.treeRef.getHalfCheckedKeys()
+      ]
+      const  idStr  = keys.join(',')
+      const {data:res}= await this.$http.post(`roles/${this.id}/rights`,
+        {rids:idStr})
+      console.log(res)
+      if(res.meta.status !== 200){
+        return this.$message.error('分配权限失败')
+      }
+      this.$message.success('分配权限成功')
+      await this.getRoleList()
+      this.showSetRightDialogVisible = false
+    },
+    addCloseDialog()
+    {
+      this.$refs.addFormRef.resetFields();
     }
 
   }
