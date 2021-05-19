@@ -16,6 +16,7 @@ axios.interceptors.request.use(config=>{
   return config
 })
 axios.defaults.baseURL="http://localhost:8088/"
+axios.defaults.withCredentials=true
 Vue.prototype.$http=axios
 
 
