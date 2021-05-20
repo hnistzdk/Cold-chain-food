@@ -17,6 +17,28 @@
     <!--支持mvc注解驱动-->
     <mvc:annotation-driven/>
 
+<!--    配置拦截器-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/*"/>
+            <mvc:exclude-mapping path="/adminLogin"/>
+            <mvc:exclude-mapping path="/enterpriseLogin"/>
+            <mvc:exclude-mapping path="/primaryLogin"/>
+            <mvc:exclude-mapping path="/sendCode/*"/>
+            <mvc:exclude-mapping path="/menus"/>
+            <bean class="com.zdk.interceptor.RightInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <!--配置跨域-->
+    <mvc:cors>
+        <mvc:mapping path="/**"
+        allowed-origins="http://localhost:8080"
+        allowed-methods="*"
+        allow-credentials="true"
+        allowed-headers="*"/>
+    </mvc:cors>
+
     <!-- 视图解析器 -->
 <!--    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">-->
 <!--        &lt;!&ndash; 前缀 &ndash;&gt;-->

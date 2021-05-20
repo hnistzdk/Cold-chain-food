@@ -22,8 +22,12 @@ public class MyConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOrigins("*")
+                .allowedOrigins("http://localhost:8080")
+//                .allowedOrigins("*")
                 .allowedHeaders(CorsConfiguration.ALL)
+                .allowedHeaders("Access-Control-Allow-Headers", "X-Requested-With")
+                .allowedHeaders("Access-Control-Allow-Methods","PUT,POST,GET,DELETE,OPTIONS")
+                .allowedHeaders("Content-Type", "application/json;charset=utf-8")
                 .allowedMethods(CorsConfiguration.ALL)
                 .allowCredentials(true)
                 .maxAge(3600);

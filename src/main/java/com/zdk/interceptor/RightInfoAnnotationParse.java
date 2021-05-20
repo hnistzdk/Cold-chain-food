@@ -10,7 +10,8 @@ import java.lang.reflect.Method;
 public class RightInfoAnnotationParse {
     public static String parse(Class targetClass,String methodName) throws NoSuchMethodException,SecurityException{
         String rightName="";
-        Method method=targetClass.getMethod(methodName);
+        Method method=targetClass.getMethod(methodName,targetClass);
+        System.out.println("拦截的controller里的方法:"+method);
         if(method.isAnnotationPresent(RightInfo.class)){
             RightInfo rightInfo=method.getAnnotation(RightInfo.class);
             rightName=rightInfo.value();
