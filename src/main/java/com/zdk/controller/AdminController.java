@@ -46,6 +46,7 @@ public class AdminController {
     @PostMapping("/adminLogin")
     @CrossOrigin
     public Object login(String id, String password,HttpServletRequest request){
+        System.out.println(id+password);
         AdminAndUser admin= adminService.adminLogin(id, password);
         adminService.updateLoginInfo(id, DateConversion.getNowDate());
         //根据用户id查到该用户角色,然后查到对应的权限,把权限放入session
