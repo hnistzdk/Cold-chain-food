@@ -40,7 +40,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(meta);
     }
 
-    @RightInfo("企业用户列表")
+    @RightInfo("enterpriseList")
     @PostMapping("/enterpriseUsers")
     @CrossOrigin
     public Object enterpriseList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){

@@ -79,7 +79,7 @@ public class AdminController {
         return JSON.toJSONString(meta);
     }
 
-    @RightInfo("管理员列表")
+    @RightInfo("adminList")
     @PostMapping("/adminUsers")
     @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){

@@ -23,7 +23,7 @@ public class RoleController {
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
-    @RightInfo("角色列表")
+    @RightInfo("roleList")
     @GetMapping("/roles")
     @CrossOrigin
     public Object getRoles(){

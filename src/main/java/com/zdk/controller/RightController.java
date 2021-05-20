@@ -1,6 +1,7 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Right;
 import com.zdk.service.right.RightService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,7 @@ public class RightController {
     @Qualifier("RightServiceImpl")
     private RightService rightService;
 
+    @RightInfo("rightList")
     @PostMapping("/rightTest")
     @CrossOrigin
     public Object rightTest(){
