@@ -5,6 +5,7 @@ import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
+import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.DateConversion;
@@ -39,6 +40,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(meta);
     }
 
+    @RightInfo("企业用户列表")
     @PostMapping("/enterpriseUsers")
     @CrossOrigin
     public Object enterpriseList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){

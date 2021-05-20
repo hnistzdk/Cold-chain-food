@@ -36,7 +36,7 @@ public class UserController {
         return JSON.toJSONString(meta);
     }
 
-    @RightInfo("用户列表")
+    @RightInfo("普通用户列表")
     @PostMapping("/PrimaryUsers")
     @CrossOrigin
     public Object userList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){

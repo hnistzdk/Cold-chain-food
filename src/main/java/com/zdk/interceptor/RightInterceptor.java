@@ -25,10 +25,6 @@ public class RightInterceptor implements HandlerInterceptor {
         if(request.getMethod().equals("OPTIONS")){
             return true;
         }
-        Cookie[] cookies = request.getCookies();
-        for (Cookie cookie : cookies) {
-            System.out.println("cookies+"+cookie);
-        }
         List<Right> rights= (List<Right>) request.getSession().getAttribute("functions");
         System.out.println("拦截器中获取的权限集合:"+request.getSession().getAttribute("functions"));
         AdminAndUser admin=(AdminAndUser)request.getSession().getAttribute("admin");
@@ -36,20 +32,15 @@ public class RightInterceptor implements HandlerInterceptor {
         if(admin!=null&&rights!=null){
             if(handler instanceof HandlerMethod){
                 HandlerMethod handlerMethod=(HandlerMethod) handler;
-                String methodName = handlerMethod.getMethod().getName();
-                System.out.println("拦截的方法名"+methodName);
-                Class targetClass=handlerMethod.getMethod().getDeclaringClass();
-                System.out.println("目标类名:"+targetClass.getName());
-                String rightName=RightInfoAnnotationParse.parse(targetClass, methodName);
-                System.out.println("目标类里的方法需要的权限名:"+rightName);
-                System.out.println("拦截的注解名"+rightName);
+                String value = handlerMethod.getMethodAnnotation(RightInfo.class).value();
+                System.out.println("用户想要执行的操作是:"+value);
                 boolean flag=false;
-                if(rightName==null||rightName.equals("")){
+                if(value.equals("")){
                     //没有权限,说明任何人都能访问
                     flag=true;
                 }else{
                     for (Right right : rights) {
-                        if(right.getRightName().equals(rightName)){
+                        if(right.getRightName().equals(value)){
                             flag=true;
                             break;
                         }

@@ -2,6 +2,7 @@ package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
+import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +23,7 @@ public class RoleController {
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
+    @RightInfo("角色列表")
     @GetMapping("/roles")
     @CrossOrigin
     public Object getRoles(){
