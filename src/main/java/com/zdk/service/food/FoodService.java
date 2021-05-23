@@ -40,6 +40,5 @@ public interface FoodService {
      *查询食品总记录数量
      * @return 总记录条数
      */
-    @Select("select count(*) from tb_food")
     int foodCount();
 }

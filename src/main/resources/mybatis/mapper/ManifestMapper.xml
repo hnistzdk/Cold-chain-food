@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdk.mapper.ManifestMapper">
+
+    <!--    在当前mapper.xml中使用二级缓存-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+    <select id="queryManifest" resultType="Manifest">
+        select * from tb_manifest
+        <where>
+            <if test="manifestId!=null">
+                tb_manifest.manifest_id=#{manifestId}
+            </if>
+        </where>
+    </select>
+
+    <insert id="addManifest" parameterType="Manifest">
+        insert into tb_manifest (manifest_id, food_id, consignor_name, consignee_name, starting_site, received_site,
+                                 travel_status, arrived_point, consignor_id, consignee_id)
+        values (#{manifestId},#{foodId},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{arrivedPoint},#{consignorId},#{consigneeId});
+    </insert>
+</mapper>

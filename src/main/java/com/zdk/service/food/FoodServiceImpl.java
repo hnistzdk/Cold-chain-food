@@ -17,7 +17,7 @@ import java.util.Map;
 public class FoodServiceImpl implements FoodService{
 
     @Autowired
-    FoodMapper foodMapper;
+    private FoodMapper foodMapper;
 
     @Transactional(rollbackFor = Exception.class)
     @Override
@@ -44,6 +44,6 @@ public class FoodServiceImpl implements FoodService{
 
     @Override
     public int foodCount() {
-        return 0;
+        return foodMapper.foodCount();
     }
 }
