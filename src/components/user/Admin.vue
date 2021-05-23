@@ -319,8 +319,6 @@ export default {
   padding-top: 20px;
   height: 30px;
 }
-.el-input{
-  width: 50%;
-}
+
 
 </style>
