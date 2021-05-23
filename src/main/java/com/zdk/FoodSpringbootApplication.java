@@ -3,7 +3,9 @@ package com.zdk;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-//@MapperScan("com.zdk.mapper")
+/**
+ * @author zdk
+ */
 @SpringBootApplication
 public class FoodSpringbootApplication {
 

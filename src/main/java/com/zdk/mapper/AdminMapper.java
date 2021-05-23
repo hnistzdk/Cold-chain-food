@@ -1,7 +1,9 @@
 package com.zdk.mapper;
 
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -65,4 +67,25 @@ public interface AdminMapper {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
+
+    /**
+     *添加管理员
+     * @param  admin
+     * @return 返回类型条数
+     */
+    int addAdmin(AdminAndUser admin);
+
+    /**
+     *显示管理员用户编辑信息
+     * @param  id:企业用户id
+     * @return 返回编辑对象
+     */
+    EditMeta showAdminUser(String id);
+
+    /**
+     *修改管理员用户信息
+     * @param  user:编辑企业用户对象
+     * @return 返回修改条数
+     */
+    int modifyAdminUser(EditMeta user);
 }

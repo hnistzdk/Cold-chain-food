@@ -52,6 +52,7 @@ public class AdminController {
         //根据用户id查到该用户角色,然后查到对应的权限,把权限放入session
         //权限需要在访问的不同的方法的时候不断在拦截器中判断是否具有权限,所以放入session
         request.getSession().setAttribute("admin", admin);
+        request.getSession().setAttribute("loginUser", admin);
         //获取用户的角色id
         Integer roleId =admin.getRoleId();
         //通过用户的角色id获取用户对应的角色对象

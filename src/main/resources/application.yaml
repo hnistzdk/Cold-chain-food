@@ -37,3 +37,8 @@ mybatis:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 server:
   port: 8088
+
+  servlet:
+    session:
+      cookie:
+        max-age: 600

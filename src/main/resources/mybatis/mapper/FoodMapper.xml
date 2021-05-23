@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdk.mapper.FoodMapper">
+
+    <!--    在当前mapper.xml中使用二级缓存-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+    <insert id="addFood" parameterType="Food">
+        insert into tb_food (food_name, production_date, expiry_date,
+                             address, producer, phone, storage_id,
+                             risk_degree,category_id)
+        values (#{foodName},#{productionDate},#{expiryDate},#{address},#{producer},#{phone},#{storageId},#{riskDegree},#{categoryId});
+    </insert>
+
+    <delete id="deleteFoodById" parameterType="int">
+        delete from tb_food where id=#{id}
+    </delete>
+
+    <update id="modifyFood" parameterType="Food">
+        update tb_food
+        <set>
+            <if test="foodName!=null">
+                tb_food.food_name=#{foodName},
+            </if>
+            <if test="productionDate!=null">
+                tb_food.production_date=#{productionDate},
+            </if>
+            <if test="expiryDate!=null">
+                tb_food.expiry_date=#{expiryDate},
+            </if>
+            <if test="address!=null">
+                tb_food.address=#{address},
+            </if>
+            <if test="producer!=null">
+                tb_food.producer=#{producer},
+            </if>
+            <if test="phone!=null">
+                tb_food.phone=#{phone},
+            </if>
+            <if test="storageId!=null">
+                tb_food.storage_id=#{storageId},
+            </if>
+            <if test="riskDegree!=null">
+                tb_food.risk_degree=#{riskDegree},
+            </if>
+            <if test="categoryId!=null">
+                tb_food.category_id=#{categoryId},
+            </if>
+        </set>
+        where tb_food.id=#{id};
+    </update>
+
+    <select id="queryFoodBy" resultType="Food">
+        select *
+        from tb_food
+        <where>
+            <if test="">
+                and id=#{id}
+            </if>
+            <if test="">
+                and food_name=#{foodName}
+            </if>
+            <if test="">
+                and expiry_date=#{expiryDate}
+            </if>
+            <if test="">
+                and storage_id=#{storageId}
+            </if>
+            <if test="">
+                and risk_degree=#{riskDegree}
+            </if>
+            <if test="">
+                and category_id=#{categoryId}
+            </if>
+        </where>
+        limit #{startIndex},#{pageSize}
+    </select>
+</mapper>
