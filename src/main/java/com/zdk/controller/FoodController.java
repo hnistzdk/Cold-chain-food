@@ -6,6 +6,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Food;
 import com.zdk.service.food.FoodServiceImpl;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -47,6 +48,7 @@ public class FoodController {
     }
 
     @ApiOperation("删除食品信息")
+    @ApiImplicitParam(name = "id",value = "食品id",type = "Integer")
     @RightInfo("deleteFood")
     @PostMapping("/deleteFood")
     @CrossOrigin
@@ -81,6 +83,7 @@ public class FoodController {
     }
 
     @ApiOperation("查询食品信息")
+    @ApiImplicitParam(name = "map",value = "查询食品的参数封装在map中",type = "Map")
     @RightInfo("queryFoodBy")
     @PostMapping("/queryFoodBy")
     @CrossOrigin

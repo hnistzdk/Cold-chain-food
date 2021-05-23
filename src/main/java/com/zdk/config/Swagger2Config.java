@@ -33,4 +33,5 @@ public class Swagger2Config {
                 .paths(PathSelectors.any())//路径过滤器（扫描所有路径）
                 .build();
     }
+//    http://localhost:8088/swagger-ui.html
 }

@@ -112,7 +112,7 @@
             <version>1.9.6</version>
         </dependency>
 
-        <!--   继承swagger2     -->
+        <!--   集成swagger2     -->
         <dependency>
             <groupId>io.springfox</groupId>
             <artifactId>springfox-swagger2</artifactId>
@@ -123,11 +123,16 @@
             <artifactId>springfox-swagger-ui</artifactId>
             <version>2.9.2</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.battcn</groupId>-->
+<!--            <artifactId>swagger-spring-boot-starter</artifactId>-->
+<!--            <version>2.1.5-RELEASE</version>-->
+<!--        </dependency>-->
 
-        <dependency> <!--添加热部署依赖 -->
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-        </dependency>
+<!--        <dependency> &lt;!&ndash;添加热部署依赖 &ndash;&gt;-->
+<!--            <groupId>org.springframework.boot</groupId>-->
+<!--            <artifactId>spring-boot-devtools</artifactId>-->
+<!--        </dependency>-->
     </dependencies>
 
     <build>
