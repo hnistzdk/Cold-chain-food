@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdk.mapper.RoleMapper">
+
+    <!--    在当前mapper.xml中使用二级缓存-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+    <select id="getRoles" resultType="Role">
+        select *
+        from tb_role
+        <where>
+            <if test="id!=null">
+                tb_role.id=#{id}
+            </if>
+        </where>
+    </select>
+
+
+    <insert id="addRoles" parameterType="Role">
+        insert into tb_role (role_name, role_description)
+        values (#{roleName},#{roleDescription});
+    </insert>
+
+    <update id="modifyRoles" parameterType="Role">
+        update tb_role
+        set role_name=#{roleName},role_description=#{roleDescription}
+        where id=#{id};
+    </update>
+
+    <delete id="deleteRoles">
+        delete from tb_role where id=#{id}
+    </delete>
+</mapper>

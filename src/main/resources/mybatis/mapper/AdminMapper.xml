@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdk.mapper.AdminMapper">
+
+    <!--    在当前mapper.xml中使用二级缓存-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+    <select id="adminLogin" resultType="AdminAndUser">
+        select * from food.tb_admin where id=#{id} and pwd=#{password};
+    </select>
+
+    <select id="getAdminList" parameterType="map" resultType="AdminMeta">
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        from food.tb_admin limit #{startIndex},#{pageSize};
+    </select>
+
+    <!--    总记录数-->
+    <select id="adminTotalPage" resultType="_int">
+        select count(*) from food.tb_admin;
+    </select>
+
+    <select id="fuzzyQueryAdminList" parameterType="map" resultType="AdminMeta">
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        from food.tb_admin where food.tb_admin.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
+    </select>
+    <delete id="removeAdmin">
+        delete from tb_admin where id=#{id};
+    </delete>
+
+    <select id="getAdminById" resultType="AdminAndUser">
+        select * from tb_admin where id=#{id};
+    </select>
+
+    <update id="updateLoginInfo">
+        update tb_admin
+        set login_times=login_times+1,
+            last_login_time=#{date}
+        where id=#{id};
+    </update>
+</mapper>
