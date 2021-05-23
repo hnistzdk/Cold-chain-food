@@ -131,6 +131,8 @@ export default {
       const {data:res} = await this.$http.get("roles")
       //console.log(res);
       if(res.meta.status !=="200"){
+        if(res.meta.status =="403")
+          return this.$message.error('你无权访问!')
         return this.$message.error('获取角色列表失败!')
       }
       this.roleList = res.data.roleList
@@ -207,7 +209,7 @@ export default {
       if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
       //把获取到的权限保存到data中
-      this.rightsList = res.data
+      this.rightsList = res.data.rightsList
       this.defKeys=[]
       //递归获取三级节点的id
       this.getLeafKeys(role,this.defKeys)

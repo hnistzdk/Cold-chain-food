@@ -30,7 +30,7 @@ const router=new  Router({
         {path:'/primary',component:PrimaryUsers },
         {path:'/enterprise',component:EnterpriseUsers },
         {path:'/roles',component:Roles },
-        {path:'/right',component:Right },
+        {path:'/rights',component:Right },
         {path:'/cate',component:Cate },
       ]},
     {path:'/primaryHome',component:PrimaryHome}

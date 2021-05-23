@@ -71,12 +71,12 @@
           <el-form-item label="密码" prop="password">
             <el-input v-model="addForm.password"></el-input>
           </el-form-item>
-          <el-form-item label="邮箱" prop="email">
+          <el-form-item label="性别" prop="gender">
             <el-radio v-model="addForm.gender" label="1">男</el-radio>
             <el-radio v-model="addForm.gender" label="2">女</el-radio>
           </el-form-item>
-          <el-form-item label="电话" prop="mobile">
-            <el-input v-model="addForm.mobile"></el-input>
+          <el-form-item label="电话" prop="tel">
+            <el-input v-model="addForm.tel"></el-input>
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="addForm.email"></el-input>
@@ -102,8 +102,8 @@
           <el-form-item label="邮箱" prop="email">
             <el-input v-model="editForm.email"></el-input>
           </el-form-item>
-          <el-form-item label="电话" prop="mobile">
-            <el-input v-model="editForm.mobile"></el-input>
+          <el-form-item label="电话" prop="tel">
+            <el-input v-model="editForm.tel"></el-input>
           </el-form-item>
         </el-form>
 
@@ -164,7 +164,7 @@ export default {
         gender:[
           {required:true,message:'请点击单选框!',trigger:'blur'},
         ],
-        mobile: [
+        tel: [
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}
         ],
@@ -175,7 +175,7 @@ export default {
       },
       editFormRules:{
 
-        mobile: [
+        tel: [
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}
         ]
@@ -240,7 +240,7 @@ export default {
       this.$refs.addFormRef.validate(async valid =>{
         if(!valid) return
         //console.log(valid)
-        const {data:res}= await this.$http.post('adminUsers',this.addForm)
+        const {data:res}= await this.$http.post('addAdmin',qs.stringify(this.addForm))
         if(res.meta.status!=="200")
           this.$message.error('添加用户失败！')
         else
@@ -258,7 +258,7 @@ export default {
         //发起修改用户信息的数据请求
         const {data:res}= await  this.$http.put("users/"+this.editForm.id,{
           email:this.editForm.email,
-          mobile:this.editForm.mobile
+          tel:this.editForm.tel
         })
         //console.log(this.editForm.id)
         if(res.meta.status!=="200")

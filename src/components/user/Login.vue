@@ -77,16 +77,20 @@ export default {
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/primaryHome')
         } else if (this.radio === 2) {
-          const { data: res } = await this.$http.post('enterpriseLogin', qs.stringify(this.loginForm))
           //判断登录是否成功并弹出提示框
+          const { data: res } = await this.$http.post('enterpriseLogin', qs.stringify(this.loginForm))
           if (res.meta.status !== '200') return this.$message.error('登陆失败')
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/home')
         } else {
-          const { data: res } = await this.$http.post('adminLogin', qs.stringify(this.loginForm))
+          // console.log(qs.stringify(this.loginForm));
+          // var xhr = new XMLHttpRequest();
+          // xhr.open('POST', 'http://localhost:8088/adminLogin');
+          // xhr.withCredentials = true; // 允许跨域携带cookie信息
+          // xhr.send({id: 369365576, password: 123456}); // ixd=369365576&password=123456
           //判断登录是否成功并弹出提示框
-
+          const { data: res } = await this.$http.post('adminLogin', qs.stringify(this.loginForm))
           if (res.meta.status !== '200') return this.$message.error('登陆失败')
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
