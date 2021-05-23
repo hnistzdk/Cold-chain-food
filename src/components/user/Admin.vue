@@ -71,7 +71,7 @@
           <el-form-item label="密码" prop="password">
             <el-input v-model="addForm.password"></el-input>
           </el-form-item>
-          <el-form-item label="邮箱" prop="email">
+          <el-form-item label="性别" prop="gender">
             <el-radio v-model="addForm.gender" label="1">男</el-radio>
             <el-radio v-model="addForm.gender" label="2">女</el-radio>
           </el-form-item>

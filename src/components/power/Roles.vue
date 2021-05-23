@@ -131,6 +131,8 @@ export default {
       const {data:res} = await this.$http.get("roles")
       //console.log(res);
       if(res.meta.status !=="200"){
+        if(res.meta.status =="403")
+          return this.$message.error('你无权访问!')
         return this.$message.error('获取角色列表失败!')
       }
       this.roleList = res.data.roleList
