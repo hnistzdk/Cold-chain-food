@@ -20,6 +20,6 @@ public class Food {
     private String producer;
     private String phone;
     private Integer storageId;
-    private String riskDegree;
+    private Integer riskDegree;
     private Integer categoryId;
 }

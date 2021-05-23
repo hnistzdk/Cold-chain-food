@@ -7,6 +7,7 @@ import com.zdk.mapper.UserMapper;
 import com.zdk.pojo.AdminAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -47,11 +48,13 @@ public class UserServiceImpl implements UserService {
         return userMapper.userTotalPage();
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int removeUser(String id) {
         return userMapper.removeUser(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addUser(AdminAndUser user) {
         return userMapper.addUser(user);
@@ -62,15 +65,19 @@ public class UserServiceImpl implements UserService {
         return userMapper.showPrimaryUser(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyPrimaryUser(EditMeta user) {
         return userMapper.modifyPrimaryUser(user);
     }
+
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateLoginInfo(String id, String date) {
         return userMapper.updateLoginInfo(id, date);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyUserPwd(AddUserMeta user) {
         HashMap map=new HashMap();

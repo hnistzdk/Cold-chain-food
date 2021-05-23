@@ -4,6 +4,7 @@ import com.zdk.mapper.FoodMapper;
 import com.zdk.pojo.Food;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -18,16 +19,19 @@ public class FoodServiceImpl implements FoodService{
     @Autowired
     FoodMapper foodMapper;
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addFood(Food food) {
         return foodMapper.addFood(food);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteFoodById(Integer id) {
         return foodMapper.deleteFoodById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyFood(Food food) {
         return foodMapper.modifyFood(food);

@@ -5,6 +5,7 @@ import com.zdk.dto.EditMeta;
 import com.zdk.dto.EnterpriseMeta;
 import com.zdk.pojo.EnterpriseUser;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 

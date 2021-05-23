@@ -55,26 +55,26 @@
         where tb_food.id=#{id};
     </update>
 
-    <select id="queryFoodBy" resultType="Food">
+    <select id="queryFoodBy" resultType="Food" parameterType="map">
         select *
         from tb_food
         <where>
-            <if test="">
+            <if test="id!=null">
                 and id=#{id}
             </if>
-            <if test="">
+            <if test="foodName!=null">
                 and food_name=#{foodName}
             </if>
-            <if test="">
+            <if test="expiryDate!=null">
                 and expiry_date=#{expiryDate}
             </if>
-            <if test="">
+            <if test="storageId!=null">
                 and storage_id=#{storageId}
             </if>
-            <if test="">
+            <if test="riskDegree!=null">
                 and risk_degree=#{riskDegree}
             </if>
-            <if test="">
+            <if test="categoryId!=null">
                 and category_id=#{categoryId}
             </if>
         </where>

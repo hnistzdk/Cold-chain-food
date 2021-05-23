@@ -30,7 +30,15 @@ public class RightController {
     @CrossOrigin
     public Object rightList(){
         List<Right> rights = rightService.getRights(null);
-        return JSON.toJSONString(rights.toArray());
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        if(rights!=null){
+            msg.put("status", "200");
+            data.put("rightsList",rights.toArray());
+        }else {
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,data));
     }
 
 

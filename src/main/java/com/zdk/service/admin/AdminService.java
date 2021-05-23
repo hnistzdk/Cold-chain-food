@@ -3,6 +3,7 @@ package com.zdk.service.admin;
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -10,6 +11,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/4/21 18:42
  */
+
 public interface AdminService {
     /**
      *管理员用户的登录

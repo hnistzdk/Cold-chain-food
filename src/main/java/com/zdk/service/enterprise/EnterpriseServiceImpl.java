@@ -7,6 +7,7 @@ import com.zdk.mapper.EnterpriseMapper;
 import com.zdk.pojo.EnterpriseUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -49,11 +50,13 @@ public class EnterpriseServiceImpl implements EnterpriseService{
         return enterpriseMapper.enterpriseTotalPage();
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int removeEnterprise(String id) {
         return enterpriseMapper.removeEnterprise(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addEnterprise(EnterpriseUser enterpriseUser) {
         return enterpriseMapper.addEnterprise(enterpriseUser);
@@ -64,16 +67,19 @@ public class EnterpriseServiceImpl implements EnterpriseService{
         return enterpriseMapper.showEnterpriseUser(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyEnterpriseUser(EditMeta user) {
         return enterpriseMapper.modifyEnterpriseUser(user);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateLoginInfo(String id, String date) {
         return enterpriseMapper.updateLoginInfo(id, date);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyEnterprisePwd(AddEnterpriseMeta enterpriseUser) {
         HashMap map=new HashMap();

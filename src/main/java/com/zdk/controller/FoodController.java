@@ -35,7 +35,7 @@ public class FoodController {
         if(count>0){
             msg.put("msg", "添加成功");
             msg.put("status", "200");
-        }else {
+        }else{
             msg.put("msg", "添加失败");
             msg.put("status", "201");
         }
@@ -74,10 +74,10 @@ public class FoodController {
         return JSON.toJSONString(new Meta(msg,null));
     }
 
-    @RightInfo("modifyFood")
-    @PostMapping("/modifyFood")
+    @RightInfo("queryFoodBy")
+    @PostMapping("/queryFoodBy")
     @CrossOrigin
-    public Object modifyFood(Map map){
+    public Object queryFoodBy(Map map){
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
         List<Food> foodList = foodService.queryFoodBy(map);

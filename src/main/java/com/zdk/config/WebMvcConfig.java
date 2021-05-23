@@ -38,10 +38,10 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-        registry.addInterceptor(rightInterceptor)
-        .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
-
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
+//        registry.addInterceptor(rightInterceptor)
+//        .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
+//
+//        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
+//                .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
     }
 }

@@ -69,7 +69,7 @@ public class EnterpriseUserController {
     @RightInfo("removeEnterprise")
     @DeleteMapping("/enterpriseUsers/{id}")
     @CrossOrigin
-    public Object removeEnterprise(@PathVariable String id){
+    public Object removeEnterprise(@PathVariable String id) {
         int count = enterpriseService.removeEnterprise(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
