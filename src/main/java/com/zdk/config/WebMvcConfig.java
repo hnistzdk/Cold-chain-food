@@ -42,6 +42,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 //        .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
 //
 //        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-//                .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
+//                .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus")
+//                .excludePathPatterns("/swagger*/**", "/v2/**", "/webjars/**");
     }
 }

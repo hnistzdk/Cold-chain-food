@@ -5,6 +5,8 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Food;
 import com.zdk.service.food.FoodServiceImpl;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -19,6 +21,7 @@ import java.util.Map;
  * @author zdk
  * @date 2021/5/23 14:37
  */
+@Api("食品管理api")
 @RestController
 public class FoodController {
 
@@ -26,6 +29,7 @@ public class FoodController {
     @Qualifier("FoodServiceImpl")
     private FoodServiceImpl foodService;
 
+    @ApiOperation("添加食品信息")
     @RightInfo("addFood")
     @PostMapping("/addFood")
     @CrossOrigin
@@ -42,6 +46,7 @@ public class FoodController {
         return JSON.toJSONString(new Meta(msg,null));
     }
 
+    @ApiOperation("删除食品信息")
     @RightInfo("deleteFood")
     @PostMapping("/deleteFood")
     @CrossOrigin
@@ -58,6 +63,7 @@ public class FoodController {
         return JSON.toJSONString(new Meta(msg,null));
     }
 
+    @ApiOperation("修改食品信息")
     @RightInfo("modifyFood")
     @PostMapping("/modifyFood")
     @CrossOrigin
@@ -74,6 +80,7 @@ public class FoodController {
         return JSON.toJSONString(new Meta(msg,null));
     }
 
+    @ApiOperation("查询食品信息")
     @RightInfo("queryFoodBy")
     @PostMapping("/queryFoodBy")
     @CrossOrigin

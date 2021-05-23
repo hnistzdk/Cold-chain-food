@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 public class Storage {
     private Integer storageId;
     private String uId;
+    private String storageArea;
     private double temper;
     private double humidity;
     private String alarmRecord;
