@@ -42,7 +42,6 @@
 </template>
 
 <script>
-import * as qs from 'qs'
 
 export  default {
   data(){
