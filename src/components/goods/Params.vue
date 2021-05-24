@@ -1,5 +1,7 @@
 <template>
-
+<div>
+  zzz
+</div>
 </template>
 
 <script>
