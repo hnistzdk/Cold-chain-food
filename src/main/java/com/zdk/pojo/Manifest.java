@@ -1,5 +1,7 @@
 package com.zdk.pojo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,15 +14,26 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel("货单类")
 public class Manifest {
+    @ApiModelProperty("货单号")
     private String manifestId;
+    @ApiModelProperty("食品id")
     private Integer foodId;
+    @ApiModelProperty("发货人姓名")
     private String consignorName;
+    @ApiModelProperty("收货人姓名")
     private String consigneeName;
+    @ApiModelProperty("发货地址")
     private String startingSite;
+    @ApiModelProperty("收货地址")
     private String receivedSite;
+    @ApiModelProperty("运输状态")
     private String travelStatus;
+    @ApiModelProperty("到达站点")
     private String arrivedPoint;
+    @ApiModelProperty("发货人id")
     private Integer consignorId;
+    @ApiModelProperty("收货人id")
     private Integer consigneeId;
 }
