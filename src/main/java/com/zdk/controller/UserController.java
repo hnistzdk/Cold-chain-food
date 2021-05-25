@@ -9,7 +9,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.DateConversion;
-import com.zdk.utils.LoginMessage;
+import com.zdk.utils.CommonMessage;
 import com.zdk.utils.UUIDUtil;
 import com.zdk.utils.UserConvert;
 import org.apache.ibatis.annotations.Param;
@@ -35,7 +35,7 @@ public class UserController {
     public Object login(String id, String password,String email){
         AdminAndUser result= userService.login(id, password,email);
         userService.updateLoginInfo(id, DateConversion.getNowDate());
-        Meta meta = LoginMessage.returnMsg(result);
+        Meta meta = CommonMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }
 
@@ -57,8 +57,7 @@ public class UserController {
         data.put("users",JSON.toJSON(result.toArray()));
         msg.put("msg", "获取成功");
         msg.put("status", "200");
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo("removePrimaryUsers")
@@ -66,17 +65,7 @@ public class UserController {
     @CrossOrigin
     public Object removePrimaryUsers(@PathVariable String id){
         int count = userService.removeUser(id);
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "获取失败");
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("addUser")
@@ -85,17 +74,7 @@ public class UserController {
     public Object addUser(AddUserMeta user) {
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "获取失败");
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("showEditPrimaryUsers")
@@ -114,8 +93,7 @@ public class UserController {
         }else{
             msg.put("status", "201");
         }
-        Meta meta = new Meta(msg, data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo("editPrimaryUsers")
@@ -123,14 +101,7 @@ public class UserController {
     @CrossOrigin
     public Object editPrimaryUsers(EditMeta user){
         int count = userService.modifyPrimaryUser(user);
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg, null);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("")
@@ -139,31 +110,17 @@ public class UserController {
     public Object primaryRegister(AddUserMeta user){
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("")
     @PostMapping("/primaryPwdChange")
     @CrossOrigin
     public Object primaryPwdChange(AddUserMeta user){
-        System.out.println("接收到的对象："+user);
-        HashMap msg = new HashMap<>();
         if(userService.login(user.getId(), null,user.getEmail())!=null){
             int count = userService.modifyUserPwd(user);
-            if(count>0){
-                msg.put("status", "200");
-            }else {
-                msg.put("status", "201");
-            }
+            return JSON.toJSONString(CommonMessage.returnStatus(count>0));
         }
-        return JSON.toJSONString(new Meta(msg,null));
+        return null;
     }
 }

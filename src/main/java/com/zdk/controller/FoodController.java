@@ -5,6 +5,7 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Food;
 import com.zdk.service.food.FoodServiceImpl;
+import com.zdk.utils.CommonMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -35,16 +36,8 @@ public class FoodController {
     @PostMapping("/addFood")
     @CrossOrigin
     public Object addFood(Food food){
-        HashMap msg = new HashMap<>();
         int count = foodService.addFood(food);
-        if(count>0){
-            msg.put("msg", "添加成功");
-            msg.put("status", "200");
-        }else{
-            msg.put("msg", "添加失败");
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @ApiOperation("删除食品信息")
@@ -53,16 +46,8 @@ public class FoodController {
     @PostMapping("/deleteFood")
     @CrossOrigin
     public Object deleteFood(Integer id){
-        HashMap msg = new HashMap<>();
         int count = foodService.deleteFoodById(id);
-        if(count>0){
-            msg.put("msg", "删除成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "删除失败");
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @ApiOperation("修改食品信息")
@@ -70,16 +55,8 @@ public class FoodController {
     @PostMapping("/modifyFood")
     @CrossOrigin
     public Object modifyFood(Food food){
-        HashMap msg = new HashMap<>();
         int count = foodService.modifyFood(food);
-        if(count>0){
-            msg.put("msg", "修改成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "修改失败");
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @ApiOperation("查询食品信息")

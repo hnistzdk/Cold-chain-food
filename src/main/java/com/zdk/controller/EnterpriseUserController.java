@@ -9,7 +9,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.EnterpriseUser;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.utils.DateConversion;
-import com.zdk.utils.LoginMessage;
+import com.zdk.utils.CommonMessage;
 import com.zdk.utils.UUIDUtil;
 import com.zdk.utils.UserConvert;
 import org.apache.ibatis.annotations.Param;
@@ -36,7 +36,7 @@ public class EnterpriseUserController {
     public Object login(String id, String password,String email){
         EnterpriseUser result= enterpriseService.enterpriseLogin(id, password,email);
         enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
-        Meta meta = LoginMessage.returnMsg(result);
+        Meta meta = CommonMessage.returnMsg(result);
         return JSON.toJSONString(meta);
     }
 
@@ -49,21 +49,16 @@ public class EnterpriseUserController {
         int enterpriseTotalPage=enterpriseService.enterpriseTotalPage();
         data.put("total",enterpriseTotalPage);
         data.put("pagenum",pagenum);
+        List<EnterpriseMeta> result;
         if(query==null){
-            List<EnterpriseMeta> result = enterpriseService.getEnterpriseList((pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
+            result = enterpriseService.getEnterpriseList((pagenum - 1) * pagesize, pagesize);
         }else {
-            List<EnterpriseMeta> result = enterpriseService.fuzzyQueryEnterpriseList(query,(pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
+            result = enterpriseService.fuzzyQueryEnterpriseList(query, (pagenum - 1) * pagesize, pagesize);
         }
+        data.put("users",JSON.toJSON(result.toArray()));
+        msg.put("msg", "获取成功");
+        msg.put("status", "200");
+        return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo("removeEnterprise")
@@ -71,17 +66,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object removeEnterprise(@PathVariable String id) {
         int count = enterpriseService.removeEnterprise(id);
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "获取失败");
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("addEnterprise")
@@ -92,17 +77,7 @@ public class EnterpriseUserController {
         //BeanUtils.copyProperties(, );
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("msg", "添加成功");
-            msg.put("status", "200");
-        }else {
-            msg.put("msg", "添加失败");
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("showEnterpriseUsers")
@@ -123,8 +98,7 @@ public class EnterpriseUserController {
         }else{
             msg.put("status", "201");
         }
-        Meta meta = new Meta(msg, data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(new Meta(msg, data));
     }
 
     @RightInfo("editEnterpriseUsers")
@@ -132,14 +106,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object editEnterpriseUsers(EditMeta user){
         int count = enterpriseService.modifyEnterpriseUser(user);
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg, null);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("")
@@ -148,31 +115,17 @@ public class EnterpriseUserController {
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
-        HashMap data = new HashMap<>();
-        HashMap msg = new HashMap<>();
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        Meta meta = new Meta(msg,data);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("")
     @PostMapping("/enterprisePwdChange")
     @CrossOrigin
     public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
-        System.out.println("接收到的对象："+enterpriseUser);
-        HashMap msg = new HashMap<>();
         if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
-            if(count>0){
-                msg.put("status", "200");
-            }else {
-                msg.put("status", "201");
-            }
+            return CommonMessage.returnStatus(count>0);
         }
-        return JSON.toJSONString(new Meta(msg,null));
+        return null;
     }
 }

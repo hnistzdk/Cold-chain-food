@@ -5,6 +5,7 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
+import com.zdk.utils.CommonMessage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -39,21 +40,14 @@ public class RoleController {
     @PostMapping("/roles")
     @CrossOrigin
     public Object addRoles(Role role){
-        HashMap msg = new HashMap<>();
-        int result = roleService.addRoles(role);
-        if(result>0){
-            msg.put("status", "200");
-        }else{
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        int count = roleService.addRoles(role);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("showRoles")
     @GetMapping("/roles/{id}")
     @CrossOrigin
     public Object showRoles(@PathVariable Integer id){
-        System.out.println("show里的id："+id);
         List<Role> roles = roleService.getRoles(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -70,29 +64,15 @@ public class RoleController {
     @PostMapping("/roles/{id}")
     @CrossOrigin
     public Object modifyRoles(Role role){
-        System.out.println("role:"+role);
-        System.out.println("id:"+role.getId());
-        HashMap msg = new HashMap<>();
-        int result = roleService.modifyRoles(role);
-        if(result>0){
-            msg.put("status", "200");
-        }else{
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        int count = roleService.modifyRoles(role);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("deleteRoles")
     @DeleteMapping("/roles/{id}")
     @CrossOrigin
     public Object deleteRoles(@PathVariable Integer id){
-        HashMap msg = new HashMap<>();
-        int result=roleService.deleteRoles(id);
-        if(result>0){
-            msg.put("status", "200");
-        }else{
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        int count=roleService.deleteRoles(id);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 }

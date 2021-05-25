@@ -11,7 +11,7 @@ import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.DateConversion;
-import com.zdk.utils.LoginMessage;
+import com.zdk.utils.CommonMessage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -76,7 +76,7 @@ public class AdminController {
         request.getSession().setAttribute("functions", functions);
         System.out.println("用户拥有的权限集合为："+functions);
 
-        Meta meta = LoginMessage.returnMsg(admin);
+        Meta meta = CommonMessage.returnMsg(admin);
         return JSON.toJSONString(meta);
     }
 
@@ -89,21 +89,16 @@ public class AdminController {
         data.put("pagenum",pagenum);
         int adminTotalPage= adminService.adminTotalPage();
         data.put("total",adminTotalPage);
+        List<AdminMeta> result;
         if(query==null){
-            List<AdminMeta> result = adminService.getAdminList((pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
+            result = adminService.getAdminList((pagenum - 1) * pagesize, pagesize);
         }else {
-            List<AdminMeta> result = adminService.fuzzyQueryAdminList(query,(pagenum-1)*pagesize, pagesize);
-            data.put("users",JSON.toJSON(result.toArray()));
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
+            result = adminService.fuzzyQueryAdminList(query, (pagenum - 1) * pagesize, pagesize);
         }
+        data.put("users",JSON.toJSON(result.toArray()));
+        msg.put("msg", "获取成功");
+        msg.put("status", "200");
+        return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo("removeAdmin")
@@ -111,24 +106,7 @@ public class AdminController {
     @CrossOrigin
     public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
-        Map data = new HashMap<>();
-        Map msg = new HashMap<>();
-        data.put("pagenum",2);
-        int adminTotalPage= adminService.adminTotalPage();
-        data.put("total",adminTotalPage);
-        List<AdminMeta> result = adminService.getAdminList(0,2);
-        data.put("users",JSON.toJSON(result.toArray()));
-        if(count>0){
-            msg.put("msg", "获取成功");
-            msg.put("status", "200");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
-        }else {
-            msg.put("msg", "获取失败");
-            msg.put("status", "201");
-            Meta meta = new Meta(msg,data);
-            return JSON.toJSONString(meta);
-        }
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @PutMapping("/users/{id}/state/{mg_state}")

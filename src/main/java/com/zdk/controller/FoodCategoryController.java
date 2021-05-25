@@ -6,6 +6,7 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.FoodCategory;
 import com.zdk.service.foodCategory.FoodCategoryServiceImpl;
+import com.zdk.utils.CommonMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
@@ -57,14 +58,8 @@ public class FoodCategoryController {
     @PostMapping("/addFoodCategory")
     @CrossOrigin
     public Object addFoodCategory(FoodCategory foodCategory){
-        HashMap msg = new HashMap<>();
         int count = foodCategoryService.addFoodCategory(foodCategory);
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @ApiOperation("删除食品类别")
@@ -73,14 +68,8 @@ public class FoodCategoryController {
     @PostMapping("/deleteFoodCategory")
     @CrossOrigin
     public Object deleteFoodCategory(Integer id){
-        HashMap msg = new HashMap<>();
         int count = foodCategoryService.deleteFoodCategory(id);
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @ApiOperation("修改食品类别")
@@ -89,13 +78,7 @@ public class FoodCategoryController {
     @PostMapping("/modifyFoodCategory")
     @CrossOrigin
     public Object modifyFoodCategory(FoodCategory foodCategory){
-        HashMap msg = new HashMap<>();
         int count = foodCategoryService.modifyFoodCategory(foodCategory);
-        if(count>0){
-            msg.put("status", "200");
-        }else {
-            msg.put("status", "201");
-        }
-        return JSON.toJSONString(new Meta(msg,null));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 }

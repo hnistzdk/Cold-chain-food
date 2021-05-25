@@ -9,7 +9,7 @@ import java.util.HashMap;
  * @Author zdk
  * @Date 2021/4/20 17:05
  */
-public class LoginMessage {
+public class CommonMessage {
     public static Meta returnMsg(Object result){
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, String> map1 = new HashMap<>();
@@ -20,5 +20,16 @@ public class LoginMessage {
             map.put("status","404");
         }
         return new Meta(map,map1);
+    }
+
+    public static Meta returnStatus(boolean result){
+        HashMap<String, String> msg = new HashMap<>();
+        HashMap<String, String> data = new HashMap<>();
+        if(result){
+            msg.put("status","200");
+        }else {
+            msg.put("status","201");
+        }
+        return new Meta(msg,data);
     }
 }
