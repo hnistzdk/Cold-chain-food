@@ -13,6 +13,7 @@ import PwdChange from '../components/user/PwdChange'
 import Roles from "../components/power/Roles";
 import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
+import List from "../components/goods/List";
 Vue.use(Router)
 
 const router=new  Router({
@@ -32,6 +33,7 @@ const router=new  Router({
         {path:'/roles',component:Roles },
         {path:'/rights',component:Right },
         {path:'/categories',component:Cate },
+        {path:'/list',component:List },
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

@@ -46,8 +46,8 @@
                :rules="addCateFormRules"
                ref="addCateFormRef">
       <!--添加商品的名称-->
-        <el-form-item label="分类名称: " prop="category_name">
-          <el-input v-model="addCateForm.category_name">
+        <el-form-item label="分类名称: " prop="categoryName">
+          <el-input v-model="addCateForm.categoryName">
           </el-input>
         </el-form-item>
       </el-form>
@@ -66,26 +66,25 @@
       width="30%" >
       <!--      内容主体区域-->
       <el-form :model="editForm"  :rules="editFormRules" ref="editFormRef" label-width="85px">
-
         <!--添加商品的名称-->
         <el-form-item label="分类名称: " prop="foodName">
-          <el-input v-model="editForm.category_name">
+          <el-input v-model="editForm.categoryName">
           </el-input>
         </el-form-item>
-
       </el-form>
 
-
       <span slot="footer" class="dialog-footer">
-    <el-button @click="editDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="editUser()">确 定</el-button>
-  </span>
+       <el-button @click="editDialogVisible = false">取 消</el-button>
+       <el-button type="primary" @click="editUser()">确 定</el-button>
+      </span>
     </el-dialog>
 
   </div>
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   name: 'Cate.vue',
   data(){
@@ -101,7 +100,7 @@ export default {
       columns:[
         {
           label:'分类名称',
-          prop:'category_name'
+          prop:'categoryName'
         },
         {
           label: '操作',
@@ -116,13 +115,13 @@ export default {
 
       addCateForm:{
         //将要添加的分类的名称
-        category_name:'',
+        categoryName:'',
 
       },
       //父级分类的列表
       parentCateList:[],
       addCateFormRules:{
-        category_name: [
+        categoryName: [
           {required:true,message:'请输入分类名称',trigger:'blur'}
         ]
       },
@@ -132,7 +131,7 @@ export default {
       },
       //编辑表单的校验规则
       editFormRules:{
-        category_name: [
+        categoryName: [
           {required:true,message:'请输入分类名称',trigger:'blur'}
         ]
       }
@@ -179,7 +178,7 @@ export default {
     async addCate(){
       this.$refs.addCateFormRef.validate(async  valid=>{
         if(!valid) return
-        const {data : res} = await this.$http.post('categories',this.addCateForm)
+        const {data : res} = await this.$http.post('categories',qs.stringify(this.addCateForm))
 
         if(res.meta.status !== "200"){
           return this.$message.error('添加分类失败!')
@@ -203,9 +202,10 @@ export default {
       this.$refs.editFormRef.validate(async valid=>{
         if(!valid) return
         console.log(this.editForm.id)
-        const {data:res} = await this.$http.put('categories/'+this.editForm.id,{
-          category_name:this.editForm.category_name
-        })
+        const {data:res} = await this.$http.post('categories'+qs.stringify({
+          categoryName:this.editForm.categoryName,
+          id:this.editForm.id
+        }))
         if(res.meta.status !== "200")
           return this.$message.error('修改分类信息失败!')
         this.$message.success('修改分类信息成功!')
@@ -227,7 +227,7 @@ export default {
       if(confirmResult !=='confirm'){
         return this.$message.info('已取消删除')
       }
-      const {data : res} = await  this.$http.delete('categories/'+id)
+      const {data : res} = await  this.$http.post('categories/'+id)
       if(res.meta.status !== "200")
         this.$message.error('删除分类失败!')
       else
