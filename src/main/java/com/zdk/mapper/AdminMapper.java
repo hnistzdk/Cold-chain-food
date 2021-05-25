@@ -35,9 +35,10 @@ public interface AdminMapper {
 
     /**
      *获取管理员用户的人数
+     * @param query
      * @return 人数
      */
-    int adminTotalPage();
+    int adminTotalPage(String query);
 
     /**
      *模糊查询管理员用户的列表

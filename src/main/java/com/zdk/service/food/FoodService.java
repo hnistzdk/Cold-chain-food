@@ -38,7 +38,22 @@ public interface FoodService {
 
     /**
      *查询食品总记录数量
+     * @param query
      * @return 总记录条数
      */
-    int foodCount();
+    int foodCount(String query);
+
+    /**
+     *分页查询食品信息
+     * @param map
+     * @return list
+     */
+    List<Food> getFood(Map map);
+
+    /**
+     *模糊查询食品信息
+     * @param map
+     * @return list
+     */
+    List<Food> fuzzyQueryFood(Map map);
 }

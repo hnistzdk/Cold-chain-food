@@ -38,7 +38,12 @@
 
     <!--    总记录数-->
     <select id="userTotalPage" resultType="int">
-        select count(*) from food.tb_user;
+        select count(*) from food.tb_user
+        <where>
+            <if test="query!=null">
+                tb_user.username like concat('%',#{query},'%')
+            </if>
+        </where>
     </select>
 
     <delete id="removeUser">

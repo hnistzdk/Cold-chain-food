@@ -43,7 +43,17 @@ public class FoodServiceImpl implements FoodService{
     }
 
     @Override
-    public int foodCount() {
-        return foodMapper.foodCount();
+    public int foodCount(String query) {
+        return foodMapper.foodCount(query);
+    }
+
+    @Override
+    public List<Food> getFood(Map map) {
+        return foodMapper.getFood(map);
+    }
+
+    @Override
+    public List<Food> fuzzyQueryFood(Map map) {
+        return foodMapper.fuzzyQueryFood(map);
     }
 }

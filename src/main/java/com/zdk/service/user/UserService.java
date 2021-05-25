@@ -40,10 +40,11 @@ public interface UserService {
     List<AdminMeta> fuzzyQueryUserList(String query,Integer pageNum, Integer pageSize);
 
     /**
-     *获取普通用户的人数
+     *获取企业用户的人数
+     * @param query
      * @return 人数
      */
-    int userTotalPage();
+    int userTotalPage(String query);
 
     /**
      *删除普通用户

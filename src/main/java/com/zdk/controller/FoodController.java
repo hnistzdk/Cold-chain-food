@@ -9,9 +9,11 @@ import com.zdk.utils.CommonMessage;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,11 +43,10 @@ public class FoodController {
     }
 
     @ApiOperation("删除食品信息")
-    @ApiImplicitParam(name = "id",value = "食品id",type = "Integer")
     @RightInfo("deleteFood")
-    @PostMapping("/deleteFood")
+    @PostMapping("/deleteFood/{id}")
     @CrossOrigin
-    public Object deleteFood(Integer id){
+    public Object deleteFood(@PathVariable Integer id){
         int count = foodService.deleteFoodById(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -60,22 +61,30 @@ public class FoodController {
     }
 
     @ApiOperation("查询食品信息")
-    @ApiImplicitParam(name = "map",value = "查询食品的参数封装在map中",type = "Map")
-    @RightInfo("queryFoodBy")
-    @PostMapping("/queryFoodBy")
+    @RightInfo("getFood")
+    @PostMapping("/getFood")
     @CrossOrigin
-    public Object queryFoodBy(Map map){
+    public Object getFood(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
+        System.out.println("query"+query);
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
-        List<Food> foodList = foodService.queryFoodBy(map);
-        int total = foodService.foodCount();
+        HashMap params=new HashMap<>();
+        params.put("pageNum",(pageNum-1)*pageSize);
+        params.put("pageSize",pageSize);
+        List<Food> foodList;
+        if(query!=null){
+            params.put("query",query);
+            foodList = foodService.fuzzyQueryFood(params);
+        }else{
+            params.put("query",null);
+            foodList = foodService.getFood(params);
+        }
+        int total = foodService.foodCount(query);
         if(foodList!=null){
-            data.put("foodList",foodList);
+            data.put("foodList",foodList.toArray());
             data.put("total",total);
-            msg.put("msg", "获取成功");
             msg.put("status", "200");
         }else {
-            msg.put("msg", "获取失败");
             msg.put("status", "201");
         }
         return JSON.toJSONString(new Meta(msg,data));

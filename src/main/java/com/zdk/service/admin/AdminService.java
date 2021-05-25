@@ -39,9 +39,10 @@ public interface AdminService {
     List<AdminMeta> fuzzyQueryAdminList(String query,Integer pageNum, Integer pageSize);
     /**
      *获取管理员用户的人数
+     * @param query
      * @return 人数
      */
-    int adminTotalPage();
+    int adminTotalPage(String query);
 
     /**
      *删除管理员

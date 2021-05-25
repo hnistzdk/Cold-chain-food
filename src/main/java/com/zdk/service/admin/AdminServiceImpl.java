@@ -34,8 +34,8 @@ public class AdminServiceImpl implements AdminService{
         return adminMapper.getAdminList(map);
     }
     @Override
-    public int adminTotalPage() {
-        return adminMapper.adminTotalPage();
+    public int adminTotalPage(String query) {
+        return adminMapper.adminTotalPage(query);
     }
 
     @Override

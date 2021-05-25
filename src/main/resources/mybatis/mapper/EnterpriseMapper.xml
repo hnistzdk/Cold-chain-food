@@ -37,7 +37,12 @@
     </select>
     <!--    总记录数-->
     <select id="enterpriseTotalPage" resultType="int">
-        select count(*) from food.tb_enterprise_user;
+        select count(*) from food.tb_enterprise_user
+        <where>
+            <if test="query!=null">
+                tb_enterprise_user.username like concat('%',#{query},'%')
+            </if>
+        </where>
     </select>
 
     <delete id="removeEnterprise">

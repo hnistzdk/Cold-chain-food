@@ -44,8 +44,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int userTotalPage() {
-        return userMapper.userTotalPage();
+    public int userTotalPage(String query) {
+        return userMapper.userTotalPage(query);
     }
 
     @Transactional(rollbackFor = Exception.class)

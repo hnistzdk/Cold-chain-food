@@ -3,6 +3,7 @@ package com.zdk.service.foodCategory;
 import com.zdk.pojo.FoodCategory;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -11,10 +12,10 @@ import java.util.List;
 public interface FoodCategoryService {
     /**
      * 获取食品分类
-     * @param id
+     * @param map
      * @return list
      */
-    List<FoodCategory> getFoodCategory(Integer id);
+    List<FoodCategory> getFoodCategory(Map map);
 
     /**
      * 增加食品分类
@@ -34,4 +35,10 @@ public interface FoodCategoryService {
      * @return int
      */
     int modifyFoodCategory(FoodCategory foodCategory);
+
+    /**
+     * 获取食品分类总数
+     * @return int
+     */
+    int getAllFoodCategory();
 }

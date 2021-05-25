@@ -42,9 +42,10 @@ public interface EnterpriseService {
 
     /**
      *获取企业用户的人数
+     * @param query
      * @return 人数
      */
-    int enterpriseTotalPage();
+    int enterpriseTotalPage(String query);
 
     /**
      *删除企业用户

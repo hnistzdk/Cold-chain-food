@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -19,8 +20,8 @@ public class FoodCategoryServiceImpl implements FoodCategoryService {
     FoodCategoryMapper foodCategoryMapper;
 
     @Override
-    public List<FoodCategory> getFoodCategory(Integer id) {
-        return foodCategoryMapper.getFoodCategory(id);
+    public List<FoodCategory> getFoodCategory(Map map) {
+        return foodCategoryMapper.getFoodCategory(map);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -39,5 +40,10 @@ public class FoodCategoryServiceImpl implements FoodCategoryService {
     @Override
     public int modifyFoodCategory(FoodCategory foodCategory) {
         return foodCategoryMapper.modifyFoodCategory(foodCategory);
+    }
+
+    @Override
+    public int getAllFoodCategory() {
+        return foodCategoryMapper.getAllFoodCategory();
     }
 }

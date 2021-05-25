@@ -46,7 +46,6 @@ public class AdminController {
     @PostMapping("/adminLogin")
     @CrossOrigin
     public Object login(String id, String password,HttpServletRequest request){
-        System.out.println(id+password);
         AdminAndUser admin= adminService.adminLogin(id, password);
         adminService.updateLoginInfo(id, DateConversion.getNowDate());
         //根据用户id查到该用户角色,然后查到对应的权限,把权限放入session
@@ -74,7 +73,6 @@ public class AdminController {
         }
         //再把集合放入session
         request.getSession().setAttribute("functions", functions);
-        System.out.println("用户拥有的权限集合为："+functions);
 
         Meta meta = CommonMessage.returnMsg(admin);
         return JSON.toJSONString(meta);
@@ -87,7 +85,7 @@ public class AdminController {
         Map data = new HashMap<>();
         Map msg = new HashMap<>();
         data.put("pagenum",pagenum);
-        int adminTotalPage= adminService.adminTotalPage();
+        int adminTotalPage= adminService.adminTotalPage(query);
         data.put("total",adminTotalPage);
         List<AdminMeta> result;
         if(query==null){

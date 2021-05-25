@@ -46,8 +46,8 @@ public class EnterpriseServiceImpl implements EnterpriseService{
     }
 
     @Override
-    public int enterpriseTotalPage() {
-        return enterpriseMapper.enterpriseTotalPage();
+    public int enterpriseTotalPage(String query) {
+        return enterpriseMapper.enterpriseTotalPage(query);
     }
 
     @Transactional(rollbackFor = Exception.class)

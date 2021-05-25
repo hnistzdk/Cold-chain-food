@@ -15,6 +15,7 @@ import com.zdk.utils.UserConvert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -24,6 +25,7 @@ import java.util.List;
  * @Description
  * @Author zdk
  * @Date 2021/4/20 16:04
+ * BeanUtils.copyProperties(, );
  */
 @RestController
 public class EnterpriseUserController {
@@ -43,10 +45,10 @@ public class EnterpriseUserController {
     @RightInfo("enterpriseList")
     @PostMapping("/enterpriseUsers")
     @CrossOrigin
-    public Object enterpriseList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
+    public Object enterpriseList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        int enterpriseTotalPage=enterpriseService.enterpriseTotalPage();
+        int enterpriseTotalPage=enterpriseService.enterpriseTotalPage(query);
         data.put("total",enterpriseTotalPage);
         data.put("pagenum",pagenum);
         List<EnterpriseMeta> result;
@@ -73,8 +75,6 @@ public class EnterpriseUserController {
     @PostMapping("/addEnterpriseUsers")
     @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
-
-        //BeanUtils.copyProperties(, );
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));

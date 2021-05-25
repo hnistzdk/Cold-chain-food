@@ -41,9 +41,10 @@ public interface UserMapper {
     List<AdminMeta> fuzzyQueryUserList(Map map);
     /**
      *获取企业用户的人数
+     * @param query
      * @return 人数
      */
-    int userTotalPage();
+    int userTotalPage(String query);
 
     /**
      *删除普通用户

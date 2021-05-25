@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -15,10 +16,10 @@ import java.util.List;
 public interface FoodCategoryMapper {
     /**
      * 获取食品分类
-     * @param id
+     * @param map
      * @return list
      */
-    List<FoodCategory> getFoodCategory(Integer id);
+    List<FoodCategory> getFoodCategory(Map map);
 
     /**
      * 增加食品分类
@@ -38,4 +39,10 @@ public interface FoodCategoryMapper {
      * @return list
      */
     int modifyFoodCategory(FoodCategory foodCategory);
+
+    /**
+     * 获取食品分类总数
+     * @return int
+     */
+    int getAllFoodCategory();
 }

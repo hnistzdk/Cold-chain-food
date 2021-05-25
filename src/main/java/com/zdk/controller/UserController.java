@@ -15,6 +15,7 @@ import com.zdk.utils.UserConvert;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -42,10 +43,10 @@ public class UserController {
     @RightInfo("primaryList")
     @PostMapping("/PrimaryUsers")
     @CrossOrigin
-    public Object userList(String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
+    public Object userList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        int userTotalPage= userService.userTotalPage();
+        int userTotalPage= userService.userTotalPage(query);
         data.put("total",userTotalPage);
         data.put("pagenum",pagenum);
         List<AdminMeta> result;
