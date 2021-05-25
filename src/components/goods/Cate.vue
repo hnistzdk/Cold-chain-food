@@ -148,7 +148,7 @@ export default {
     async getCateList(){
       const {data : res}= await this.$http.get('getFoodCategory',
         {params:this.queryInfo})
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
         return this.$message.error('获取商品分类失败!')
 
       //console.log(res.data)
@@ -181,7 +181,7 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('categories',this.addCateForm)
 
-        if(res.meta.status !== 201){
+        if(res.meta.status !== "200"){
           return this.$message.error('添加分类失败!')
         }
         this.$message.success('添加分类成功!')
@@ -194,7 +194,7 @@ export default {
       const{ data:res } = await this.$http.get("categories/"+id)
       this.editForm = res.data
       console.log(res.data)
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
         return this.$message.error('查询分类信息失败!')
 
       this.editDialogVisible = true
@@ -206,7 +206,7 @@ export default {
         const {data:res} = await this.$http.put('categories/'+this.editForm.id,{
           category_name:this.editForm.category_name
         })
-        if(res.meta.status !== 200)
+        if(res.meta.status !== "200")
           return this.$message.error('修改分类信息失败!')
         this.$message.success('修改分类信息成功!')
         this.editDialogVisible = false
@@ -228,7 +228,7 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data : res} = await  this.$http.delete('categories/'+id)
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
         this.$message.error('删除分类失败!')
       else
         this.$message.success('删除分类成功!')
