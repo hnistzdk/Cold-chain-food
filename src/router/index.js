@@ -33,7 +33,7 @@ const router=new  Router({
         {path:'/roles',component:Roles },
         {path:'/rights',component:Right },
         {path:'/categories',component:Cate },
-        {path:'/list',component:List },
+        {path:'/goods',component:List },
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

@@ -158,11 +158,11 @@ export default {
       this.total = res.data.total
     },
     handleSizeChange(newSize){
-      this.queryInfo.pagesize = newSize
+      this.queryInfo.pageSize = newSize
       this.getCateList()
     },
     handleCurrentChange(newPage){
-      this.queryInfo.pagenum = newPage
+      this.queryInfo.pageNum = newPage
       this.getCateList()
     },
 
@@ -178,7 +178,7 @@ export default {
     async addCate(){
       this.$refs.addCateFormRef.validate(async  valid=>{
         if(!valid) return
-        const {data : res} = await this.$http.post('categories',qs.stringify(this.addCateForm))
+        const {data : res} = await this.$http.post('addFoodCategory',qs.stringify(this.addCateForm))
 
         if(res.meta.status !== "200"){
           return this.$message.error('添加分类失败!')
@@ -193,7 +193,7 @@ export default {
       const{ data:res } = await this.$http.get("categories/"+id)
       this.editForm = res.data
       console.log(res.data)
-      if(res.meta.status !== "200")
+      if(res.status !== "200")
         return this.$message.error('查询分类信息失败!')
 
       this.editDialogVisible = true
@@ -202,9 +202,9 @@ export default {
       this.$refs.editFormRef.validate(async valid=>{
         if(!valid) return
         console.log(this.editForm.id)
-        const {data:res} = await this.$http.post('categories'+qs.stringify({
-          categoryName:this.editForm.categoryName,
-          id:this.editForm.id
+        const {data:res} = await this.$http.post('modifyFoodCategory',qs.stringify({
+          id:this.editForm.id,
+          categoryName:this.editForm.categoryName
         }))
         if(res.meta.status !== "200")
           return this.$message.error('修改分类信息失败!')
@@ -227,7 +227,7 @@ export default {
       if(confirmResult !=='confirm'){
         return this.$message.info('已取消删除')
       }
-      const {data : res} = await  this.$http.post('categories/'+id)
+      const {data : res} = await  this.$http.post('deleteFoodCategory/'+id)
       if(res.meta.status !== "200")
         this.$message.error('删除分类失败!')
       else
