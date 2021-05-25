@@ -4,7 +4,9 @@ import router from './router'
 import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
+import TreeTable from 'vue-table-with-tree-grid'
 Vue.config.productionTip = false
+Vue.component('tree-table',TreeTable)
 
 import axios from 'axios'
 //在连接端口之前，通过axios拦截器添加token，保证拥有获取数据的权限.
