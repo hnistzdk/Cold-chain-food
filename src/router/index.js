@@ -31,7 +31,7 @@ const router=new  Router({
         {path:'/enterprise',component:EnterpriseUsers },
         {path:'/roles',component:Roles },
         {path:'/rights',component:Right },
-        {path:'/cate',component:Cate },
+        {path:'/categories',component:Cate },
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

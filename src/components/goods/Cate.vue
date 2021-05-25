@@ -153,7 +153,7 @@ export default {
 
       //console.log(res.data)
       //把数据列表赋值给cateList
-      this.cateList = res.data
+      this.cateList = res.data.foodCategory
       console.log(this.cateList)
       //为总数据条数赋值
       this.total = res.data.total
