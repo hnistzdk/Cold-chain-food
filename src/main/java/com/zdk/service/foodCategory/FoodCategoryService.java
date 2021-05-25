@@ -15,4 +15,23 @@ public interface FoodCategoryService {
      * @return list
      */
     List<FoodCategory> getFoodCategory(Integer id);
+
+    /**
+     * 增加食品分类
+     * @param foodCategory
+     * @return int
+     */
+    int addFoodCategory(FoodCategory foodCategory);
+    /**
+     * 删除食品分类
+     * @param id
+     * @return int
+     */
+    int deleteFoodCategory(Integer id);
+    /**
+     * 修改食品分类
+     * @param foodCategory
+     * @return int
+     */
+    int modifyFoodCategory(FoodCategory foodCategory);
 }

@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.HashMap;
@@ -48,5 +49,53 @@ public class FoodCategoryController {
         }
         data.put("foodCategory", JSON.toJSON(foodCategory.toArray()));
         return JSON.toJSONString(new Meta(msg,data));
+    }
+
+    @ApiOperation("添加食品类别")
+    @ApiImplicitParam(name = "foodCategory",paramType = "FoodCategory")
+    @RightInfo("addFoodCategory")
+    @PostMapping("/addFoodCategory")
+    @CrossOrigin
+    public Object addFoodCategory(FoodCategory foodCategory){
+        HashMap msg = new HashMap<>();
+        int count = foodCategoryService.addFoodCategory(foodCategory);
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
+
+    @ApiOperation("删除食品类别")
+    @ApiImplicitParam(name = "id",paramType = "Integer")
+    @RightInfo("deleteFoodCategory")
+    @PostMapping("/deleteFoodCategory")
+    @CrossOrigin
+    public Object deleteFoodCategory(Integer id){
+        HashMap msg = new HashMap<>();
+        int count = foodCategoryService.deleteFoodCategory(id);
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
+    }
+
+    @ApiOperation("修改食品类别")
+    @ApiImplicitParam(name = "foodCategory",paramType = "FoodCategory")
+    @RightInfo("modifyFoodCategory")
+    @PostMapping("/modifyFoodCategory")
+    @CrossOrigin
+    public Object modifyFoodCategory(FoodCategory foodCategory){
+        HashMap msg = new HashMap<>();
+        int count = foodCategoryService.modifyFoodCategory(foodCategory);
+        if(count>0){
+            msg.put("status", "200");
+        }else {
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,null));
     }
 }

@@ -4,6 +4,7 @@ import com.zdk.mapper.FoodCategoryMapper;
 import com.zdk.pojo.FoodCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -20,5 +21,23 @@ public class FoodCategoryServiceImpl implements FoodCategoryService {
     @Override
     public List<FoodCategory> getFoodCategory(Integer id) {
         return foodCategoryMapper.getFoodCategory(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int addFoodCategory(FoodCategory foodCategory) {
+        return foodCategoryMapper.addFoodCategory(foodCategory);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int deleteFoodCategory(Integer id) {
+        return foodCategoryMapper.deleteFoodCategory(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyFoodCategory(FoodCategory foodCategory) {
+        return foodCategoryMapper.modifyFoodCategory(foodCategory);
     }
 }

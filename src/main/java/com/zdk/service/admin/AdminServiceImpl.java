@@ -5,6 +5,7 @@ import com.zdk.mapper.AdminMapper;
 import com.zdk.pojo.AdminAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +47,7 @@ public class AdminServiceImpl implements AdminService{
         return adminMapper.fuzzyQueryAdminList(map);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int removeAdmin(String id) {
         return adminMapper.removeAdmin(id);
@@ -56,6 +58,7 @@ public class AdminServiceImpl implements AdminService{
         return adminMapper.getAdminById(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int updateLoginInfo(String id, String date) {
         return adminMapper.updateLoginInfo(id, date);

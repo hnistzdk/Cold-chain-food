@@ -18,4 +18,19 @@
             </if>
         </where>
     </select>
+
+    <insert id="addFoodCategory" parameterType="FoodCategory">
+        insert into tb_category (category_name)
+        values (#{categoryName})
+    </insert>
+
+    <delete id="deleteFoodCategory" parameterType="int">
+        delete from tb_category where id=#{id}
+    </delete>
+
+    <update id="modifyFoodCategory" parameterType="FoodCategory">
+        update tb_category
+        set category_name = #{categoryName}
+        where id=#{id}
+    </update>
 </mapper>
