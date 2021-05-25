@@ -17,17 +17,7 @@
       <tree-table class="cateTable" :data="cateList" :columns="columns"
                   :selection-type="false" :expand-type="false"
                   show-index index-text="#" border>
-        <!--      是否有效-->
-        <template slot="isok" slot-scope="scope">
-          <i class="el-icon-success" v-if="scope.row.cat_deleted === false" style="color: lightgreen"></i>
-          <i class="el-icon-error" v-else  style="color: red"></i>
-        </template>
-        <!--      排序-->
-        <template slot="order" slot-scope="scope">
-          <el-tag  size="mini" v-if="scope.row.cat_level===0">一级</el-tag>
-          <el-tag type="success"  size="mini" v-else-if="scope.row.cat_level===1">二级</el-tag>
-          <el-tag type="warning"  size="mini" v-else>三级</el-tag>
-        </template>
+
         <!--      操作-->
         <template slot="opt" slot-scope="scope">
           <el-button type="primary" icon="el-icon-edit" size="mini" @click="showEdit(scope.row.id)">编辑</el-button>
@@ -38,9 +28,9 @@
       <el-pagination
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
-        :current-page="queryInfo.pagenum"
+        :current-page="queryInfo.pageNum"
         :page-sizes="[2,5,10,15]"
-        :page-size="queryInfo.pagesize"
+        :page-size="queryInfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
       </el-pagination>
@@ -50,53 +40,15 @@
     <el-dialog title="添加分类"
                :visible.sync="addDialogVisible"
                width="30%" @close="addDialogClose">
+
       <!--      内容主体区域-->
       <el-form :model="addCateForm"
                :rules="addCateFormRules"
                ref="addCateFormRef">
-      <!--添加商品的生产地址-->
-        <el-form-item label="生产地址: " prop="address">
-          <el-input v-model="addCateForm.address">
-          </el-input>
-        </el-form-item>
-      <!--添加商品的过期日期-->
-        <el-form-item label="过期日期: " prop="expiryDate">
-          <el-input v-model="addCateForm.expiryDate">
-          </el-input>
-        </el-form-item>
       <!--添加商品的名称-->
-        <el-form-item label="分类名称: " prop="foodName">
-          <el-input v-model="addCateForm.foodName">
+        <el-form-item label="分类名称: " prop="category_name">
+          <el-input v-model="addCateForm.category_name">
           </el-input>
-        </el-form-item>
-      <!--添加商品卖家联系电话-->
-        <el-form-item label="联系电话: " prop="phone">
-          <el-input v-model="addCateForm.phone">
-          </el-input>
-        </el-form-item>
-      <!--        生产厂家-->
-        <el-form-item label="生产厂家: " prop="producer">
-          <el-input v-model="addCateForm.producer">
-          </el-input>
-        </el-form-item>
-      <!--生产日期-->
-        <el-form-item label="生产日期: " prop="productionDate">
-          <el-input v-model="addCateForm.productionDate">
-          </el-input>
-        </el-form-item>
-      <!--        风险等级-->
-        <el-form-item label="风险等级: " prop="riskDegree">
-          <el-input v-model="addCateForm.riskDegree">
-          </el-input>
-        </el-form-item>
-
-        <el-form-item label="父级分类: " >
-          <el-cascader
-            v-model="selectedKeys"
-            :options="parentCateList"
-            :props="CascaderProps"
-            @change="parentCateChanged()" clearable change-on-select>
-          </el-cascader>
         </el-form-item>
       </el-form>
       <!--      底部区域-->
@@ -114,41 +66,13 @@
       width="30%" >
       <!--      内容主体区域-->
       <el-form :model="editForm"  :rules="editFormRules" ref="editFormRef" label-width="85px">
-        <!--添加商品的生产地址-->
-        <el-form-item label="生产地址: " prop="address">
-          <el-input v-model="editForm.address">
-          </el-input>
-        </el-form-item>
-        <!--添加商品的过期日期-->
-        <el-form-item label="过期日期: " prop="expiryDate">
-          <el-input v-model="editForm.expiryDate">
-          </el-input>
-        </el-form-item>
+
         <!--添加商品的名称-->
         <el-form-item label="分类名称: " prop="foodName">
-          <el-input v-model="editForm.foodName">
+          <el-input v-model="editForm.category_name">
           </el-input>
         </el-form-item>
-        <!--添加商品卖家联系电话-->
-        <el-form-item label="联系电话: " prop="phone">
-          <el-input v-model="editForm.phone">
-          </el-input>
-        </el-form-item>
-        <!--        生产厂家-->
-        <el-form-item label="生产厂家: " prop="producer">
-          <el-input v-model="editForm.producer">
-          </el-input>
-        </el-form-item>
-        <!--生产日期-->
-        <el-form-item label="生产日期: " prop="productionDate">
-          <el-input v-model="editForm.productionDate">
-          </el-input>
-        </el-form-item>
-        <!--        风险等级-->
-        <el-form-item label="风险等级: " prop="riskDegree">
-          <el-input v-model="editForm.riskDegree">
-          </el-input>
-        </el-form-item>
+
       </el-form>
 
 
@@ -167,31 +91,17 @@ export default {
   data(){
     return{
       queryInfo:{
-        type:3,
-        pagenum:1,
-        pagesize:5
+        pageNum:1,
+        pageSize:5
       },
       //商品分类的数据列表
       cateList:[],
       //总数据条数
-      //total:0,
+      total:0,
       columns:[
         {
           label:'分类名称',
-          prop:'cat_name'
-        },
-        {
-          label: '是否有效',
-          prop: 'cat_deleted',
-          //表示将当前列定位模板列
-          type:'template',
-          template:'isok'
-        },
-        {
-          label: '排序',
-          //表示将当前列定位模板列
-          type:'template',
-          template:'order'
+          prop:'category_name'
         },
         {
           label: '操作',
@@ -206,82 +116,24 @@ export default {
 
       addCateForm:{
         //将要添加的分类的名称
-        foodName:'',
-        //父级分类的id,默认是0
-        cat_pid:0,
-        //分类的等级,默认要添加的是1级分类
-        cat_level:0,
-        //生产地址
-        address:'',
-        //过期日期
-        expiryDate:'',
-        //联系电话
-        phone:'',
-        //生产厂家
-        producer:'',
-        //生产日期
-        productionDate:'',
-        //风险等级
-        riskDegree:''
+        category_name:'',
+
       },
       //父级分类的列表
       parentCateList:[],
       addCateFormRules:{
-        foodName: [
+        category_name: [
           {required:true,message:'请输入分类名称',trigger:'blur'}
-        ],
-        address: [
-          {required:true,message:'请输入生产地址',trigger:'blur'}
-        ],
-        expiryDate: [
-          {required:true,message:'请输入过期日期',trigger:'blur'}
-        ],
-        phone: [
-          {required:true,message:'请输入联系电话',trigger:'blur'}
-        ],
-        producer: [
-          {required:true,message:'请输入生产厂家',trigger:'blur'}
-        ],
-        productionDate: [
-          {required:true,message:'请输入生产日期',trigger:'blur'}
-        ],
-        riskDegree: [
-          {required:true,message:'请输入风险等级',trigger:'blur'}
         ]
       },
-      //指定级联选择器的配置对象
-      CascaderProps:{
-        value:'id',
-        label:'foodName',
-        children:'children',
-        expandTrigger: 'hover'
-      },
-      //选中的父级分类的id数组
-      selectedKeys:[],
+      //存放编辑表单的信息
       editForm:{
 
       },
+      //编辑表单的校验规则
       editFormRules:{
-        foodName: [
+        category_name: [
           {required:true,message:'请输入分类名称',trigger:'blur'}
-        ],
-        address: [
-          {required:true,message:'请输入生产地址',trigger:'blur'}
-        ],
-        expiryDate: [
-          {required:true,message:'请输入过期日期',trigger:'blur'}
-        ],
-        phone: [
-          {required:true,message:'请输入联系电话',trigger:'blur'}
-        ],
-        producer: [
-          {required:true,message:'请输入生产厂家',trigger:'blur'}
-        ],
-        productionDate: [
-          {required:true,message:'请输入生产日期',trigger:'blur'}
-        ],
-        riskDegree: [
-          {required:true,message:'请输入风险等级',trigger:'blur'}
         ]
       }
 
@@ -294,7 +146,8 @@ export default {
   methods:{
     //获取商品分类数据
     async getCateList(){
-      const {data : res}= await this.$http.get('getFoodCategory')
+      const {data : res}= await this.$http.get('getFoodCategory',
+        {params:this.queryInfo})
       if(res.meta.status !== 200)
         return this.$message.error('获取商品分类失败!')
 
@@ -303,7 +156,7 @@ export default {
       this.cateList = res.data
       console.log(this.cateList)
       //为总数据条数赋值
-      //this.total = res.data.total
+      this.total = res.data.total
     },
     handleSizeChange(newSize){
       this.queryInfo.pagesize = newSize
@@ -315,40 +168,12 @@ export default {
     },
 
     showAddCateDialog(){
-      this.getParentCateList()
       this.addDialogVisible = true
     },
-    async getParentCateList(){
-      const {data : res} = await this.$http.get('categories',{params:{type:2}})
-      if(res.meta.status !==200)
-        return this.$message.error('获取父级分类失败!')
-      this.parentCateList = res.data
-    },
-    parentCateChanged()
-    {
-      console.log(this.selectedKeys)
-      //如果 selectedKeys 数组中的length大于0，证明选中了父级分类
-      //反之，则没有选中任何父级分类
-      if(this.selectedKeys.length > 0){
-        //父类的id
-        this.addCateForm.cat_pid = this.selectedKeys[this.selectedKeys.length - 1]
-        //为当前分类的等级赋值
-        this.addCateForm.cat_level = this.selectedKeys.length
-        return
-      }else{
-        //父级分类的id
-        this.addCateForm.cat_pid = 0
-        //为当前分类的等级赋值
-        this.addCateForm.cat_level = 0
 
-      }
-    },
     addDialogClose()
     {
       this.$refs.addCateFormRef.resetFields()
-      this.selectedKeys=[]
-      this.addCateForm.cat_level=0
-      this.addCateForm.cat_pid=0
 
     },
     async addCate(){
@@ -377,9 +202,9 @@ export default {
     async editUser(){
       this.$refs.editFormRef.validate(async valid=>{
         if(!valid) return
-        console.log(this.editForm.cat_id)
-        const {data:res} = await this.$http.put('categories/'+this.editForm.cat_id,{
-          cat_name:this.editForm.cat_name
+        console.log(this.editForm.id)
+        const {data:res} = await this.$http.put('categories/'+this.editForm.id,{
+          category_name:this.editForm.category_name
         })
         if(res.meta.status !== 200)
           return this.$message.error('修改分类信息失败!')
