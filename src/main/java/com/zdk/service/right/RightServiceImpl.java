@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -18,7 +19,12 @@ public class RightServiceImpl implements RightService{
     private RightMapper rightMapper;
 
     @Override
-    public List<Right> getRights(Integer id) {
-        return rightMapper.getRights(id);
+    public List<Right> getRights(Map map) {
+        return rightMapper.getRights(map);
+    }
+
+    @Override
+    public int getRightsCount() {
+        return rightMapper.getRightsCount();
     }
 }

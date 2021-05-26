@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -16,8 +17,14 @@ import java.util.List;
 public interface RightMapper {
     /**
      *获得所有权限的信息
-     * @param id
-     * @return List<Role>
+     * @param map
+     * @return List<Right>
      */
-    List<Right> getRights(@Param("id") Integer id);
+    List<Right> getRights(Map map);
+
+    /**
+     *获得所有权限数量
+     * @return int
+     */
+    int getRightsCount();
 }

@@ -20,4 +20,8 @@ public class Right {
     private String rightName;
     @ApiModelProperty("权限路径")
     private String rightPath;
+    @ApiModelProperty("权限描述")
+    private String rightDescription;
+    @ApiModelProperty("是否被勾选")
+    private boolean isChecked;
 }
