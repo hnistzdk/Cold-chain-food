@@ -234,7 +234,7 @@ export default {
       const {data:res}= await this.$http.post(`roles/${this.id}/rights`,
         {rids:idStr})
       console.log(res)
-      if(res.meta.status !== 200){
+      if(res.meta.status !== "200"){
         return this.$message.error('分配权限失败')
       }
       this.$message.success('分配权限成功')
