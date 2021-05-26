@@ -71,8 +71,8 @@
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
 
-        <el-checkbox-group v-for="item in rightsList" :key="item.id">
-          <el-checkbox  v-model="item.checked">{{item.rightName}}</el-checkbox>
+        <el-checkbox-group v-model="rightsList.checked">
+          <el-checkbox  v-for="item in rightsList" :label="item.name">{{item.name}}</el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
