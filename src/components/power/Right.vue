@@ -13,7 +13,7 @@
         <el-table-column type="index"></el-table-column>
         <el-table-column prop="rightName" label="权限名称" ></el-table-column>
         <el-table-column prop="rightPath" label="路径" ></el-table-column>
-        <el-table-column prop="level" label="权限描述" ></el-table-column>
+        <el-table-column prop="rightDescription" label="权限描述" ></el-table-column>
       </el-table>
 
       <!--    分页区-->
