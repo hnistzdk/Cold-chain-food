@@ -21,7 +21,7 @@
           <template slot-scope="scope">
             <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)" >编辑</el-button>
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)">删除</el-button>
-            <el-button type="warning" icon="el-icon-share" size="small" @click="showSetRightDialog(scope.row)" >分配权限</el-button>
+            <el-button type="warning" icon="el-icon-share" size="small" @click="showSetRightDialog(scope.row.id)" >分配权限</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -71,8 +71,8 @@
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
 
-        <el-checkbox-group :model="rightsList" v-for="item in rightsList" :key="item.id">
-          <el-checkbox :label="item.rightName"></el-checkbox>
+        <el-checkbox-group v-model="rightsList" v-for="item in rightsList" :key="item.id" >
+          <el-checkbox label="item.rightName" checked="item.checked"></el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
@@ -204,15 +204,16 @@ export default {
       await this.getRoleList()
 
     },
-    async showSetRightDialog(role)
+    async showSetRightDialog(id)
     {
-      this.id = role.id;
+
       //获取所有权限的数据
-      const {data : res} = await this.$http.get('rights/list')
+      const {data : res} = await this.$http.get('rights/list/'+id)
       if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
+
 
     },
 
