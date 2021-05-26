@@ -21,6 +21,17 @@
           </template>
         </el-table-column>
       </el-table>
+
+      <!--    分页区-->
+      <el-pagination
+        @size-change="handleSizeChange"
+        @current-change="handleCurrentChange"
+        :current-page="queryInfo.pageNum"
+        :page-sizes="[2,5,10,15]"
+        :page-size="queryInfo.pageSize"
+        layout="total, sizes, prev, pager, next, jumper"
+        :total="total">
+      </el-pagination>
     </el-card>
   </div>
 
@@ -32,7 +43,12 @@ export default {
   data(){
     return{
       //权限列表
-      rightsList:[]
+      rightsList:[],
+      queryInfo:{
+        pageNum:1,
+        pageSize:5
+      },
+      total:0
     }
   },
   created(){
@@ -48,7 +64,16 @@ export default {
         return this.$message.error('获取权限列表失败!')
       }
       this.rightsList=res.data.rightsList
+      this.total = res.data.total
       console.log(this.rightsList)
+    },
+    handleSizeChange(newSize){
+      this.queryInfo.pageSize = newSize
+      this.getRightsList()
+    },
+    handleCurrentChange(newPage){
+      this.queryInfo.pageNum = newPage
+      this.getRightsList()
     }
   }
 }
