@@ -13,13 +13,7 @@
         <el-table-column type="index"></el-table-column>
         <el-table-column prop="rightName" label="权限名称" ></el-table-column>
         <el-table-column prop="rightPath" label="路径" ></el-table-column>
-        <el-table-column prop="level" label="权限等级" >
-          <template slot-scope="scope">
-            <el-tag v-if="scope.row.level==='0'" size="medium">一级</el-tag>
-            <el-tag type="success" v-if="scope.row.level==='1'" size="medium" >二级</el-tag>
-            <el-tag type="warning" v-if="scope.row.level==='2'"  size="medium">三级</el-tag>
-          </template>
-        </el-table-column>
+        <el-table-column prop="level" label="权限描述" ></el-table-column>
       </el-table>
 
       <!--    分页区-->
@@ -54,7 +48,6 @@ export default {
   created(){
     //获取所有的数据
     this.getRightsList()
-
   },
   methods:{
     //获取权限列表
