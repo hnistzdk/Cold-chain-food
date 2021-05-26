@@ -14,6 +14,7 @@ import Roles from "../components/power/Roles";
 import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
+import Order from "../components/goods/Order";
 Vue.use(Router)
 
 const router=new  Router({
@@ -34,6 +35,7 @@ const router=new  Router({
         {path:'/rights',component:Right },
         {path:'/categories',component:Cate },
         {path:'/goods',component:List },
+        {path:'/orders',component:Order }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
