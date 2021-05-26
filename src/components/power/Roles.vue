@@ -70,8 +70,11 @@
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
-        <!--      树形控件-->
-        <el-tree :data="rightsList" :props="treeProps" show-checkbox node-key="id" default-expand-all :default-checked-keys="defKeys" ref="treeRef"></el-tree>
+
+        <el-checkbox-group :model="rightsList" v-for="item in rightsList" :key="item.id">
+          <el-checkbox :label="item.rightName"></el-checkbox>
+        </el-checkbox-group>
+
         <span slot="footer" class="dialog-footer">
           <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="allotRights">确 定</el-button>
@@ -205,26 +208,14 @@ export default {
     {
       this.id = role.id;
       //获取所有权限的数据
-      const {data : res} = await this.$http.get('rights/tree')
+      const {data : res} = await this.$http.get('rights/list')
       if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
-      this.defKeys=[]
-      //递归获取三级节点的id
-      this.getLeafKeys(role,this.defKeys)
-      console.log(this.defKeys)
-      this.showSetRightDialogVisible=true
+
     },
-    getLeafKeys(node,arr)
-    {
-      //如果当前node属性不包含children属性，则是三级节点
-      if(!node.children){
-        return arr.push(node.id)
-      }
-      node.children.forEach(item=>
-      this.getLeafKeys(item,arr))
-    },
+
     async allotRights(){
       const  keys = [
         ...this.$refs.treeRef.getCheckedKeys(),
