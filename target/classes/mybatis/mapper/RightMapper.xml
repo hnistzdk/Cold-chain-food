@@ -11,12 +11,13 @@
             size="512"
             readOnly="true"/>
 
-    <select id="getRights" resultType="Right">
+    <select id="getRights" resultType="Right" parameterType="map">
         select * from tb_right
-        <where>
-            <if test="id!=null">
-                tb_right.id=#{id}
-            </if>
-        </where>
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
+    </select>
+    <select id="getRightsCount" resultType="int">
+        select count(*) from tb_right
     </select>
 </mapper>

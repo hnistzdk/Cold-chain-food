@@ -10,13 +10,16 @@
             flushInterval="60000"
             size="512"
             readOnly="true"/>
-    <select id="getFoodCategory" resultType="FoodCategory">
+    <select id="getFoodCategory" parameterType="map" resultType="FoodCategory">
         select * from tb_category
         <where>
             <if test="id!=null">
                 id=#{id}
             </if>
         </where>
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
     </select>
 
     <insert id="addFoodCategory" parameterType="FoodCategory">
@@ -33,4 +36,8 @@
         set category_name = #{categoryName}
         where id=#{id}
     </update>
+
+    <select id="getAllFoodCategory" resultType="int">
+        select count(*) from tb_category
+    </select>
 </mapper>
