@@ -17,11 +17,11 @@
           <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
         </el-input></el-col>
       <el-col :span="4">
-        <el-button type="primary" @click="addDialogVisible=true">添加食品</el-button>
+        <el-button type="primary" @click="addDialogVisible=true">添加订单</el-button>
       </el-col>
     </el-row>
 
-    <!--    分类列表区域-->
+    <!--   货单列表区域-->
     <el-table :data="orderList"  border stripe>
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column label="货单号" prop="manifestId"></el-table-column>
@@ -55,44 +55,83 @@
   </el-card>
   <!--    添加的对话框-->
   <el-dialog
-    title="添加食品"
+    title="添加货单"
     :visible.sync="addDialogVisible"
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
-      <el-form-item label="食品名称" prop="foodName">
-        <el-input v-model="addForm.foodName"></el-input>
+      <el-form-item label="货单号" prop="manifestId">
+        <el-input v-model="addForm.manifestId"></el-input>
       </el-form-item>
-      <el-form-item label="生产日期" prop="productionDate">
-        <el-input v-model="addForm.productionDate"></el-input>
+      <el-form-item label="食品id" prop="foodId">
+        <el-input v-model="addForm.foodId"></el-input>
       </el-form-item>
-      <el-form-item label="过期日期" prop="expiryDate">
-        <el-input v-model="addForm.expiryDate"></el-input>
+      <el-form-item label="发货人姓名" prop="consignorName">
+        <el-input v-model="addForm.consignorName"></el-input>
       </el-form-item>
-      <el-form-item label="生产地址" prop="address">
-        <el-input v-model="addForm.address"></el-input>
+      <el-form-item label="收货人姓名" prop="consigneeName">
+        <el-input v-model="addForm.consigneeName"></el-input>
       </el-form-item>
-      <el-form-item label="生产厂家" prop="producer">
-        <el-input v-model="addForm.producer"></el-input>
+      <el-form-item label="发货地址" prop="startingSite">
+        <el-input v-model="addForm.startingSite"></el-input>
       </el-form-item>
-      <el-form-item label="联系电话" prop="phone">
-        <el-input v-model="addForm.phone"></el-input>
+      <el-form-item label="收货地址" prop="receivedSite">
+        <el-input v-model="addForm.receivedSite"></el-input>
       </el-form-item>
-      <el-form-item label="风险等级" prop="riskDegree">
-        <el-input v-model="addForm.riskDegree"></el-input>
+      <el-form-item label="运输状态" prop="travelStatus">
+        <el-input v-model="addForm.travelStatus"></el-input>
+      </el-form-item>
+      <el-form-item label="到达站点" prop="arrivedPoint">
+        <el-input v-model="addForm.arrivedPoint"></el-input>
+      </el-form-item>
+      <el-form-item label="发货人id" prop="consignorId">
+        <el-input v-model="addForm.consignorId"></el-input>
+      </el-form-item>
+      <el-form-item label="收货人id" prop="consigneeId">
+        <el-input v-model="addForm.consigneeId"></el-input>
       </el-form-item>
     </el-form>
     <!--      底部区域-->
     <span slot="footer" class="dialog-footer">
     <el-button @click="addDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="addFood">确 定</el-button>
+    <el-button type="primary" @click="addOrder">确 定</el-button>
   </span>
+  </el-dialog>
+
+  <!--    修改用户的对话框-->
+  <el-dialog
+    title="修改用户"
+    :visible.sync="editDialogVisible"
+    width="30%" >
+    <!--      内容主体区域-->
+    <el-form :model="editForm"  :rules="editFormRules" ref="editFormRef" label-width="85px">
+      <el-form-item label="货单号" prop="manifestId">
+        <el-input v-model="editForm.manifestId"></el-input>
+      </el-form-item>
+      <el-form-item label="食品id" prop="foodId">
+        <el-input v-model="editForm.foodId"></el-input>
+      </el-form-item>
+      <el-form-item label="运输状态" prop="travelStatus">
+        <el-input v-model="editForm.travelStatus"></el-input>
+      </el-form-item>
+      <el-form-item label="到达站点" prop="arrivedPoint">
+        <el-input v-model="editForm.arrivedPoint"></el-input>
+      </el-form-item>
+
+    </el-form>
+
+    <span slot="footer" class="dialog-footer">
+       <el-button @click="editDialogVisible = false">取 消</el-button>
+       <el-button type="primary" @click="editUser()">确 定</el-button>
+      </span>
   </el-dialog>
 
 </div>
 </template>
 
 <script>
+import qs from "qs";
+
 export default {
   name: "Order",
   data(){
@@ -107,6 +146,76 @@ export default {
       //获取订单的列表
       orderList:[],
       addForm:{
+        //货单号
+        manifestId:'',
+        //食品id
+        foodId:'',
+        //发货人姓名
+        consignorName:'',
+        //收货人姓名
+        consigneeName:'',
+        //发货地址
+        startingSite:'',
+        //收货地址
+        receivedSite:'',
+        //运输状态
+        travelStatus:'',
+        //到达站点
+        arrivedPoint:'',
+        //发货人id
+        consignorId:'',
+        //收货人id
+        consigneeId:''
+      },
+      addFormRules:{
+        manifestId: [
+          {required:true,message:'请输入货单号',trigger:'blur'}
+        ],
+        foodId: [
+          {required:true,message:'请输入食品id',trigger:'blur'}
+        ],
+        consignorName: [
+          {required:true,message:'请输入发货人姓名',trigger:'blur'}
+        ],
+        consigneeName: [
+          {required:true,message:'请输入收货人姓名',trigger:'blur'}
+        ],
+        startingSite: [
+          {required:true,message:'请输入发货地址',trigger:'blur'}
+        ],
+        receivedSite: [
+          {required:true,message:'请输入收货地址',trigger:'blur'}
+        ],
+        travelStatus: [
+          {required:true,message:'请输入运输状态',trigger:'blur'}
+        ],
+        arrivedPoint: [
+          {required:true,message:'请输入到达站点',trigger:'blur'}
+        ],
+        consignorId: [
+          {required:true,message:'请输入发货人id',trigger:'blur'}
+        ],
+        consigneeId: [
+          {required:true,message:'请输入收货人id',trigger:'blur'}
+        ]
+
+      },
+      editForm:{
+        manifestId: [
+          {required:true,message:'请输入货单号',trigger:'blur'}
+        ],
+        foodId: [
+          {required:true,message:'请输入食品id',trigger:'blur'}
+        ],
+        travelStatus: [
+          {required:true,message:'请输入运输状态',trigger:'blur'}
+        ],
+        arrivedPoint: [
+          {required:true,message:'请输入到达站点',trigger:'blur'}
+        ],
+
+      },
+      editFormRules:{
 
       }
 
@@ -120,7 +229,7 @@ export default {
     //获取货单列表
     async getOrderList(){
       const qs = require('querystring')
-      const {data : res} = await this.$http.post('getOrder',
+      const {data : res} = await this.$http.post('getManifest',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
         return this.$message.error('获取订单列表失败!')
@@ -143,7 +252,64 @@ export default {
       this.queryInfo.pageNum = newPage
       this.getOrderList()
     },
-    //
+    //添加货单
+    async addOrder(){
+      this.$refs.addFormRef.validate(async valid=>{
+        if(!valid) return
+        const {data : res} = await this.$http.post('addManifest',
+          qs.stringify(this.addForm))
+        if(res.meta.status !==200)
+          return this.$message.error('添加货单失败!')
+        this.$message.success('添加货单成功!')
+        await this.getOrderList()
+        this.addDialogVisible = true
+      })
+    },
+    async showEdit(id){
+      const {data : res} = await this.$http.get('manifests/'+id)
+      this.editForm = res.data
+      if(res.meta.status !== "200")
+        return this.$message.error('查询食品信息失败!')
+
+      this.editDialogVisible = true
+    },
+
+    editUser(){
+      this.$refs.editFormRef.validate(async valid=>{
+        if(!valid) return
+        console.log(this.editForm.id)
+        const {data:res} =
+          await this.$http.post('modifyFood'+qs.stringify(this.editForm))
+        if(res.meta.status !== "200")
+          return this.$message.error('修改分类信息失败!')
+        this.$message.success('修改分类信息成功!')
+        this.editDialogVisible = false
+        await this.getOrderList()
+
+      } )
+    },
+    //删除分类
+    async removeUserById(id){
+      const confirmResult = await this.$confirm('此操作将永久删除该分类, 是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).catch(err => err)
+      //如果用户确定删除，则返回值为字符串confirm
+      //如果用户取消了删除，则返回值为字符串cancel
+      //console.log(confirmResult)
+      if(confirmResult !=='confirm'){
+        return this.$message.info('已取消删除')
+      }
+      const {data : res} = await  this.$http.post('deleteFood/'+id)
+      if(res.meta.status !== "200")
+        this.$message.error('删除食品失败!')
+      else
+        this.$message.success('删除食品成功!')
+
+      //重置表单
+      await  this.getOrderList()
+    }
 
   }
 }
