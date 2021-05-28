@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -18,13 +19,18 @@ public class ManifestServiceImpl implements ManifestService{
     ManifestMapper manifestMapper;
 
     @Override
-    public List<Manifest> queryManifest(String manifestId) {
-        return manifestMapper.queryManifest(manifestId);
+    public List<Manifest> queryManifest(Map map) {
+        return manifestMapper.queryManifest(map);
     }
 
     @Transactional(rollbackFor = Exception.class)
     @Override
     public int addManifest(Manifest manifest) {
         return manifestMapper.addManifest(manifest);
+    }
+
+    @Override
+    public int manifestCount() {
+        return manifestMapper.manifestCount();
     }
 }

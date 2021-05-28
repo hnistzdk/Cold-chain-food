@@ -6,6 +6,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Manifest;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.utils.CommonMessage;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
@@ -28,20 +29,25 @@ public class ManifestController {
     ManifestServiceImpl manifestService;
 
     @RightInfo("getManifest")
-    @GetMapping("/getManifest")
+    @PostMapping("/getManifest")
     @CrossOrigin
-    public Object getManifest(@Nullable String manifestId){
+    public Object getManifest(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        msg.put("msg", "获取成功");
-        msg.put("status", "200");
-        List<Manifest> manifestList;
-        if(manifestId==null){
-            manifestList = manifestService.queryManifest(null);
-        }else {
-            manifestList = manifestService.queryManifest(manifestId);
+        HashMap params=new HashMap<>();
+        params.put("pageNum",(pageNum-1)*pageSize);
+        params.put("pageSize",pageSize);
+        System.out.println("query::"+query);
+        params.put("query", query);
+        List<Manifest> orderList= manifestService.queryManifest(params);
+        int total=manifestService.manifestCount();
+        if(orderList!=null){
+            msg.put("status", "200");
+            data.put("orderList", orderList.toArray());
+            data.put("total", total);
+        }else{
+            msg.put("status", "201");
         }
-        data.put("manifestList", JSON.toJSON(manifestList.toArray()));
         return JSON.toJSONString(new Meta(msg,data));
     }
 
