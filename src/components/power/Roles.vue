@@ -71,8 +71,8 @@
         :visible.sync="showSetRightDialogVisible"
         width="30%" >
 
-        <el-checkbox-group v-model="rightsList.checked">
-          <el-checkbox  v-for="item in rightsList" :label="item.name">{{item.name}}</el-checkbox>
+        <el-checkbox-group v-model="checkedList">
+          <el-checkbox  v-for="item in rightsList" :label="item.name" :key="item.id"></el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
@@ -96,6 +96,7 @@ export default {
       roleList:[],
       //所有权限的数据
       rightsList:[],
+      checkedList:[],
       showSetRightDialogVisible:false,
       addDialogVisible:false,
       editDialogVisible:false,
@@ -213,7 +214,8 @@ export default {
       return this.$message.error('获取权限信息失败!')
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
-
+      this.checkedList = res.data.checkedList
+      this.showSetRightDialogVisible=true;
 
     },
 
