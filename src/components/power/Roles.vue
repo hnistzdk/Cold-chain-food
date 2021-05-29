@@ -214,6 +214,7 @@ export default {
       const {data : res} = await this.$http.get('rights/list/'+id)
       if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
+      console.log(res.data)
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
       this.checkedList = res.data.checkedList

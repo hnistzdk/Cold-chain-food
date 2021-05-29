@@ -275,7 +275,7 @@ export default {
       const{ data:res } = await this.$http.get("foods/"+id)
       this.editForm = res.data
       console.log(res.data)
-      if(res.meta.status !== "200")
+      if(res.status !== "200")
         return this.$message.error('查询食品信息失败!')
 
       this.editDialogVisible = true
@@ -285,10 +285,10 @@ export default {
         if(!valid) return
         console.log(this.editForm.id)
         const {data:res} =
-          await this.$http.post('categories'+qs.stringify(this.editForm))
+          await this.$http.post('modifyFood',qs.stringify(this.editForm))
         if(res.meta.status !== "200")
-          return this.$message.error('修改分类信息失败!')
-        this.$message.success('修改分类信息成功!')
+          return this.$message.error('修改食品信息失败!')
+        this.$message.success('修改食品信息成功!')
         this.editDialogVisible = false
         await this.getFoodList()
 
