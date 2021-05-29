@@ -69,10 +69,11 @@
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
-        width="30%" >
+        width="30%" @close="roleCloseDialog">
 
-        <el-checkbox-group v-model="checkedList">
-          <el-checkbox  v-for="item in rightsList" :label="item.name" :key="item.id"></el-checkbox>
+        <el-checkbox-group v-model="checkedList" >
+          <el-checkbox  v-for="item in rightsList" :label="item.rightName" :key="item.id"
+                       @change="item.checked=!item.checked"></el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
@@ -121,7 +122,8 @@ export default {
         children:'children'
       },
       defKeys:[],
-      roleId:''
+      //分配权限的角色的id
+      Id:''
     }
 
   },
@@ -207,7 +209,7 @@ export default {
     },
     async showSetRightDialog(id)
     {
-
+      this.Id = id
       //获取所有权限的数据
       const {data : res} = await this.$http.get('rights/list/'+id)
       if(res.meta.status !== "200")
@@ -218,15 +220,11 @@ export default {
       this.showSetRightDialogVisible=true;
 
     },
-
     async allotRights(){
-      const  keys = [
-        ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
-      const  idStr  = keys.join(',')
-      const {data:res}= await this.$http.post(`roles/${this.id}/rights`,
-        {rids:idStr})
+
+      console.log(this.rightsList)
+      const {data:res}= await this.$http.post(`roles/${this.Id}/rights`,
+        {rightList:this.rightsList})
       console.log(res)
       if(res.meta.status !== "200"){
         return this.$message.error('分配权限失败')
@@ -238,7 +236,11 @@ export default {
     addCloseDialog()
     {
       this.$refs.addFormRef.resetFields();
+    },
+    roleCloseDialog(){
+      this.Id = ''
     }
+
 
   }
 }
