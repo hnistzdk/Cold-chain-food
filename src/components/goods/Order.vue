@@ -279,7 +279,7 @@ export default {
         if(!valid) return
         console.log(this.editForm.id)
         const {data:res} =
-          await this.$http.post('modifyFood'+qs.stringify(this.editForm))
+          await this.$http.post('modifyFood',qs.stringify(this.editForm))
         if(res.meta.status !== "200")
           return this.$message.error('修改货单信息失败!')
         this.$message.success('修改货单信息成功!')
