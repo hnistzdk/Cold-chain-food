@@ -34,9 +34,9 @@
       <el-table-column label="操作" width="200px">
         <template slot-scope="scope">
           <!--          编辑按钮-->
-          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
+          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.manifestId)"></el-button>
           <!--          删除按钮-->
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.manifestId)"></el-button>
 
         </template>
       </el-table-column>
@@ -258,7 +258,7 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addManifest',
           qs.stringify(this.addForm))
-        if(res.meta.status !==200)
+        if(res.meta.status !=="200")
           return this.$message.error('添加货单失败!')
         this.$message.success('添加货单成功!')
         await this.getOrderList()
@@ -268,7 +268,7 @@ export default {
     async showEdit(id){
       const {data : res} = await this.$http.get('manifests/'+id)
       this.editForm = res.data
-      if(res.meta.status !== "200")
+      if(res.status !== "200")
         return this.$message.error('查询货单信息失败!')
 
       this.editDialogVisible = true
