@@ -60,9 +60,9 @@
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
-      <el-form-item label="货单号" prop="manifestId">
-        <el-input v-model="addForm.manifestId"></el-input>
-      </el-form-item>
+<!--      <el-form-item label="货单号" prop="manifestId">-->
+<!--        <el-input v-model="addForm.manifestId"></el-input>-->
+<!--      </el-form-item>-->
       <el-form-item label="食品id" prop="foodId">
         <el-input v-model="addForm.foodId"></el-input>
       </el-form-item>
@@ -84,12 +84,12 @@
       <el-form-item label="到达站点" prop="arrivedPoint">
         <el-input v-model="addForm.arrivedPoint"></el-input>
       </el-form-item>
-      <el-form-item label="发货人id" prop="consignorId">
-        <el-input v-model="addForm.consignorId"></el-input>
-      </el-form-item>
-      <el-form-item label="收货人id" prop="consigneeId">
-        <el-input v-model="addForm.consigneeId"></el-input>
-      </el-form-item>
+<!--      <el-form-item label="发货人id" prop="consignorId">-->
+<!--        <el-input v-model="addForm.consignorId"></el-input>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="收货人id" prop="consigneeId">-->
+<!--        <el-input v-model="addForm.consigneeId"></el-input>-->
+<!--      </el-form-item>-->
     </el-form>
     <!--      底部区域-->
     <span slot="footer" class="dialog-footer">
@@ -106,10 +106,10 @@
     <!--      内容主体区域-->
     <el-form :model="editForm"  :rules="editFormRules" ref="editFormRef" label-width="85px">
       <el-form-item label="货单号" prop="manifestId">
-        <el-input v-model="editForm.manifestId"></el-input>
+        <el-input v-model="editForm.manifestId" disabled></el-input>
       </el-form-item>
       <el-form-item label="食品id" prop="foodId">
-        <el-input v-model="editForm.foodId"></el-input>
+        <el-input v-model="editForm.foodId" disabled></el-input>
       </el-form-item>
       <el-form-item label="运输状态" prop="travelStatus">
         <el-input v-model="editForm.travelStatus"></el-input>
@@ -143,6 +143,8 @@ export default {
         pageSize:5
       },
       total:0,
+      addDialogVisible:false,
+      editDialogVisible:false,
       //获取订单的列表
       orderList:[],
       addForm:{
@@ -279,7 +281,7 @@ export default {
         if(!valid) return
         console.log(this.editForm.id)
         const {data:res} =
-          await this.$http.post('modifyFood',qs.stringify(this.editForm))
+          await this.$http.post('modifyManifest',qs.stringify(this.editForm))
         if(res.meta.status !== "200")
           return this.$message.error('修改货单信息失败!')
         this.$message.success('修改货单信息成功!')
@@ -301,7 +303,7 @@ export default {
       if(confirmResult !=='confirm'){
         return this.$message.info('已取消删除')
       }
-      const {data : res} = await  this.$http.post('deleteFood/'+id)
+      const {data : res} = await  this.$http.post('deleteManifest/'+id)
       if(res.meta.status !== "200")
         this.$message.error('删除货单失败!')
       else
@@ -309,6 +311,12 @@ export default {
 
       //重置表单
       await  this.getOrderList()
+    },
+    addCloseDialog(){
+      this.$refs.addFormRef.resetFields()
+    },
+    editCloseDialog(){
+      this.$refs.editFormRef.resetFields()
     }
 
   }
