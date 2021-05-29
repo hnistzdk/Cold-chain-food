@@ -15,11 +15,14 @@ import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
 import Order from "../components/goods/Order";
+import checkedtext from "../components/checkedtext";
 Vue.use(Router)
 
 const router=new  Router({
   routes: [
-    {path:'/',redirect:'/hello'},
+    {path:'/',redirect:'/check'},
+    // {path:'/',redirect:'/hello'},
+    {path:'/check',component:checkedtext},
     {path:'/hello',component:Hello},
     { path: '/login',component: Login },
     {path:'/pwdChange',component:PwdChange},
@@ -51,6 +54,7 @@ router.beforeEach((to,form,next)=>{
   if(to.path=='/hello') return next();
   if(to.path=='/login') return next();
   if(to.path=='/register') return next();
+  if(to.path=='/check') return next();
   //获取token,如果token存在，则允许跳转至home页，否则回退回login页面
   const tokenStr = window.sessionStorage.getItem('token')
   if(!tokenStr) return next('/login')

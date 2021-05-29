@@ -72,7 +72,7 @@
         width="30%" >
 
         <el-checkbox-group v-model="rightsList.checked">
-          <el-checkbox  v-for="item in rightsList" :label="item.name">{{item.name}}</el-checkbox>
+          <el-checkbox  v-for="item in rightsList" :label="item.name" :key="item.id">{{item.name}}</el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
