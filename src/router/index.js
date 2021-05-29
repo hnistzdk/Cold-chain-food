@@ -15,14 +15,11 @@ import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
 import Order from "../components/goods/Order";
-import checkedtext from "../components/checkedtext";
 Vue.use(Router)
 
 const router=new  Router({
   routes: [
-    {path:'/',redirect:'/check'},
-    // {path:'/',redirect:'/hello'},
-    {path:'/check',component:checkedtext},
+    {path:'/',redirect:'/hello'},
     {path:'/hello',component:Hello},
     { path: '/login',component: Login },
     {path:'/pwdChange',component:PwdChange},

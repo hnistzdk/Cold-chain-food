@@ -34,9 +34,9 @@
       <el-table-column label="操作" width="200px">
         <template slot-scope="scope">
           <!--          编辑按钮-->
-          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
+          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.manifestId)"></el-button>
           <!--          删除按钮-->
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.manifestId)"></el-button>
 
         </template>
       </el-table-column>
@@ -60,9 +60,9 @@
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
-      <el-form-item label="货单号" prop="manifestId">
-        <el-input v-model="addForm.manifestId"></el-input>
-      </el-form-item>
+<!--      <el-form-item label="货单号" prop="manifestId">-->
+<!--        <el-input v-model="addForm.manifestId"></el-input>-->
+<!--      </el-form-item>-->
       <el-form-item label="食品id" prop="foodId">
         <el-input v-model="addForm.foodId"></el-input>
       </el-form-item>
@@ -84,12 +84,12 @@
       <el-form-item label="到达站点" prop="arrivedPoint">
         <el-input v-model="addForm.arrivedPoint"></el-input>
       </el-form-item>
-      <el-form-item label="发货人id" prop="consignorId">
-        <el-input v-model="addForm.consignorId"></el-input>
-      </el-form-item>
-      <el-form-item label="收货人id" prop="consigneeId">
-        <el-input v-model="addForm.consigneeId"></el-input>
-      </el-form-item>
+<!--      <el-form-item label="发货人id" prop="consignorId">-->
+<!--        <el-input v-model="addForm.consignorId"></el-input>-->
+<!--      </el-form-item>-->
+<!--      <el-form-item label="收货人id" prop="consigneeId">-->
+<!--        <el-input v-model="addForm.consigneeId"></el-input>-->
+<!--      </el-form-item>-->
     </el-form>
     <!--      底部区域-->
     <span slot="footer" class="dialog-footer">
@@ -106,10 +106,10 @@
     <!--      内容主体区域-->
     <el-form :model="editForm"  :rules="editFormRules" ref="editFormRef" label-width="85px">
       <el-form-item label="货单号" prop="manifestId">
-        <el-input v-model="editForm.manifestId"></el-input>
+        <el-input v-model="editForm.manifestId" disabled></el-input>
       </el-form-item>
       <el-form-item label="食品id" prop="foodId">
-        <el-input v-model="editForm.foodId"></el-input>
+        <el-input v-model="editForm.foodId" disabled></el-input>
       </el-form-item>
       <el-form-item label="运输状态" prop="travelStatus">
         <el-input v-model="editForm.travelStatus"></el-input>
@@ -143,6 +143,8 @@ export default {
         pageSize:5
       },
       total:0,
+      addDialogVisible:false,
+      editDialogVisible:false,
       //获取订单的列表
       orderList:[],
       addForm:{
@@ -232,7 +234,7 @@ export default {
       const {data : res} = await this.$http.post('getManifest',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
-        return this.$message.error('获取订单列表失败!')
+        return this.$message.error('获取货单列表失败!')
 
       }
       this.orderList = res.data.orderList
@@ -258,7 +260,7 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addManifest',
           qs.stringify(this.addForm))
-        if(res.meta.status !==200)
+        if(res.meta.status !=="200")
           return this.$message.error('添加货单失败!')
         this.$message.success('添加货单成功!')
         await this.getOrderList()
@@ -268,8 +270,8 @@ export default {
     async showEdit(id){
       const {data : res} = await this.$http.get('manifests/'+id)
       this.editForm = res.data
-      if(res.meta.status !== "200")
-        return this.$message.error('查询食品信息失败!')
+      if(res.status !== "200")
+        return this.$message.error('查询货单信息失败!')
 
       this.editDialogVisible = true
     },
@@ -279,10 +281,10 @@ export default {
         if(!valid) return
         console.log(this.editForm.id)
         const {data:res} =
-          await this.$http.post('modifyFood'+qs.stringify(this.editForm))
+          await this.$http.post('modifyManifest',qs.stringify(this.editForm))
         if(res.meta.status !== "200")
-          return this.$message.error('修改分类信息失败!')
-        this.$message.success('修改分类信息成功!')
+          return this.$message.error('修改货单信息失败!')
+        this.$message.success('修改货单信息成功!')
         this.editDialogVisible = false
         await this.getOrderList()
 
@@ -290,7 +292,7 @@ export default {
     },
     //删除分类
     async removeUserById(id){
-      const confirmResult = await this.$confirm('此操作将永久删除该分类, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm('此操作将永久删除该货单, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -301,14 +303,20 @@ export default {
       if(confirmResult !=='confirm'){
         return this.$message.info('已取消删除')
       }
-      const {data : res} = await  this.$http.post('deleteFood/'+id)
+      const {data : res} = await  this.$http.post('deleteManifest/'+id)
       if(res.meta.status !== "200")
-        this.$message.error('删除食品失败!')
+        this.$message.error('删除货单失败!')
       else
-        this.$message.success('删除食品成功!')
+        this.$message.success('删除货单成功!')
 
       //重置表单
       await  this.getOrderList()
+    },
+    addCloseDialog(){
+      this.$refs.addFormRef.resetFields()
+    },
+    editCloseDialog(){
+      this.$refs.editFormRef.resetFields()
     }
 
   }
