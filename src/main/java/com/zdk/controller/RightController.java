@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -57,22 +58,30 @@ public class RightController {
     @GetMapping("/rights/list/{id}")
     @CrossOrigin
     public Object rightList(@PathVariable Integer id){
+        System.out.println("id:"+id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
-        HashMap params=new HashMap<>();
-        params.put("id", id);
         Role role = roleService.getRoles(id).get(0);
         String rightId=role.getRightId();
-        String[] rightsId=rightId.split(",");
-        List<Right> rights = rightService.getRights(params);
-        for (Right right : rights) {
+        List<Right> rightsList = rightService.getRights(null);
+        if(rightId!=null){
+            String[] rightsId=rightId.split(",");
+            List<String> checkedList = new ArrayList<>();
             for (String s : rightsId) {
-                if(right.getId()==Integer.parseInt(s)){
-                    right.setChecked(true);break;
+                for (Right right : rightsList) {
+                    if(Integer.parseInt(s)==right.getId()){
+                        right.setChecked(true);
+                        checkedList.add(right.getRightName());break;
+                    }
                 }
             }
+            data.put("rightsList", rightsList.toArray());
+            data.put("checkedList", checkedList.toArray());
+            System.out.println("checkedList.toArray()"+checkedList.toArray().toString());
+        }else {
+            data.put("rightsList", rightsList.toArray());
+            data.put("checkedList", new ArrayList<String>());
         }
-        data.put("rightsList", rights);
         msg.put("status", "200");
         return JSON.toJSONString(new Meta(msg,data));
     }

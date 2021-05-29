@@ -56,4 +56,9 @@ public class FoodServiceImpl implements FoodService{
     public List<Food> fuzzyQueryFood(Map map) {
         return foodMapper.fuzzyQueryFood(map);
     }
+
+    @Override
+    public Food getFoodById(Integer id) {
+        return foodMapper.getFoodById(id);
+    }
 }

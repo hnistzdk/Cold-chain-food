@@ -31,4 +31,18 @@
     <select id="manifestCount" resultType="int">
         select count(*) from tb_manifest
     </select>
+
+    <select id="getManifestById" resultType="Manifest">
+        select * from tb_manifest where manifest_id=#{manifestId}
+    </select>
+
+    <update id="modifyManifest" parameterType="Manifest">
+        update tb_manifest
+        set travel_status = #{travelStatus},arrived_point=#{arrivedPoint}
+        where manifest_id=#{manifestId};
+    </update>
+
+    <delete id="deleteManifest">
+        delete from tb_manifest where manifest_id=#{manifestId}
+    </delete>
 </mapper>

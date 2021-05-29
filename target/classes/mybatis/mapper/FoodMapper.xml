@@ -64,34 +64,6 @@
         </where>
     </select>
 
-<!--    <select id="queryFoodBy" resultType="Food" parameterType="map">-->
-<!--        select *-->
-<!--        from tb_food-->
-<!--        <where>-->
-<!--            <if test="id!=null">-->
-<!--                and id=#{id}-->
-<!--            </if>-->
-<!--            <if test="query!=null">-->
-<!--                and food_name=#{query}-->
-<!--            </if>-->
-<!--            <if test="expiryDate!=null">-->
-<!--                and expiry_date=#{expiryDate}-->
-<!--            </if>-->
-<!--            <if test="storageId!=null">-->
-<!--                and storage_id=#{storageId}-->
-<!--            </if>-->
-<!--            <if test="riskDegree!=null">-->
-<!--                and risk_degree=#{riskDegree}-->
-<!--            </if>-->
-<!--            <if test="categoryId!=null">-->
-<!--                and category_id=#{categoryId}-->
-<!--            </if>-->
-<!--        </where>-->
-<!--        <if test="pageNum!=null">-->
-<!--            limit #{pageNum},#{pageSize}-->
-<!--        </if>-->
-<!--    </select>-->
-
     <select id="getFood" parameterType="map" resultType="Food">
         select * from tb_food
         <if test="pageNum!=null">
@@ -105,4 +77,7 @@
         like concat('%',#{query},'%') limit #{pageNum},#{pageSize};
     </select>
 
+    <select id="getFoodById" resultType="Food">
+        select * from tb_food where id=#{id}
+    </select>
 </mapper>

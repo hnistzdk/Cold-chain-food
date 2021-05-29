@@ -3,6 +3,7 @@ package com.zdk.controller;
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
+import com.zdk.pojo.Right;
 import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.CommonMessage;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -73,6 +75,19 @@ public class RoleController {
     @CrossOrigin
     public Object deleteRoles(@PathVariable Integer id){
         int count=roleService.deleteRoles(id);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+    }
+
+    @RightInfo("assignRight")
+    @PostMapping("/roles/{id}/rights")
+    @CrossOrigin
+    public Object assignRight(@PathVariable Integer id,String rightList){
+        System.out.println("角色id："+id);
+        System.out.println("权限列表id："+rightList);
+        Map params=new HashMap();
+        params.put("id", id);
+        params.put("rightId", rightList.substring(0, rightList.length()-1));
+        int count = roleService.assignRight(params);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 }

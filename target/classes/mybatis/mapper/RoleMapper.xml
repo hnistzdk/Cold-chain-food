@@ -35,4 +35,10 @@
     <delete id="deleteRoles">
         delete from tb_role where id=#{id}
     </delete>
+    
+    <update id="assignRight" parameterType="map">
+        update tb_role
+        set right_id = #{rightId}
+        where id=#{id};
+    </update>
 </mapper>

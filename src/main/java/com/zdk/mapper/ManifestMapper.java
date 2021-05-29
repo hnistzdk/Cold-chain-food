@@ -33,4 +33,25 @@ public interface ManifestMapper {
      * @return 条数
      */
     int manifestCount();
+
+    /**
+     * 根据id获取货单
+     * @param manifestId
+     * @return Manifest
+     */
+    Manifest getManifestById(String manifestId);
+
+    /**
+     * 根据货单号修改货单信息
+     * @param manifest
+     * @return int
+     */
+    int modifyManifest(Manifest manifest);
+
+    /**
+     * 根据货单号删除货单
+     * @param manifestId
+     * @return int
+     */
+    int deleteManifest(String manifestId);
 }

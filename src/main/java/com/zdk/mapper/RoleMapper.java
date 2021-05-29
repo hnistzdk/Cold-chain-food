@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -42,4 +43,12 @@ public interface RoleMapper {
      * @return 条数
      */
     int deleteRoles(@Param("id") int id);
+
+    /**
+     *给角色分配权限
+     * @param map
+     * @return 条数
+     */
+    int assignRight(Map map);
+
 }

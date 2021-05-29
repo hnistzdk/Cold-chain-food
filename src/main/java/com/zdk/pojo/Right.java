@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @ApiModel("权限类")
 public class Right {
+    @ApiModelProperty("权限id")
     private Integer id;
     @ApiModelProperty("权限名")
     private String rightName;
@@ -23,5 +24,5 @@ public class Right {
     @ApiModelProperty("权限描述")
     private String rightDescription;
     @ApiModelProperty("是否被勾选")
-    private boolean isChecked;
+    private boolean isChecked=false;
 }

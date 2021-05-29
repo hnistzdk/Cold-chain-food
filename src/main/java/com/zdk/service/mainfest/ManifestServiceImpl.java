@@ -1,5 +1,6 @@
 package com.zdk.service.mainfest;
 
+import com.sun.mail.imap.protocol.ID;
 import com.zdk.mapper.ManifestMapper;
 import com.zdk.pojo.Manifest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,5 +33,22 @@ public class ManifestServiceImpl implements ManifestService{
     @Override
     public int manifestCount() {
         return manifestMapper.manifestCount();
+    }
+
+    @Override
+    public Manifest getManifestById(String manifestId) {
+        return manifestMapper.getManifestById(manifestId);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyManifest(Manifest manifest) {
+        return manifestMapper.modifyManifest(manifest);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int deleteManifest(String manifestId) {
+        return manifestMapper.deleteManifest(manifestId);
     }
 }

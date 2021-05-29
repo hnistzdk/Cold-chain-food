@@ -4,6 +4,7 @@ import com.zdk.pojo.Role;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -38,4 +39,11 @@ public interface RoleService {
      * @return 条数
      */
     int deleteRoles(@Param("id") int id);
+
+    /**
+     *给角色分配权限
+     * @param map
+     * @return 条数
+     */
+    int assignRight(Map map);
 }

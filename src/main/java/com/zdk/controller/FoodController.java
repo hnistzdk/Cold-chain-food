@@ -12,10 +12,7 @@ import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -89,4 +86,17 @@ public class FoodController {
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
+
+    @ApiOperation("获取编辑食品的信息")
+    @RightInfo("gerFoodById")
+    @GetMapping("/foods/{id}")
+    @CrossOrigin
+    public Object getFoodById(@PathVariable Integer id){
+        Food food = foodService.getFoodById(id);
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("data", food);
+        map.put("status", "200");
+        return JSON.toJSONString(map);
+    }
+
 }

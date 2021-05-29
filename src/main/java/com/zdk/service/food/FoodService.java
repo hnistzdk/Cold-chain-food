@@ -56,4 +56,11 @@ public interface FoodService {
      * @return list
      */
     List<Food> fuzzyQueryFood(Map map);
+
+    /**
+     *获取食品信息显示
+     * @param id
+     * @return Food
+     */
+    Food getFoodById(Integer id);
 }

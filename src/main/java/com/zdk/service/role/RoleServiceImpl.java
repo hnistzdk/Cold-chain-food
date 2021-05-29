@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -41,5 +42,11 @@ public class RoleServiceImpl implements RoleService{
     @Override
     public int deleteRoles(int id) {
         return roleMapper.deleteRoles(id);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int assignRight(Map map) {
+        return roleMapper.assignRight(map);
     }
 }
