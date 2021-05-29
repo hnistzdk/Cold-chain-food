@@ -232,7 +232,7 @@ export default {
       const {data : res} = await this.$http.post('getManifest',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
-        return this.$message.error('获取订单列表失败!')
+        return this.$message.error('获取货单列表失败!')
 
       }
       this.orderList = res.data.orderList
@@ -269,7 +269,7 @@ export default {
       const {data : res} = await this.$http.get('manifests/'+id)
       this.editForm = res.data
       if(res.meta.status !== "200")
-        return this.$message.error('查询食品信息失败!')
+        return this.$message.error('查询货单信息失败!')
 
       this.editDialogVisible = true
     },
@@ -281,8 +281,8 @@ export default {
         const {data:res} =
           await this.$http.post('modifyFood'+qs.stringify(this.editForm))
         if(res.meta.status !== "200")
-          return this.$message.error('修改分类信息失败!')
-        this.$message.success('修改分类信息成功!')
+          return this.$message.error('修改货单信息失败!')
+        this.$message.success('修改货单信息成功!')
         this.editDialogVisible = false
         await this.getOrderList()
 
@@ -290,7 +290,7 @@ export default {
     },
     //删除分类
     async removeUserById(id){
-      const confirmResult = await this.$confirm('此操作将永久删除该分类, 是否继续?', '提示', {
+      const confirmResult = await this.$confirm('此操作将永久删除该货单, 是否继续?', '提示', {
         confirmButtonText: '确定',
         cancelButtonText: '取消',
         type: 'warning'
@@ -303,9 +303,9 @@ export default {
       }
       const {data : res} = await  this.$http.post('deleteFood/'+id)
       if(res.meta.status !== "200")
-        this.$message.error('删除食品失败!')
+        this.$message.error('删除货单失败!')
       else
-        this.$message.success('删除食品成功!')
+        this.$message.success('删除货单成功!')
 
       //重置表单
       await  this.getOrderList()
