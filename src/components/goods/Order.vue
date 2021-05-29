@@ -138,7 +138,7 @@ export default {
     return{
       //分页以及查询参数
       queryInfo:{
-        query:null,
+        query:'',
         pageNum:1,
         pageSize:5
       },
