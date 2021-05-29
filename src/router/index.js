@@ -15,6 +15,7 @@ import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
 import Order from "../components/goods/Order";
+import Risk from "../components/riskMonitor/Risk";
 Vue.use(Router)
 
 const router=new  Router({
@@ -35,7 +36,8 @@ const router=new  Router({
         {path:'/rights',component:Right },
         {path:'/categories',component:Cate },
         {path:'/goods',component:List },
-        {path:'/orders',component:Order }
+        {path:'/orders',component:Order },
+        {path:'/risk',component:Risk }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
@@ -51,7 +53,6 @@ router.beforeEach((to,form,next)=>{
   if(to.path=='/hello') return next();
   if(to.path=='/login') return next();
   if(to.path=='/register') return next();
-  if(to.path=='/check') return next();
   //获取token,如果token存在，则允许跳转至home页，否则回退回login页面
   const tokenStr = window.sessionStorage.getItem('token')
   if(!tokenStr) return next('/login')

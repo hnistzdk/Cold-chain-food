@@ -169,6 +169,7 @@ export default {
         //收货人id
         consigneeId:''
       },
+      editForm:{},
       addFormRules:{
         manifestId: [
           {required:true,message:'请输入货单号',trigger:'blur'}
@@ -202,7 +203,7 @@ export default {
         ]
 
       },
-      editForm:{
+      editFormRules:{
         manifestId: [
           {required:true,message:'请输入货单号',trigger:'blur'}
         ],
@@ -216,10 +217,8 @@ export default {
           {required:true,message:'请输入到达站点',trigger:'blur'}
         ],
 
-      },
-      editFormRules:{
-
       }
+
 
 
     }

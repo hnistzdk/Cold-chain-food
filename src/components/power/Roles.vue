@@ -65,7 +65,6 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
@@ -75,7 +74,6 @@
           <el-checkbox  v-for="item in rightsList" :label="item.rightName" :key="item.id"
                        @change="item.checked=!item.checked"></el-checkbox>
         </el-checkbox-group>
-
 
         <span slot="footer" class="dialog-footer">
           <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
@@ -225,8 +223,14 @@ export default {
     async allotRights(){
 
       console.log(this.rightsList)
+      let right="";
+      for (let i = 0; i < this.rightsList.length; i++) {
+        if(this.rightsList[i].checked==true){
+          right+=this.rightsList[i].id+",";
+        }
+      }
       const {data:res}= await this.$http.post(`roles/${this.Id}/rights`,
-        {rightList:this.rightsList})
+        qs.stringify({rightList:right}))
       console.log(res)
       if(res.meta.status !== "200"){
         return this.$message.error('分配权限失败')
