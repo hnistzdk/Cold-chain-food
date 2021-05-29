@@ -10,13 +10,16 @@
             flushInterval="60000"
             size="512"
             readOnly="true"/>
-    <select id="queryManifest" resultType="Manifest">
+    <select id="queryManifest" resultType="Manifest" parameterType="map">
         select * from tb_manifest
-        <where>
-            <if test="manifestId!=null">
-                tb_manifest.manifest_id=#{manifestId}
-            </if>
-        </where>
+<!--        <where>-->
+<!--            <if test="query!=null">-->
+<!--                tb_manifest.manifest_id=#{query}-->
+<!--            </if>-->
+<!--        </where>-->
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
     </select>
 
     <insert id="addManifest" parameterType="Manifest">
@@ -24,4 +27,8 @@
                                  travel_status, arrived_point, consignor_id, consignee_id)
         values (#{manifestId},#{foodId},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{arrivedPoint},#{consignorId},#{consigneeId});
     </insert>
+
+    <select id="manifestCount" resultType="int">
+        select count(*) from tb_manifest
+    </select>
 </mapper>
