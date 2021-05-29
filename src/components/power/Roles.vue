@@ -76,6 +76,7 @@
                        @change="item.checked=!item.checked"></el-checkbox>
         </el-checkbox-group>
 
+
         <span slot="footer" class="dialog-footer">
           <el-button @click="showSetRightDialogVisible = false">取 消</el-button>
           <el-button type="primary" @click="allotRights">确 定</el-button>
