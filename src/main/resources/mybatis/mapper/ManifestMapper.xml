@@ -23,9 +23,9 @@
     </select>
 
     <insert id="addManifest" parameterType="Manifest">
-        insert into tb_manifest (manifest_id, food_id, consignor_name, consignee_name, starting_site, received_site,
+        insert into tb_manifest (manifest_id, food_id,food_name, consignor_name, consignee_name, starting_site, received_site,
                                  travel_status, arrived_point, consignor_id, consignee_id)
-        values (#{manifestId},#{foodId},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{arrivedPoint},#{consignorId},#{consigneeId});
+        values (#{manifestId},#{foodId},#{foodName},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{arrivedPoint},#{consignorId},#{consigneeId});
     </insert>
 
     <select id="manifestCount" resultType="int">
@@ -45,4 +45,15 @@
     <delete id="deleteManifest">
         delete from tb_manifest where manifest_id=#{manifestId}
     </delete>
+
+    <select id="getAllFoodName" resultType="SelectFoodMeta">
+        select id as foodId,food_name
+        from tb_food;
+    </select>
+
+<!--    获取所有储存站点的id和所在地区-->
+    <select id="getAllStorageName" resultType="Storage">
+        select storage_id,storage_area
+        from tb_storage;
+    </select>
 </mapper>

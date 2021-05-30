@@ -20,6 +20,8 @@ public class Manifest {
     private String manifestId;
     @ApiModelProperty("食品id")
     private Integer foodId;
+    @ApiModelProperty("食品名称")
+    private String foodName;
     @ApiModelProperty("发货人姓名")
     private String consignorName;
     @ApiModelProperty("收货人姓名")

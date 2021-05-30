@@ -1,6 +1,8 @@
 package com.zdk.mapper;
 
+import com.zdk.dto.SelectFoodMeta;
 import com.zdk.pojo.Manifest;
+import com.zdk.pojo.Storage;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -54,4 +56,16 @@ public interface ManifestMapper {
      * @return int
      */
     int deleteManifest(String manifestId);
+
+    /**
+     * 下拉框获取所有食品名称数据源
+     * @return int
+     */
+    List<SelectFoodMeta> getAllFoodName();
+
+    /**
+     * 下拉框获取所有储存站点名称数据源
+     * @return int
+     */
+    List<Storage> getAllStorageName();
 }

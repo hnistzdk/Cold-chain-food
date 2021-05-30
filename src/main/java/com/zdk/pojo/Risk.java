@@ -20,10 +20,14 @@ public class Risk {
     private Integer recordId;
     @ApiModelProperty("食品id")
     private Integer foodId;
+    @ApiModelProperty("食品名称")
+    private String foodName;
     @ApiModelProperty("货单码")
     private String manifestId;
     @ApiModelProperty("途径地区")
     private String pathway;
     @ApiModelProperty("风险等级")
     private Integer riskDegree;
+    @ApiModelProperty("是否进行了风险检测")
+    private String riskEditor;
 }

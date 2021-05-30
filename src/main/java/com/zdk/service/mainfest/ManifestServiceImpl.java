@@ -1,8 +1,10 @@
 package com.zdk.service.mainfest;
 
 import com.sun.mail.imap.protocol.ID;
+import com.zdk.dto.SelectFoodMeta;
 import com.zdk.mapper.ManifestMapper;
 import com.zdk.pojo.Manifest;
+import com.zdk.pojo.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,5 +52,15 @@ public class ManifestServiceImpl implements ManifestService{
     @Override
     public int deleteManifest(String manifestId) {
         return manifestMapper.deleteManifest(manifestId);
+    }
+
+    @Override
+    public List<SelectFoodMeta> getAllFoodName() {
+        return manifestMapper.getAllFoodName();
+    }
+
+    @Override
+    public List<Storage> getAllStorageName() {
+        return manifestMapper.getAllStorageName();
     }
 }

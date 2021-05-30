@@ -1,9 +1,12 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.sun.swing.internal.plaf.metal.resources.metal;
 import com.zdk.dto.Meta;
+import com.zdk.dto.SelectFoodMeta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Manifest;
+import com.zdk.pojo.Storage;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.UUIDUtil;
@@ -39,10 +42,14 @@ public class ManifestController {
         params.put("pageSize",pageSize);
         params.put("query", query);
         List<Manifest> orderList= manifestService.queryManifest(params);
+        List<SelectFoodMeta> allFoodName = manifestService.getAllFoodName();
+        List<Storage> allStorageName = manifestService.getAllStorageName();
         int total=manifestService.manifestCount();
         if(orderList!=null){
             msg.put("status", "200");
             data.put("orderList", orderList.toArray());
+            data.put("foodList", allFoodName.toArray());
+            data.put("arrivedPointList", allStorageName.toArray());
             if(query==null){
                 data.put("total", total);
             }else {

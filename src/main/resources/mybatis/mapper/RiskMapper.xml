@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zdk.mapper.RiskMapper">
+
+    <!--    在当前mapper.xml中使用二级缓存-->
+    <cache
+            eviction="FIFO"
+            flushInterval="60000"
+            size="512"
+            readOnly="true"/>
+
+    <select id="getRiskList" resultType="Risk" parameterType="map">
+        select * from tb_risk
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
+    </select>
+    <select id="getRiskCount" resultType="int">
+        select count(*) from tb_risk
+    </select>
+</mapper>
