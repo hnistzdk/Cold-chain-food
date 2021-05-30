@@ -15,10 +15,12 @@
       <el-form-item label="真实姓名:" prop="username">
         <el-input type="text" v-model="userInfo.trueName" disabled></el-input>
       </el-form-item>
-        <el-radio-group v-model="userInfo.gender" class="radio" prop="gender">
+      <el-form-item label="性别" prop="gender">
+        <el-radio-group v-model="userInfo.gender" class="radio" >
           <el-radio :label="男">男</el-radio>
           <el-radio :label="女">女</el-radio>
         </el-radio-group>
+      </el-form-item>
       <el-form-item label="电话:" prop="tel">
         <el-input type="text" v-model="userInfo.tel"></el-input>
       </el-form-item>

@@ -67,8 +67,8 @@
 
       <el-form-item label="食品名称" prop="foodName">
         <el-select v-model="addForm.foodName"
-
-                   placeholder="请选择食品">
+                   placeholder="请选择食品"
+                    @change="selectModel($event)">
           <el-option
             v-for="item in foodList"
             :key="item.foodId"
@@ -89,21 +89,19 @@
       <el-form-item label="收货地址" prop="receivedSite">
         <el-input v-model="addForm.receivedSite"></el-input>
       </el-form-item>
-<!--      <el-form-item label="运输状态" prop="travelStatus">-->
-<!--        <el-select v-model="value"-->
-<!--                   v-if="value!==''?addForm.travelStatus=value:addForm.travelStatusList=''"-->
-<!--                   placeholder="请选择运输状态">-->
-<!--          <el-option-->
-<!--            v-for="item in travelStatusList"-->
-<!--            :key="item.value"-->
-<!--            :label="item.travelStatus"-->
-<!--            :value="item.value">-->
-<!--          </el-option>-->
-<!--        </el-select>-->
-<!--      </el-form-item>-->
+      <el-form-item label="运输状态" prop="travelStatus">
+        <el-select v-model="addForm.travelStatus"
+                   placeholder="请选择运输状态">
+          <el-option
+            v-for="(item,index) in travelStatusList"
+            :key="index"
+            :label="item.opt"
+            :value="index">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="到达站点" prop="arrivedPoint">
         <el-select v-model="addForm.arrivedPoint"
-
                    placeholder="请选择站点">
           <el-option
             v-for="item in arrivedPointList"
@@ -113,12 +111,6 @@
           </el-option>
         </el-select>
       </el-form-item>
-<!--      <el-form-item label="发货人id" prop="consignorId">-->
-<!--        <el-input v-model="addForm.consignorId"></el-input>-->
-<!--      </el-form-item>-->
-<!--      <el-form-item label="收货人id" prop="consigneeId">-->
-<!--        <el-input v-model="addForm.consigneeId"></el-input>-->
-<!--      </el-form-item>-->
     </el-form>
     <!--      底部区域-->
     <span slot="footer" class="dialog-footer">
@@ -137,14 +129,39 @@
       <el-form-item label="货单号" prop="manifestId">
         <el-input v-model="editForm.manifestId" disabled></el-input>
       </el-form-item>
-      <el-form-item label="食品id" prop="foodId">
-        <el-input v-model="editForm.foodId" disabled></el-input>
+      <el-form-item label="食品名称" prop="foodName">
+        <el-select v-model="editForm.foodName"
+                   placeholder="请选择食品"
+                   @change="selectChangeModel($event)">
+          <el-option
+            v-for="item in foodList"
+            :key="item.foodId"
+            :label="item.foodName"
+            :value="item.foodId">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="运输状态" prop="travelStatus">
-        <el-input v-model="editForm.travelStatus"></el-input>
+        <el-select v-model="editForm.travelStatus"
+                   placeholder="请选择运输状态">
+          <el-option
+            v-for="(item,index) in travelStatusList"
+            :key="index"
+            :label="item.opt"
+            :value="index">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="到达站点" prop="arrivedPoint">
-        <el-input v-model="editForm.arrivedPoint"></el-input>
+        <el-select v-model="editForm.arrivedPoint"
+                   placeholder="请选择站点">
+          <el-option
+            v-for="item in arrivedPointList"
+            :key="item.storageId"
+            :label="item.storageArea"
+            :value="item.storageId">
+          </el-option>
+        </el-select>
       </el-form-item>
 
     </el-form>
@@ -179,7 +196,15 @@ export default {
       //获取食品的列表
       foodList:[],
       arrivedPointList:[],
-      travelStatusList:['未发货','运输中','已收货'],
+      travelStatusList:[
+        {opt:'未发货'},
+        {opt:'已出库'},
+        {opt:'运输中'},
+        {opt:'已送达'},
+        {opt:'已签收'}
+      ],
+
+
       addForm:{
         //货单号
         manifestId:'',
@@ -304,6 +329,9 @@ export default {
         this.addDialogVisible = true
       })
     },
+    selectModel(eh){
+        this.addForm.foodId = this.foodList[eh].foodId
+    },
     async showEdit(id){
       const {data : res} = await this.$http.get('manifests/'+id)
       this.editForm = res.data
@@ -326,6 +354,9 @@ export default {
         await this.getOrderList()
 
       } )
+    },
+    selectChangeModel(eh){
+      this.editForm.foodId = this.foodList[eh].foodId
     },
     //删除分类
     async removeUserById(id){
