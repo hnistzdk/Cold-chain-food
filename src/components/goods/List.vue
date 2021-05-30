@@ -220,6 +220,9 @@ export default {
       const { data:res } = await this.$http.post('getFood',
       qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取食品列表失败!')
       }
       this.foodList = res.data.foodList

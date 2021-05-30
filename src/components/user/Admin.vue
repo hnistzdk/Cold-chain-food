@@ -197,6 +197,9 @@ export default {
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users;

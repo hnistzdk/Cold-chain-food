@@ -54,6 +54,9 @@ export default {
     async getRightsList(){
       const {data: res} = await  this.$http.get("rights/list",{params:this.queryInfo})
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取权限列表失败!')
       }
       this.rightsList=res.data.rightsList

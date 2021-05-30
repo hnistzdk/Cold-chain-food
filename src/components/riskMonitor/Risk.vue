@@ -161,6 +161,9 @@ export default {
       const {data : res} =await this.$http.post('getRiskList',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取货单列表失败!')
       }
       this.riskList = res.data.riskList
