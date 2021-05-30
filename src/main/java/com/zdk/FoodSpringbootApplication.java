@@ -11,7 +11,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableTransactionManagement
 public class FoodSpringbootApplication {
-
     public static void main(String[] args) {
         SpringApplication.run(FoodSpringbootApplication.class, args);
     }
