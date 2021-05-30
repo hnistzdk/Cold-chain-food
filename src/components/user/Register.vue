@@ -7,7 +7,7 @@
       <div class="register_Form">
         <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px"  class="Register_Form">
           <el-form-item label="昵称" prop="username">
-            <el-input  type="username" v-model="RegisterForm.username" ></el-input>
+            <el-input  type="text" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pwd">
             <el-input type="password"  v-model="RegisterForm.pwd"></el-input>

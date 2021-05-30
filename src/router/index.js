@@ -16,6 +16,7 @@ import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
 import Order from "../components/goods/Order";
 import Risk from "../components/riskMonitor/Risk";
+import UserCenter from "../components/Center/UserCenter";
 Vue.use(Router)
 
 const router=new  Router({
@@ -37,7 +38,8 @@ const router=new  Router({
         {path:'/categories',component:Cate },
         {path:'/goods',component:List },
         {path:'/orders',component:Order },
-        {path:'/risk',component:Risk }
+        {path:'/risk',component:Risk },
+        {path:'/center',component:UserCenter }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
