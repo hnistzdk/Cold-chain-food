@@ -10,5 +10,12 @@
             flushInterval="60000"
             size="512"
             readOnly="true"/>
-
+    <select id="getStorage" resultType="Storage">
+        select * from tb_storage
+        <where>
+            <if test="id!=null">
+                tb_storage.storage_id=#{id}
+            </if>
+        </where>
+    </select>
 </mapper>
