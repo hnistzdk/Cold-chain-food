@@ -32,6 +32,7 @@ public class RightInterceptor implements HandlerInterceptor {
         System.out.println("拦截器中获取的权限集合:"+request.getSession().getAttribute("functions"));
         AdminAndUser admin=(AdminAndUser)request.getSession().getAttribute("admin");
         System.out.println("拦截器中获取的用户"+admin);
+//        if(admin!=null&&rights!=null)
         if(admin!=null&&rights!=null){
             if(handler instanceof HandlerMethod){
                 HandlerMethod handlerMethod=(HandlerMethod) handler;

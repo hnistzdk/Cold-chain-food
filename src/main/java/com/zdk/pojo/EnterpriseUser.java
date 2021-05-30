@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class EnterpriseUser {
+public class EnterpriseUser extends AdminAndUser{
     private String id;
     private String username;
     private String pwd;
@@ -24,4 +24,5 @@ public class EnterpriseUser {
     private String lastLoginTime;
     private int loginTimes;
     private String role;
+    private Integer roleId;
 }

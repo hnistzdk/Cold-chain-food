@@ -7,7 +7,11 @@ import com.zdk.dto.EnterpriseMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.EnterpriseUser;
+import com.zdk.pojo.Right;
+import com.zdk.pojo.Role;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
+import com.zdk.service.right.RightService;
+import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.DateConversion;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.UUIDUtil;
@@ -18,6 +22,8 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,12 +39,46 @@ public class EnterpriseUserController {
     @Qualifier("EnterpriseServiceImpl")
     private EnterpriseServiceImpl enterpriseService;
 
+    @Autowired
+    @Qualifier("RightServiceImpl")
+    private RightService rightService;
+
+    @Autowired
+    @Qualifier("RoleServiceImpl")
+    private RoleServiceImpl roleService;
+
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
-    public Object login(String id, String password,String email){
-        EnterpriseUser result= enterpriseService.enterpriseLogin(id, password,email);
+    public Object login(String id, String password, String email, HttpServletRequest request){
+        EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, password,email);
         enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
-        Meta meta = CommonMessage.returnMsg(result);
+        request.getSession().setAttribute("admin", enterpriseUser);
+        request.getSession().setAttribute(enterpriseUser.getId(), enterpriseUser);
+        request.getSession().setAttribute("loginUser", enterpriseUser);
+        //获取用户的角色id
+        Integer roleId =enterpriseUser.getRoleId();
+        //通过用户的角色id获取用户对应的角色对象
+        Role role = roleService.getRoles(roleId).get(0);
+        //获取该种角色的所有的权限id
+        String rightId = role.getRightId();
+        if(rightId!=null){
+            //数据库存储形式是1,2,3
+            String[] rightsId=rightId.split(",");
+            //获取所有的权限,与该角色所拥有的权限id进行匹配
+            List<Right> rights = rightService.getRights(null);
+            List<Right> functions = new ArrayList<>();
+            //把用户所有的权限都添加进集合
+            for (Right right : rights) {
+                for(int i=0;i<rightsId.length;i++){
+                    if(Integer.parseInt(rightsId[i])==right.getId()){
+                        functions.add(right);break;
+                    }
+                }
+            }
+            //再把集合放入session
+            request.getSession().setAttribute("functions", functions);
+        }
+        Meta meta = CommonMessage.returnMsg(enterpriseUser);
         return JSON.toJSONString(meta);
     }
 

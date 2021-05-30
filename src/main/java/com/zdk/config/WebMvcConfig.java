@@ -39,10 +39,13 @@ public class WebMvcConfig implements WebMvcConfigurer {
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
         registry.addInterceptor(rightInterceptor)
-        .excludePathPatterns("/adminLogin","primaryLogin","enterpriseLogin","/sendCode/*","/menus");
-
-        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
-                .excludePathPatterns("/adminLogin","/primaryLogin","/enterpriseLogin","/sendCode/*","/menus")
+        .excludePathPatterns("/adminLogin","/primaryLogin","/enterpriseLogin","/sendCode/*","/menus")
+                .excludePathPatterns("/enterpriseRegister","/enterprisePwdChange")
+                .excludePathPatterns("/primaryRegister","/primaryPwdChange")
                 .excludePathPatterns("/swagger*/**", "/v2/**", "/webjars/**");
+
+//        registry.addInterceptor(loginInterceptor).addPathPatterns("/**")
+//                .excludePathPatterns("/adminLogin","/primaryLogin","/enterpriseLogin","/sendCode/*","/menus")
+//                .excludePathPatterns("/swagger*/**", "/v2/**", "/webjars/**");
     }
 }
