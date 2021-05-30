@@ -68,8 +68,8 @@
       </el-form-item>
       <el-form-item label="风险检测" prop="riskEditor">
         <el-radio-group v-model="addForm.riskEditor">
-          <el-radio :label="已检测">已检测</el-radio>
-          <el-radio :label="未检测">未检测</el-radio>
+          <el-radio :label="'已检测'">已检测</el-radio>
+          <el-radio :label="'未检测'">未检测</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -98,8 +98,8 @@
       </el-form-item>
       <el-form-item label="风险检测" prop="riskEditor">
         <el-radio-group v-model="editForm.riskEditor">
-          <el-radio :label="已检测">已检测</el-radio>
-          <el-radio :label="未检测">未检测</el-radio>
+          <el-radio :label="'已检测'">已检测</el-radio>
+          <el-radio :label="'未检测'">未检测</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -156,9 +156,9 @@ export default {
     this.getRiskList()
   },
   methods:{
-    getRiskList(){
+    async getRiskList(){
       const qs = require('querystring')
-      const {data : res} = this.$http.post('getRiskList',
+      const {data : res} =await this.$http.post('getRiskList',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
         return this.$message.error('获取货单列表失败!')
@@ -236,6 +236,7 @@ export default {
         this.$message.success('删除货单成功!')
 
       //重置表单
+      this.queryInfo.pageNum=1
       await  this.getOrderList()
     },
     addCloseDialog(){

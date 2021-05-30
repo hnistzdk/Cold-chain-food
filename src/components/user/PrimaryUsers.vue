@@ -323,6 +323,8 @@ export default {
       else
         this.$message.success('删除成功!')
       //重置表单
+      this.queryInfo.pagenum=1
+
       await  this.getPrimaryUsersList()
     }
   }

@@ -145,6 +145,7 @@ export default {
       addForm:{
         id:'',
         username:'',
+        password:'',
         gender:'',
         tel:'',
         role:''

@@ -17,8 +17,8 @@
       </el-form-item>
       <el-form-item label="性别" prop="gender">
         <el-radio-group v-model="userInfo.gender" class="radio" >
-          <el-radio :label="男">男</el-radio>
-          <el-radio :label="女">女</el-radio>
+          <el-radio :label="'男'">男</el-radio>
+          <el-radio :label="'女'">女</el-radio>
         </el-radio-group>
       </el-form-item>
       <el-form-item label="电话:" prop="tel">
@@ -93,18 +93,21 @@ export default {
   methods:{
     async getUserInfo(){
       const tokenStr = window.sessionStorage.getItem('token')
-        const {data : res} = this.$http.post('userInfo/'+tokenStr.id)
+        const {data : res} =await this.$http.get('userInfo/'+tokenStr)
         if(res.meta.status !== '200') return this.$message.error('获取用户信息失败!')
         this.userInfo = res.data.userInfo
       },
-    editUserInfo(){
+    async editUserInfo(){
       this.$refs.userInfoRef.validate(async valid =>{
+        const id = window.sessionStorage.getItem('token')
         if(!valid) return
-        const {data : res} = this.$http.post('editUserInfo/'+tokenStr.id,
-        qs.stringify(this.userInfo))
-        if(res.meta.status !== '200') return this.$message.error('修改用户信息失败!')
-        this.userInfo = res.data.userInfo
-        await this.getUserInfo()
+        const {data : res} =await this.$http.post('editUserInfo/'+id, qs.stringify(this.userInfo))
+        if(res.meta.status !== "200") return this.$message.error('修改用户信息失败!')
+        else{
+          this.$message.success("保存成功")
+          await this.getUserInfo()
+        }
+
       })
     }
     },

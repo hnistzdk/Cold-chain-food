@@ -313,6 +313,7 @@ export default {
         this.$message.error('删除食品失败!')
       else
         this.$message.success('删除食品成功!')
+      this.queryInfo.pageNum = 1
 
       //重置表单
       await  this.getFoodList()

@@ -234,6 +234,7 @@ export default {
         this.$message.success('删除分类成功!')
 
       //重置表单
+      this.queryInfo.pageNum=1
       await  this.getCateList()
     }
   },
