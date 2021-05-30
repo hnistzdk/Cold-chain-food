@@ -25,6 +25,7 @@
     <el-table :data="orderList"  border stripe>
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column label="货单号" prop="manifestId"></el-table-column>
+      <el-table-column label="食品名称" prop="foodName"></el-table-column>
       <el-table-column label="发货人姓名" prop="consignorName"></el-table-column>
       <el-table-column label="收货人姓名" prop="consigneeName"></el-table-column>
       <el-table-column label="发货地址" prop="startingSite"></el-table-column>
@@ -66,6 +67,18 @@
       <el-form-item label="食品id" prop="foodId">
         <el-input v-model="addForm.foodId"></el-input>
       </el-form-item>
+      <el-form-item label="食品名称" prop="foodName">
+        <el-select v-model="value"
+                   v-if="value!=''?addForm.foodName=value:addForm.foodName=''"
+                   placeholder="请选择食品">
+          <el-option
+            v-for="item in foodList"
+            :key="item.foodId"
+            :label="item.foodName"
+            :value="item.foodId">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="发货人姓名" prop="consignorName">
         <el-input v-model="addForm.consignorName"></el-input>
       </el-form-item>
@@ -79,10 +92,28 @@
         <el-input v-model="addForm.receivedSite"></el-input>
       </el-form-item>
       <el-form-item label="运输状态" prop="travelStatus">
-        <el-input v-model="addForm.travelStatus"></el-input>
+        <el-select v-model="value"
+                   v-if="value!==''?addForm.travelStatus=value:addForm.travelStatusList=''"
+                   placeholder="请选择运输状态">
+          <el-option
+            v-for="item in travelStatusList"
+            :key="item.value"
+            :label="item.travelStatus"
+            :value="item.value">
+          </el-option>
+        </el-select>
       </el-form-item>
       <el-form-item label="到达站点" prop="arrivedPoint">
-        <el-input v-model="addForm.arrivedPoint"></el-input>
+        <el-select v-model="value"
+                   v-if="value!==''?addForm.arrivedPoint=value:addForm.arrivedPoint=''"
+                   placeholder="请选择站点">
+          <el-option
+            v-for="item in arrivedPointList"
+            :key="item.storageId"
+            :label="item.arrivedPoint"
+            :value="item.storageId">
+          </el-option>
+        </el-select>
       </el-form-item>
 <!--      <el-form-item label="发货人id" prop="consignorId">-->
 <!--        <el-input v-model="addForm.consignorId"></el-input>-->
@@ -147,11 +178,17 @@ export default {
       editDialogVisible:false,
       //获取订单的列表
       orderList:[],
+      //获取食品的列表
+      foodList:[],
+      arrivedPointList:[],
+      travelStatusList:['未发货','运输中','已收货'],
       addForm:{
         //货单号
         manifestId:'',
         //食品id
         foodId:'',
+        //食品名称
+        foodName:'',
         //发货人姓名
         consignorName:'',
         //收货人姓名
@@ -234,9 +271,11 @@ export default {
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
         return this.$message.error('获取货单列表失败!')
-
       }
       this.orderList = res.data.orderList
+      this.foodList = res.data.foodList
+      this.travelStatusList = res.data.travelStatusList
+      this.arrivedPointList = res.data.arrivedPointList
       this.total = res.data.total
     },
     // 查询订单调用函数

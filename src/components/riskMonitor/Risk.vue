@@ -87,7 +87,7 @@
     width="30%" >
     <!--      内容主体区域-->
     <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
-      <el-form-item label="食品id" prop="foodId">
+      <el-form-item label="食品id" prop="foodName">
         <el-input v-model="editForm.foodName" disabled></el-input>
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
