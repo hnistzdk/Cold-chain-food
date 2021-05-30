@@ -64,12 +64,10 @@
 <!--      <el-form-item label="货单号" prop="manifestId">-->
 <!--        <el-input v-model="addForm.manifestId"></el-input>-->
 <!--      </el-form-item>-->
-      <el-form-item label="食品id" prop="foodId">
-        <el-input v-model="addForm.foodId"></el-input>
-      </el-form-item>
+
       <el-form-item label="食品名称" prop="foodName">
-        <el-select v-model="value"
-                   v-if="value!=''?addForm.foodName=value:addForm.foodName=''"
+        <el-select v-model="addForm.foodName"
+
                    placeholder="请选择食品">
           <el-option
             v-for="item in foodList"
@@ -91,26 +89,26 @@
       <el-form-item label="收货地址" prop="receivedSite">
         <el-input v-model="addForm.receivedSite"></el-input>
       </el-form-item>
-      <el-form-item label="运输状态" prop="travelStatus">
-        <el-select v-model="value"
-                   v-if="value!==''?addForm.travelStatus=value:addForm.travelStatusList=''"
-                   placeholder="请选择运输状态">
-          <el-option
-            v-for="item in travelStatusList"
-            :key="item.value"
-            :label="item.travelStatus"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
+<!--      <el-form-item label="运输状态" prop="travelStatus">-->
+<!--        <el-select v-model="value"-->
+<!--                   v-if="value!==''?addForm.travelStatus=value:addForm.travelStatusList=''"-->
+<!--                   placeholder="请选择运输状态">-->
+<!--          <el-option-->
+<!--            v-for="item in travelStatusList"-->
+<!--            :key="item.value"-->
+<!--            :label="item.travelStatus"-->
+<!--            :value="item.value">-->
+<!--          </el-option>-->
+<!--        </el-select>-->
+<!--      </el-form-item>-->
       <el-form-item label="到达站点" prop="arrivedPoint">
-        <el-select v-model="value"
-                   v-if="value!==''?addForm.arrivedPoint=value:addForm.arrivedPoint=''"
+        <el-select v-model="addForm.arrivedPoint"
+
                    placeholder="请选择站点">
           <el-option
             v-for="item in arrivedPointList"
             :key="item.storageId"
-            :label="item.arrivedPoint"
+            :label="item.storageArea"
             :value="item.storageId">
           </el-option>
         </el-select>
@@ -294,6 +292,7 @@ export default {
     },
     //添加货单
     async addOrder(){
+      console.log(this.addForm)
       this.$refs.addFormRef.validate(async valid=>{
         if(!valid) return
         const {data : res} = await this.$http.post('addManifest',

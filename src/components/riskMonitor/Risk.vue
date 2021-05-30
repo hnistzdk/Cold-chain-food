@@ -24,9 +24,7 @@
     <el-table :data="riskList"  border stripe>
       <el-table-column type="index" label="#"></el-table-column>
       <el-table-column label="食品名称"  prop="foodName"></el-table-column>
-      <el-table-column label="风险等级"  prop="riskDegree">
-
-      </el-table-column>
+      <el-table-column label="风险等级"  prop="riskDegree"></el-table-column>
       <el-table-column label="风险检测"  prop="riskEditor"></el-table-column>
       <el-table-column label="操作" width="200px">
         <template slot-scope="scope">
@@ -68,9 +66,9 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="风险检测" prop="riskEditor">
-        <el-radio-group v-model="addForm.riskDegree">
+        <el-radio-group v-model="addForm.riskEditor">
           <el-radio :label="1">已检测</el-radio>
-          <el-radio :label="2">未检测</el-radio>
+          <el-radio :label="0">未检测</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -98,9 +96,9 @@
         </el-radio-group>
       </el-form-item>
       <el-form-item label="风险检测" prop="riskEditor">
-        <el-radio-group v-model="editForm.riskDegree">
+        <el-radio-group v-model="editForm.riskEditor">
           <el-radio :label="1">已检测</el-radio>
-          <el-radio :label="2">未检测</el-radio>
+          <el-radio :label="0">未检测</el-radio>
         </el-radio-group>
       </el-form-item>
     </el-form>
@@ -157,14 +155,16 @@ export default {
     this.getRiskList()
   },
   methods:{
-    getRiskList(){
+    async getRiskList(){
       const qs = require('querystring')
-      const {data : res} = this.$http.post('getRiskList',
+      const {data : res} =await this.$http.post('getRiskList',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
         return this.$message.error('获取货单列表失败!')
       }
+      console.log(res.data)
       this.riskList = res.data.riskList
+      console.log(this.riskList)
       this.total = res.data.total
 
     },
