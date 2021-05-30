@@ -1,5 +1,6 @@
 package com.zdk.service.admin;
 
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.pojo.AdminAndUser;
 import org.apache.ibatis.annotations.Param;
@@ -65,5 +66,12 @@ public interface AdminService {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
+
+    /**
+     *修改管理员个人信息
+     * @param  user
+     * @return 返回类型条数
+     */
+    int editUserInfo(AddUserMeta user);
 }
 

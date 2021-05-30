@@ -1,6 +1,7 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
@@ -15,6 +16,7 @@ import com.zdk.utils.CommonMessage;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.annotation.CreatedBy;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
@@ -51,6 +53,7 @@ public class AdminController {
         //根据用户id查到该用户角色,然后查到对应的权限,把权限放入session
         //权限需要在访问的不同的方法的时候不断在拦截器中判断是否具有权限,所以放入session
         request.getSession().setAttribute("admin", admin);
+        request.getSession().setAttribute(admin.getId(), admin);
         request.getSession().setAttribute("loginUser", admin);
         //获取用户的角色id
         Integer roleId =admin.getRoleId();
@@ -124,5 +127,38 @@ public class AdminController {
         meta.put("status", "200");
         return meta;
     }
+
+    @RightInfo("")
+    @GetMapping("/userInfo/{id}")
+    @CrossOrigin
+    public Object userInfo(@PathVariable String id,HttpServletRequest request){
+        System.out.println("id:"+id);
+        AdminAndUser user = (AdminAndUser) request.getSession().getAttribute(id);
+        System.out.println("user:"+user);
+        HashMap<Object, Object> data = new HashMap<>();
+        HashMap<Object, Object> msg = new HashMap<>();
+        if(user!=null){
+            data.put("userInfo", user);
+            msg.put("status", "200");
+        }else{
+            msg.put("status", "201");
+        }
+        return JSON.toJSONString(new Meta(msg,data));
+    }
+
+    @RightInfo("")
+    @PostMapping("/editUserInfo/{id}")
+    @CrossOrigin
+    public Object editUserInfo(AddUserMeta user,HttpServletRequest request){
+        System.out.println("user:"+user);
+        int count = adminService.editUserInfo(user);
+        AdminAndUser xxx = (AdminAndUser) request.getSession().getAttribute(user.getId());
+        AdminAndUser admin= adminService.adminLogin(user.getId(), xxx.getPwd());
+        request.getSession().setAttribute("admin", admin);
+        request.getSession().setAttribute(admin.getId(), admin);
+        request.getSession().setAttribute("loginUser", admin);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+    }
+
 
 }

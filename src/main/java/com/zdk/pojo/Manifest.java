@@ -32,6 +32,8 @@ public class Manifest {
     private String receivedSite;
     @ApiModelProperty("运输状态")
     private String travelStatus;
+    @ApiModelProperty("站点id")
+    private Integer storageId;
     @ApiModelProperty("到达站点")
     private String arrivedPoint;
     @ApiModelProperty("发货人id")

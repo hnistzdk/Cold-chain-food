@@ -1,6 +1,7 @@
 package com.zdk.utils;
 
 import com.zdk.dto.Meta;
+import com.zdk.pojo.AdminAndUser;
 
 import java.util.HashMap;
 
@@ -13,9 +14,10 @@ public class CommonMessage {
     public static Meta returnMsg(Object result){
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, String> map1 = new HashMap<>();
+        AdminAndUser user= (AdminAndUser) result;
         if(result!=null){
             map.put("status","200");
-            map1.put("token", UUIDUtil.getUUID());
+            map1.put("token", user.getId());
         }else {
             map.put("status","404");
         }

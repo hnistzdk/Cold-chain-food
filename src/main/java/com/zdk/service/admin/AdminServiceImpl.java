@@ -1,5 +1,6 @@
 package com.zdk.service.admin;
 
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.mapper.AdminMapper;
 import com.zdk.pojo.AdminAndUser;
@@ -62,5 +63,11 @@ public class AdminServiceImpl implements AdminService{
     @Override
     public int updateLoginInfo(String id, String date) {
         return adminMapper.updateLoginInfo(id, date);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int editUserInfo(AddUserMeta user) {
+        return adminMapper.editUserInfo(user);
     }
 }

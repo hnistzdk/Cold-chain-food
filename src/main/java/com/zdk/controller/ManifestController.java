@@ -5,9 +5,12 @@ import com.sun.swing.internal.plaf.metal.resources.metal;
 import com.zdk.dto.Meta;
 import com.zdk.dto.SelectFoodMeta;
 import com.zdk.interceptor.RightInfo;
+import com.zdk.pojo.Food;
 import com.zdk.pojo.Manifest;
 import com.zdk.pojo.Storage;
+import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.mainfest.ManifestServiceImpl;
+import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.UUIDUtil;
 import org.apache.ibatis.annotations.Param;
@@ -27,6 +30,13 @@ public class ManifestController {
     @Autowired
     @Qualifier("ManifestServiceImpl")
     ManifestServiceImpl manifestService;
+    @Autowired
+    @Qualifier("StorageServiceImpl")
+    StorageServiceImpl storageService;
+
+    @Autowired
+    @Qualifier("FoodServiceImpl")
+    private FoodServiceImpl foodService;
 
     @RightInfo("getManifest")
     @PostMapping("/getManifest")
@@ -65,6 +75,8 @@ public class ManifestController {
     @PostMapping("/addManifest")
     @CrossOrigin
     public Object addManifest(Manifest manifest){
+        manifest.setArrivedPoint(storageService.getStorage(manifest.getStorageId()).get(0).getStorageArea());
+        manifest.setFoodName(foodService.getFoodById(manifest.getFoodId()).getFoodName());
         manifest.setManifestId(UUIDUtil.getUUID(10));
         int count = manifestService.addManifest(manifest);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -89,6 +101,11 @@ public class ManifestController {
     @PostMapping("/modifyManifest")
     @CrossOrigin
     public Object modifyManifest(Manifest manifest){
+        Food food = foodService.getFoodById(manifest.getFoodId());
+        manifest.setFoodName(food.getFoodName());
+        System.out.println("manifest"+manifest);
+        List<Storage> storage = storageService.getStorage(manifest.getStorageId());
+        manifest.setArrivedPoint(storage.get(0).getStorageArea());
         int count = manifestService.modifyManifest(manifest);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }

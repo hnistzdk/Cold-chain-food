@@ -1,5 +1,6 @@
 package com.zdk.mapper;
 
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.EditMeta;
 import com.zdk.pojo.AdminAndUser;
@@ -84,9 +85,9 @@ public interface AdminMapper {
     EditMeta showAdminUser(String id);
 
     /**
-     *修改管理员用户信息
-     * @param  user:编辑企业用户对象
-     * @return 返回修改条数
+     *修改管理员个人信息
+     * @param  user
+     * @return 返回类型条数
      */
-    int modifyAdminUser(EditMeta user);
+    int editUserInfo(AddUserMeta user);
 }

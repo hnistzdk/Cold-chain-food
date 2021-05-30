@@ -1,8 +1,11 @@
 package com.zdk.service.storage;
 
 import com.zdk.mapper.StorageMapper;
+import com.zdk.pojo.Storage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @author zdk
@@ -12,4 +15,9 @@ import org.springframework.stereotype.Service;
 public class StorageServiceImpl implements StorageService{
     @Autowired
     StorageMapper storageMapper;
+
+    @Override
+    public List<Storage> getStorage(Integer id) {
+        return storageMapper.getStorage(id);
+    }
 }
