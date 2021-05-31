@@ -34,4 +34,9 @@ public class StorageServiceImpl implements StorageService{
     public int modifyStorage(Storage storage) {
         return storageMapper.modifyStorage(storage);
     }
+
+    @Override
+    public int getStorageCount() {
+        return storageMapper.getStorageCount();
+    }
 }

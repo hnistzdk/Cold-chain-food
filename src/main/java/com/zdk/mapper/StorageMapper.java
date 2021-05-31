@@ -34,4 +34,10 @@ public interface StorageMapper {
      * @return int
      */
     int modifyStorage(Storage storage);
+
+    /**
+     *获取信息条数
+     * @return int
+     */
+    int getStorageCount();
 }

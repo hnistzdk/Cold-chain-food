@@ -39,9 +39,14 @@ public class StorageController {
         params.put("pageNum", (pageNum-1)*pageSize);
         params.put("pageSize", pageSize);
         List<Storage> storageList = storageService.getStorage(params);
+        int total = storageService.getStorageCount();
+        if(query!=null){
+            total=1;
+        }
         if(storageList!=null){
             msg.put("status", "200");
-            data.put("storageList",storageList);
+            data.put("siteList",storageList.toArray());
+            data.put("total",total);
         }else{
             msg.put("status", "201");
         }
@@ -52,18 +57,17 @@ public class StorageController {
     @PostMapping("/showStorage/{id}")
     @CrossOrigin
     public Object showStorage(@PathVariable Integer id){
-        HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
         HashMap params=new HashMap<>();
         params.put("id", id);
         List<Storage> storageList = storageService.getStorage(params);
         if(storageList!=null){
-            msg.put("status", "200");
-            data.put("storageList",storageList.get(0));
+            data.put("status", "200");
+            data.put("data",storageList.get(0));
         }else{
-            msg.put("status", "201");
+            data.put("status", "201");
         }
-        return JSON.toJSONString(new Meta(msg, data));
+        return JSON.toJSONString(data);
     }
 
     @RightInfo("modifyStorage")
