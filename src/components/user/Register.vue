@@ -65,13 +65,14 @@ export  default {
         callback();
       }
     };
-    const checkEmail = (rule, value, cb) => {
-      if (this.verification.test(value)) {
+    const checkCode = (rule, value, cb) => {
+      const regCode = this.verification
+      if (regCode === value) {
         return cb()
       }
       cb(new Error('请输入正确的验证码'))
     };
-    const checkCode =(rule, value, cb) => {
+    const checkEmail =(rule, value, cb) => {
       const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
         return cb()
