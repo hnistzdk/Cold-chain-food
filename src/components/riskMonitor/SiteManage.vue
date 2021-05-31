@@ -8,6 +8,15 @@
   </el-breadcrumb>
 <!--  卡片区域-->
   <el-card>
+    <!--    查询框布局区域-->
+    <!--    查询框布局区域-->
+    <el-row :gutter="20">
+      <el-col :span="6">
+        <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getAdminList()">
+          <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
+        </el-input>
+      </el-col>
+    </el-row>
 <!--    站点列表区域-->
     <!--    分类列表区域-->
     <el-table :data="siteList"  border stripe>
@@ -29,6 +38,16 @@
         </template>
       </el-table-column>
     </el-table>
+    <!--    分页区-->
+    <el-pagination
+      @size-change="handleSizeChange"
+      @current-change="handleCurrentChange"
+      :current-page="queryInfo.pageNum"
+      :page-sizes="[2,5,10,15]"
+      :page-size="queryInfo.pageSize"
+      layout="total, sizes, prev, pager, next, jumper"
+      :total="total">
+    </el-pagination>
   </el-card>
   <!--    修改食品的对话框-->
   <el-dialog
