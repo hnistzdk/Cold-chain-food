@@ -70,9 +70,9 @@
                   @change="selectModel($event)">
           <el-option
             v-for="item in categoryList"
-            :key="item.categoryId"
+            :key="item.id"
             :label="item.categoryName"
-            :value="item.categoryId">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -137,9 +137,9 @@
                     @change="selectChangeModel($event)">
           <el-option
             v-for="item in categoryList"
-            :key="item.categoryId"
+            :key="item.id"
             :label="item.categoryName"
-            :value="item.categoryId">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -216,7 +216,7 @@ export default {
       addForm:{
         foodName:'',
         foodCategory:'',
-        categoryId:'',
+        id:'',
         productionDate:'',
         expiryDate:'',
         address:'',
@@ -391,11 +391,11 @@ export default {
     },
     //改变编辑表单的cateName时，cateId也随之改变
     selectChangeModel(eh){
-      this.editForm.categoryId = this.categoryList[eh].categoryId
+      this.editForm.id = this.categoryList[eh].id
     },
     //改变添加表单的cateName时，cateId也随之改变
     selectModel(eh){
-      this.addForm.categoryId = this.categoryList[eh].categoryId
+      this.addForm.id = this.categoryList[eh].id
     }
   }
 }

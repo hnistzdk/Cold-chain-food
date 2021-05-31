@@ -22,9 +22,9 @@
       <el-table-column label="操作" width="200px">
         <template slot-scope="scope">
           <!--          编辑按钮-->
-          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
+          <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.storageId)"></el-button>
           <!--          删除按钮-->
-          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
+          <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.storageId)"></el-button>
 
         </template>
       </el-table-column>
@@ -107,9 +107,9 @@ export default {
   },
   methods:{
     async getSiteList(){
-     const {data : res} = this.$http.post('getStorage',
+     const {data : res} =await this.$http.post('getStorage',
        qs.stringify(this.queryInfo))
-      if(res.meta.status !== 200)
+      if(res.meta.status !== "200")
         return this.$message.error('获取站点信息失败!')
       this.siteList = res.data.siteList
       this.total = res.data.total
@@ -146,7 +146,7 @@ export default {
     editSite(){
       this.$refs.editFormRef.validate(async valid=>{
         if(!valid) return
-        console.log(this.editForm.id)
+        console.log(this.editForm.storageId)
         const {data:res} =
           await this.$http.post('modifyStorage',qs.stringify(this.editForm))
         if(res.meta.status !== "200")

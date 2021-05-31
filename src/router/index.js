@@ -41,7 +41,7 @@ const router=new  Router({
         {path:'/orders',component:Order },
         {path:'/risk',component:Risk },
         {path:'/center',component:UserCenter },
-        {path:'/site',component:siteManage }
+        {path:'/storage',component:siteManage }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
