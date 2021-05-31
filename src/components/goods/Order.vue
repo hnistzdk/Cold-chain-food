@@ -3,8 +3,8 @@
   <!--  面包屑导航栏-->
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>订单管理</el-breadcrumb-item>
-    <el-breadcrumb-item>订单列表</el-breadcrumb-item>
+    <el-breadcrumb-item>货单管理</el-breadcrumb-item>
+    <el-breadcrumb-item>货单列表</el-breadcrumb-item>
   </el-breadcrumb>
 
   <!--卡片区域-->
@@ -17,7 +17,7 @@
           <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
         </el-input></el-col>
       <el-col :span="4">
-        <el-button type="primary" @click="addDialogVisible=true">添加订单</el-button>
+        <el-button type="primary" @click="addDialogVisible=true">添加货单</el-button>
       </el-col>
     </el-row>
 
@@ -93,15 +93,15 @@
         <el-select v-model="addForm.travelStatus"
                    placeholder="请选择运输状态">
           <el-option
-            v-for="(item,index) in travelStatusList"
-            :key="index"
+            v-for="item in travelStatusList"
+            :key="item.opt"
             :label="item.opt"
-            :value="index">
+            :value="item.opt">
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="到达站点" prop="arrivedPoint">
-        <el-select v-model="addForm.arrivedPoint"
+      <el-form-item label="到达站点" prop="storageId">
+        <el-select v-model="addForm.storageId"
                    placeholder="请选择站点">
           <el-option
             v-for="item in arrivedPointList"
@@ -121,7 +121,7 @@
 
   <!--    修改用户的对话框-->
   <el-dialog
-    title="修改用户"
+    title="修改货单"
     :visible.sync="editDialogVisible"
     width="30%" >
     <!--      内容主体区域-->
@@ -145,15 +145,16 @@
         <el-select v-model="editForm.travelStatus"
                    placeholder="请选择运输状态">
           <el-option
-            v-for="(item,index) in travelStatusList"
-            :key="index"
+            v-for="item in travelStatusList"
+            :key="item.opt"
             :label="item.opt"
-            :value="index">
+            :value="item.opt">
           </el-option>
         </el-select>
       </el-form-item>
-      <el-form-item label="到达站点" prop="arrivedPoint">
-        <el-select v-model="editForm.arrivedPoint"
+
+      <el-form-item label="到达站点" prop="storageId">
+        <el-select v-model="editForm.storageId"
                    placeholder="请选择站点">
           <el-option
             v-for="item in arrivedPointList"
@@ -197,11 +198,11 @@ export default {
       foodList:[],
       arrivedPointList:[],
       travelStatusList:[
-        {opt:'未发货'},
-        {opt:'已出库'},
-        {opt:'运输中'},
-        {opt:'已送达'},
-        {opt:'已签收'}
+        {opt:'未发货',value:0},
+        {opt:'已出库',value:1},
+        {opt:'运输中',value:2},
+        {opt:'已送达',value:3},
+        {opt:'已签收',value:4}
       ],
 
 
@@ -293,12 +294,15 @@ export default {
       const {data : res} = await this.$http.post('getManifest',
       qs.stringify(this.queryInfo))
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取货单列表失败!')
       }
       this.orderList = res.data.orderList
       this.foodList = res.data.foodList
-      this.travelStatusList = res.data.travelStatusList
       this.arrivedPointList = res.data.arrivedPointList
+      console.log(this.arrivedPointList)
       this.total = res.data.total
     },
     // 查询订单调用函数
@@ -326,7 +330,7 @@ export default {
           return this.$message.error('添加货单失败!')
         this.$message.success('添加货单成功!')
         await this.getOrderList()
-        this.addDialogVisible = true
+        this.addDialogVisible = false
       })
     },
     selectModel(eh){
@@ -335,13 +339,13 @@ export default {
     async showEdit(id){
       const {data : res} = await this.$http.get('manifests/'+id)
       this.editForm = res.data
+      console.log(this.editForm)
       if(res.status !== "200")
         return this.$message.error('查询货单信息失败!')
-
       this.editDialogVisible = true
     },
 
-    editUser(){
+   async editUser(){
       this.$refs.editFormRef.validate(async valid=>{
         if(!valid) return
         console.log(this.editForm.id)
@@ -378,6 +382,7 @@ export default {
         this.$message.success('删除货单成功!')
 
       //重置表单
+      this.queryInfo.pageNum=1
       await  this.getOrderList()
     },
     addCloseDialog(){

@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+      <el-breadcrumb-item>企业用户列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片区域 -->
     <el-card  class="el-card">
@@ -216,6 +216,9 @@ export default {
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users;
@@ -330,6 +333,7 @@ export default {
       else
         this.$message.success('删除成功!')
       //重置表单
+      this.queryInfo.pagenum=1
       await  this.getEnterpriseList()
     }
   }

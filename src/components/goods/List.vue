@@ -3,8 +3,8 @@
   <!--  面包屑导航栏-->
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>商品管理</el-breadcrumb-item>
-    <el-breadcrumb-item>商品列表</el-breadcrumb-item>
+    <el-breadcrumb-item>食品管理</el-breadcrumb-item>
+    <el-breadcrumb-item>食品列表</el-breadcrumb-item>
   </el-breadcrumb>
   <!--卡片区域-->
   <el-card>
@@ -220,6 +220,9 @@ export default {
       const { data:res } = await this.$http.post('getFood',
       qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取食品列表失败!')
       }
       this.foodList = res.data.foodList
@@ -313,6 +316,7 @@ export default {
         this.$message.error('删除食品失败!')
       else
         this.$message.success('删除食品成功!')
+      this.queryInfo.pageNum = 1
 
       //重置表单
       await  this.getFoodList()

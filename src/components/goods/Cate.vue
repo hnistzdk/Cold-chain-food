@@ -3,8 +3,8 @@
     <!--  面包屑导航栏-->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-      <el-breadcrumb-item>商品管理</el-breadcrumb-item>
-      <el-breadcrumb-item>商品分类</el-breadcrumb-item>
+      <el-breadcrumb-item>食品管理</el-breadcrumb-item>
+      <el-breadcrumb-item>食品分类</el-breadcrumb-item>
     </el-breadcrumb>
     <!--卡片区域-->
     <el-card>
@@ -147,9 +147,12 @@ export default {
     async getCateList(){
       const {data : res}= await this.$http.get('getFoodCategory',
         {params:this.queryInfo})
-      if(res.meta.status !== "200")
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取商品分类失败!')
-
+      }
       //console.log(res.data)
       //把数据列表赋值给cateList
       this.cateList = res.data.foodCategory
@@ -181,6 +184,9 @@ export default {
         const {data : res} = await this.$http.post('addFoodCategory',qs.stringify(this.addCateForm))
 
         if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }
           return this.$message.error('添加分类失败!')
         }
         this.$message.success('添加分类成功!')
@@ -193,9 +199,12 @@ export default {
       const{ data:res } = await this.$http.get("categories/"+id)
       this.editForm = res.data
       console.log(res.data)
-      if(res.status !== "200")
+      if(res.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('查询分类信息失败!')
-
+      }
       this.editDialogVisible = true
     },
     async editUser(){
@@ -234,6 +243,7 @@ export default {
         this.$message.success('删除分类成功!')
 
       //重置表单
+      this.queryInfo.pageNum=1
       await  this.getCateList()
     }
   },

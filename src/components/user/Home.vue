@@ -58,11 +58,12 @@ export default {
       menuList:[],
       //给font里的图标设置一个方法用于调用
       iconsObj:{
-        '125':'iconfont icon-user',
+        '125':'iconfont icon-users',
         '103':'iconfont icon-tijikongjian',
         '101':'iconfont icon-shangpin',
         '102':'iconfont icon-danju',
-        '145':'iconfont icon-baobiao'
+        '147':'iconfont icon-baobiao',
+        '150':'iconfont icon-user'
       },
       isCollapse: false,
       //被激活的链接地址
