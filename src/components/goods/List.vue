@@ -63,6 +63,19 @@
       <el-form-item label="食品名称" prop="foodName">
         <el-input v-model="addForm.foodName"></el-input>
       </el-form-item>
+      <!--      食品类别的下拉框-->
+      <el-form-item label="食品类别" prop="foodCategory">
+        <el-select v-model="addForm.foodCategory"
+                   placeholder="请选择食品类别"
+                  @change="selectModel($event)">
+          <el-option
+            v-for="item in categoryList"
+            :key="item.categoryId"
+            :label="item.categoryName"
+            :value="item.categoryId">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="生产日期" prop="productionDate">
         <el-input v-model="addForm.productionDate"></el-input>
       </el-form-item>
@@ -79,7 +92,11 @@
         <el-input v-model="addForm.phone"></el-input>
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
-        <el-input v-model="addForm.riskDegree"></el-input>
+        <el-radio-group v-model="addForm.riskDegree">
+          <el-radio :label="1">一级</el-radio>
+          <el-radio :label="2">二级</el-radio>
+          <el-radio :label="3">三级</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <!--      底部区域-->
@@ -99,6 +116,19 @@
       <el-form-item label="食品名称" prop="foodName">
         <el-input v-model="editForm.foodName"></el-input>
       </el-form-item>
+<!--      食品类别的下拉框-->
+      <el-form-item label="食品类别" prop="foodCategory">
+        <el-select v-model="editForm.foodCategory"
+                   placeholder="请选择食品类别"
+                    @change="selectChangeModel($event)">
+          <el-option
+            v-for="item in categoryList"
+            :key="item.categoryId"
+            :label="item.categoryName"
+            :value="item.categoryId">
+          </el-option>
+        </el-select>
+      </el-form-item>
       <el-form-item label="生产日期" prop="productionDate">
         <el-input v-model="editForm.productionDate"></el-input>
       </el-form-item>
@@ -116,6 +146,13 @@
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
         <el-input v-model="editForm.riskDegree"></el-input>
+      </el-form-item>
+      <el-form-item label="风险等级" prop="riskDegree">
+        <el-radio-group v-model="editForm.riskDegree">
+          <el-radio :label="1">一级</el-radio>
+          <el-radio :label="2">二级</el-radio>
+          <el-radio :label="3">三级</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
 
@@ -143,12 +180,15 @@ export default {
         pageSize:5
       },
       foodList:[],
+      categoryList:[],
       //获取的食品的总数
       total:0,
       addDialogVisible:false,
       editDialogVisible:false,
       addForm:{
         foodName:'',
+        foodCategory:'',
+        categoryId:'',
         productionDate:'',
         expiryDate:'',
         address:'',
@@ -227,7 +267,9 @@ export default {
       }
       this.foodList = res.data.foodList
       this.total = res.data.total
+      this.categoryList = res.data.categoryList
       console.log(this.foodList)
+      console.log(this.categoryList)
 
     },
     //查询食品调用函数
@@ -320,6 +362,14 @@ export default {
 
       //重置表单
       await  this.getFoodList()
+    },
+    //改变编辑表单的cateName时，cateId也随之改变
+    selectChangeModel(eh){
+      this.editForm.categoryId = this.categoryList[eh].categoryId
+    },
+    //改变添加表单的cateName时，cateId也随之改变
+    selectModel(eh){
+      this.addForm.categoryId = this.categoryList[eh].categoryId
     }
   }
 }
