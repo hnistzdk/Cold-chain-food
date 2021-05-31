@@ -81,7 +81,9 @@
         <el-date-picker
           v-model="addForm.productionDate"
           type="date"
-          placeholder="选择日期">
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
         </el-date-picker>
       </el-form-item>
       <!--     过期时间的时间选择器-->
@@ -89,7 +91,9 @@
         <el-date-picker
           v-model="addForm.expiryDate"
           type="date"
-          placeholder="选择日期">
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
@@ -144,7 +148,9 @@
         <el-date-picker
           v-model="editForm.productionDate"
           type="date"
-          placeholder="选择日期">
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
         </el-date-picker>
       </el-form-item>
       <!--     过期时间的时间选择器-->
@@ -152,7 +158,9 @@
         <el-date-picker
           v-model="editForm.expiryDate"
           type="date"
-          placeholder="选择日期">
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
         </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
@@ -303,8 +311,6 @@ export default {
       this.foodList = res.data.foodList
       this.total = res.data.total
       console.log(this.foodList)
-
-
     },
     //分页操作
     handleSizeChange(newSize){
