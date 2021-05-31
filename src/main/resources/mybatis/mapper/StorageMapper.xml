@@ -10,12 +10,30 @@
             flushInterval="60000"
             size="512"
             readOnly="true"/>
-    <select id="getStorage" resultType="Storage">
+    <select id="getStorage" resultType="Storage" parameterType="map">
         select * from tb_storage
         <where>
+            <if test="query!=null">
+                tb_storage.storage_area=#{query}
+            </if>
             <if test="id!=null">
                 tb_storage.storage_id=#{id}
             </if>
         </where>
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
     </select>
+    <update id="modifyStorage" parameterType="Storage">
+        update tb_storage
+        set storage_area = #{storageArea},
+            temper=#{temper},
+            humidity=#{humidity},
+            alarm_record=#{alarmRecord},
+            power_supply=#{powerSupply}
+        where storage_id=#{storageId};
+    </update>
+    <delete id="deleteStorage" parameterType="int">
+        delete from tb_storage where storage_id=#{id}
+    </delete>
 </mapper>

@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -14,9 +15,23 @@ import java.util.List;
 @Mapper
 public interface StorageMapper {
     /**
-     *删除角色
-     * @param id
+     *获得站点信息
+     * @param map
      * @return List
      */
-    List<Storage> getStorage(Integer id);
+    List<Storage> getStorage(Map map);
+
+    /**
+     *删除站点信息
+     * @param id
+     * @return int
+     */
+    int deleteStorage(int id);
+
+    /**
+     *修改站点信息
+     * @param storage
+     * @return int
+     */
+    int modifyStorage(Storage storage);
 }

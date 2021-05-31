@@ -4,10 +4,11 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Food;
+import com.zdk.pojo.FoodCategory;
 import com.zdk.service.food.FoodServiceImpl;
+import com.zdk.service.foodCategory.FoodCategoryServiceImpl;
 import com.zdk.utils.CommonMessage;
 import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +17,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * @author zdk
@@ -30,11 +30,22 @@ public class FoodController {
     @Qualifier("FoodServiceImpl")
     private FoodServiceImpl foodService;
 
+    @Autowired
+    @Qualifier("FoodCategoryServiceImpl")
+    FoodCategoryServiceImpl foodCategoryService;
+
     @ApiOperation("添加食品信息")
     @RightInfo("addFood")
     @PostMapping("/addFood")
     @CrossOrigin
     public Object addFood(Food food){
+        HashMap<Object, Object> map = new HashMap<>();
+        map.put("id", food.getCategoryId());
+        List<FoodCategory> foodCategory = foodCategoryService.getFoodCategory(map);
+        if(foodCategory!=null){
+            food.setFoodCategory(foodCategory.get(0).getCategoryName());
+            food.setCategoryId(foodCategory.get(0).getId());
+        }
         int count = foodService.addFood(food);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -78,7 +89,10 @@ public class FoodController {
         }
         int total = foodService.foodCount(query);
         if(foodList!=null){
+            List<FoodCategory> categoryList = foodCategoryService.getFoodCategory(null);
+            System.out.println("categoryList:"+categoryList);
             data.put("foodList",foodList.toArray());
+            data.put("categoryList",categoryList.toArray());
             data.put("total",total);
             msg.put("status", "200");
         }else {

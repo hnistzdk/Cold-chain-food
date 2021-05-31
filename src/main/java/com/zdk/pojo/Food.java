@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 /**
  * @author zdk
  * @date 2021/5/23 13:41
@@ -19,6 +21,8 @@ public class Food {
     private Integer id;
     @ApiModelProperty("食品名称")
     private String foodName;
+    @ApiModelProperty("食品类别")
+    private String foodCategory;
     @ApiModelProperty("生产日期")
     private String productionDate;
     @ApiModelProperty("过期日期")

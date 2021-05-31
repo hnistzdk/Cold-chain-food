@@ -3,6 +3,7 @@ package com.zdk.service.storage;
 import com.zdk.pojo.Storage;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -10,9 +11,23 @@ import java.util.List;
  */
 public interface StorageService {
     /**
-     *删除角色
-     * @param id
+     *获得站点信息
+     * @param map
      * @return List
      */
-    List<Storage> getStorage(Integer id);
+    List<Storage> getStorage(Map map);
+
+    /**
+     *获得站点信息
+     * @param id
+     * @return int
+     */
+    int deleteStorage(int id);
+
+    /**
+     *修改站点信息
+     * @param storage
+     * @return int
+     */
+    int modifyStorage(Storage storage);
 }

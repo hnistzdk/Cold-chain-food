@@ -75,7 +75,9 @@ public class ManifestController {
     @PostMapping("/addManifest")
     @CrossOrigin
     public Object addManifest(Manifest manifest){
-        manifest.setArrivedPoint(storageService.getStorage(manifest.getStorageId()).get(0).getStorageArea());
+        HashMap<Object,Object> params=new HashMap<>();
+        params.put("query", manifest.getStorageId());
+        manifest.setArrivedPoint(storageService.getStorage(params).get(0).getStorageArea());
         manifest.setFoodName(foodService.getFoodById(manifest.getFoodId()).getFoodName());
         manifest.setManifestId(UUIDUtil.getUUID(10));
         int count = manifestService.addManifest(manifest);
@@ -103,8 +105,9 @@ public class ManifestController {
     public Object modifyManifest(Manifest manifest){
         Food food = foodService.getFoodById(manifest.getFoodId());
         manifest.setFoodName(food.getFoodName());
-        System.out.println("manifest"+manifest);
-        List<Storage> storage = storageService.getStorage(manifest.getStorageId());
+        HashMap<Object,Object> params=new HashMap<>();
+        params.put("query", manifest.getStorageId());
+        List<Storage> storage = storageService.getStorage(params);
         manifest.setArrivedPoint(storage.get(0).getStorageArea());
         int count = manifestService.modifyManifest(manifest);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));

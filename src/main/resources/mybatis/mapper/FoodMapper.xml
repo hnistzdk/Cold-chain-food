@@ -11,10 +11,10 @@
             size="512"
             readOnly="true"/>
     <insert id="addFood" parameterType="Food">
-        insert into tb_food (food_name, production_date, expiry_date,
+        insert into tb_food (food_name,food_category, production_date, expiry_date,
                              address, producer, phone, storage_id,
                              risk_degree,category_id)
-        values (#{foodName},#{productionDate},#{expiryDate},#{address},#{producer},#{phone},#{storageId},#{riskDegree},#{categoryId});
+        values (#{foodName},#{foodCategory},#{productionDate},#{expiryDate},#{address},#{producer},#{phone},#{storageId},#{riskDegree},#{categoryId});
     </insert>
 
     <delete id="deleteFoodById" parameterType="int">
