@@ -66,6 +66,12 @@ export  default {
       }
     };
     const checkEmail = (rule, value, cb) => {
+      if (this.verification.test(value)) {
+        return cb()
+      }
+      cb(new Error('请输入正确的验证码'))
+    };
+    const checkCode =(rule, value, cb) => {
       const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
         return cb()
@@ -104,7 +110,11 @@ export  default {
         ],
         rule:[
           { required: true, message: '请填写角色框！', trigger: 'blur'}
-          ]
+          ],
+        code:[
+          { required: true, message: '请填写验证码', trigger: 'blur'},
+          { validator: checkCode, trigger: 'blur' }
+        ]
       }
     };
 
