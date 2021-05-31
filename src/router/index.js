@@ -17,6 +17,7 @@ import List from "../components/goods/List";
 import Order from "../components/goods/Order";
 import Risk from "../components/riskMonitor/Risk";
 import UserCenter from "../components/Center/UserCenter";
+import siteManage from "../components/riskMonitor/SiteManage";
 Vue.use(Router)
 
 const router=new  Router({
@@ -39,7 +40,8 @@ const router=new  Router({
         {path:'/goods',component:List },
         {path:'/orders',component:Order },
         {path:'/risk',component:Risk },
-        {path:'/center',component:UserCenter }
+        {path:'/center',component:UserCenter },
+        {path:'/site',component:siteManage }
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
