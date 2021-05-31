@@ -76,11 +76,21 @@
           </el-option>
         </el-select>
       </el-form-item>
+<!--     生产日期的时间选择器-->
       <el-form-item label="生产日期" prop="productionDate">
-        <el-input v-model="addForm.productionDate"></el-input>
+        <el-date-picker
+          v-model="addForm.productionDate"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
       </el-form-item>
-      <el-form-item label="过期日期" prop="expiryDate">
-        <el-input v-model="addForm.expiryDate"></el-input>
+      <!--     过期时间的时间选择器-->
+      <el-form-item label="过期时间" prop="expiryDate">
+        <el-date-picker
+          v-model="addForm.expiryDate"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
         <el-input v-model="addForm.address"></el-input>
@@ -106,7 +116,7 @@
   </span>
   </el-dialog>
 
-  <!--    修改用户的对话框-->
+  <!--    修改食品的对话框-->
   <el-dialog
     title="修改用户"
     :visible.sync="editDialogVisible"
@@ -129,11 +139,21 @@
           </el-option>
         </el-select>
       </el-form-item>
+      <!--     生产日期的时间选择器-->
       <el-form-item label="生产日期" prop="productionDate">
-        <el-input v-model="editForm.productionDate"></el-input>
+        <el-date-picker
+          v-model="editForm.productionDate"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
       </el-form-item>
-      <el-form-item label="过期日期" prop="expiryDate">
-        <el-input v-model="editForm.expiryDate"></el-input>
+      <!--     过期时间的时间选择器-->
+      <el-form-item label="过期时间" prop="expiryDate">
+        <el-date-picker
+          v-model="editForm.expiryDate"
+          type="date"
+          placeholder="选择日期">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
         <el-input v-model="editForm.address"></el-input>
