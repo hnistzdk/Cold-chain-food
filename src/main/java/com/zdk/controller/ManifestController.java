@@ -76,7 +76,7 @@ public class ManifestController {
     @CrossOrigin
     public Object addManifest(Manifest manifest){
         HashMap<Object,Object> params=new HashMap<>();
-        params.put("query", manifest.getStorageId());
+        params.put("id", manifest.getStorageId());
         manifest.setArrivedPoint(storageService.getStorage(params).get(0).getStorageArea());
         manifest.setFoodName(foodService.getFoodById(manifest.getFoodId()).getFoodName());
         manifest.setManifestId(UUIDUtil.getUUID(10));
