@@ -13,10 +13,11 @@ import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.DateConversion;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.data.annotation.CreatedBy;
 import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
@@ -81,7 +82,7 @@ public class AdminController {
         return JSON.toJSONString(meta);
     }
 
-    @RightInfo("adminList")
+    @RightInfo(Permission.ADMINLIST)
     @PostMapping("/adminUsers")
     @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
@@ -97,12 +98,11 @@ public class AdminController {
             result = adminService.fuzzyQueryAdminList(query, (pagenum - 1) * pagesize, pagesize);
         }
         data.put("users",JSON.toJSON(result.toArray()));
-        msg.put("msg", "获取成功");
-        msg.put("status", "200");
+        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("removeAdmin")
+    @RightInfo(Permission.REMOVEADMIN)
     @DeleteMapping("/users/{id}")
     @CrossOrigin
     public Object removeAdmin(@PathVariable String id){
@@ -123,8 +123,7 @@ public class AdminController {
         data.put("mobile", admin.getTel());
         data.put("email", admin.getEmail());
         data.put("mg_state", 0);
-        meta.put("msg", "设置状态成功");
-        meta.put("status", "200");
+        meta.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return meta;
     }
 
@@ -139,9 +138,9 @@ public class AdminController {
         HashMap<Object, Object> msg = new HashMap<>();
         if(user!=null){
             data.put("userInfo", user);
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         }else{
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }

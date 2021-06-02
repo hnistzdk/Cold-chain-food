@@ -16,10 +16,10 @@ public class CommonMessage {
         HashMap<String, String> map1 = new HashMap<>();
         AdminAndUser user= (AdminAndUser) result;
         if(result!=null){
-            map.put("status","200");
+            map.put(MyMessage.STATUS, MyMessage.SUCCESS);
             map1.put("token", user.getId());
         }else {
-            map.put("status","404");
+            map.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return new Meta(map,map1);
     }
@@ -28,9 +28,9 @@ public class CommonMessage {
         HashMap<String, String> msg = new HashMap<>();
         HashMap<String, String> data = new HashMap<>();
         if(result){
-            msg.put("status","200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         }else {
-            msg.put("status","201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return new Meta(msg,data);
     }

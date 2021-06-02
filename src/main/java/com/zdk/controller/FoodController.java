@@ -8,6 +8,8 @@ import com.zdk.pojo.FoodCategory;
 import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.foodCategory.FoodCategoryServiceImpl;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
@@ -35,7 +37,7 @@ public class FoodController {
     FoodCategoryServiceImpl foodCategoryService;
 
     @ApiOperation("添加食品信息")
-    @RightInfo("addFood")
+    @RightInfo(Permission.ADDFOOD)
     @PostMapping("/addFood")
     @CrossOrigin
     public Object addFood(Food food){
@@ -51,7 +53,7 @@ public class FoodController {
     }
 
     @ApiOperation("删除食品信息")
-    @RightInfo("deleteFood")
+    @RightInfo(Permission.DELETEFOOD)
     @PostMapping("/deleteFood/{id}")
     @CrossOrigin
     public Object deleteFood(@PathVariable Integer id){
@@ -60,7 +62,7 @@ public class FoodController {
     }
 
     @ApiOperation("修改食品信息")
-    @RightInfo("modifyFood")
+    @RightInfo(Permission.MODIFYFOOD)
     @PostMapping("/modifyFood")
     @CrossOrigin
     public Object modifyFood(Food food){
@@ -69,7 +71,7 @@ public class FoodController {
     }
 
     @ApiOperation("查询食品信息")
-    @RightInfo("getFood")
+    @RightInfo(Permission.GETFOOD)
     @PostMapping("/getFood")
     @CrossOrigin
     public Object getFood(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
@@ -94,22 +96,22 @@ public class FoodController {
             data.put("foodList",foodList.toArray());
             data.put("categoryList",categoryList.toArray());
             data.put("total",total);
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         }else {
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @ApiOperation("获取编辑食品的信息")
-    @RightInfo("gerFoodById")
+    @RightInfo(Permission.GETFOODBYID)
     @GetMapping("/foods/{id}")
     @CrossOrigin
     public Object getFoodById(@PathVariable Integer id){
         Food food = foodService.getFoodById(id);
         HashMap<Object, Object> map = new HashMap<>();
         map.put("data", food);
-        map.put("status", "200");
+        map.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return JSON.toJSONString(map);
     }
 

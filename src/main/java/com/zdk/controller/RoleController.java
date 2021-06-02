@@ -3,10 +3,11 @@ package com.zdk.controller;
 import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
-import com.zdk.pojo.Right;
 import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +27,7 @@ public class RoleController {
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
-    @RightInfo("roleList")
+    @RightInfo(Permission.ROLELIST)
     @GetMapping("/roles")
     @CrossOrigin
     public Object getRoles(){
@@ -34,11 +35,11 @@ public class RoleController {
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         data.put("roleList", JSON.toJSON(roles.toArray()));
-        msg.put("status", "200");
+        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("addRoles")
+    @RightInfo(Permission.ADDROLES)
     @PostMapping("/roles")
     @CrossOrigin
     public Object addRoles(Role role){
@@ -46,7 +47,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("showRoles")
+    @RightInfo(Permission.SHOWROLES)
     @GetMapping("/roles/{id}")
     @CrossOrigin
     public Object showRoles(@PathVariable Integer id){
@@ -54,15 +55,15 @@ public class RoleController {
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         if(roles!=null){
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("role", roles.get(0));
         }else {
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("modifyRoles")
+    @RightInfo(Permission.MODIFYROLES)
     @PostMapping("/roles/{id}")
     @CrossOrigin
     public Object modifyRoles(Role role){
@@ -70,7 +71,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("deleteRoles")
+    @RightInfo(Permission.DELETEROLES)
     @DeleteMapping("/roles/{id}")
     @CrossOrigin
     public Object deleteRoles(@PathVariable Integer id){
@@ -78,7 +79,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("assignRight")
+    @RightInfo(Permission.ASSIGNRIGHT)
     @PostMapping("/roles/{id}/rights")
     @CrossOrigin
     public Object assignRight(@PathVariable Integer id,String rightList){

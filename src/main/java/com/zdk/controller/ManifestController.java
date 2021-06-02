@@ -1,7 +1,6 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.sun.swing.internal.plaf.metal.resources.metal;
 import com.zdk.dto.Meta;
 import com.zdk.dto.SelectFoodMeta;
 import com.zdk.interceptor.RightInfo;
@@ -12,6 +11,8 @@ import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import com.zdk.utils.UUIDUtil;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +39,7 @@ public class ManifestController {
     @Qualifier("FoodServiceImpl")
     private FoodServiceImpl foodService;
 
-    @RightInfo("getManifest")
+    @RightInfo(Permission.GETMANIFEST)
     @PostMapping("/getManifest")
     @CrossOrigin
     public Object getManifest(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
@@ -56,7 +57,7 @@ public class ManifestController {
         List<Storage> allStorageName = manifestService.getAllStorageName();
         int total=manifestService.manifestCount();
         if(orderList!=null){
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("orderList", orderList.toArray());
             data.put("foodList", allFoodName.toArray());
             data.put("arrivedPointList", allStorageName.toArray());
@@ -66,12 +67,12 @@ public class ManifestController {
                 data.put("total", 1);
             }
         }else{
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("addManifest")
+    @RightInfo(Permission.ADDMANIFEST)
     @PostMapping("/addManifest")
     @CrossOrigin
     public Object addManifest(Manifest manifest){
@@ -84,7 +85,7 @@ public class ManifestController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("getManifestById")
+    @RightInfo(Permission.GETMANIFESTBYID)
     @GetMapping("/manifests/{id}")
     @CrossOrigin
     public Object getManifestById(@PathVariable String id){
@@ -92,14 +93,14 @@ public class ManifestController {
         HashMap<Object, Object> map = new HashMap<>();
         if(manifest!=null){
             map.put("data", manifest);
-            map.put("status", "200");
+            map.put(MyMessage.STATUS, MyMessage.SUCCESS);
         }else{
-            map.put("status", "201");
+            map.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(map);
     }
 
-    @RightInfo("modifyManifest")
+    @RightInfo(Permission.MODIFYMANIFEST)
     @PostMapping("/modifyManifest")
     @CrossOrigin
     public Object modifyManifest(Manifest manifest){
@@ -113,7 +114,7 @@ public class ManifestController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("deleteManifest")
+    @RightInfo(Permission.DELETEMANIFEST)
     @PostMapping("/deleteManifest/{id}")
     @CrossOrigin
     public Object deleteManifest(@PathVariable String id){

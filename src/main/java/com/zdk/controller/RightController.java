@@ -7,7 +7,8 @@ import com.zdk.pojo.Right;
 import com.zdk.pojo.Role;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
-import org.apache.ibatis.annotations.Param;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
@@ -31,7 +32,7 @@ public class RightController {
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
-    @RightInfo("rightList")
+    @RightInfo(Permission.RIGHTLIST)
     @GetMapping("/rights/list")
     @CrossOrigin
     public Object rightList(@Nullable Integer pageNum, @Nullable Integer pageSize){
@@ -45,16 +46,16 @@ public class RightController {
         List<Right> rights = rightService.getRights(params);
         int total=rightService.getRightsCount();
         if(rights!=null){
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("rightsList",rights.toArray());
             data.put("total", total);
         }else {
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("rightListRole")
+    @RightInfo(Permission.RIGHTLISTROLE)
     @GetMapping("/rights/list/{id}")
     @CrossOrigin
     public Object rightList(@PathVariable Integer id){
@@ -82,7 +83,7 @@ public class RightController {
             data.put("rightsList", rightsList.toArray());
             data.put("checkedList", new ArrayList<String>());
         }
-        msg.put("status", "200");
+        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 

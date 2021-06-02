@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.Right;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.HandlerInterceptor;
@@ -25,7 +27,7 @@ public class RightInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         System.out.println("进入拦截器============");
-        if(request.getMethod().equals("OPTIONS")){
+        if(request.getMethod().equals(Permission.OPTIONS)){
             return true;
         }
         List<Right> rights= (List<Right>) request.getSession().getAttribute("functions");
@@ -56,7 +58,7 @@ public class RightInterceptor implements HandlerInterceptor {
             }
         }
         Map msg = new HashMap<>();
-        msg.put("status", "403");
+        msg.put(MyMessage.STATUS, MyMessage.FORBID);
         response.getWriter().write(JSON.toJSONString(new Meta(msg,null)));
         return false;
     }

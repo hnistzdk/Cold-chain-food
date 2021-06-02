@@ -12,10 +12,7 @@ import com.zdk.pojo.Role;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
-import com.zdk.utils.DateConversion;
-import com.zdk.utils.CommonMessage;
-import com.zdk.utils.UUIDUtil;
-import com.zdk.utils.UserConvert;
+import com.zdk.utils.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -78,11 +75,10 @@ public class EnterpriseUserController {
             //再把集合放入session
             request.getSession().setAttribute("functions", functions);
         }
-        Meta meta = CommonMessage.returnMsg(enterpriseUser);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnMsg(enterpriseUser));
     }
 
-    @RightInfo("enterpriseList")
+    @RightInfo(Permission.ENTERPRISELIST)
     @PostMapping("/enterpriseUsers")
     @CrossOrigin
     public Object enterpriseList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
@@ -98,12 +94,11 @@ public class EnterpriseUserController {
             result = enterpriseService.fuzzyQueryEnterpriseList(query, (pagenum - 1) * pagesize, pagesize);
         }
         data.put("users",JSON.toJSON(result.toArray()));
-        msg.put("msg", "获取成功");
-        msg.put("status", "200");
+        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("removeEnterprise")
+    @RightInfo(Permission.REMOVEENTERPRISE)
     @DeleteMapping("/enterpriseUsers/{id}")
     @CrossOrigin
     public Object removeEnterprise(@PathVariable String id) {
@@ -111,7 +106,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("addEnterprise")
+    @RightInfo(Permission.ADDENTERPRISE)
     @PostMapping("/addEnterpriseUsers")
     @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
@@ -120,7 +115,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("showEnterpriseUsers")
+    @RightInfo(Permission.SHOWENTERPRISEUSERS)
     @GetMapping("/showEditEnterpriseUsers/{id}")
     @CrossOrigin
     public Object showEnterpriseUsers(@PathVariable String id){
@@ -128,7 +123,7 @@ public class EnterpriseUserController {
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
         if(editMeta!=null){
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("id", id);
             data.put("username", editMeta.getUsername());
             data.put("tel", editMeta.getTel());
@@ -136,12 +131,12 @@ public class EnterpriseUserController {
             data.put("enterpriseName", editMeta.getEnterpriseName());
 
         }else{
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg, data));
     }
 
-    @RightInfo("editEnterpriseUsers")
+    @RightInfo(Permission.EDITENTERPRISEUSERS)
     @PostMapping("/editEnterpriseUsers/{id}")
     @CrossOrigin
     public Object editEnterpriseUsers(EditMeta user){

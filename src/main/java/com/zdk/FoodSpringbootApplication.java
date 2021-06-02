@@ -18,5 +18,4 @@ public class FoodSpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(FoodSpringbootApplication.class, args);
     }
-
 }

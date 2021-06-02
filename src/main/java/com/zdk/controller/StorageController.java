@@ -6,10 +6,11 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Storage;
 import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.MyMessage;
+import com.zdk.utils.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.lang.Nullable;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -25,7 +26,7 @@ public class StorageController {
     @Qualifier("StorageServiceImpl")
     StorageServiceImpl storageService;
 
-    @RightInfo("getStorage")
+    @RightInfo(Permission.GETSTORAGE)
     @PostMapping("/getStorage")
     @CrossOrigin
     public Object getStorage(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
@@ -44,16 +45,16 @@ public class StorageController {
             total=1;
         }
         if(storageList!=null){
-            msg.put("status", "200");
+            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("siteList",storageList.toArray());
             data.put("total",total);
         }else{
-            msg.put("status", "201");
+            msg.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg, data));
     }
 
-    @RightInfo("showStorage")
+    @RightInfo(Permission.SHOWSTORAGE)
     @PostMapping("/showStorage/{id}")
     @CrossOrigin
     public Object showStorage(@PathVariable Integer id){
@@ -62,15 +63,15 @@ public class StorageController {
         params.put("id", id);
         List<Storage> storageList = storageService.getStorage(params);
         if(storageList!=null){
-            data.put("status", "200");
+            data.put(MyMessage.STATUS, MyMessage.SUCCESS);
             data.put("data",storageList.get(0));
         }else{
-            data.put("status", "201");
+            data.put(MyMessage.STATUS, MyMessage.ERROR);
         }
         return JSON.toJSONString(data);
     }
 
-    @RightInfo("modifyStorage")
+    @RightInfo(Permission.MODIFYSTORAGE)
     @PostMapping("/modifyStorage")
     @CrossOrigin
     public Object modifyStorage(Storage storage){
@@ -78,7 +79,7 @@ public class StorageController {
         return CommonMessage.returnStatus(count>0);
     }
 
-    @RightInfo("deleteStorage")
+    @RightInfo(Permission.DELETESTORAGE)
     @PostMapping("/deleteStorage/{id}")
     @CrossOrigin
     public Object deleteStorage(@PathVariable Integer id){
