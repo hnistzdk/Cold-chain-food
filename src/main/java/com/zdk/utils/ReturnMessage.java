@@ -5,7 +5,7 @@ package com.zdk.utils;
  * @Author zdk
  * @Date 2021/6/2 10:17
  */
-public class MyMessage {
+public class ReturnMessage {
     /**
      * 成功
      */

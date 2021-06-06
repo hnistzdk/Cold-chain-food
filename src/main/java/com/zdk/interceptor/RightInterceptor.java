@@ -4,7 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.Right;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import org.springframework.stereotype.Component;
 import org.springframework.web.method.HandlerMethod;
@@ -58,7 +58,7 @@ public class RightInterceptor implements HandlerInterceptor {
             }
         }
         Map msg = new HashMap<>();
-        msg.put(MyMessage.STATUS, MyMessage.FORBID);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.FORBID);
         response.getWriter().write(JSON.toJSONString(new Meta(msg,null)));
         return false;
     }

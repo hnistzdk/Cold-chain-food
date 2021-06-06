@@ -6,7 +6,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.FoodCategory;
 import com.zdk.service.foodCategory.FoodCategoryServiceImpl;
 import com.zdk.utils.CommonMessage;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -24,6 +24,7 @@ import java.util.Map;
  * @date 2021/5/23 14:37
  */
 @Api("食品分类api")
+@CrossOrigin
 @RestController
 public class FoodCategoryController {
 
@@ -34,7 +35,6 @@ public class FoodCategoryController {
     @ApiOperation("获取食品类别信息")
     @RightInfo(Permission.GETFOODCATEGORY)
     @GetMapping("/getFoodCategory")
-    @CrossOrigin
     public Object getFoodCategory(Integer id, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -44,12 +44,12 @@ public class FoodCategoryController {
         params.put("pageSize",pageSize);
         List<FoodCategory> foodCategory = foodCategoryService.getFoodCategory(params);
         if(foodCategory!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             int total = foodCategoryService.getAllFoodCategory();
             data.put("foodCategory", foodCategory.toArray());
             data.put("total", total);
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
@@ -57,7 +57,6 @@ public class FoodCategoryController {
     @ApiOperation("添加食品类别")
     @RightInfo(Permission.ADDFOODCATEGORY)
     @PostMapping("/addFoodCategory")
-    @CrossOrigin
     public Object addFoodCategory(FoodCategory foodCategory){
         int count = foodCategoryService.addFoodCategory(foodCategory);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -66,7 +65,6 @@ public class FoodCategoryController {
     @ApiOperation("删除食品类别")
     @RightInfo(Permission.DELETEFOODCATEGORY)
     @PostMapping("/deleteFoodCategory/{id}")
-    @CrossOrigin
     public Object deleteFoodCategory(@PathVariable Integer id){
         int count = foodCategoryService.deleteFoodCategory(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -75,7 +73,6 @@ public class FoodCategoryController {
     @ApiOperation("修改食品类别")
     @RightInfo(Permission.MODIFYFOODCATEGORY)
     @PostMapping("/modifyFoodCategory")
-    @CrossOrigin
     public Object modifyFoodCategory(FoodCategory foodCategory){
         int count = foodCategoryService.modifyFoodCategory(foodCategory);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -84,14 +81,13 @@ public class FoodCategoryController {
     @ApiOperation("编辑查看食品类别")
     @RightInfo(Permission.CATEGORIES)
     @GetMapping("/categories/{id}")
-    @CrossOrigin
     public Object showFoodCategory(@PathVariable Integer id){
         Map map=new HashMap();
         map.put("id", id);
         List<FoodCategory> result = foodCategoryService.getFoodCategory(map);
         if(result!=null){
             map.put("data", result.get(0));
-            map.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            map.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }
         return JSON.toJSONString(map);
     }

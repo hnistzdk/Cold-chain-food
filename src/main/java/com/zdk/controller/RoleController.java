@@ -6,7 +6,7 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Role;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.CommonMessage;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -21,6 +21,7 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/5/10 17:14
  */
+@CrossOrigin
 @RestController
 public class RoleController {
     @Autowired
@@ -29,19 +30,17 @@ public class RoleController {
 
     @RightInfo(Permission.ROLELIST)
     @GetMapping("/roles")
-    @CrossOrigin
     public Object getRoles(){
         List<Role> roles = roleService.getRoles(null);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         data.put("roleList", JSON.toJSON(roles.toArray()));
-        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.ADDROLES)
     @PostMapping("/roles")
-    @CrossOrigin
     public Object addRoles(Role role){
         int count = roleService.addRoles(role);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -49,23 +48,21 @@ public class RoleController {
 
     @RightInfo(Permission.SHOWROLES)
     @GetMapping("/roles/{id}")
-    @CrossOrigin
     public Object showRoles(@PathVariable Integer id){
         List<Role> roles = roleService.getRoles(id);
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         if(roles!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             data.put("role", roles.get(0));
         }else {
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.MODIFYROLES)
     @PostMapping("/roles/{id}")
-    @CrossOrigin
     public Object modifyRoles(Role role){
         int count = roleService.modifyRoles(role);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -73,7 +70,6 @@ public class RoleController {
 
     @RightInfo(Permission.DELETEROLES)
     @DeleteMapping("/roles/{id}")
-    @CrossOrigin
     public Object deleteRoles(@PathVariable Integer id){
         int count=roleService.deleteRoles(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -81,7 +77,6 @@ public class RoleController {
 
     @RightInfo(Permission.ASSIGNRIGHT)
     @PostMapping("/roles/{id}/rights")
-    @CrossOrigin
     public Object assignRight(@PathVariable Integer id,String rightList){
         System.out.println("角色id："+id);
         System.out.println("权限列表id："+rightList);

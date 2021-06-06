@@ -13,7 +13,7 @@ import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.DateConversion;
 import com.zdk.utils.CommonMessage;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +32,7 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/4/20 16:04
  */
+@CrossOrigin
 @RestController
 public class AdminController {
     @Autowired
@@ -47,7 +48,6 @@ public class AdminController {
     private RoleServiceImpl roleService;
 
     @PostMapping("/adminLogin")
-    @CrossOrigin
     public Object login(String id, String password,HttpServletRequest request){
         AdminAndUser admin= adminService.adminLogin(id, password);
         adminService.updateLoginInfo(id, DateConversion.getNowDate());
@@ -84,7 +84,6 @@ public class AdminController {
 
     @RightInfo(Permission.ADMINLIST)
     @PostMapping("/adminUsers")
-    @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         Map data = new HashMap<>();
         Map msg = new HashMap<>();
@@ -98,20 +97,18 @@ public class AdminController {
             result = adminService.fuzzyQueryAdminList(query, (pagenum - 1) * pagesize, pagesize);
         }
         data.put("users",JSON.toJSON(result.toArray()));
-        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.REMOVEADMIN)
     @DeleteMapping("/users/{id}")
-    @CrossOrigin
     public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @PutMapping("/users/{id}/state/{mg_state}")
-    @CrossOrigin
     public Object modifyState(@PathVariable String id,@PathVariable String mg_state){
         AdminAndUser admin = adminService.getAdminById(id);
         Meta returnMeta=new Meta();
@@ -123,13 +120,12 @@ public class AdminController {
         data.put("mobile", admin.getTel());
         data.put("email", admin.getEmail());
         data.put("mg_state", 0);
-        meta.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        meta.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return meta;
     }
 
     @RightInfo("")
     @GetMapping("/userInfo/{id}")
-    @CrossOrigin
     public Object userInfo(@PathVariable String id,HttpServletRequest request){
         System.out.println("id:"+id);
         AdminAndUser user = (AdminAndUser) request.getSession().getAttribute(id);
@@ -138,16 +134,15 @@ public class AdminController {
         HashMap<Object, Object> msg = new HashMap<>();
         if(user!=null){
             data.put("userInfo", user);
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo("")
     @PostMapping("/editUserInfo/{id}")
-    @CrossOrigin
     public Object editUserInfo(AddUserMeta user,HttpServletRequest request){
         System.out.println("user:"+user);
         int count = adminService.editUserInfo(user);

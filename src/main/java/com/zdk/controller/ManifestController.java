@@ -11,7 +11,7 @@ import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import com.zdk.utils.UUIDUtil;
 import org.apache.ibatis.annotations.Param;
@@ -26,6 +26,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/23 17:10
  */
+@CrossOrigin
 @RestController
 public class ManifestController {
     @Autowired
@@ -41,7 +42,6 @@ public class ManifestController {
 
     @RightInfo(Permission.GETMANIFEST)
     @PostMapping("/getManifest")
-    @CrossOrigin
     public Object getManifest(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -57,7 +57,7 @@ public class ManifestController {
         List<Storage> allStorageName = manifestService.getAllStorageName();
         int total=manifestService.manifestCount();
         if(orderList!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             data.put("orderList", orderList.toArray());
             data.put("foodList", allFoodName.toArray());
             data.put("arrivedPointList", allStorageName.toArray());
@@ -67,14 +67,13 @@ public class ManifestController {
                 data.put("total", 1);
             }
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.ADDMANIFEST)
     @PostMapping("/addManifest")
-    @CrossOrigin
     public Object addManifest(Manifest manifest){
         HashMap<Object,Object> params=new HashMap<>();
         params.put("id", manifest.getStorageId());
@@ -87,27 +86,25 @@ public class ManifestController {
 
     @RightInfo(Permission.GETMANIFESTBYID)
     @GetMapping("/manifests/{id}")
-    @CrossOrigin
     public Object getManifestById(@PathVariable String id){
         Manifest manifest = manifestService.getManifestById(id);
         HashMap<Object, Object> map = new HashMap<>();
         if(manifest!=null){
             map.put("data", manifest);
-            map.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            map.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }else{
-            map.put(MyMessage.STATUS, MyMessage.ERROR);
+            map.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(map);
     }
 
     @RightInfo(Permission.MODIFYMANIFEST)
     @PostMapping("/modifyManifest")
-    @CrossOrigin
     public Object modifyManifest(Manifest manifest){
         Food food = foodService.getFoodById(manifest.getFoodId());
         manifest.setFoodName(food.getFoodName());
         HashMap<Object,Object> params=new HashMap<>();
-        params.put("query", manifest.getStorageId());
+        params.put("id", manifest.getStorageId());
         List<Storage> storage = storageService.getStorage(params);
         manifest.setArrivedPoint(storage.get(0).getStorageArea());
         int count = manifestService.modifyManifest(manifest);
@@ -116,7 +113,6 @@ public class ManifestController {
 
     @RightInfo(Permission.DELETEMANIFEST)
     @PostMapping("/deleteManifest/{id}")
-    @CrossOrigin
     public Object deleteManifest(@PathVariable String id){
         int count = manifestService.deleteManifest(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));

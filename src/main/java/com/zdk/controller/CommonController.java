@@ -12,10 +12,10 @@ import org.springframework.web.bind.annotation.*;
  */
 
 @SuppressWarnings("all")
+@CrossOrigin
 @RestController
 public class CommonController {
     @PostMapping("/sendCode/{email}")
-    @CrossOrigin
     public Object getEmailCode(@PathVariable String email){
         System.out.println(email);
         String coed= SendEmail.sendEmail(email);
@@ -23,7 +23,6 @@ public class CommonController {
     }
 
     @GetMapping("/menus")
-    @CrossOrigin
     public Object getMenuList() {
         String returnMenu = "{\n" +
                 "  \"data\": [\n" +

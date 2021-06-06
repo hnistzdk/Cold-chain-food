@@ -5,7 +5,7 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.Risk;
 import com.zdk.service.risk.RiskServiceImpl;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +21,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/30 10:57
  */
+@CrossOrigin
 @RestController
 public class RiskController {
     @Autowired
@@ -29,7 +30,6 @@ public class RiskController {
 
     @RightInfo(Permission.GETRISKLIST)
     @PostMapping("/getRiskList")
-    @CrossOrigin
     public Object getRiskList(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>(2);
         HashMap msg = new HashMap<>(2);
@@ -45,9 +45,9 @@ public class RiskController {
         if(riskList!=null){
             data.put("riskList",riskList.toArray());
             data.put("total", total);
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }

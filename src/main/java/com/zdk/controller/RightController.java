@@ -7,7 +7,7 @@ import com.zdk.pojo.Right;
 import com.zdk.pojo.Role;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
-import com.zdk.utils.MyMessage;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,6 +22,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/17 19:21
  */
+@CrossOrigin
 @RestController
 public class RightController {
     @Autowired
@@ -34,7 +35,6 @@ public class RightController {
 
     @RightInfo(Permission.RIGHTLIST)
     @GetMapping("/rights/list")
-    @CrossOrigin
     public Object rightList(@Nullable Integer pageNum, @Nullable Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -46,18 +46,17 @@ public class RightController {
         List<Right> rights = rightService.getRights(params);
         int total=rightService.getRightsCount();
         if(rights!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             data.put("rightsList",rights.toArray());
             data.put("total", total);
         }else {
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.RIGHTLISTROLE)
     @GetMapping("/rights/list/{id}")
-    @CrossOrigin
     public Object rightList(@PathVariable Integer id){
         System.out.println("id:"+id);
         HashMap data = new HashMap<>();
@@ -83,7 +82,7 @@ public class RightController {
             data.put("rightsList", rightsList.toArray());
             data.put("checkedList", new ArrayList<String>());
         }
-        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 

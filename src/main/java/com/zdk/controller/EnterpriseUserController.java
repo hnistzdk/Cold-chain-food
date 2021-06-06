@@ -30,6 +30,7 @@ import java.util.List;
  * @Date 2021/4/20 16:04
  * BeanUtils.copyProperties(, );
  */
+@CrossOrigin
 @RestController
 public class EnterpriseUserController {
     @Autowired
@@ -45,7 +46,6 @@ public class EnterpriseUserController {
     private RoleServiceImpl roleService;
 
     @PostMapping("/enterpriseLogin")
-    @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
         EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, password,email);
         enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
@@ -80,7 +80,6 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.ENTERPRISELIST)
     @PostMapping("/enterpriseUsers")
-    @CrossOrigin
     public Object enterpriseList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -94,13 +93,12 @@ public class EnterpriseUserController {
             result = enterpriseService.fuzzyQueryEnterpriseList(query, (pagenum - 1) * pagesize, pagesize);
         }
         data.put("users",JSON.toJSON(result.toArray()));
-        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.REMOVEENTERPRISE)
     @DeleteMapping("/enterpriseUsers/{id}")
-    @CrossOrigin
     public Object removeEnterprise(@PathVariable String id) {
         int count = enterpriseService.removeEnterprise(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -108,7 +106,6 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.ADDENTERPRISE)
     @PostMapping("/addEnterpriseUsers")
-    @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
@@ -117,13 +114,12 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.SHOWENTERPRISEUSERS)
     @GetMapping("/showEditEnterpriseUsers/{id}")
-    @CrossOrigin
     public Object showEnterpriseUsers(@PathVariable String id){
         EditMeta editMeta = enterpriseService.showEnterprise(id);
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
         if(editMeta!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             data.put("id", id);
             data.put("username", editMeta.getUsername());
             data.put("tel", editMeta.getTel());
@@ -131,14 +127,13 @@ public class EnterpriseUserController {
             data.put("enterpriseName", editMeta.getEnterpriseName());
 
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg, data));
     }
 
     @RightInfo(Permission.EDITENTERPRISEUSERS)
     @PostMapping("/editEnterpriseUsers/{id}")
-    @CrossOrigin
     public Object editEnterpriseUsers(EditMeta user){
         int count = enterpriseService.modifyEnterpriseUser(user);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -146,7 +141,6 @@ public class EnterpriseUserController {
 
     @RightInfo("")
     @PostMapping("/enterpriseRegister")
-    @CrossOrigin
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
@@ -155,7 +149,6 @@ public class EnterpriseUserController {
 
     @RightInfo("")
     @PostMapping("/enterprisePwdChange")
-    @CrossOrigin
     public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
         if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);

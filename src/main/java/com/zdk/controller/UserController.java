@@ -21,6 +21,7 @@ import java.util.List;
 /**
  * @author fengzhu
  */
+@CrossOrigin
 @RestController
 public class UserController {
 
@@ -29,7 +30,6 @@ public class UserController {
     private UserService userService;
 
     @PostMapping("/primaryLogin")
-    @CrossOrigin
     public Object login(String id, String password,String email){
         AdminAndUser result= userService.login(id, password,email);
         userService.updateLoginInfo(id, DateConversion.getNowDate());
@@ -39,7 +39,6 @@ public class UserController {
 
     @RightInfo(Permission.PRIMARYLIST)
     @PostMapping("/PrimaryUsers")
-    @CrossOrigin
     public Object userList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -53,13 +52,12 @@ public class UserController {
             result = userService.fuzzyQueryUserList(query, (pagenum - 1) * pagesize, pagesize);
         }
         data.put("users",JSON.toJSON(result.toArray()));
-        msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+        msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.REMOVEPRIMARYUSERS)
     @DeleteMapping("/PrimaryUsers/{id}")
-    @CrossOrigin
     public Object removePrimaryUsers(@PathVariable String id){
         int count = userService.removeUser(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -67,7 +65,6 @@ public class UserController {
 
     @RightInfo(Permission.ADDUSER)
     @PostMapping("/addUsers")
-    @CrossOrigin
     public Object addUser(AddUserMeta user) {
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
@@ -76,26 +73,24 @@ public class UserController {
 
     @RightInfo(Permission.SHOWEDITPRIMARYUSERS)
     @GetMapping("/showEditPrimaryUsers/{id}")
-    @CrossOrigin
     public Object showEditPrimaryUsers(@PathVariable String id){
         EditMeta editMeta = userService.showPrimaryUser(id);
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
         if(editMeta!=null){
-            msg.put(MyMessage.STATUS, MyMessage.SUCCESS);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             data.put("id", id);
             data.put("username", editMeta.getUsername());
             data.put("tel", editMeta.getTel());
             data.put("email", editMeta.getEmail());
         }else{
-            msg.put(MyMessage.STATUS, MyMessage.ERROR);
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg,data));
     }
 
     @RightInfo(Permission.EDITPRIMARYUSERS)
     @PostMapping("/editPrimaryUsers/{id}")
-    @CrossOrigin
     public Object editPrimaryUsers(EditMeta user){
         int count = userService.modifyPrimaryUser(user);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -103,7 +98,6 @@ public class UserController {
 
     @RightInfo("")
     @PostMapping("/primaryRegister")
-    @CrossOrigin
     public Object primaryRegister(AddUserMeta user){
         user.setId(UUIDUtil.getUUID(5));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
@@ -112,7 +106,6 @@ public class UserController {
 
     @RightInfo("")
     @PostMapping("/primaryPwdChange")
-    @CrossOrigin
     public Object primaryPwdChange(AddUserMeta user){
         if(userService.login(user.getId(), null,user.getEmail())!=null){
             int count = userService.modifyUserPwd(user);

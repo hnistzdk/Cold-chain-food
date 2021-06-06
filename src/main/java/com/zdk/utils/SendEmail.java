@@ -52,7 +52,7 @@ public class SendEmail {
             message.setFrom(form);
             // 设置收件人的邮箱
             InternetAddress to = new InternetAddress(email);
-            message.setRecipient(MyMessage.RecipientType.TO, to);
+            message.setRecipient(Message.RecipientType.TO, to);
             // 设置邮件标题
             message.setSubject("验证码：");
             // 设置邮件的内容体
