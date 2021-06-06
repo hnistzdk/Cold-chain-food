@@ -1,5 +1,6 @@
 package com.zdk;
 
+import com.ulisesbocchio.jasyptspringboot.annotation.EnableEncryptableProperties;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -14,6 +15,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @EnableTransactionManagement
 @EnableAsync
 @EnableScheduling
+@EnableEncryptableProperties
 public class FoodSpringbootApplication {
     public static void main(String[] args) {
         SpringApplication.run(FoodSpringbootApplication.class, args);
