@@ -48,7 +48,7 @@
     <!--      内容主体区域-->
     <el-form :model="passwordForm" :rules="passwordFormRules" ref="passwordFormRef" label-width="70px">
       <el-form-item label="密码" prop="password">
-        <el-input v-model="passwordForm.password" disabled></el-input>
+        <el-input v-model="passwordForm.password"></el-input>
       </el-form-item>
       <el-form-item label="再次输入密码" prop="checkPassword">
         <el-input v-model="passwordForm.checkPassword"></el-input>
@@ -90,7 +90,7 @@ export default {
         callback(new Error('请输入密码'));
       } else {
         if (this.passwordForm.checkPassword !== '') {
-          this.$refs.passwordForm.validateField('checkPassword')
+          this.$refs.passwordFormRef.validateField('checkPassword')
         }
         callback();
       }
@@ -169,10 +169,10 @@ export default {
 
       })
     },
-    passwordChange(){
-      this.$refs.passwordFormRef.validate(async  valid=>{
+     passwordChange(){
+      this.$refs.passwordFormRef.validate(async valid=>{
         if(!valid) return
-        const {data :res} = await this.$http.post(`changePwd`,
+        const {data :res} = await this.$http.post('changePwd',
           qs.stringify(this.passwordForm))
         if(res.meta.status !=="200")
           this.$message.error('修改密码失败!')
@@ -192,7 +192,5 @@ export default {
 </script>
 
 <style lang="Less" scoped>
-.el-card{
-  margin-top: 15px;
-}
+
 </style>
