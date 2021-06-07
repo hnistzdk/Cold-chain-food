@@ -67,3 +67,25 @@ router.beforeEach((to,form,next)=>{
 })
 
 export default router
+
+
+// const path = require('path')
+//
+// module.exports = {
+//   dev: {
+//
+//     // Paths
+//     assetsSubDirectory: 'static',
+//     assetsPublicPath: '/',
+//     proxyTable: {
+//       '/': {
+//         target: 'http://116.62.232.194:8088',//此处可以换成自己需要的地址
+//         changeOrigin: true,
+//         pathRewrite: {
+//           '^/': ''
+//         }
+//       }
+//     }
+//   }
+// }
+
