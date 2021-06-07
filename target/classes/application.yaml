@@ -4,10 +4,10 @@ spring:
     time-zone: GMT+8
   datasource:
     username: root
-   # password: root
+    #password: root
     password: Zdk13696086376.
     #url: jdbc:mysql://localhost:3306/food?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://116.62.232.194:3306/food?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://116.62.126.207:3306/food?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #SpringBoot默认是不注入这些的，需要自己绑定
@@ -31,6 +31,10 @@ spring:
     maxPoolPreparedStatementPerConnectionSize: 20
     useGlobalDataSourceStat: true
     connectionoProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=500
+  servlet:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
 
 #整合mybatis
 mybatis:
