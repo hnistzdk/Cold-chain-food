@@ -26,7 +26,6 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/23 17:10
  */
-@CrossOrigin
 @RestController
 public class ManifestController {
     @Autowired
@@ -42,6 +41,7 @@ public class ManifestController {
 
     @RightInfo(Permission.GETMANIFEST)
     @PostMapping("/getManifest")
+    @CrossOrigin
     public Object getManifest(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -74,6 +74,7 @@ public class ManifestController {
 
     @RightInfo(Permission.ADDMANIFEST)
     @PostMapping("/addManifest")
+    @CrossOrigin
     public Object addManifest(Manifest manifest){
         HashMap<Object,Object> params=new HashMap<>();
         params.put("id", manifest.getStorageId());
@@ -86,6 +87,7 @@ public class ManifestController {
 
     @RightInfo(Permission.GETMANIFESTBYID)
     @GetMapping("/manifests/{id}")
+    @CrossOrigin
     public Object getManifestById(@PathVariable String id){
         Manifest manifest = manifestService.getManifestById(id);
         HashMap<Object, Object> map = new HashMap<>();
@@ -100,6 +102,7 @@ public class ManifestController {
 
     @RightInfo(Permission.MODIFYMANIFEST)
     @PostMapping("/modifyManifest")
+    @CrossOrigin
     public Object modifyManifest(Manifest manifest){
         Food food = foodService.getFoodById(manifest.getFoodId());
         manifest.setFoodName(food.getFoodName());
@@ -113,6 +116,7 @@ public class ManifestController {
 
     @RightInfo(Permission.DELETEMANIFEST)
     @PostMapping("/deleteManifest/{id}")
+    @CrossOrigin
     public Object deleteManifest(@PathVariable String id){
         int count = manifestService.deleteManifest(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));

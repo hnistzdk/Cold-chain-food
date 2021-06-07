@@ -2,6 +2,7 @@ package com.zdk.service.admin;
 
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.pojo.AdminAndUser;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
@@ -72,6 +73,14 @@ public interface AdminService {
      * @param  user
      * @return 返回类型条数
      */
-    int editUserInfo(AddUserMeta user);
+    int editUserInfo(EditMeta user);
+
+    /**
+     *修改管理员密码
+     * @param id
+     * @param password
+     * @return 返回类型条数
+     */
+    int modifyPassword(String id,String password);
 }
 

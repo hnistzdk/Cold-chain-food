@@ -17,7 +17,9 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
+import sun.util.resources.es.CurrencyNames_es_UY;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
@@ -30,7 +32,7 @@ import java.util.List;
  * @Date 2021/4/20 16:04
  * BeanUtils.copyProperties(, );
  */
-@CrossOrigin
+
 @RestController
 public class EnterpriseUserController {
     @Autowired
@@ -38,48 +40,28 @@ public class EnterpriseUserController {
     private EnterpriseServiceImpl enterpriseService;
 
     @Autowired
-    @Qualifier("RightServiceImpl")
-    private RightService rightService;
+    private PutInfoSession putInfoSession;
 
     @Autowired
-    @Qualifier("RoleServiceImpl")
-    private RoleServiceImpl roleService;
+    PasswordEncoder passwordEncoder;
 
     @PostMapping("/enterpriseLogin")
+    @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
-        EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, password,email);
-        enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
-        request.getSession().setAttribute("admin", enterpriseUser);
-        request.getSession().setAttribute(enterpriseUser.getId(), enterpriseUser);
-        request.getSession().setAttribute("loginUser", enterpriseUser);
-        //获取用户的角色id
-        Integer roleId =enterpriseUser.getRoleId();
-        //通过用户的角色id获取用户对应的角色对象
-        Role role = roleService.getRoles(roleId).get(0);
-        //获取该种角色的所有的权限id
-        String rightId = role.getRightId();
-        if(rightId!=null){
-            //数据库存储形式是1,2,3
-            String[] rightsId=rightId.split(",");
-            //获取所有的权限,与该角色所拥有的权限id进行匹配
-            List<Right> rights = rightService.getRights(null);
-            List<Right> functions = new ArrayList<>();
-            //把用户所有的权限都添加进集合
-            for (Right right : rights) {
-                for(int i=0;i<rightsId.length;i++){
-                    if(Integer.parseInt(rightsId[i])==right.getId()){
-                        functions.add(right);break;
-                    }
-                }
+        EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, null,email);
+        if(enterpriseUser!=null){
+            if(passwordEncoder.matches(password, enterpriseUser.getPwd())){
+                enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
+                putInfoSession.putInfoSession(enterpriseUser, request);
+                return JSON.toJSONString(CommonMessage.returnMsg(enterpriseUser.getId()));
             }
-            //再把集合放入session
-            request.getSession().setAttribute("functions", functions);
         }
-        return JSON.toJSONString(CommonMessage.returnMsg(enterpriseUser));
+        return JSON.toJSONString(CommonMessage.returnMsg(null));
     }
 
     @RightInfo(Permission.ENTERPRISELIST)
     @PostMapping("/enterpriseUsers")
+    @CrossOrigin
     public Object enterpriseList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -99,6 +81,7 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.REMOVEENTERPRISE)
     @DeleteMapping("/enterpriseUsers/{id}")
+    @CrossOrigin
     public Object removeEnterprise(@PathVariable String id) {
         int count = enterpriseService.removeEnterprise(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -106,6 +89,7 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.ADDENTERPRISE)
     @PostMapping("/addEnterpriseUsers")
+    @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
@@ -114,6 +98,7 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.SHOWENTERPRISEUSERS)
     @GetMapping("/showEditEnterpriseUsers/{id}")
+    @CrossOrigin
     public Object showEnterpriseUsers(@PathVariable String id){
         EditMeta editMeta = enterpriseService.showEnterprise(id);
         HashMap msg = new HashMap<>();
@@ -134,6 +119,7 @@ public class EnterpriseUserController {
 
     @RightInfo(Permission.EDITENTERPRISEUSERS)
     @PostMapping("/editEnterpriseUsers/{id}")
+    @CrossOrigin
     public Object editEnterpriseUsers(EditMeta user){
         int count = enterpriseService.modifyEnterpriseUser(user);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -141,14 +127,18 @@ public class EnterpriseUserController {
 
     @RightInfo("")
     @PostMapping("/enterpriseRegister")
+    @CrossOrigin
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
         enterpriseUser.setId(UUIDUtil.getUUID(6));
+        String encode = passwordEncoder.encode(enterpriseUser.getPwd());
+        enterpriseUser.setPwd(encode);
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @RightInfo("")
     @PostMapping("/enterprisePwdChange")
+    @CrossOrigin
     public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
         if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);

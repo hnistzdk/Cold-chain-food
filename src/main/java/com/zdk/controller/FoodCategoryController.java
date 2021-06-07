@@ -24,7 +24,6 @@ import java.util.Map;
  * @date 2021/5/23 14:37
  */
 @Api("食品分类api")
-@CrossOrigin
 @RestController
 public class FoodCategoryController {
 
@@ -35,6 +34,7 @@ public class FoodCategoryController {
     @ApiOperation("获取食品类别信息")
     @RightInfo(Permission.GETFOODCATEGORY)
     @GetMapping("/getFoodCategory")
+    @CrossOrigin
     public Object getFoodCategory(Integer id, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -57,6 +57,7 @@ public class FoodCategoryController {
     @ApiOperation("添加食品类别")
     @RightInfo(Permission.ADDFOODCATEGORY)
     @PostMapping("/addFoodCategory")
+    @CrossOrigin
     public Object addFoodCategory(FoodCategory foodCategory){
         int count = foodCategoryService.addFoodCategory(foodCategory);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -65,6 +66,7 @@ public class FoodCategoryController {
     @ApiOperation("删除食品类别")
     @RightInfo(Permission.DELETEFOODCATEGORY)
     @PostMapping("/deleteFoodCategory/{id}")
+    @CrossOrigin
     public Object deleteFoodCategory(@PathVariable Integer id){
         int count = foodCategoryService.deleteFoodCategory(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -73,6 +75,7 @@ public class FoodCategoryController {
     @ApiOperation("修改食品类别")
     @RightInfo(Permission.MODIFYFOODCATEGORY)
     @PostMapping("/modifyFoodCategory")
+    @CrossOrigin
     public Object modifyFoodCategory(FoodCategory foodCategory){
         int count = foodCategoryService.modifyFoodCategory(foodCategory);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -81,6 +84,7 @@ public class FoodCategoryController {
     @ApiOperation("编辑查看食品类别")
     @RightInfo(Permission.CATEGORIES)
     @GetMapping("/categories/{id}")
+    @CrossOrigin
     public Object showFoodCategory(@PathVariable Integer id){
         Map map=new HashMap();
         map.put("id", id);

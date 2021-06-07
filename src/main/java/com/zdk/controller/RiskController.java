@@ -30,6 +30,7 @@ public class RiskController {
 
     @RightInfo(Permission.GETRISKLIST)
     @PostMapping("/getRiskList")
+    @CrossOrigin
     public Object getRiskList(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>(2);
         HashMap msg = new HashMap<>(2);

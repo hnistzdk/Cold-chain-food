@@ -18,6 +18,7 @@ F:\project\food-springboot\src\main\java\com\zdk\controller\FoodController.java
 F:\project\food-springboot\src\main\java\com\zdk\dto\SelectFoodMeta.java
 F:\project\food-springboot\src\main\java\com\zdk\service\risk\RiskService.java
 F:\project\food-springboot\src\main\java\com\zdk\service\ScheduledService.java
+F:\project\food-springboot\src\main\java\com\zdk\utils\MyPasswordEncoder.java
 F:\project\food-springboot\src\main\java\com\zdk\utils\ReturnMessage.java
 F:\project\food-springboot\src\main\java\com\zdk\pojo\EnterpriseUser.java
 F:\project\food-springboot\src\main\java\com\zdk\service\user\UserService.java
@@ -49,6 +50,7 @@ F:\project\food-springboot\src\main\java\com\zdk\service\food\FoodServiceImpl.ja
 F:\project\food-springboot\src\main\java\com\zdk\controller\FoodCategoryController.java
 F:\project\food-springboot\src\main\java\com\zdk\mapper\RoleMapper.java
 F:\project\food-springboot\src\main\java\com\zdk\pojo\Food.java
+F:\project\food-springboot\src\main\java\com\zdk\utils\PutInfoSession.java
 F:\project\food-springboot\src\main\java\com\zdk\dto\AddUserMeta.java
 F:\project\food-springboot\src\main\java\com\zdk\mapper\FoodCategoryMapper.java
 F:\project\food-springboot\src\main\java\com\zdk\mapper\UserMapper.java

@@ -1,24 +1,24 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zdk.dto.AddEnterpriseMeta;
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.EnterpriseUser;
 import com.zdk.pojo.Right;
 import com.zdk.pojo.Role;
 import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
-import com.zdk.utils.DateConversion;
-import com.zdk.utils.CommonMessage;
-import com.zdk.utils.ReturnMessage;
-import com.zdk.utils.Permission;
+import com.zdk.utils.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +32,6 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/4/20 16:04
  */
-@CrossOrigin
 @RestController
 public class AdminController {
     @Autowired
@@ -40,50 +39,28 @@ public class AdminController {
     private AdminServiceImpl adminService;
 
     @Autowired
-    @Qualifier("RightServiceImpl")
-    private RightService rightService;
+    private PutInfoSession putInfoSession;
 
     @Autowired
-    @Qualifier("RoleServiceImpl")
-    private RoleServiceImpl roleService;
+    PasswordEncoder passwordEncoder;
 
     @PostMapping("/adminLogin")
+    @CrossOrigin
     public Object login(String id, String password,HttpServletRequest request){
-        AdminAndUser admin= adminService.adminLogin(id, password);
-        adminService.updateLoginInfo(id, DateConversion.getNowDate());
-        //根据用户id查到该用户角色,然后查到对应的权限,把权限放入session
-        //权限需要在访问的不同的方法的时候不断在拦截器中判断是否具有权限,所以放入session
-        request.getSession().setAttribute("admin", admin);
-        request.getSession().setAttribute(admin.getId(), admin);
-        request.getSession().setAttribute("loginUser", admin);
-        //获取用户的角色id
-        Integer roleId =admin.getRoleId();
-        //通过用户的角色id获取用户对应的角色对象
-        Role role = roleService.getRoles(roleId).get(0);
-        //获取该种角色的所有的权限id
-        String rightId = role.getRightId();
-        //数据库存储形式是1,2,3
-        String[] rightsId=rightId.split(",");
-        //获取所有的权限,与该角色所拥有的权限id进行匹配
-        List<Right> rights = rightService.getRights(null);
-        List<Right> functions = new ArrayList<>();
-        //把用户所有的权限都添加进集合
-        for (Right right : rights) {
-            for(int i=0;i<rightsId.length;i++){
-                if(Integer.parseInt(rightsId[i])==right.getId()){
-                    functions.add(right);break;
-                }
+        AdminAndUser admin= adminService.adminLogin(id, null);
+        if(admin!=null){
+            if(passwordEncoder.matches(password, admin.getPwd())){
+                adminService.updateLoginInfo(id, DateConversion.getNowDate());
+                putInfoSession.putInfoSession(admin, request);
+                return JSON.toJSONString(CommonMessage.returnMsg(admin.getId()));
             }
         }
-        //再把集合放入session
-        request.getSession().setAttribute("functions", functions);
-
-        Meta meta = CommonMessage.returnMsg(admin);
-        return JSON.toJSONString(meta);
+        return JSON.toJSONString(CommonMessage.returnMsg(null));
     }
 
     @RightInfo(Permission.ADMINLIST)
     @PostMapping("/adminUsers")
+    @CrossOrigin
     public Object adminList(@Nullable String query, @Param("pagenum") Integer pagenum, @Param("pagesize") Integer pagesize){
         Map data = new HashMap<>();
         Map msg = new HashMap<>();
@@ -103,12 +80,14 @@ public class AdminController {
 
     @RightInfo(Permission.REMOVEADMIN)
     @DeleteMapping("/users/{id}")
+    @CrossOrigin
     public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
     @PutMapping("/users/{id}/state/{mg_state}")
+    @CrossOrigin
     public Object modifyState(@PathVariable String id,@PathVariable String mg_state){
         AdminAndUser admin = adminService.getAdminById(id);
         Meta returnMeta=new Meta();
@@ -123,36 +102,4 @@ public class AdminController {
         meta.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return meta;
     }
-
-    @RightInfo("")
-    @GetMapping("/userInfo/{id}")
-    public Object userInfo(@PathVariable String id,HttpServletRequest request){
-        System.out.println("id:"+id);
-        AdminAndUser user = (AdminAndUser) request.getSession().getAttribute(id);
-        System.out.println("user:"+user);
-        HashMap<Object, Object> data = new HashMap<>();
-        HashMap<Object, Object> msg = new HashMap<>();
-        if(user!=null){
-            data.put("userInfo", user);
-            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
-        }else{
-            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
-        }
-        return JSON.toJSONString(new Meta(msg,data));
-    }
-
-    @RightInfo("")
-    @PostMapping("/editUserInfo/{id}")
-    public Object editUserInfo(AddUserMeta user,HttpServletRequest request){
-        System.out.println("user:"+user);
-        int count = adminService.editUserInfo(user);
-        AdminAndUser xxx = (AdminAndUser) request.getSession().getAttribute(user.getId());
-        AdminAndUser admin= adminService.adminLogin(user.getId(), xxx.getPwd());
-        request.getSession().setAttribute("admin", admin);
-        request.getSession().setAttribute(admin.getId(), admin);
-        request.getSession().setAttribute("loginUser", admin);
-        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
-    }
-
-
 }

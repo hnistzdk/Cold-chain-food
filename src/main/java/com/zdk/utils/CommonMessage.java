@@ -11,13 +11,12 @@ import java.util.HashMap;
  * @Date 2021/4/20 17:05
  */
 public class CommonMessage {
-    public static Meta returnMsg(Object result){
+    public static Meta returnMsg(String id){
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, String> map1 = new HashMap<>();
-        AdminAndUser user= (AdminAndUser) result;
-        if(result!=null){
+        if(id!=null){
             map.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
-            map1.put("token", user.getId());
+            map1.put("token", id);
         }else {
             map.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }

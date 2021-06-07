@@ -20,7 +20,6 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/30 10:57
  */
-@CrossOrigin
 @RestController
 public class StorageController {
     @Autowired
@@ -29,6 +28,7 @@ public class StorageController {
 
     @RightInfo(Permission.GETSTORAGE)
     @PostMapping("/getStorage")
+    @CrossOrigin
     public Object getStorage(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         HashMap msg = new HashMap<>();
         HashMap data = new HashMap<>();
@@ -56,6 +56,7 @@ public class StorageController {
 
     @RightInfo(Permission.SHOWSTORAGE)
     @PostMapping("/showStorage/{id}")
+    @CrossOrigin
     public Object showStorage(@PathVariable Integer id){
         HashMap data = new HashMap<>();
         HashMap params=new HashMap<>();
@@ -72,6 +73,7 @@ public class StorageController {
 
     @RightInfo(Permission.MODIFYSTORAGE)
     @PostMapping("/modifyStorage")
+    @CrossOrigin
     public Object modifyStorage(Storage storage){
         int count = storageService.modifyStorage(storage);
         return CommonMessage.returnStatus(count>0);
@@ -79,6 +81,7 @@ public class StorageController {
 
     @RightInfo(Permission.DELETESTORAGE)
     @PostMapping("/deleteStorage/{id}")
+    @CrossOrigin
     public Object deleteStorage(@PathVariable Integer id){
         int count = storageService.deleteStorage(id);
         return CommonMessage.returnStatus(count>0);

@@ -25,7 +25,6 @@ import java.util.List;
  * @date 2021/5/23 14:37
  */
 @Api("食品管理api")
-@CrossOrigin
 @RestController
 public class FoodController {
 
@@ -40,6 +39,7 @@ public class FoodController {
     @ApiOperation("添加食品信息")
     @RightInfo(Permission.ADDFOOD)
     @PostMapping("/addFood")
+    @CrossOrigin
     public Object addFood(Food food){
         HashMap<Object, Object> map = new HashMap<>();
         map.put("id", food.getCategoryId());
@@ -55,6 +55,7 @@ public class FoodController {
     @ApiOperation("删除食品信息")
     @RightInfo(Permission.DELETEFOOD)
     @PostMapping("/deleteFood/{id}")
+    @CrossOrigin
     public Object deleteFood(@PathVariable Integer id){
         int count = foodService.deleteFoodById(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -63,6 +64,7 @@ public class FoodController {
     @ApiOperation("修改食品信息")
     @RightInfo(Permission.MODIFYFOOD)
     @PostMapping("/modifyFood")
+    @CrossOrigin
     public Object modifyFood(Food food){
         int count = foodService.modifyFood(food);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -71,6 +73,7 @@ public class FoodController {
     @ApiOperation("查询食品信息")
     @RightInfo(Permission.GETFOOD)
     @PostMapping("/getFood")
+    @CrossOrigin
     public Object getFood(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
         System.out.println("query"+query);
         HashMap msg = new HashMap<>();
@@ -103,6 +106,7 @@ public class FoodController {
     @ApiOperation("获取编辑食品的信息")
     @RightInfo(Permission.GETFOODBYID)
     @GetMapping("/foods/{id}")
+    @CrossOrigin
     public Object getFoodById(@PathVariable Integer id){
         Food food = foodService.getFoodById(id);
         HashMap<Object, Object> map = new HashMap<>();

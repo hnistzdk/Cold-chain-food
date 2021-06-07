@@ -21,7 +21,6 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/5/10 17:14
  */
-@CrossOrigin
 @RestController
 public class RoleController {
     @Autowired
@@ -30,6 +29,7 @@ public class RoleController {
 
     @RightInfo(Permission.ROLELIST)
     @GetMapping("/roles")
+    @CrossOrigin
     public Object getRoles(){
         List<Role> roles = roleService.getRoles(null);
         HashMap data = new HashMap<>();
@@ -41,6 +41,7 @@ public class RoleController {
 
     @RightInfo(Permission.ADDROLES)
     @PostMapping("/roles")
+    @CrossOrigin
     public Object addRoles(Role role){
         int count = roleService.addRoles(role);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -48,6 +49,7 @@ public class RoleController {
 
     @RightInfo(Permission.SHOWROLES)
     @GetMapping("/roles/{id}")
+    @CrossOrigin
     public Object showRoles(@PathVariable Integer id){
         List<Role> roles = roleService.getRoles(id);
         HashMap data = new HashMap<>();
@@ -63,6 +65,7 @@ public class RoleController {
 
     @RightInfo(Permission.MODIFYROLES)
     @PostMapping("/roles/{id}")
+    @CrossOrigin
     public Object modifyRoles(Role role){
         int count = roleService.modifyRoles(role);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -70,6 +73,7 @@ public class RoleController {
 
     @RightInfo(Permission.DELETEROLES)
     @DeleteMapping("/roles/{id}")
+    @CrossOrigin
     public Object deleteRoles(@PathVariable Integer id){
         int count=roleService.deleteRoles(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -77,6 +81,7 @@ public class RoleController {
 
     @RightInfo(Permission.ASSIGNRIGHT)
     @PostMapping("/roles/{id}/rights")
+    @CrossOrigin
     public Object assignRight(@PathVariable Integer id,String rightList){
         System.out.println("角色id："+id);
         System.out.println("权限列表id："+rightList);

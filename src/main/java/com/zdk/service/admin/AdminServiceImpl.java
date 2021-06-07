@@ -2,6 +2,7 @@ package com.zdk.service.admin;
 
 import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
+import com.zdk.dto.EditMeta;
 import com.zdk.mapper.AdminMapper;
 import com.zdk.pojo.AdminAndUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +68,13 @@ public class AdminServiceImpl implements AdminService{
 
     @Transactional(rollbackFor = Exception.class)
     @Override
-    public int editUserInfo(AddUserMeta user) {
+    public int editUserInfo(EditMeta user) {
         return adminMapper.editUserInfo(user);
+    }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int modifyPassword(String id, String password) {
+        return adminMapper.modifyPassword(id, password);
     }
 }

@@ -89,5 +89,13 @@ public interface AdminMapper {
      * @param  user
      * @return 返回类型条数
      */
-    int editUserInfo(AddUserMeta user);
+    int editUserInfo(EditMeta user);
+
+    /**
+     *修改管理员密码
+     * @param id
+     * @param password
+     * @return 返回类型条数
+     */
+    int modifyPassword(String id,String password);
 }

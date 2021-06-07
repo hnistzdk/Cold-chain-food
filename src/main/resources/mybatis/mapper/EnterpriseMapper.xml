@@ -61,8 +61,28 @@
     </select>
 
     <update id="modifyEnterpriseUser" parameterType="EditMeta">
-        update tb_enterprise_user set username=#{username},tel=#{tel},
-               email=#{email},enterprise_name=#{enterpriseName} where id=#{id};
+        update tb_enterprise_user
+        <set>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="trueName!=null">
+                true_name=#{trueName},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender},
+            </if>
+            <if test="tel!=null">
+                tel=#{tel},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+            <if test="enterpriseName!=null">
+                enterprise_name=#{enterpriseName},
+            </if>
+        </set>
+        where id=#{id};
     </update>
 
     <update id="updateLoginInfo">

@@ -22,7 +22,6 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/17 19:21
  */
-@CrossOrigin
 @RestController
 public class RightController {
     @Autowired
@@ -35,6 +34,7 @@ public class RightController {
 
     @RightInfo(Permission.RIGHTLIST)
     @GetMapping("/rights/list")
+    @CrossOrigin
     public Object rightList(@Nullable Integer pageNum, @Nullable Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
@@ -57,6 +57,7 @@ public class RightController {
 
     @RightInfo(Permission.RIGHTLISTROLE)
     @GetMapping("/rights/list/{id}")
+    @CrossOrigin
     public Object rightList(@PathVariable Integer id){
         System.out.println("id:"+id);
         HashMap data = new HashMap<>();
