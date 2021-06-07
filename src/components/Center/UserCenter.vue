@@ -89,7 +89,7 @@ export default {
       if (value === '') {
         callback(new Error('请输入密码'));
       } else {
-        if (this.passwordForm.checkPwd !== '') {
+        if (this.passwordForm.checkPassword !== '') {
           this.$refs.passwordForm.validateField('checkPassword')
         }
         callback();
@@ -98,7 +98,7 @@ export default {
     const validatePass2 = (rule, value, callback) => {
       if (value === '') {
         callback(new Error('请再次输入密码'));
-      } else if (value !== this.passwordForm.pwd) {
+      } else if (value !== this.passwordForm.password) {
         callback(new Error('两次输入密码不一致!'));
       } else {
         callback();
