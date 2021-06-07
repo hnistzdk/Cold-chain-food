@@ -8,6 +8,9 @@
   </el-breadcrumb>
 <!--  卡片区域-->
   <el-card>
+    <el-button type="warning" icon="el-icon-edit" @click="passwordDialogVisible = true">
+      修改密码
+    </el-button>
     <el-form :model="userInfo" label-width="100px" ref="userInfoRef" :rules="userInfoRules">
       <el-form-item label="昵称:" prop="username">
         <el-input type="text" v-model="userInfo.username"></el-input>
@@ -37,6 +40,27 @@
     </el-form>
 
   </el-card>
+  <!--    修改用户密码的对话框-->
+  <el-dialog
+    title="修改密码"
+    :visible.sync="passwordDialogVisible"
+    width="30%" @close="passwordDialogClose">
+    <!--      内容主体区域-->
+    <el-form :model="passwordForm" :rules="passwordFormRules" ref="passwordFormRef" label-width="70px">
+      <el-form-item label="密码" prop="password">
+        <el-input v-model="passwordForm.password" disabled></el-input>
+      </el-form-item>
+      <el-form-item label="再次输入密码" prop="checkPassword">
+        <el-input v-model="passwordForm.checkPassword"></el-input>
+      </el-form-item>
+
+    </el-form>
+
+    <span slot="footer" class="dialog-footer">
+    <el-button @click="passwordDialogVisible = false">取 消</el-button>
+    <el-button type="primary" @click="passwordChange()">确 定</el-button>
+  </span>
+  </el-dialog>
 </div>
 </template>
 
@@ -59,7 +83,27 @@ export default {
         return cb()
       }
       cb(new Error('请输入合法的邮箱'))
-    }
+    };
+    //密码的合法检验
+    const validatePass = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请输入密码'));
+      } else {
+        if (this.passwordForm.checkPwd !== '') {
+          this.$refs.passwordForm.validateField('checkPassword')
+        }
+        callback();
+      }
+    };
+    const validatePass2 = (rule, value, callback) => {
+      if (value === '') {
+        callback(new Error('请再次输入密码'));
+      } else if (value !== this.passwordForm.pwd) {
+        callback(new Error('两次输入密码不一致!'));
+      } else {
+        callback();
+      }
+    };
 
     return{
       //用户信息
@@ -84,6 +128,21 @@ export default {
           { required: true, message: '请输入电子邮箱', trigger: 'blur'},
           { validator: checkEmail, trigger: 'blur' },
         ]
+      },
+      passwordDialogVisible:false,
+      passwordForm:{
+        password:'',
+        checkPassword:''
+      },
+      passwordFormRules:{
+        //验证账号和密码是否合法
+        password:[
+          { validator: validatePass, trigger: 'blur' },
+          {min: 6, max: 12, message: '长度在 6 到 12 个字符', trigger: 'blur'}
+        ],
+        checkPassword: [
+          { validator: validatePass2, trigger: 'blur' },
+        ],
       }
     }
   },
@@ -109,13 +168,31 @@ export default {
         }
 
       })
+    },
+    passwordChange(){
+      this.$refs.passwordFormRef.validate(async  valid=>{
+        if(!valid) return
+        const {data :res} = await this.$http.post(`changePwd`,
+          qs.stringify(this.passwordForm))
+        if(res.meta.status !=="200")
+          this.$message.error('修改密码失败!')
+        else
+          this.$message.success('修改密码成功!')
+        this.passwordDialogVisible = false
+      })
+    },
+    passwordDialogClose(){
+      this.$refs.passwordFormRef.resetFields()
     }
+
     },
 
 
 }
 </script>
 
-<style scoped>
-
+<style lang="Less" scoped>
+.el-card{
+  margin-top: 15px;
+}
 </style>

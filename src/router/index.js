@@ -18,6 +18,7 @@ import Order from "../components/goods/Order";
 import Risk from "../components/riskMonitor/Risk";
 import UserCenter from "../components/Center/UserCenter";
 import siteManage from "../components/riskMonitor/SiteManage";
+import siteApplication from "../components/riskMonitor/siteApplication";
 Vue.use(Router)
 
 const router=new  Router({
@@ -41,7 +42,8 @@ const router=new  Router({
         {path:'/orders',component:Order },
         {path:'/risk',component:Risk },
         {path:'/center',component:UserCenter },
-        {path:'/storage',component:siteManage }
+        {path:'/storage',component:siteManage },
+        {path:'/deliver',component:siteApplication}
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 
