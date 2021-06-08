@@ -9,6 +9,7 @@ import lombok.Data;
 /**
  * @author zdk
  * @date 2021/4/25 19:37
+ * 类转化工具类  其实可以使用BeanUtils
  */
 
 @Data

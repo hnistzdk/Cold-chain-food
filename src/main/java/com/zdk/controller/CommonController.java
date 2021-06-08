@@ -14,24 +14,14 @@ import com.zdk.service.user.UserService;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.SendEmail;
-import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang.StringEscapeUtils;
-import org.apache.tomcat.util.http.fileupload.IOUtils;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.core.io.ClassPathResource;
-import org.springframework.core.io.Resource;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.util.FileSystemUtils;
-import org.springframework.util.ResourceUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.nio.charset.Charset;
 import java.util.HashMap;
 
 /**
@@ -73,17 +63,17 @@ public class CommonController {
         AdminAndUser loginUser = (AdminAndUser) request.getSession().getAttribute("loginUser");
         String role = (String) request.getSession().getAttribute("role");
         int result=0;
-        if(role.equals("普通用户")){
+        if(role.equals(ReturnMessage.PRIMARY)){
             AddUserMeta addUserMeta = new AddUserMeta();
             addUserMeta.setId(loginUser.getId());
             addUserMeta.setPwd(passwordEncoder.encode(password));
             result = userService.modifyUserPwd(addUserMeta);
-        }else if(role.equals("企业用户")){
+        }else if(role.equals(ReturnMessage.ENTERPRISE)){
             AddEnterpriseMeta addEnterpriseMeta = new AddEnterpriseMeta();
             addEnterpriseMeta.setId(loginUser.getId());
             addEnterpriseMeta.setPwd(passwordEncoder.encode(password));
             enterpriseService.modifyEnterprisePwd(addEnterpriseMeta);
-        }else if(role.indexOf("管理员")!=-1){
+        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
             result = adminService.modifyPassword(loginUser.getId(), passwordEncoder.encode(password));
         }
         return CommonMessage.returnStatus(result>0);
@@ -96,7 +86,7 @@ public class CommonController {
         HashMap<Object, Object> data = new HashMap<>();
         HashMap<Object, Object> msg = new HashMap<>();
         String role = (String) request.getSession().getAttribute("role");
-        if(role.equals("普通用户")){
+        if(role.equals(ReturnMessage.PRIMARY)){
             AdminAndUser primaryUser = userService.login(id, null, null);
             if(primaryUser!=null){
                 data.put("userInfo", primaryUser);
@@ -104,7 +94,7 @@ public class CommonController {
             }else{
                 msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
             }
-        }else if(role.equals("企业用户")){
+        }else if(role.equals(ReturnMessage.ENTERPRISE)){
             EnterpriseUser enterpriseUser = enterpriseService.enterpriseLogin(id, null, null);
             if(enterpriseUser!=null){
                 data.put("userInfo", enterpriseUser);
@@ -112,7 +102,7 @@ public class CommonController {
             }else{
                 msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
             }
-        }else if(role.indexOf("管理员")!=-1){
+        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
             AdminAndUser admin = adminService.adminLogin(id, null);
             if(admin!=null){
                 data.put("userInfo", admin);
@@ -131,11 +121,11 @@ public class CommonController {
         System.out.println("user:"+user);
         String role = (String) request.getSession().getAttribute("role");
         int count=0;
-        if(role.equals("普通用户")){
+        if(role.equals(ReturnMessage.PRIMARY)){
             count=userService.modifyPrimaryUser(user);
-        }else if(role.equals("企业用户")){
+        }else if(role.equals(ReturnMessage.ENTERPRISE)){
             count=enterpriseService.modifyEnterpriseUser(user);
-        }else if(role.indexOf("管理员")!=-1){
+        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
             count = adminService.editUserInfo(user);
         }
 //        AdminAndUser xxx = (AdminAndUser) request.getSession().getAttribute(user.getId());
@@ -151,7 +141,7 @@ public class CommonController {
     public Object getMenuList(HttpServletRequest request) throws IOException {
         String role = (String) request.getSession().getAttribute("role");
         String menu = null;
-        if(role.equals("普通用户")){
+        if(role.equals(ReturnMessage.PRIMARY)){
             menu="{\n" +
                     "  \"data\": [\n" +
                     "    {\n" +
@@ -236,7 +226,7 @@ public class CommonController {
                     "}";
 //            ClassPathResource classPathResource=new ClassPathResource("/static/json/primaryMenu.json");
 //            menu = FileUtils.readFileToString(classPathResource.getFile());
-        }else if(role.equals("企业用户")){
+        }else if(role.equals(ReturnMessage.ENTERPRISE)){
             menu="{\n" +
                     "  \"data\": [\n" +
                     "    {\n" +
@@ -321,7 +311,7 @@ public class CommonController {
                     "}";
 //            ClassPathResource classPathResource=new ClassPathResource("/static/json/enterpriseMenu.json");
 //            menu = FileUtils.readFileToString(classPathResource.getFile());
-        }else if(role.indexOf("管理员")!=-1){
+        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
             menu="{\n" +
                     "  \"data\": [\n" +
                     "    {\n" +

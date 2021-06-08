@@ -9,6 +9,7 @@ import java.util.Random;
 /**
  * @author zdk
  * @date 2021/4/28 18:27
+ * 发送邮件工具类
  */
 public class SendEmail {
     public static String sendEmail(String email){

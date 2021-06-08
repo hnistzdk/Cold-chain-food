@@ -26,4 +26,25 @@ public interface RiskMapper {
      * @return int
      */
     int getRiskCount();
+
+    /**
+     * 增加食品风险检测信息
+     * @param risk
+     * @return int
+     */
+    int addRisk(Risk risk);
+
+    /**
+     * 删除食品风险检测信息
+     * @param id
+     * @return int
+     */
+    int deleteRisk(Integer id);
+
+    /**
+     * 修改食品检测信息
+     * @param risk
+     * @return int
+     */
+    int modifyRisks(Risk risk);
 }

@@ -25,12 +25,12 @@
     {
       "id": 102,
       "authName": "货单管理",
-      "path": "orders",
+      "path": "deliver",
       "children": [
         {
           "id": 107,
           "authName": "货单列表",
-          "path": "orders",
+          "path": "deliver",
           "children": [],
           "order": null
         }

@@ -25,4 +25,19 @@ public class RiskServiceImpl implements RiskService{
     public int getRiskCount() {
         return riskMapper.getRiskCount();
     }
+
+    @Override
+    public int addRisk(Risk risk) {
+        return riskMapper.addRisk(risk);
+    }
+
+    @Override
+    public int deleteRisk(Integer id) {
+        return riskMapper.deleteRisk(id);
+    }
+
+    @Override
+    public int modifyRisks(Risk risk) {
+        return riskMapper.modifyRisks(risk);
+    }
 }

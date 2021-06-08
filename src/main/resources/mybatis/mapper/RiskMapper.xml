@@ -13,11 +13,32 @@
 
     <select id="getRiskList" resultType="Risk" parameterType="map">
         select * from tb_risk
+        <where>
+            <if test="id!=null">
+                tb_risk.food_id=#{id}
+            </if>
+        </where>
         <if test="pageNum!=null">
             limit #{pageNum},#{pageSize}
         </if>
+
     </select>
     <select id="getRiskCount" resultType="int">
         select count(*) from tb_risk
     </select>
+
+    <insert id="addRisk" parameterType="Risk">
+        insert into tb_risk (food_id, food_name, risk_degree, risk_editor)
+        values (#{foodId},#{foodName},#{riskDegree},#{riskEditor});
+    </insert>
+
+    <delete id="deleteRisk">
+        delete from food.tb_risk where food.tb_risk.food_id =#{id}
+    </delete>
+    
+    <update id="modifyRisks" parameterType="Risk">
+        update food.tb_risk
+        set food_name = #{foodName},food.tb_risk.risk_degree=#{riskDegree},food.tb_risk.risk_editor=#{riskEditor}
+        where food.tb_risk.food_id=#{foodId};
+    </update>
 </mapper>

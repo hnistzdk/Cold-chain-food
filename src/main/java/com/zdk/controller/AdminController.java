@@ -1,18 +1,11 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.zdk.dto.AddEnterpriseMeta;
-import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
-import com.zdk.pojo.EnterpriseUser;
-import com.zdk.pojo.Right;
-import com.zdk.pojo.Role;
 import com.zdk.service.admin.AdminServiceImpl;
-import com.zdk.service.right.RightService;
-import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.*;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +15,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;

@@ -4,6 +4,7 @@ package com.zdk.utils;
  * @Description
  * @Author zdk
  * @Date 2021/6/2 9:31
+ * 权限常量
  */
 @SuppressWarnings("all")
 public class Permission {

@@ -6,6 +6,7 @@ import java.util.UUID;
  * @Description
  * @Author zdk
  * @Date 2021/4/20 16:57
+ * UUID工具类  因为是单机应用  没有使用适用于分布式的SnowFlake(雪花算法 Twitter)id生成算法
  */
 public class UUIDUtil {
     public static String getUUID(){
