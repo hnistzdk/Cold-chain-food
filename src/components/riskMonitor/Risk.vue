@@ -56,9 +56,22 @@
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
-      <el-form-item label="食品名称" prop="foodName">
-        <el-input v-model="addForm.foodName"></el-input>
+
+<!--      <el-form-item label="食品名称" prop="foodName">-->
+<!--        <el-input v-model="addForm.foodName"></el-input>-->
+<!--      </el-form-item>-->
+      <el-form-item label="食品名称 " prop="foodName">
+        <el-select v-model="addForm.foodId"
+                   placeholder="请选择食品名称">
+          <el-option
+            v-for="item in addFoodList"
+            :key="item.foodId"
+            :label="item.foodName"
+            :value="item.foodId">
+          </el-option>
+        </el-select>
       </el-form-item>
+
       <el-form-item label="风险等级" prop="riskDegree">
         <el-radio-group v-model="addForm.riskDegree">
           <el-radio :label="1">一级</el-radio>
@@ -122,6 +135,7 @@ export default {
     return{
       //存放货单列表数据
       riskList:[],
+      addFoodList:[],
       //分页以及查询参数
       queryInfo:{
         query:'',
@@ -167,6 +181,7 @@ export default {
         return this.$message.error('获取货单列表失败!')
       }
       this.riskList = res.data.riskList
+      this.addFoodList = res.data.addFoodList
       this.total = res.data.total
 
     },
@@ -189,7 +204,7 @@ export default {
       this.$refs.addFormRef.validate(async valid=>{
         if(!valid) return
         const {data : res} = await this.$http.post('addRisk',
-          qs.stringify(this.riskList))
+          qs.stringify(this.addForm))
         if(res.meta.status !=="200")
           return this.$message.error('添加监测食品失败!')
         this.$message.success('添加监测食品成功!')
