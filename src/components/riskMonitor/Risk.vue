@@ -60,7 +60,7 @@
 <!--      <el-form-item label="食品名称" prop="foodName">-->
 <!--        <el-input v-model="addForm.foodName"></el-input>-->
 <!--      </el-form-item>-->
-      <el-form-item label="食品名称 " prop="foodName">
+      <el-form-item label="食品名称" prop="foodId">
         <el-select v-model="addForm.foodId"
                    placeholder="请选择食品名称">
           <el-option
@@ -146,6 +146,7 @@ export default {
       addDialogVisible:false,
       editDialogVisible:false,
       addForm:{
+        foodId:'',
         //食品名称
         foodName:'',
         //风险等级
