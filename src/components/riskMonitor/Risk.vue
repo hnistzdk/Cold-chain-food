@@ -178,7 +178,7 @@ export default {
         if(res.meta.status==="403"){
           return this.$message.error('你无权访问!')
         }
-        return this.$message.error('获取货单列表失败!')
+        return this.$message.error('获取货单列表失败!');
       }
       this.riskList = res.data.riskList
       this.addFoodList = res.data.addFoodList
