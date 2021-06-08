@@ -209,7 +209,7 @@ export default {
           return this.$message.error('添加监测食品失败!')
         this.$message.success('添加监测食品成功!')
         await this.getRiskList()
-        this.addDialogVisible = true
+        this.addDialogVisible = false
       })
     },
     async showEdit(id){
