@@ -19,6 +19,8 @@ import Risk from "../components/riskMonitor/Risk";
 import UserCenter from "../components/Center/UserCenter";
 import siteManage from "../components/riskMonitor/SiteManage";
 import siteApplication from "../components/riskMonitor/siteApplication";
+import DeliveryManage from "../components/PriUser/DeliveryManage";
+import ReceiveManage from "../components/PriUser/ReceiveManage";
 Vue.use(Router)
 
 const router=new  Router({
@@ -43,7 +45,9 @@ const router=new  Router({
         {path:'/risk',component:Risk },
         {path:'/center',component:UserCenter },
         {path:'/storage',component:siteManage },
-        {path:'/deliver',component:siteApplication}
+        {path:'/deliver',component:siteApplication},
+        {path:'/delivery',component:DeliveryManage},
+        {path:'/receive',component:ReceiveManage}
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

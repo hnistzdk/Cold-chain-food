@@ -257,7 +257,7 @@ export default {
 
       //重置表单
       this.queryInfo.pageNum=1
-      await  this.getOrderList()
+      await  this.getRiskList()
     },
     addCloseDialog(){
       this.$refs.addFormRef.resetFields()
