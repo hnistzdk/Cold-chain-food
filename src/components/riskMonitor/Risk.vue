@@ -60,8 +60,8 @@
 <!--      <el-form-item label="食品名称" prop="foodName">-->
 <!--        <el-input v-model="addForm.foodName"></el-input>-->
 <!--      </el-form-item>-->
-      <el-form-item label="食品名称" prop="foodId">
-        <el-select v-model="addForm.foodId"
+      <el-form-item label="食品名称" prop="foodName">
+        <el-select v-model="addForm.foodName"
                    placeholder="请选择食品名称"
                     @change="selectModel($event)">
           <el-option
@@ -267,7 +267,7 @@ export default {
     },
     //改变添加表单的cateName时，cateId也随之改变
     selectModel(eh){
-      this.addForm.id = this.addFoodList[eh].id
+      this.addForm.foodId = this.addFoodList[eh].foodId
     }
   }
 }
