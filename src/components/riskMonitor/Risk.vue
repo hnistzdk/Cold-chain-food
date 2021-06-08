@@ -62,7 +62,8 @@
 <!--      </el-form-item>-->
       <el-form-item label="食品名称" prop="foodId">
         <el-select v-model="addForm.foodId"
-                   placeholder="请选择食品名称">
+                   placeholder="请选择食品名称"
+                    @change="selectModel($event)">
           <el-option
             v-for="item in addFoodList"
             :key="item.foodId"
@@ -263,6 +264,10 @@ export default {
     },
     editCloseDialog(){
       this.$refs.editFormRef.resetFields()
+    },
+    //改变添加表单的cateName时，cateId也随之改变
+    selectModel(eh){
+      this.addForm.id = this.addFoodList[eh].id
     }
   }
 }
