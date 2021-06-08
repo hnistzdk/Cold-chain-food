@@ -96,8 +96,8 @@ export default {
     return{
       queryInfo:{
         query:'',
-        pageNum:'1',
-        pageSize:'5'
+        pageNum:1,
+        pageSize:2
       },
       addDialogVisible:false,
       editDialogVisible:false,

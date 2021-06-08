@@ -189,12 +189,12 @@ export default {
       this.$refs.addFormRef.validate(async valid=>{
         if(!valid) return
         const {data : res} = await this.$http.post('addRisk',
-          qs.stringify(this.riskList))
+          qs.stringify(this.addForm))
         if(res.meta.status !=="200")
           return this.$message.error('添加监测食品失败!')
         this.$message.success('添加监测食品成功!')
         await this.getRiskList()
-        this.addDialogVisible = true
+        this.addDialogVisible = false;
       })
     },
     async showEdit(id){
