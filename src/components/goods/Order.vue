@@ -397,7 +397,5 @@ export default {
 </script>
 
 <style lang="Less" scoped>
-.el-card{
-  margin-top: 15px;
-}
+
 </style>
