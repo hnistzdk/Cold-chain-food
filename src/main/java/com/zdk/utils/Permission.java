@@ -185,4 +185,34 @@ public class Permission {
      * OPTIONS请求
      */
     public static final String OPTIONS="OPTIONS";
+
+    /**
+     * 添加食品检测数据
+     */
+    public static final String ADDRISK="addRisk";
+
+    /**
+     * 删除食品检测数据
+     */
+    public static final String DELETERISK="deleteRisk";
+
+    /**
+     * 显示要编辑的食品检测数据
+     */
+    public static final String SHOWRISKINFO="showRiskInfo";
+
+    /**
+     * 修改食品检测数据
+     */
+    public static final String MODIFYRISKS="modifyRisks";
+
+    /**
+     * 显示企业用户发货的货单列表
+     */
+    public static final String GETSENDMANIFEST="getSendManifest";
+
+    /**
+     * 显示企业用户收货的货单列表
+     */
+    public static final String GETRECEIVEMANIFEST="getReceiveManifest";
 }

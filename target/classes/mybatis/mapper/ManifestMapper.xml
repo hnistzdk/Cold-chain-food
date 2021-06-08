@@ -56,4 +56,17 @@
         select storage_id,storage_area
         from tb_storage;
     </select>
+
+    <select id="getManifestBySendOrGet">
+        select *
+        from tb_manifest
+        <where>
+            <if test="consignorId!=null">
+                consignor_id=#{consignorId}
+            </if>
+            <if test="consigneeId!=null">
+                consignee_id=#{consigneeId}
+            </if>
+        </where>
+    </select>
 </mapper>

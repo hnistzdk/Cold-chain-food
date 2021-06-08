@@ -29,8 +29,15 @@
       "children": [
         {
           "id": 107,
-          "authName": "货单列表",
-          "path": "deliver",
+          "authName": "发货列表",
+          "path": "delivery",
+          "children": [],
+          "order": null
+        },
+        {
+          "id": 200,
+          "authName": "收货列表",
+          "path": "receive",
           "children": [],
           "order": null
         }

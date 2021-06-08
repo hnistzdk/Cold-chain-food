@@ -63,4 +63,9 @@ public class ManifestServiceImpl implements ManifestService{
     public List<Storage> getAllStorageName() {
         return manifestMapper.getAllStorageName();
     }
+
+    @Override
+    public List<Manifest> getManifestBySendOrGet(String consignorId, String consigneeId) {
+        return manifestMapper.getManifestBySendOrGet(consignorId, consigneeId);
+    }
 }

@@ -63,4 +63,12 @@ public interface ManifestService {
      * @return int
      */
     List<Storage> getAllStorageName();
+
+    /**
+     * 获取当前用户发出或收到的货单
+     * @param consignorId 发货人id
+     * @param consigneeId 收货人id
+     * @return
+     */
+    List<Manifest> getManifestBySendOrGet(String consignorId,String consigneeId);
 }

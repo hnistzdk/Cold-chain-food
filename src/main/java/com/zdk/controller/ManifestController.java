@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.dto.SelectFoodMeta;
 import com.zdk.interceptor.RightInfo;
+import com.zdk.pojo.EnterpriseUser;
 import com.zdk.pojo.Food;
 import com.zdk.pojo.Manifest;
 import com.zdk.pojo.Storage;
@@ -19,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 
@@ -42,7 +44,10 @@ public class ManifestController {
     @RightInfo(Permission.GETMANIFEST)
     @PostMapping("/getManifest")
     @CrossOrigin
-    public Object getManifest(@Param("query") String query, @Param("pageNum") Integer pageNum, @Param("pageSize") Integer pageSize){
+    public Object getManifest(@Param("query") String query,
+                              @Param("pageNum") Integer pageNum,
+                              @Param("pageSize") Integer pageSize,
+                                HttpServletRequest request){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         HashMap params=new HashMap<>();
@@ -120,5 +125,49 @@ public class ManifestController {
     public Object deleteManifest(@PathVariable String id){
         int count = manifestService.deleteManifest(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+    }
+
+    @RightInfo(Permission.GETSENDMANIFEST)
+    @PostMapping("/getSendManifest")
+    @CrossOrigin
+    public Object getSendManifest(HttpServletRequest request){
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
+        List<Manifest> orderList = manifestService.getManifestBySendOrGet(loginUser.getId(),null);
+        if(orderList!=null){
+            data.put("orderList", orderList.toArray());
+            data.put("orderList", orderList.toArray());
+            List<Food> foodList = foodService.getFood(null);
+            data.put("foodList", foodList.toArray());
+            List<Storage> siteList = storageService.getStorage(null);
+            data.put("siteList", siteList.toArray());
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
+        }else{
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
+        }
+        return JSON.toJSONString(new Meta(msg, data));
+    }
+
+    @RightInfo(Permission.GETSENDMANIFEST)
+    @PostMapping("/getReceiveManifest")
+    @CrossOrigin
+    public Object getReceiveManifest(HttpServletRequest request){
+        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>();
+        EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
+        List<Manifest> orderList = manifestService.getManifestBySendOrGet(null,loginUser.getId());
+        if(orderList!=null){
+            data.put("orderList", orderList.toArray());
+            data.put("orderList", orderList.toArray());
+            List<Food> foodList = foodService.getFood(null);
+            data.put("foodList", foodList.toArray());
+            List<Storage> siteList = storageService.getStorage(null);
+            data.put("siteList", siteList.toArray());
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
+        }else{
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
+        }
+        return JSON.toJSONString(new Meta(msg, data));
     }
 }

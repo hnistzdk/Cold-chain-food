@@ -60,7 +60,7 @@ public class RiskController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
-    @RightInfo("/addRisk")
+    @RightInfo(Permission.ADDRISK)
     @PostMapping("/addRisk")
     @CrossOrigin
     public Object addRisk(Risk risk){
@@ -69,7 +69,7 @@ public class RiskController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("/deleteRisk")
+    @RightInfo(Permission.DELETERISK)
     @PostMapping("/deleteRisk/{id}")
     @CrossOrigin
     public Object deleteRisk(@PathVariable Integer id){
@@ -77,7 +77,7 @@ public class RiskController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
-    @RightInfo("/showRiskInfo")
+    @RightInfo(Permission.SHOWRISKINFO)
     @GetMapping("/risks/{id}")
     @CrossOrigin
     public Object showRiskInfo(@PathVariable Integer id){
@@ -95,7 +95,7 @@ public class RiskController {
         return JSON.toJSONString(data);
     }
 
-    @RightInfo("/modifyRisks")
+    @RightInfo(Permission.MODIFYRISKS)
     @PostMapping("/modifyRisks")
     @CrossOrigin
     public Object modifyRisks(Risk risk){

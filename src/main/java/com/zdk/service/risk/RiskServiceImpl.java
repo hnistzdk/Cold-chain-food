@@ -4,6 +4,7 @@ import com.zdk.mapper.RiskMapper;
 import com.zdk.pojo.Risk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Map;
@@ -26,16 +27,19 @@ public class RiskServiceImpl implements RiskService{
         return riskMapper.getRiskCount();
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int addRisk(Risk risk) {
         return riskMapper.addRisk(risk);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int deleteRisk(Integer id) {
         return riskMapper.deleteRisk(id);
     }
 
+    @Transactional(rollbackFor = Exception.class)
     @Override
     public int modifyRisks(Risk risk) {
         return riskMapper.modifyRisks(risk);

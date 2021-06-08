@@ -254,12 +254,19 @@ public class CommonController {
                     "    {\n" +
                     "      \"id\": 102,\n" +
                     "      \"authName\": \"货单管理\",\n" +
-                    "      \"path\": \"orders\",\n" +
+                    "      \"path\": \"deliver\",\n" +
                     "      \"children\": [\n" +
                     "        {\n" +
                     "          \"id\": 107,\n" +
-                    "          \"authName\": \"货单列表\",\n" +
-                    "          \"path\": \"orders\",\n" +
+                    "          \"authName\": \"发货列表\",\n" +
+                    "          \"path\": \"delivery\",\n" +
+                    "          \"children\": [],\n" +
+                    "          \"order\": null\n" +
+                    "        },\n" +
+                    "        {\n" +
+                    "          \"id\": 200,\n" +
+                    "          \"authName\": \"收货列表\",\n" +
+                    "          \"path\": \"receive\",\n" +
                     "          \"children\": [],\n" +
                     "          \"order\": null\n" +
                     "        }\n" +
