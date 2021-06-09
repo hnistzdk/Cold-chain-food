@@ -47,7 +47,7 @@
       width="30%" >
       <span>您的Id为:{{this.userId}}</span>
        <span slot="footer" class="dialog-footer">
-        <el-button @click="this.$router.push('/login')">跳转至登陆页面</el-button>
+        <el-button @click="login_request()">跳转至登陆页面</el-button>
        </span>
     </el-dialog>
   </div>
@@ -199,7 +199,6 @@ export  default {
   width: 100%;
   background-color: #0093E9;
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
-
 
 }
 
