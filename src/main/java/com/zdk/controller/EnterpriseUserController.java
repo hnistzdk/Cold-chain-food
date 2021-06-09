@@ -49,6 +49,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
         EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, null,email);
+        System.out.println("enterpriseUser"+enterpriseUser);
         return judgeLoginUtil.judgeLogin(enterpriseUser, id, password, request);
     }
 
@@ -123,11 +124,19 @@ public class EnterpriseUserController {
     @PostMapping("/enterpriseRegister")
     @CrossOrigin
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
-        enterpriseUser.setId(UUIDUtil.getUUID(6));
-        String encode = passwordEncoder.encode(enterpriseUser.getPwd());
-        enterpriseUser.setPwd(passwordEncoder.encode(encode));
+        HashMap msg = new HashMap<>();
+        HashMap data = new HashMap<>();
+        String id=UUIDUtil.getUUID(6);
+        enterpriseUser.setId(id);
+        enterpriseUser.setPwd(passwordEncoder.encode(enterpriseUser.getPwd()));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
-        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+        if(count>0){
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
+            data.put("userId", id);
+        }else{
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
+        }
+        return JSON.toJSONString(new Meta(msg, data));
     }
 
     @RightInfo("")

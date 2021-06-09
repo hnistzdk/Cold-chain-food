@@ -117,10 +117,19 @@ public class UserController {
     @PostMapping("/primaryRegister")
     @CrossOrigin
     public Object primaryRegister(AddUserMeta user){
-        user.setId(UUIDUtil.getUUID(5));
+        HashMap msg = new HashMap<>();
+        HashMap data = new HashMap<>();
+        String id=UUIDUtil.getUUID(5);
+        user.setId(id);
         user.setPwd(passwordEncoder.encode(user.getPwd()));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
-        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+        if(count>0){
+            msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
+            data.put("userId", id);
+        }else{
+            msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
+        }
+        return JSON.toJSONString(new Meta(msg, data));
     }
 
     @RightInfo("")
