@@ -9,6 +9,9 @@
           <el-form-item label="昵称" prop="username">
             <el-input  type="text" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
+          <el-form-item label="真实姓名" prop="trueName">
+            <el-input  type="text" v-model="RegisterForm.trueName" ></el-input>
+          </el-form-item>
           <el-form-item label="密码" prop="pwd">
             <el-input type="password"  v-model="RegisterForm.pwd"></el-input>
           </el-form-item>
@@ -17,9 +20,9 @@
           </el-form-item>
           <el-form-item label="邮箱" prop="email">
             <el-input type="text"  v-model="RegisterForm.email"></el-input>
-                      <el-button  type="warning" id="verification_button" @click="verification_request">获取验证码</el-button>
           </el-form-item>
-
+          <el-button  type="warning" id="verification_button"
+                      @click="verification_request">获取验证码</el-button>
           <el-form-item label="验证码" prop="code" class="email_verification">
             <el-input type="text"  v-model="RegisterForm.code" placeholder="请输入验证码"></el-input>
           </el-form-item>
@@ -98,6 +101,7 @@ export  default {
       userId:'',
       RegisterForm:{
         username:"",
+        trueName:"",
         pwd:"",
         checkPwd:"",
         email:"",
@@ -106,8 +110,12 @@ export  default {
       },
       registerFormRules:{
         username:[
-          { required: true, message: '请输入账号', trigger: 'blur'},//blur 鼠标焦点事件
+          { required: true, message: '请输入昵称', trigger: 'blur'},//blur 鼠标焦点事件
           {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+        ],
+        trueName:[
+          { required: true, message: '请输入真实姓名', trigger: 'blur'},//blur 鼠标焦点事件
+          {min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur'}
         ],
         //验证账号和密码是否合法
         pwd:[

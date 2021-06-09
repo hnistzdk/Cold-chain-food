@@ -105,7 +105,6 @@ export default {
 
 <style Lang="less" scoped>
 .el-container{
-
   height: 100%;
 }
 
@@ -130,7 +129,7 @@ export default {
 }
 .el-aside{
   background-color: #333744;
-height: 750px;
+  height: 100%;
 }
 .el_main{
   background-color: #cb2020;
