@@ -36,7 +36,7 @@ public class UserController {
     private UserService userService;
 
     @Autowired
-    private PutInfoSession putInfoSession;
+    private JudgeLoginUtil judgeLoginUtil;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -45,14 +45,7 @@ public class UserController {
     @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
         AdminAndUser result= userService.login(id, null,email);
-        if(result!=null){
-            if(passwordEncoder.matches(password, result.getPwd())){
-                userService.updateLoginInfo(id, DateConversion.getNowDate());
-                putInfoSession.putInfoSession(result, request);
-                return JSON.toJSONString(CommonMessage.returnMsg(result.getId()));
-            }
-        }
-        return JSON.toJSONString(CommonMessage.returnMsg(null));
+        return judgeLoginUtil.judgeLogin(result, id, password, request);
     }
 
     @RightInfo(Permission.PRIMARYLIST)

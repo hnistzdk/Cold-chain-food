@@ -33,7 +33,7 @@ public class AdminController {
     private AdminServiceImpl adminService;
 
     @Autowired
-    private PutInfoSession putInfoSession;
+    private JudgeLoginUtil judgeLoginUtil;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -43,14 +43,7 @@ public class AdminController {
     public Object login(String id, String password,HttpServletRequest request){
         AdminAndUser admin= adminService.adminLogin(id, null);
         System.out.println("admin"+admin);
-        if(admin!=null){
-            if(passwordEncoder.matches(password, admin.getPwd())){
-                adminService.updateLoginInfo(id, DateConversion.getNowDate());
-                putInfoSession.putInfoSession(admin, request);
-                return JSON.toJSONString(CommonMessage.returnMsg(admin.getId()));
-            }
-        }
-        return JSON.toJSONString(CommonMessage.returnMsg(null));
+        return judgeLoginUtil.judgeLogin(admin, id, password, request);
     }
 
     @RightInfo(Permission.ADMINLIST)

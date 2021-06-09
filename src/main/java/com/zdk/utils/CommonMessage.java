@@ -15,8 +15,12 @@ public class CommonMessage {
         HashMap<String, String> map = new HashMap<>();
         HashMap<String, String> map1 = new HashMap<>();
         if(id!=null){
-            map.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
-            map1.put("token", id);
+            if(!id.equals(ReturnMessage.ISLOCKED)){
+                map.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
+                map1.put("token", id);
+            }else {
+                map.put(ReturnMessage.STATUS, ReturnMessage.ISLOCKED);
+            }
         }else {
             map.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }

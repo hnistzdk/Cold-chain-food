@@ -40,23 +40,16 @@ public class EnterpriseUserController {
     private EnterpriseServiceImpl enterpriseService;
 
     @Autowired
-    private PutInfoSession putInfoSession;
+    private JudgeLoginUtil judgeLoginUtil;
 
     @Autowired
-    PasswordEncoder passwordEncoder;
+    private PasswordEncoder passwordEncoder;
 
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
         EnterpriseUser enterpriseUser= enterpriseService.enterpriseLogin(id, null,email);
-        if(enterpriseUser!=null){
-            if(passwordEncoder.matches(password, enterpriseUser.getPwd())){
-                enterpriseService.updateLoginInfo(id, DateConversion.getNowDate());
-                putInfoSession.putInfoSession(enterpriseUser, request);
-                return JSON.toJSONString(CommonMessage.returnMsg(enterpriseUser.getId()));
-            }
-        }
-        return JSON.toJSONString(CommonMessage.returnMsg(null));
+        return judgeLoginUtil.judgeLogin(enterpriseUser, id, password, request);
     }
 
     @RightInfo(Permission.ENTERPRISELIST)

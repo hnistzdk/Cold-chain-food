@@ -6,6 +6,7 @@ package com.zdk.utils;
  * @Date 2021/6/2 10:17
  * 返回信息常量
  */
+@SuppressWarnings("all")
 public class ReturnMessage {
     /**
      * 成功
@@ -19,6 +20,11 @@ public class ReturnMessage {
      * 禁止访问
      */
     public static final String FORBID="403";
+
+    /**
+     * 账号被锁定
+     */
+    public static final String ISLOCKED="520";
     /**
      * 禁止访问
      */
