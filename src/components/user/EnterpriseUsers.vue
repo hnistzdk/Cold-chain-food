@@ -30,7 +30,7 @@
         <el-table-column label="状态">
           <template  v-slot:default="scope">
 
-            <el-switch v-model="scope.row.mg_state" @change="userStateChanged(scope.row)"> </el-switch>
+            <el-switch v-model="scope.row.state" @change="userStateChanged(scope.row)"> </el-switch>
 
           </template  >
         </el-table-column>
@@ -251,10 +251,10 @@ export default {
 
     async userStateChanged(userinfo){
       console.log(userinfo)
-      const {data:res}=await  this.$http.put(`changeState/${userinfo.id}/state/${userinfo.mg_state}/${this.
+      const {data:res}=await  this.$http.put(`changeState/${userinfo.id}/state/${userinfo.state}/${this.
       userList.role}`)
       if(res.meta.status !=="200"){
-        userinfo.mg_state =!userinfo.mg_state
+        userinfo.state =!userinfo.state
         return this.$message.error('更新用户状态失败!')
       }
       this.$message.success('更新用户状态成功！')

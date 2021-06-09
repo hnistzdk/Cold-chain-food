@@ -194,9 +194,5 @@ export default {
 <style Lang="less" scoped>
 .el-card{
   margin-top: 15px;
-},
-#changePwd{
-  right:80% ;
-  margin-bottom: 15px;
 }
 </style>
