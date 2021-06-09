@@ -23,10 +23,13 @@
         <el-table-column label="食品名称" prop="foodName"></el-table-column>
         <el-table-column label="发货地址" prop="startingSite"></el-table-column>
         <el-table-column label="发货人姓名" prop="consignorName"></el-table-column>
+        <el-table-column label="收货状态" prop="isReceived"></el-table-column>
         <el-table-column label="操作" width="200px">
           <template slot-scope="scope">
             <!--          收货按钮-->
-            <el-button type="primary" icon="el-icon-receiving" size="small" @click="receiveManifest(scope.row.manifestId)"></el-button>
+            <el-button type="primary" icon="el-icon-receiving" size="small"
+                       @click="receiveManifest(scope.row.manifestId)"
+                        v-if="scope.row.isReceived==='未收货'"></el-button>
           </template>
         </el-table-column>
       </el-table>
