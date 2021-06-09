@@ -88,4 +88,11 @@ public interface UserService {
      * @return 返回修改条数
      */
     int modifyUserPwd(AddUserMeta user);
+    /**
+     * 改变用户锁定状态
+     * @param id
+     * @param mg_state
+     * @return
+     */
+    int updateStatePrimary(String id,Boolean mg_state);
 }

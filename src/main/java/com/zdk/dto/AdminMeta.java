@@ -17,4 +17,5 @@ public class AdminMeta {
     private String gender;
     private String tel;
     private String role;
+    private Boolean state;
 }

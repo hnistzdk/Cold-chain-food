@@ -71,11 +71,24 @@ public interface ManifestMapper {
 
     /**
      * 获取当前用户发出或收到的货单
-     * @param consignorId 发货人id
-     * @param consigneeId 收货人id
+     * @param map 参数map
      * @return
      */
-    List<Manifest> getManifestBySendOrGet(String consignorId,String consigneeId);
+    List<Manifest> getManifestBySendOrGet(Map map);
+
+    /**
+     * 获取当前用户发出或收到的货单总数
+     * @param map 参数map
+     * @return
+     */
+    int getManifestBySendOrGetCount(Map map);
+
+    /**
+     * 更新收货状态
+     * @param id 货单号
+     * @return
+     */
+    int updateReceivedStatus(String id);
 
 }
 

@@ -37,7 +37,9 @@ public class Manifest {
     @ApiModelProperty("到达站点")
     private String arrivedPoint;
     @ApiModelProperty("发货人id")
-    private Integer consignorId;
+    private String consignorId;
     @ApiModelProperty("收货人id")
-    private Integer consigneeId;
+    private String consigneeId;
+    @ApiModelProperty("是否已收货")
+    private String isReceived;
 }

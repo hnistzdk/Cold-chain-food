@@ -25,6 +25,11 @@
     </select>
     <select id="getRiskCount" resultType="int">
         select count(*) from tb_risk
+        <where>
+            <if test="query!=null">
+                tb_risk.food_name like concat('%',#{query},'%')
+            </if>
+        </where>
     </select>
 
     <insert id="addRisk" parameterType="Risk">
@@ -41,4 +46,11 @@
         set food_name = #{foodName},food.tb_risk.risk_degree=#{riskDegree},food.tb_risk.risk_editor=#{riskEditor}
         where food.tb_risk.food_id=#{foodId};
     </update>
+
+
+    <select id="fuzzyQueryRiskFood" resultType="Risk" parameterType="map">
+        select * from tb_risk
+        where tb_risk.food_name
+                  like concat('%',#{query},'%') limit #{pageNum},#{pageSize};
+    </select>
 </mapper>

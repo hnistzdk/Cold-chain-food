@@ -85,4 +85,10 @@ public class UserServiceImpl implements UserService {
         map.put("pwd", user.getPwd());
         return userMapper.modifyUserPwd(map);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int updateStatePrimary(String id, Boolean mg_state) {
+        return userMapper.updateStatePrimary(id, mg_state);
+    }
 }

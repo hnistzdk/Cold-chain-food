@@ -136,6 +136,23 @@ public class CommonController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @PutMapping("/changeState/{id}/state/{mg_state}/{role}")
+    @CrossOrigin
+    public Object modifyState(@PathVariable String id,
+                              @PathVariable Boolean mg_state,
+                              @PathVariable String role,
+                              HttpServletRequest request){
+        int result=0;
+        if(role.equals(ReturnMessage.PRIMARY)){
+            result=userService.updateStatePrimary(id, mg_state);
+        }else if(role.equals(ReturnMessage.ENTERPRISE)){
+            result=enterpriseService.updateStateEnterprise(id, mg_state);
+        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+            result=adminService.updateStateAdmin(id, mg_state);
+        }
+        return JSON.toJSONString(CommonMessage.returnStatus(result>0));
+    }
+
     @GetMapping("/menus")
     @CrossOrigin
     public Object getMenuList(HttpServletRequest request) throws IOException {

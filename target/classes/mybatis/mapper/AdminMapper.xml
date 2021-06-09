@@ -23,7 +23,7 @@
     </select>
 
     <select id="getAdminList" parameterType="map" resultType="AdminMeta">
-        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role,food.tb_admin.state
         from food.tb_admin limit #{startIndex},#{pageSize};
     </select>
 
@@ -38,7 +38,7 @@
     </select>
 
     <select id="fuzzyQueryAdminList" parameterType="map" resultType="AdminMeta">
-        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role
+        select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role,food.tb_admin.state
         from food.tb_admin where food.tb_admin.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
     </select>
     <delete id="removeAdmin">
@@ -65,6 +65,12 @@
     <update id="modifyPassword">
         update tb_admin
         set pwd = #{password}
+        where id=#{id};
+    </update>
+
+    <update id="updateStateAdmin">
+        update tb_admin
+        set tb_admin.state= #{mg_state}
         where id=#{id};
     </update>
 </mapper>

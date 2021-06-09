@@ -46,8 +46,7 @@ public class ManifestController {
     @CrossOrigin
     public Object getManifest(@Param("query") String query,
                               @Param("pageNum") Integer pageNum,
-                              @Param("pageSize") Integer pageSize,
-                                HttpServletRequest request){
+                              @Param("pageSize") Integer pageSize){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
         HashMap params=new HashMap<>();
@@ -80,11 +79,26 @@ public class ManifestController {
     @RightInfo(Permission.ADDMANIFEST)
     @PostMapping("/addManifest")
     @CrossOrigin
-    public Object addManifest(Manifest manifest){
+    public Object addManifest(Manifest manifest,HttpServletRequest request){
+        EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
         HashMap<Object,Object> params=new HashMap<>();
+        //设置发货人id
+        manifest.setConsignorId(loginUser.getId());
+        //设置发货人姓名
+        manifest.setConsignorName(loginUser.getTrueName());
+        //设置未收货
+        manifest.setIsReceived("未收货");
+        //设置发货站点
+        params.put("uid", loginUser.getId());
+        manifest.setStartingSite(storageService.getStorage(params).get(0).getStorageArea());
+        //设置当前到达站点和最终到达站点
+        params.remove("uid");
         params.put("id", manifest.getStorageId());
         manifest.setArrivedPoint(storageService.getStorage(params).get(0).getStorageArea());
+        manifest.setReceivedSite(storageService.getStorage(params).get(0).getStorageArea());
+        //设置食品名称
         manifest.setFoodName(foodService.getFoodById(manifest.getFoodId()).getFoodName());
+
         manifest.setManifestId(UUIDUtil.getUUID(10));
         int count = manifestService.addManifest(manifest);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
@@ -130,11 +144,22 @@ public class ManifestController {
     @RightInfo(Permission.GETSENDMANIFEST)
     @PostMapping("/getSendManifest")
     @CrossOrigin
-    public Object getSendManifest(HttpServletRequest request){
+    public Object getSendManifest(@Param("query") String query,
+                                  @Param("pageNum") Integer pageNum,
+                                  @Param("pageSize") Integer pageSize,
+                                  HttpServletRequest request){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
+        HashMap params=new HashMap<>();
+        if(query.equals("")){
+            query=null;
+        }
+        params.put("pageNum",(pageNum-1)*pageSize);
+        params.put("pageSize",pageSize);
+        params.put("query", query);
         EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
-        List<Manifest> orderList = manifestService.getManifestBySendOrGet(loginUser.getId(),null);
+        params.put("consigneeId", loginUser.getId());
+        List<Manifest> orderList = manifestService.getManifestBySendOrGet(params);
         if(orderList!=null){
             data.put("orderList", orderList.toArray());
             data.put("orderList", orderList.toArray());
@@ -142,6 +167,8 @@ public class ManifestController {
             data.put("foodList", foodList.toArray());
             List<Storage> siteList = storageService.getStorage(null);
             data.put("siteList", siteList.toArray());
+            int total = manifestService.getManifestBySendOrGetCount(params);
+            data.put("total", total);
             msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }else{
             msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
@@ -152,11 +179,22 @@ public class ManifestController {
     @RightInfo(Permission.GETSENDMANIFEST)
     @PostMapping("/getReceiveManifest")
     @CrossOrigin
-    public Object getReceiveManifest(HttpServletRequest request){
+    public Object getReceiveManifest(@Param("query") String query,
+                                     @Param("pageNum") Integer pageNum,
+                                     @Param("pageSize") Integer pageSize,
+                                     HttpServletRequest request){
         HashMap data = new HashMap<>();
         HashMap msg = new HashMap<>();
+        HashMap params=new HashMap<>();
+        if(query.equals("")){
+            query=null;
+        }
+        params.put("pageNum",(pageNum-1)*pageSize);
+        params.put("pageSize",pageSize);
+        params.put("query", query);
         EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
-        List<Manifest> orderList = manifestService.getManifestBySendOrGet(null,loginUser.getId());
+        params.put("consignorId", loginUser.getId());
+        List<Manifest> orderList = manifestService.getManifestBySendOrGet(params);
         if(orderList!=null){
             data.put("orderList", orderList.toArray());
             data.put("orderList", orderList.toArray());
@@ -164,10 +202,20 @@ public class ManifestController {
             data.put("foodList", foodList.toArray());
             List<Storage> siteList = storageService.getStorage(null);
             data.put("siteList", siteList.toArray());
+            int total = manifestService.getManifestBySendOrGetCount(params);
+            data.put("total", total);
             msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         }else{
             msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
         }
         return JSON.toJSONString(new Meta(msg, data));
+    }
+
+    @RightInfo(Permission.RECEIVE)
+    @PostMapping("/receive/{id}")
+    @CrossOrigin
+    public Object receive(@PathVariable String id){
+        int count = manifestService.updateReceivedStatus(id);
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 }

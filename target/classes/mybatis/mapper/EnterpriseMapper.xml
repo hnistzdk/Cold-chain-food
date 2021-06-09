@@ -26,13 +26,13 @@
     </select>
     <select id="getEnterpriseList" parameterType="map" resultType="EnterpriseMeta">
         select food.tb_enterprise_user.username,food.tb_enterprise_user.gender,
-               food.tb_enterprise_user.tel,food.tb_enterprise_user.enterprise_name,food.tb_enterprise_user.role
+               food.tb_enterprise_user.tel,food.tb_enterprise_user.enterprise_name,food.tb_enterprise_user.role,food.tb_enterprise_user.state
         from food.tb_enterprise_user limit #{startIndex},#{pageSize};
     </select>
 
     <select id="fuzzyQueryEnterpriseList" parameterType="map" resultType="EnterpriseMeta">
         select food.tb_enterprise_user.id,food.tb_enterprise_user.username,food.tb_enterprise_user.gender,
-               food.tb_enterprise_user.tel,food.tb_enterprise_user.enterprise_name,food.tb_enterprise_user.role
+               food.tb_enterprise_user.tel,food.tb_enterprise_user.enterprise_name,food.tb_enterprise_user.role,food.tb_enterprise_user.state
         from food.tb_enterprise_user where food.tb_enterprise_user.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
     </select>
     <!--    总记录数-->
@@ -96,5 +96,11 @@
         update tb_enterprise_user
         set pwd=#{pwd}
         where id=#{id}
+    </update>
+
+    <update id="updateStateEnterprise">
+        update tb_enterprise_user
+        set tb_enterprise_user.state= #{mg_state}
+        where id=#{id};
     </update>
 </mapper>

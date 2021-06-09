@@ -23,9 +23,10 @@ public interface RiskMapper {
 
     /**
      * 获取所有风险监测信息条数
+     * @param query
      * @return int
      */
-    int getRiskCount();
+    int getRiskCount(String query);
 
     /**
      * 增加食品风险检测信息
@@ -47,4 +48,11 @@ public interface RiskMapper {
      * @return int
      */
     int modifyRisks(Risk risk);
+
+    /**
+     * 模糊查询食品检测信息
+     * @param map
+     * @return int
+     */
+    List<Risk> fuzzyQueryRiskFood(Map map);
 }

@@ -19,6 +19,9 @@
             <if test="id!=null">
                 tb_storage.storage_id=#{id}
             </if>
+            <if test="uid!=null">
+                tb_storage.uid=#{uid}
+            </if>
         </where>
         <if test="pageNum!=null">
             limit #{pageNum},#{pageSize}

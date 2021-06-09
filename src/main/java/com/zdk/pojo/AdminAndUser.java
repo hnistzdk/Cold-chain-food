@@ -26,4 +26,5 @@ public class AdminAndUser {
     private int loginTimes;
     private String role;
     private Integer roleId;
+    private Boolean state;
 }

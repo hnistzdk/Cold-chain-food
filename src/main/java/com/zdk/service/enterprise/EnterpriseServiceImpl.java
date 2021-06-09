@@ -87,4 +87,10 @@ public class EnterpriseServiceImpl implements EnterpriseService{
         map.put("pwd", enterpriseUser.getPwd());
         return enterpriseMapper.modifyEnterprisePwd(map);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int updateStateEnterprise(String id, Boolean mg_state) {
+        return enterpriseMapper.updateStateEnterprise(id, mg_state);
+    }
 }

@@ -46,8 +46,13 @@ public class RiskController {
         params.put("pageNum",(pageNum-1)*pageSize);
         params.put("pageSize",pageSize);
         params.put("query", query);
-        List<Risk> riskList = riskService.getRiskList(params);
-        int total = riskService.getRiskCount();
+        List<Risk> riskList;
+        if(query!=null){
+            riskList = riskService.fuzzyQueryRiskFood(params);
+        }else{
+            riskList = riskService.getRiskList(params);
+        }
+        int total = riskService.getRiskCount(query);
         if(riskList!=null){
             List<Food> addFoodList = foodService.getFood(null);
             data.put("riskList",riskList.toArray());

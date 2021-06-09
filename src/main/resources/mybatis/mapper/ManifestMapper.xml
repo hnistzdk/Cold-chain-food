@@ -23,9 +23,10 @@
     </select>
 
     <insert id="addManifest" parameterType="Manifest">
+
         insert into tb_manifest (manifest_id, food_id,food_name, consignor_name, consignee_name, starting_site, received_site,
-                                 travel_status, arrived_point, consignor_id, consignee_id)
-        values (#{manifestId},#{foodId},#{foodName},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{arrivedPoint},#{consignorId},#{consigneeId});
+                                 travel_status,storage_id, arrived_point, consignor_id, consignee_id,is_received)
+        values (#{manifestId},#{foodId},#{foodName},#{consignorName},#{consigneeName},#{startingSite},#{receivedSite},#{travelStatus},#{storageId},#{arrivedPoint},#{consignorId},#{consigneeId},#{isReceived});
     </insert>
 
     <select id="manifestCount" resultType="int">
@@ -57,7 +58,7 @@
         from tb_storage;
     </select>
 
-    <select id="getManifestBySendOrGet">
+    <select id="getManifestBySendOrGet" parameterType="map" resultType="Manifest">
         select *
         from tb_manifest
         <where>
@@ -67,6 +68,34 @@
             <if test="consigneeId!=null">
                 consignee_id=#{consigneeId}
             </if>
+            <if test="query!=null">
+                tb_manifest.manifest_id=#{query}
+            </if>
+        </where>
+        <if test="pageNum!=null">
+            limit #{pageNum},#{pageSize}
+        </if>
+    </select>
+
+    <select id="getManifestBySendOrGetCount" parameterType="map" resultType="int">
+        select count(*)
+        from tb_manifest
+        <where>
+            <if test="consignorId!=null">
+                consignor_id=#{consignorId}
+            </if>
+            <if test="consigneeId!=null">
+                consignee_id=#{consigneeId}
+            </if>
+            <if test="query!=null">
+                tb_manifest.manifest_id=#{query}
+            </if>
         </where>
     </select>
+    
+    <update id="updateReceivedStatus">
+        update tb_manifest
+        set is_received = '已收货'
+        where manifest_id=#{id};
+    </update>
 </mapper>

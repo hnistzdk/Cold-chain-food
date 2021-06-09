@@ -82,5 +82,13 @@ public interface AdminService {
      * @return 返回类型条数
      */
     int modifyPassword(String id,String password);
+
+    /**
+     * 改变用户锁定状态
+     * @param id
+     * @param mg_state
+     * @return
+     */
+    int updateStateAdmin(String id,Boolean mg_state);
 }
 

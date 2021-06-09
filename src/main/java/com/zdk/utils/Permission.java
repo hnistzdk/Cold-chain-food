@@ -215,4 +215,9 @@ public class Permission {
      * 显示企业用户收货的货单列表
      */
     public static final String GETRECEIVEMANIFEST="getReceiveManifest";
+
+    /**
+     * 显示企业用户收货的货单列表
+     */
+    public static final String RECEIVE="receive";
 }

@@ -18,4 +18,5 @@ public class EnterpriseMeta {
     private String tel;
     private String enterpriseName;
     private String role;
+    private Boolean state;
 }

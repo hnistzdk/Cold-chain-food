@@ -25,4 +25,5 @@ public class EnterpriseUser extends AdminAndUser{
     private int loginTimes;
     private String role;
     private Integer roleId;
+    private Boolean state;
 }

@@ -65,7 +65,17 @@ public class ManifestServiceImpl implements ManifestService{
     }
 
     @Override
-    public List<Manifest> getManifestBySendOrGet(String consignorId, String consigneeId) {
-        return manifestMapper.getManifestBySendOrGet(consignorId, consigneeId);
+    public List<Manifest> getManifestBySendOrGet(Map map) {
+        return manifestMapper.getManifestBySendOrGet(map);
+    }
+
+    @Override
+    public int getManifestBySendOrGetCount(Map map) {
+        return manifestMapper.getManifestBySendOrGetCount(map);
+    }
+
+    @Override
+    public int updateReceivedStatus(String id) {
+        return manifestMapper.updateReceivedStatus(id);
     }
 }

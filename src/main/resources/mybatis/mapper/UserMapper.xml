@@ -26,13 +26,13 @@
     </select>
 
     <select id="getUserList" parameterType="map" resultType="AdminMeta">
-        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role
+        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role,food.tb_user.state
         from food.tb_user limit #{startIndex},#{pageSize};
     </select>
 
 
     <select id="fuzzyQueryUserList" parameterType="map" resultType="AdminMeta">
-        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role
+        select food.tb_user.id,food.tb_user.username,food.tb_user.gender,food.tb_user.tel,food.tb_user.role,food.tb_user.state
         from food.tb_user where food.tb_user.username like concat('%',#{query},'%') limit #{startIndex},#{pageSize};
     </select>
 
@@ -94,5 +94,11 @@
         update tb_user
         set pwd=#{pwd}
         where id=#{id}
+    </update>
+
+    <update id="updateStatePrimary">
+        update tb_user
+        set tb_user.state= #{mg_state}
+        where id=#{id};
     </update>
 </mapper>

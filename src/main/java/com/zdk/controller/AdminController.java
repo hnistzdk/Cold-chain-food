@@ -1,6 +1,8 @@
 package com.zdk.controller;
 
 import com.alibaba.fastjson.JSON;
+import com.zdk.dto.AddEnterpriseMeta;
+import com.zdk.dto.AddUserMeta;
 import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
@@ -77,22 +79,5 @@ public class AdminController {
     public Object removeAdmin(@PathVariable String id){
         int count = adminService.removeAdmin(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
-    }
-
-    @PutMapping("/users/{id}/state/{mg_state}")
-    @CrossOrigin
-    public Object modifyState(@PathVariable String id,@PathVariable String mg_state){
-        AdminAndUser admin = adminService.getAdminById(id);
-        Meta returnMeta=new Meta();
-        Map data=returnMeta.getData();
-        Map meta=returnMeta.getMeta();
-        data.put("id", id);
-        data.put("rid", id);
-        data.put("username", admin.getUsername());
-        data.put("mobile", admin.getTel());
-        data.put("email", admin.getEmail());
-        data.put("mg_state", 0);
-        meta.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
-        return meta;
     }
 }

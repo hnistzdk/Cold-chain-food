@@ -77,4 +77,10 @@ public class AdminServiceImpl implements AdminService{
     public int modifyPassword(String id, String password) {
         return adminMapper.modifyPassword(id, password);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int updateStateAdmin(String id, Boolean mg_state) {
+        return adminMapper.updateStateAdmin(id, mg_state);
+    }
 }

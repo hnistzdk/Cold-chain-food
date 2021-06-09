@@ -89,4 +89,11 @@ public interface EnterpriseService {
      * @return 返回修改条数
      */
     int modifyEnterprisePwd(AddEnterpriseMeta enterpriseUser);
+    /**
+     * 改变用户锁定状态
+     * @param id
+     * @param mg_state
+     * @return
+     */
+    int updateStateEnterprise(String id,Boolean mg_state);
 }

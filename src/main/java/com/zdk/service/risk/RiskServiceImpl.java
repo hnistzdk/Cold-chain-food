@@ -23,8 +23,8 @@ public class RiskServiceImpl implements RiskService{
     }
 
     @Override
-    public int getRiskCount() {
-        return riskMapper.getRiskCount();
+    public int getRiskCount(String query) {
+        return riskMapper.getRiskCount(query);
     }
 
     @Transactional(rollbackFor = Exception.class)
@@ -43,5 +43,10 @@ public class RiskServiceImpl implements RiskService{
     @Override
     public int modifyRisks(Risk risk) {
         return riskMapper.modifyRisks(risk);
+    }
+
+    @Override
+    public List<Risk> fuzzyQueryRiskFood(Map map) {
+        return riskMapper.fuzzyQueryRiskFood(map);
     }
 }
