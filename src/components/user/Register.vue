@@ -203,7 +203,7 @@ export  default {
 
 .register_box{
   width: 550px;
-  height: 500px;
+  height: 600px;
   background-color: white;
   border-radius:3px ;
   position: absolute;

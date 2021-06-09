@@ -128,8 +128,8 @@ export default {
 
 }
 .el-aside{
-  background-color: #333744;
-  height: 100%;
+  background-color: #cb1717;
+
 }
 .el_main{
   background-color: #cb2020;

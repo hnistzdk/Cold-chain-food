@@ -17,7 +17,7 @@
         <el-input type="text" v-model="userInfo.username"></el-input>
       </el-form-item>
       <el-form-item label="真实姓名:" prop="username">
-        <el-input type="text" v-model="userInfo.trueName" disabled></el-input>
+        <el-input type="text" v-model="userInfo.trueName" ></el-input>
       </el-form-item>
       <el-form-item label="性别" prop="gender">
         <el-radio-group v-model="userInfo.gender" class="radio" >
