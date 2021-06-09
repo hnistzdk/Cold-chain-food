@@ -67,7 +67,6 @@ router.beforeEach((to,form,next)=>{
   const tokenStr = window.sessionStorage.getItem('token')
   if(!tokenStr) return next('/login')
   next()
-
 })
 
 export default router
