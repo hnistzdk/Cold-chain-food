@@ -8,9 +8,17 @@
   </el-breadcrumb>
 <!--  卡片区域-->
   <el-card>
-    <el-button type="warning" icon="el-icon-edit" @click="passwordDialogVisible = true" id="changePwd">
-      修改密码
-    </el-button>
+    <el-row :gutter="20">
+      <el-col :span="6">
+
+      </el-col>
+      <el-col :span="4">
+        <el-button type="warning" icon="el-icon-edit" @click="passwordDialogVisible = true" id="changePwd">
+          修改密码
+        </el-button>
+      </el-col>
+    </el-row>
+
     <el-form :model="userInfo" label-width="100px" ref="userInfoRef" :rules="userInfoRules">
       <el-form-item label="昵称:" prop="username">
         <el-input type="text" v-model="userInfo.username"></el-input>

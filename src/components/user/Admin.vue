@@ -68,8 +68,8 @@
           <el-form-item label="用户名" prop="username">
             <el-input v-model="addForm.username"></el-input>
           </el-form-item>
-          <el-form-item label="密码" prop="password">
-            <el-input v-model="addForm.password"></el-input>
+          <el-form-item label="密码" prop="pwd">
+            <el-input v-model="addForm.pwd"></el-input>
           </el-form-item>
           <el-form-item label="性别" prop="gender">
             <el-radio v-model="addForm.gender" label="1">男</el-radio>
@@ -145,7 +145,7 @@ export default {
       addForm:{
         id:'',
         username:'',
-        password:'',
+        pwd:'',
         gender:'',
         tel:'',
         role:''
@@ -158,7 +158,7 @@ export default {
           {required:true,message:'请输入用户名',trigger:'blur'},
           {min:3,max:10,message: '用户名的长度在3~10个字符之间',trigger:'blur'}
         ],
-        password: [
+        pwd: [
           {required:true,message:'请输入密码',trigger:'blur'},
           {min:3,max:12,message: '密码的长度在3~12个字符之间',trigger:'blur'}
         ],
