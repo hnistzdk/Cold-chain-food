@@ -18,6 +18,8 @@ axios.interceptors.request.use(config=>{
   return config
 })
 axios.defaults.baseURL="http://localhost:8088/"
+// axios.defaults.baseURL="http://116.62.232.194:8088/"
+// axios.defaults.baseURL='/api'
 axios.defaults.withCredentials=true
 Vue.prototype.$http=axios
 Vue.component('tree-table',TreeTable)
@@ -27,3 +29,5 @@ new Vue({
   router,
   render: h => h(App)
 }).$mount('#app')
+
+Vue.prototype.HOST = "/"

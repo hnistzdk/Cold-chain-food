@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>用户管理</el-breadcrumb-item>
-      <el-breadcrumb-item>用户列表</el-breadcrumb-item>
+      <el-breadcrumb-item>管理员列表</el-breadcrumb-item>
     </el-breadcrumb>
     <!-- 卡片区域 -->
     <el-card  class="el-card">
@@ -145,6 +145,7 @@ export default {
       addForm:{
         id:'',
         username:'',
+        password:'',
         gender:'',
         tel:'',
         role:''
@@ -196,6 +197,9 @@ export default {
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users;

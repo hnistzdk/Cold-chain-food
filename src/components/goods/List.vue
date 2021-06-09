@@ -3,8 +3,8 @@
   <!--  面包屑导航栏-->
   <el-breadcrumb separator-class="el-icon-arrow-right">
     <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
-    <el-breadcrumb-item>商品管理</el-breadcrumb-item>
-    <el-breadcrumb-item>商品列表</el-breadcrumb-item>
+    <el-breadcrumb-item>食品管理</el-breadcrumb-item>
+    <el-breadcrumb-item>食品列表</el-breadcrumb-item>
   </el-breadcrumb>
   <!--卡片区域-->
   <el-card>
@@ -63,11 +63,38 @@
       <el-form-item label="食品名称" prop="foodName">
         <el-input v-model="addForm.foodName"></el-input>
       </el-form-item>
-      <el-form-item label="生产日期" prop="productionDate">
-        <el-input v-model="addForm.productionDate"></el-input>
+      <!--      食品类别的下拉框-->
+      <el-form-item label="食品类别" prop="foodCategory">
+        <el-select v-model="addForm.foodCategory"
+                   placeholder="请选择食品类别"
+                  @change="selectModel($event)">
+          <el-option
+            v-for="item in categoryList"
+            :key="item.id"
+            :label="item.categoryName"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="过期日期" prop="expiryDate">
-        <el-input v-model="addForm.expiryDate"></el-input>
+<!--     生产日期的时间选择器-->
+      <el-form-item label="生产日期" prop="productionDate">
+        <el-date-picker
+          v-model="addForm.productionDate"
+          type="date"
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
+        </el-date-picker>
+      </el-form-item>
+      <!--     过期时间的时间选择器-->
+      <el-form-item label="过期时间" prop="expiryDate">
+        <el-date-picker
+          v-model="addForm.expiryDate"
+          type="date"
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
         <el-input v-model="addForm.address"></el-input>
@@ -79,7 +106,11 @@
         <el-input v-model="addForm.phone"></el-input>
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
-        <el-input v-model="addForm.riskDegree"></el-input>
+        <el-radio-group v-model="addForm.riskDegree">
+          <el-radio :label="1">一级</el-radio>
+          <el-radio :label="2">二级</el-radio>
+          <el-radio :label="3">三级</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
     <!--      底部区域-->
@@ -89,7 +120,7 @@
   </span>
   </el-dialog>
 
-  <!--    修改用户的对话框-->
+  <!--    修改食品的对话框-->
   <el-dialog
     title="修改用户"
     :visible.sync="editDialogVisible"
@@ -99,11 +130,38 @@
       <el-form-item label="食品名称" prop="foodName">
         <el-input v-model="editForm.foodName"></el-input>
       </el-form-item>
-      <el-form-item label="生产日期" prop="productionDate">
-        <el-input v-model="editForm.productionDate"></el-input>
+<!--      食品类别的下拉框-->
+      <el-form-item label="食品类别" prop="foodCategory">
+        <el-select v-model="editForm.foodCategory"
+                   placeholder="请选择食品类别"
+                    @change="selectChangeModel($event)">
+          <el-option
+            v-for="item in categoryList"
+            :key="item.id"
+            :label="item.categoryName"
+            :value="item.id">
+          </el-option>
+        </el-select>
       </el-form-item>
-      <el-form-item label="过期日期" prop="expiryDate">
-        <el-input v-model="editForm.expiryDate"></el-input>
+      <!--     生产日期的时间选择器-->
+      <el-form-item label="生产日期" prop="productionDate">
+        <el-date-picker
+          v-model="editForm.productionDate"
+          type="date"
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
+        </el-date-picker>
+      </el-form-item>
+      <!--     过期时间的时间选择器-->
+      <el-form-item label="过期时间" prop="expiryDate">
+        <el-date-picker
+          v-model="editForm.expiryDate"
+          type="date"
+          placeholder="选择日期"
+          format="yyyy 年 MM 月 dd 日"
+          value-format="yyyy-MM-dd">
+        </el-date-picker>
       </el-form-item>
       <el-form-item label="生产地址" prop="address">
         <el-input v-model="editForm.address"></el-input>
@@ -116,6 +174,13 @@
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
         <el-input v-model="editForm.riskDegree"></el-input>
+      </el-form-item>
+      <el-form-item label="风险等级" prop="riskDegree">
+        <el-radio-group v-model="editForm.riskDegree">
+          <el-radio :label="1">一级</el-radio>
+          <el-radio :label="2">二级</el-radio>
+          <el-radio :label="3">三级</el-radio>
+        </el-radio-group>
       </el-form-item>
     </el-form>
 
@@ -143,12 +208,15 @@ export default {
         pageSize:5
       },
       foodList:[],
+      categoryList:[],
       //获取的食品的总数
       total:0,
       addDialogVisible:false,
       editDialogVisible:false,
       addForm:{
         foodName:'',
+        foodCategory:'',
+        id:'',
         productionDate:'',
         expiryDate:'',
         address:'',
@@ -220,11 +288,16 @@ export default {
       const { data:res } = await this.$http.post('getFood',
       qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取食品列表失败!')
       }
       this.foodList = res.data.foodList
       this.total = res.data.total
+      this.categoryList = res.data.categoryList
       console.log(this.foodList)
+      console.log(this.categoryList)
 
     },
     //查询食品调用函数
@@ -238,8 +311,6 @@ export default {
       this.foodList = res.data.foodList
       this.total = res.data.total
       console.log(this.foodList)
-
-
     },
     //分页操作
     handleSizeChange(newSize){
@@ -275,7 +346,7 @@ export default {
       const{ data:res } = await this.$http.get("foods/"+id)
       this.editForm = res.data
       console.log(res.data)
-      if(res.meta.status !== "200")
+      if(res.status !== "200")
         return this.$message.error('查询食品信息失败!')
 
       this.editDialogVisible = true
@@ -285,10 +356,10 @@ export default {
         if(!valid) return
         console.log(this.editForm.id)
         const {data:res} =
-          await this.$http.post('categories'+qs.stringify(this.editForm))
+          await this.$http.post('modifyFood',qs.stringify(this.editForm))
         if(res.meta.status !== "200")
-          return this.$message.error('修改分类信息失败!')
-        this.$message.success('修改分类信息成功!')
+          return this.$message.error('修改食品信息失败!')
+        this.$message.success('修改食品信息成功!')
         this.editDialogVisible = false
         await this.getFoodList()
 
@@ -313,9 +384,18 @@ export default {
         this.$message.error('删除食品失败!')
       else
         this.$message.success('删除食品成功!')
+      this.queryInfo.pageNum = 1
 
       //重置表单
       await  this.getFoodList()
+    },
+    //改变编辑表单的cateName时，cateId也随之改变
+    selectChangeModel(eh){
+      this.editForm.id = this.categoryList[eh].id
+    },
+    //改变添加表单的cateName时，cateId也随之改变
+    selectModel(eh){
+      this.addForm.id = this.categoryList[eh].id
     }
   }
 }

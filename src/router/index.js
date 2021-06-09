@@ -14,6 +14,13 @@ import Roles from "../components/power/Roles";
 import Right from "../components/power/Right";
 import Cate from "../components/goods/Cate";
 import List from "../components/goods/List";
+import Order from "../components/goods/Order";
+import Risk from "../components/riskMonitor/Risk";
+import UserCenter from "../components/Center/UserCenter";
+import siteManage from "../components/riskMonitor/SiteManage";
+import siteApplication from "../components/riskMonitor/siteApplication";
+import DeliveryManage from "../components/PriUser/DeliveryManage";
+import ReceiveManage from "../components/PriUser/ReceiveManage";
 Vue.use(Router)
 
 const router=new  Router({
@@ -34,6 +41,13 @@ const router=new  Router({
         {path:'/rights',component:Right },
         {path:'/categories',component:Cate },
         {path:'/goods',component:List },
+        {path:'/orders',component:Order },
+        {path:'/risk',component:Risk },
+        {path:'/center',component:UserCenter },
+        {path:'/storage',component:siteManage },
+        {path:'/deliver',component:siteApplication},
+        {path:'/delivery',component:DeliveryManage},
+        {path:'/receive',component:ReceiveManage}
       ]},
     {path:'/primaryHome',component:PrimaryHome}
 

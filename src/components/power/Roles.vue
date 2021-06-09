@@ -65,14 +65,14 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
-
       <el-dialog
         title="分配权限"
         :visible.sync="showSetRightDialogVisible"
-        width="30%" >
+        width="30%" @close="roleCloseDialog">
 
-        <el-checkbox-group  v-model="rightsList">
-          <el-checkbox   v-for="item in rightsList" v-model="item.checked" :key="item.id">{{item.rightName}}</el-checkbox>
+        <el-checkbox-group v-model="checkedList" >
+          <el-checkbox  v-for="item in rightsList" :label="item.rightName" :key="item.id"
+                       @change="item.checked=!item.checked"></el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
@@ -96,6 +96,7 @@ export default {
       roleList:[],
       //所有权限的数据
       rightsList:[],
+      checkedList:[],
       showSetRightDialogVisible:false,
       addDialogVisible:false,
       editDialogVisible:false,
@@ -120,7 +121,8 @@ export default {
         children:'children'
       },
       defKeys:[],
-      roleId:''
+      //分配权限的角色的id
+      Id:''
     }
 
   },
@@ -206,26 +208,29 @@ export default {
     },
     async showSetRightDialog(id)
     {
-
+      this.Id = id
       //获取所有权限的数据
       const {data : res} = await this.$http.get('rights/list/'+id)
       if(res.meta.status !== "200")
       return this.$message.error('获取权限信息失败!')
+      console.log(res.data)
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
-      this.showSetRightDialogVisible = true
-
+      this.checkedList = res.data.checkedList
+      this.showSetRightDialogVisible=true;
 
     },
-
     async allotRights(){
-      const  keys = [
-        ...this.$refs.treeRef.getCheckedKeys(),
-        ...this.$refs.treeRef.getHalfCheckedKeys()
-      ]
-      const  idStr  = keys.join(',')
-      const {data:res}= await this.$http.post(`roles/${this.id}/rights`,
-        {rids:idStr})
+
+      console.log(this.rightsList)
+      let right="";
+      for (let i = 0; i < this.rightsList.length; i++) {
+        if(this.rightsList[i].checked==true){
+          right+=this.rightsList[i].id+",";
+        }
+      }
+      const {data:res}= await this.$http.post(`roles/${this.Id}/rights`,
+        qs.stringify({rightList:right}))
       console.log(res)
       if(res.meta.status !== "200"){
         return this.$message.error('分配权限失败')
@@ -237,7 +242,11 @@ export default {
     addCloseDialog()
     {
       this.$refs.addFormRef.resetFields();
+    },
+    roleCloseDialog(){
+      this.Id = ''
     }
+
 
   }
 }

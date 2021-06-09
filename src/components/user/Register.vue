@@ -7,7 +7,7 @@
       <div class="register_Form">
         <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px"  class="Register_Form">
           <el-form-item label="昵称" prop="username">
-            <el-input  type="username" v-model="RegisterForm.username" ></el-input>
+            <el-input  type="text" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
           <el-form-item label="密码" prop="pwd">
             <el-input type="password"  v-model="RegisterForm.pwd"></el-input>
@@ -36,7 +36,19 @@
       </div>
 
     </div>
+    <!--    修改用户密码的对话框-->
+    <el-dialog
+      title="注册信息"
+      :visible.sync="userInfoDialogVisible"
+      width="30%" >
+      <span>您的Id为:{{this.userId}}</span>
+       <span slot="footer" class="dialog-footer">
+        <el-button @click="this.$router.push('/login')">跳转至登陆页面</el-button>
+       </span>
+    </el-dialog>
   </div>
+
+
 
 
 </template>
@@ -65,7 +77,14 @@ export  default {
         callback();
       }
     };
-    const checkEmail = (rule, value, cb) => {
+    const checkCode = (rule, value, cb) => {
+      const regCode = this.verification
+      if (regCode === value) {
+        return cb()
+      }
+      cb(new Error('请输入正确的验证码'))
+    };
+    const checkEmail =(rule, value, cb) => {
       const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
         return cb()
@@ -75,6 +94,8 @@ export  default {
     return{
       radio:1,
       verification:'',
+      userInfoDialogVisible:false,
+      userId:'',
       RegisterForm:{
         username:"",
         pwd:"",
@@ -82,7 +103,6 @@ export  default {
         email:"",
         code:'',
         role:""
-
       },
       registerFormRules:{
         username:[
@@ -104,7 +124,11 @@ export  default {
         ],
         rule:[
           { required: true, message: '请填写角色框！', trigger: 'blur'}
-          ]
+          ],
+        code:[
+          { required: true, message: '请填写验证码', trigger: 'blur'},
+          { validator: checkCode, trigger: 'blur' }
+        ]
       }
     };
 
@@ -125,8 +149,10 @@ export  default {
             const {data : res} = await  this.$http.post('primaryRegister',qs.stringify(this.RegisterForm))
             //判断注册是否成功并弹出提示框
             if(res.meta.status !==  '200') return this.$message.error('注册失败')
-            this.$message.success('注册成功！即将跳转至登陆页面进行登录')
-            await this.$router.push('/login')
+            this.$message.success('注册成功！')
+            this.userId = res.data.userId
+            this.userInfoDialogVisible = true
+            //await this.$router.push('/login')
           }
           else return  this.$message.error('验证码验证错误!')
 
@@ -136,7 +162,9 @@ export  default {
             //判断注册是否成功并弹出提示框
             if(res.meta.status !=='200') return this.$message.error('注册失败')
             this.$message.success('注册成功！即将跳转至登陆页面进行登录')
-            await this.$router.push('/login')
+            this.userId = res.data.userId
+            this.userInfoDialogVisible = true
+            //await this.$router.push('/login')
           }else  return  this.$message.error('验证码验证错误!')
         }
       })
