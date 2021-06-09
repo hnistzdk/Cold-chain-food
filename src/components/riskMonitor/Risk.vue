@@ -66,9 +66,9 @@
                     @change="selectModel($event)">
           <el-option
             v-for="item in addFoodList"
-            :key="item.foodId"
+            :key="item.id"
             :label="item.foodName"
-            :value="item.foodId">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
@@ -267,7 +267,7 @@ export default {
     },
     //改变添加表单的cateName时，cateId也随之改变
     selectModel(eh){
-      this.addForm.foodId = this.addFoodList[eh].foodId
+      this.addForm.foodId = this.addFoodList[eh].id
     }
   }
 }

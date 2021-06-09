@@ -72,21 +72,36 @@ export default {
         if (this.radio === 1) {
           const { data: res } = await this.$http.post('primaryLogin', qs.stringify(this.loginForm))
           //判断登录是否成功并弹出提示框
-          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          if (res.meta.status !== '200'){
+            if(res.meta.status === '520'){
+              return this.$message.error('该账号已被锁定')
+            }
+            return this.$message.error('登陆失败')
+          }
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/home')
         } else if (this.radio === 2) {
           //判断登录是否成功并弹出提示框
           const { data: res } = await this.$http.post('enterpriseLogin', qs.stringify(this.loginForm))
-          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          if (res.meta.status !== '200'){
+            if(res.meta.status === '520'){
+              return this.$message.error('该账号已被锁定')
+            }
+            return this.$message.error('登陆失败')
+          }
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/home')
         } else {
           //判断登录是否成功并弹出提示框
           const { data: res } = await this.$http.post('adminLogin', qs.stringify(this.loginForm))
-          if (res.meta.status !== '200') return this.$message.error('登陆失败')
+          if (res.meta.status !== '200'){
+            if(res.meta.status === '520'){
+              return this.$message.error('该账号已被锁定')
+            }
+            return this.$message.error('登陆失败')
+          }
           this.$message.success('登陆成功')
           window.sessionStorage.setItem('token', res.data.token)
           await this.$router.push('/home')
