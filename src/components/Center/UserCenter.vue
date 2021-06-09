@@ -34,11 +34,11 @@
       <el-form-item label="身份:" prop="role">
         <el-input type="text" v-model="userInfo.role" disabled></el-input>
       </el-form-item>
-      <el-form-item label="企业:" prop="primary">
-        <el-input type="text" v-model="userInfo.primary"
+      <el-form-item label="企业:" prop="enterpriseName">
+        <el-input type="text" v-model="userInfo.enterpriseName"
                   v-if="this.userInfo.role!=='企业用户'" disabled></el-input>
-        <el-input type="text" v-model="userInfo.primary"
-                  v-else disabled></el-input>
+        <el-input type="text" v-model="userInfo.enterpriseName"
+                  v-else ></el-input>
       </el-form-item>
 
       <el-form-item>
@@ -54,11 +54,11 @@
     :visible.sync="passwordDialogVisible"
     width="30%" @close="passwordDialogClose">
     <!--      内容主体区域-->
-    <el-form :model="passwordForm" :rules="passwordFormRules" ref="passwordFormRef" label-width="70px">
+    <el-form :model="passwordForm" :rules="passwordFormRules" ref="passwordFormRef" label-width="90px">
       <el-form-item label="密码" prop="password">
         <el-input v-model="passwordForm.password"></el-input>
       </el-form-item>
-      <el-form-item label="再次输入密码" prop="checkPassword">
+      <el-form-item label="重输密码" prop="checkPassword">
         <el-input v-model="passwordForm.checkPassword"></el-input>
       </el-form-item>
 
@@ -122,7 +122,7 @@ export default {
         tel:'',
         email:'',
         role:'',
-        primary:''
+        enterpriseName:''
       },
       userInfoRules:{
        username:[
@@ -203,6 +203,8 @@ export default {
 <style Lang="less" scoped>
 .changePwd{
   margin-bottom: 10px;
-  left: 200px;
+
+  transform: translate(1200%,0);
 }
+
 </style>

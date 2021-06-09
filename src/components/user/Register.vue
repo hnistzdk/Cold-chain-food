@@ -5,7 +5,8 @@
     </div>
     <div class="register_box">
       <div class="register_Form">
-        <el-form  status-icon :model="RegisterForm" :rules="registerFormRules" ref="registerFormRef" label-width="200px"  class="Register_Form">
+        <el-form  status-icon :model="RegisterForm" :rules="registerFormRules"
+                  ref="registerFormRef" label-width="200px"  class="Register_Form">
           <el-form-item label="昵称" prop="username">
             <el-input  type="text" v-model="RegisterForm.username" ></el-input>
           </el-form-item>
@@ -22,7 +23,7 @@
             <el-input type="text"  v-model="RegisterForm.email"></el-input>
           </el-form-item>
           <el-button  type="warning" id="verification_button"
-                      @click="verification_request">获取验证码</el-button>
+                      @click="verification_request" size="mini">获取验证码</el-button>
           <el-form-item label="验证码" prop="code" class="email_verification">
             <el-input type="text"  v-model="RegisterForm.code" placeholder="请输入验证码"></el-input>
           </el-form-item>
@@ -194,7 +195,8 @@ export  default {
 
 <style Lang="less" scoped>
 .register_container{
-  height: 800px;
+  height: 100%;
+  width: 100%;
   background-color: #0093E9;
   background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
 
@@ -241,9 +243,12 @@ export  default {
 #verification_button{
   display: flex;
   left: 70%;
-  transform: translate(180%,-100%);
+  transform: translate(220%,-20%);
 }
 .email_verification{
   margin-bottom: 20px;
+}
+.el-input{
+  width: 300px;
 }
 </style>

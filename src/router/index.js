@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Login from '../components/user/Login.vue'
-import Hello from '../components/user/Hello'
 import Register from '../components/user/Register'
 import Home from '../components/user/Home'
 import Welcome from '../components/user/Welcome'
@@ -25,9 +24,8 @@ Vue.use(Router)
 
 const router=new  Router({
   routes: [
-    {path:'/',redirect:'/hello'},
-    {path:'/hello',component:Hello},
-    { path: '/login',component: Login },
+    {path:'/',redirect:'/login'},
+    {path: '/login',component: Login },
     {path:'/pwdChange',component:PwdChange},
     {path:'/register',component:Register},
     {path:'/home',component:Home,

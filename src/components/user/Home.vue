@@ -128,7 +128,7 @@ export default {
 
 }
 .el-aside{
-  background-color: #4A5064;
+  background-color: #373d41;
 
 }
 .el_main{
