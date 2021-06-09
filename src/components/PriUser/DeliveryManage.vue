@@ -54,19 +54,19 @@
                    @change="selectModel($event)">
           <el-option
             v-for="item in foodList"
-            :key="item.foodId"
+            :key="item.id"
             :label="item.foodName"
-            :value="item.foodId">
+            :value="item.id">
           </el-option>
         </el-select>
       </el-form-item>
 
       <el-form-item label="收货人Id" prop="receivedUserNameId">
-        <el-input v-model="addForm.receivedUserNameId"></el-input>
+        <el-input v-model="addForm.consigneeId"></el-input>
       </el-form-item>
 
       <el-form-item label="收货人姓名" prop="receivedUserName">
-        <el-input v-model="addForm.receivedUserName"></el-input>
+        <el-input v-model="addForm.consigneeName"></el-input>
       </el-form-item>
 
       <el-form-item label="收货地址" prop="receivedSite">
@@ -102,7 +102,7 @@ export default {
       queryInfo:{
         query:'',
         pageNum:1,
-        pageSize:5
+        pageSize:2
       },
       total:'',
       foodList:[],
@@ -117,10 +117,10 @@ export default {
         //收货地址
         receivedSite:'',
         //收货地址id
-        receivedSiteId:'',
+        storageId:'',
         //收货人姓名
-        receivedUserName:'',
-        receivedUserNameId:''
+        consigneeName:'',
+        consigneeId:''
       },
       addFormRules:{
         foodName:[
@@ -129,7 +129,7 @@ export default {
         receivedSite:[
           {required:true,message:'请填写收货地址',trigger:'blur'}
         ],
-        receivedUserName:[
+        consigneeName:[
           {required:true,message:'请输入收货人姓名',trigger:'blur'}
         ]
       }
@@ -175,7 +175,7 @@ export default {
       //console.log(this.addForm)
       this.$refs.addFormRef.validate(async valid=>{
         if(!valid) return
-        const {data : res} = await this.$http.post('addOrder',
+        const {data : res} = await this.$http.post('addManifest',
           qs.stringify(this.addForm))
         if(res.meta.status !=="200")
           return this.$message.error('添加货单失败!')
@@ -188,10 +188,10 @@ export default {
       this.$refs.addFormRef.resetFields()
     },
     selectModel(eh){
-      this.addForm.foodId = this.foodList[eh].foodId
+      this.addForm.foodId = this.foodList[eh].id
     },
     selectModel1(eh){
-      this.addForm.receivedSiteId = this.siteList[eh].storageId
+      this.addForm.storageId = this.siteList[eh].storageId
     }
   }
 }
