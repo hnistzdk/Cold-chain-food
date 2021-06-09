@@ -26,7 +26,7 @@
       <el-table-column label="食品名称" prop="foodName"></el-table-column>
       <el-table-column label="发货地址" prop="startingSite"></el-table-column>
       <el-table-column label="收货地址" prop="receivedSite"></el-table-column>
-      <el-table-column label="收货人姓名" prop="receivedUserName"></el-table-column>
+      <el-table-column label="收货人姓名" prop="consigneeName"></el-table-column>
 
     </el-table>
     <!--    分页区-->
@@ -61,11 +61,11 @@
         </el-select>
       </el-form-item>
 
-      <el-form-item label="收货人Id" prop="receivedUserNameId">
+      <el-form-item label="收货人Id" prop="consigneeId">
         <el-input v-model="addForm.consigneeId"></el-input>
       </el-form-item>
 
-      <el-form-item label="收货人姓名" prop="receivedUserName">
+      <el-form-item label="收货人姓名" prop="consigneeName">
         <el-input v-model="addForm.consigneeName"></el-input>
       </el-form-item>
 
