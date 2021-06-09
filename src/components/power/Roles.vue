@@ -72,7 +72,9 @@
 
         <el-checkbox-group v-model="checkedList" >
           <el-checkbox  v-for="item in rightsList" :label="item.rightName" :key="item.id"
-                       @change="item.checked=!item.checked"></el-checkbox>
+                       @change="item.checked=!item.checked">
+
+          </el-checkbox>
         </el-checkbox-group>
 
         <span slot="footer" class="dialog-footer">
@@ -252,6 +254,11 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style Lang="less" scoped>
+.el-card{
+  margin-top: 15px;
+}
+.el-checkbox{
+  margin-right: 50px;
+}
 </style>

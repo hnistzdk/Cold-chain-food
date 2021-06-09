@@ -12,7 +12,7 @@
     <!--    查询框布局区域-->
     <el-row :gutter="20">
       <el-col :span="6">
-        <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getAdminList()">
+        <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable >
           <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
         </el-input></el-col>
       <el-col :span="4">
@@ -55,7 +55,7 @@
     :visible.sync="addDialogVisible"
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
-    <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
+    <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="90px">
 
 <!--      <el-form-item label="食品名称" prop="foodName">-->
 <!--        <el-input v-model="addForm.foodName"></el-input>-->

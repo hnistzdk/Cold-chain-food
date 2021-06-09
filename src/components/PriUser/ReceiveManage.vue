@@ -4,7 +4,7 @@
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
       <el-breadcrumb-item>货单管理</el-breadcrumb-item>
-      <el-breadcrumb-item >发货列表</el-breadcrumb-item>
+      <el-breadcrumb-item >收货列表</el-breadcrumb-item>
     </el-breadcrumb>
 
     <!--  卡片区域-->
@@ -96,17 +96,19 @@ export default {
       this.queryInfo.pageNum = newPage
       this.getOrderList()
     },
-    receiveManifest(id){
-      const {data : res} = this.$http.post('receive/'+id)
+    async receiveManifest(id){
+      const {data : res} =await this.$http.post('receive/'+id)
       if(res.meta.status !== "200")
         return this.$message.error('收货失败!')
       this.$message.success('收获成功!')
-      this.getOrderList()
+      await this.getOrderList()
     }
   }
 }
 </script>
 
-<style scoped>
-
+<style Lang="less" scoped>
+.el-card{
+  margin-top: 15px;
+}
 </style>

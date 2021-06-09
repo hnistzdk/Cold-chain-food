@@ -8,7 +8,7 @@
   </el-breadcrumb>
 <!--  卡片区域-->
   <el-card>
-    <el-button type="warning" icon="el-icon-edit" @click="passwordDialogVisible = true">
+    <el-button type="warning" icon="el-icon-edit" @click="passwordDialogVisible = true" id="changePwd">
       修改密码
     </el-button>
     <el-form :model="userInfo" label-width="100px" ref="userInfoRef" :rules="userInfoRules">
@@ -191,6 +191,12 @@ export default {
 }
 </script>
 
-<style lang="Less" scoped>
-
+<style Lang="less" scoped>
+.el-card{
+  margin-top: 15px;
+},
+#changePwd{
+  right:80% ;
+  margin-bottom: 15px;
+}
 </style>

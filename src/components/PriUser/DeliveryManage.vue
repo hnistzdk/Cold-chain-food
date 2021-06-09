@@ -197,6 +197,8 @@ export default {
 }
 </script>
 
-<style scoped>
-
+<style Lang="less" scoped>
+.el-card{
+  margin-top: 15px;
+}
 </style>

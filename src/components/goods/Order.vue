@@ -60,7 +60,7 @@
     :visible.sync="addDialogVisible"
     width="40%" @close="addCloseDialog" >
     <!--      内容主体区域-->
-    <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="70px">
+    <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
 <!--      <el-form-item label="货单号" prop="manifestId">-->
 <!--        <el-input v-model="addForm.manifestId"></el-input>-->
 <!--      </el-form-item>-->
