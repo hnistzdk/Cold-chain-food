@@ -242,7 +242,7 @@ export default {
     },
     async userStateChanged(userinfo){
       console.log(userinfo)
-      const {data:res}=await  this.$http.put(`changeState/${userinfo.id}/state/${userinfo.state}/${this.userList.role}`)
+      const {data:res}=await  this.$http.put(`changeState/${userinfo.id}/state/${userinfo.state}/${userinfo.role}`)
       if(res.meta.status !=="200"){
         userinfo.state =!userinfo.state
         return this.$message.error('更新用户状态失败!')
