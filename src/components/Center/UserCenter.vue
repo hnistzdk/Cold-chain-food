@@ -34,6 +34,13 @@
       <el-form-item label="身份:" prop="role">
         <el-input type="text" v-model="userInfo.role" disabled></el-input>
       </el-form-item>
+      <el-form-item label="企业:" prop="primary">
+        <el-input type="text" v-model="userInfo.primary"
+                  v-if="this.userInfo.role!=='企业用户'" disabled></el-input>
+        <el-input type="text" v-model="userInfo.primary"
+                  v-else disabled></el-input>
+      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" @click="editUserInfo">保存</el-button>
       </el-form-item>
@@ -114,7 +121,8 @@ export default {
         gender:'',
         tel:'',
         email:'',
-        role:''
+        role:'',
+        primary:''
       },
       userInfoRules:{
        username:[
