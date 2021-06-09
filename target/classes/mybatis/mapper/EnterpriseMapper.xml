@@ -50,8 +50,8 @@
     </delete>
 
     <insert id="addEnterprise" parameterType="AddEnterpriseMeta">
-        insert into tb_enterprise_user (id,username,pwd,true_name,gender,tel,email,enterprise_name,register_time,role,login_times)
-        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{enterpriseName},#{registerTime},#{role},#{loginTimes});
+        insert into tb_enterprise_user (id,username,pwd,true_name,gender,tel,email,enterprise_name,register_time,role,role_id,login_times,state)
+        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{enterpriseName},#{registerTime},#{role},#{roleId},#{loginTimes},#{state});
     </insert>
 
     <select id="showEnterpriseUser" resultType="EditMeta">

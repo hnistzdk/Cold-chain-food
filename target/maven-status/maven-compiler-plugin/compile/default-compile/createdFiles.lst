@@ -10,6 +10,7 @@ com\zdk\pojo\Food.class
 com\zdk\service\enterprise\EnterpriseService.class
 com\zdk\service\risk\RiskService.class
 com\zdk\mapper\StorageMapper.class
+com\zdk\utils\JudgeLoginUtil.class
 com\zdk\mapper\RoleMapper.class
 com\zdk\mapper\UserMapper.class
 com\zdk\pojo\Risk.class

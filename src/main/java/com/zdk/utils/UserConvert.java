@@ -25,7 +25,13 @@ public class UserConvert {
         user.setEmail(addUserMeta.getEmail());
         user.setRegisterTime(DateConversion.getNowDate());
         user.setRole(role);
+        if(role.equals(ReturnMessage.PRIMARY)){
+            user.setRoleId(16);
+        }else{
+            user.setRoleId(5);
+        }
         user.setLoginTimes(0);
+        user.setState(true);
         return user;
     }
     public static EnterpriseUser getAddUser(AddEnterpriseMeta addEnterpriseMeta, String role) {
@@ -40,7 +46,9 @@ public class UserConvert {
         user.setEmail(addEnterpriseMeta.getEmail());
         user.setRegisterTime(DateConversion.getNowDate());
         user.setRole(role);
+        user.setRoleId(17);
         user.setLoginTimes(0);
+        user.setState(true);
         return user;
     }
 }

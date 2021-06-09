@@ -22,6 +22,11 @@
         </where>
     </select>
 
+    <insert id="addAdmin" parameterType="AddUserMeta">
+        insert into tb_admin (id, username, pwd, gender, tel,food.tb_admin.email,food.tb_admin.register_time,food.tb_admin.last_login_time,food.tb_admin.login_times,food.tb_admin.role,food.tb_admin.roleId,state)
+        values (#{id},#{username},#{pwd},#{gender},#{tel},#{email},#{registerTime},#{lastLoginTime},#{loginTimes},#{role},#{roleId},#{state});
+    </insert>
+
     <select id="getAdminList" parameterType="map" resultType="AdminMeta">
         select food.tb_admin.id,food.tb_admin.username,food.tb_admin.gender,food.tb_admin.tel,food.tb_admin.role,food.tb_admin.state
         from food.tb_admin limit #{startIndex},#{pageSize};
@@ -58,7 +63,23 @@
     
     <update id="editUserInfo" parameterType="EditMeta">
         update tb_admin
-        set username = #{username},gender=#{gender},tel=#{tel},email=#{email}
+        <set>
+            <if test="username!=null">
+                username=#{username},
+            </if>
+            <if test="trueName!=null">
+                true_name=#{trueName},
+            </if>
+            <if test="gender!=null">
+                gender=#{gender},
+            </if>
+            <if test="tel!=null">
+                tel=#{tel},
+            </if>
+            <if test="email!=null">
+                email=#{email},
+            </if>
+        </set>
         where id=#{id};
     </update>
 

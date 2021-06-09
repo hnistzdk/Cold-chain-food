@@ -54,6 +54,13 @@ public interface AdminService {
     int removeAdmin(String id);
 
     /**
+     * 添加管理员
+     * @param  admin
+     * @return 返回类型条数
+     */
+    int addAdmin(AdminAndUser admin);
+
+    /**
      *根据id查询管理员
      * @param  id
      * @return 返回类型条数

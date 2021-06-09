@@ -73,7 +73,7 @@ public class CommonController {
             addEnterpriseMeta.setId(loginUser.getId());
             addEnterpriseMeta.setPwd(passwordEncoder.encode(password));
             enterpriseService.modifyEnterprisePwd(addEnterpriseMeta);
-        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+        }else if(role.contains(ReturnMessage.ADMIN)){
             result = adminService.modifyPassword(loginUser.getId(), passwordEncoder.encode(password));
         }
         return CommonMessage.returnStatus(result>0);
@@ -102,7 +102,7 @@ public class CommonController {
             }else{
                 msg.put(ReturnMessage.STATUS, ReturnMessage.ERROR);
             }
-        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+        }else if(role.contains(ReturnMessage.ADMIN)){
             AdminAndUser admin = adminService.adminLogin(id, null);
             if(admin!=null){
                 data.put("userInfo", admin);
@@ -125,7 +125,7 @@ public class CommonController {
             count=userService.modifyPrimaryUser(user);
         }else if(role.equals(ReturnMessage.ENTERPRISE)){
             count=enterpriseService.modifyEnterpriseUser(user);
-        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+        }else if(role.contains(ReturnMessage.ADMIN)){
             count = adminService.editUserInfo(user);
         }
 //        AdminAndUser xxx = (AdminAndUser) request.getSession().getAttribute(user.getId());
@@ -147,7 +147,7 @@ public class CommonController {
             result=userService.updateStatePrimary(id, mg_state);
         }else if(role.equals(ReturnMessage.ENTERPRISE)){
             result=enterpriseService.updateStateEnterprise(id, mg_state);
-        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+        }else if(role.contains(ReturnMessage.ADMIN)){
             result=adminService.updateStateAdmin(id, mg_state);
         }
         return JSON.toJSONString(CommonMessage.returnStatus(result>0));
@@ -335,7 +335,7 @@ public class CommonController {
                     "}";
 //            ClassPathResource classPathResource=new ClassPathResource("/static/json/enterpriseMenu.json");
 //            menu = FileUtils.readFileToString(classPathResource.getFile());
-        }else if(role.indexOf(ReturnMessage.ADMIN)!=-1){
+        }else if(role.contains(ReturnMessage.ADMIN)){
             menu="{\n" +
                     "  \"data\": [\n" +
                     "    {\n" +

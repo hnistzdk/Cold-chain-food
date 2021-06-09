@@ -51,8 +51,8 @@
     </delete>
 
     <insert id="addUser" parameterType="AdminAndUser">
-        insert into tb_user (id,username,pwd,true_name,gender,tel,email,register_time,role,login_times)
-        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{registerTime},#{role},#{loginTimes});
+        insert into tb_user (id,username,pwd,true_name,gender,tel,email,register_time,role,food.tb_user.role_id,login_times,state)
+        values(#{id},#{username},#{pwd},#{trueName},#{gender},#{tel},#{email},#{registerTime},#{role},#{roleId},#{loginTimes},#{state});
     </insert>
 
     <select id="showPrimaryUser" resultType="EditMeta">

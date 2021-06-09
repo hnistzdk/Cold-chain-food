@@ -73,4 +73,14 @@ public class AdminController {
         int count = adminService.removeAdmin(id);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
+
+    @RightInfo(Permission.ADDADMIN)
+    @PostMapping("/addAdmin")
+    @CrossOrigin
+    public Object addAdmin(AddUserMeta admin){
+        admin.setId(UUIDUtil.getUUID(7));
+        admin.setPwd(passwordEncoder.encode(admin.getPwd()));
+        int count = adminService.addAdmin(UserConvert.getAddUser(admin, "管理员"));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+    }
 }

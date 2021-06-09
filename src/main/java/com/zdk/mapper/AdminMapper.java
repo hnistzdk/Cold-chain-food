@@ -56,6 +56,12 @@ public interface AdminMapper {
     int removeAdmin(@Param("id") String id);
 
     /**
+     * 添加管理员
+     * @param  admin
+     * @return 返回类型条数
+     */
+    int addAdmin(AdminAndUser admin);
+    /**
      *根据id查询管理员
      * @param  id
      * @return 返回类型条数
@@ -69,13 +75,6 @@ public interface AdminMapper {
      * @return 返回类型条数
      */
     int updateLoginInfo(@Param("id") String id,@Param("date") String date);
-
-    /**
-     *添加管理员
-     * @param  admin
-     * @return 返回类型条数
-     */
-    int addAdmin(AdminAndUser admin);
 
     /**
      *显示管理员用户编辑信息

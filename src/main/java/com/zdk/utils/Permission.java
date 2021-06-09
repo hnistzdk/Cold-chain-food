@@ -12,6 +12,12 @@ public class Permission {
      * 获取管理员列表
      */
     public static final String ADMINLIST="adminList";
+
+    /**
+     * 添加管理员
+     */
+    public static final String ADDADMIN="addAdmin";
+
     /**
      * 获取普通用户列表
      */

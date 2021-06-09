@@ -9,7 +9,7 @@
       <jdbc-url>jdbc:mysql://116.62.126.207:3306/food</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
-    <data-source source="LOCAL" name="food@localhost" uuid="82d6e93b-cc06-4c86-bcc2-cdd3a7022819">
+    <data-source source="LOCAL" name="food@localhost" uuid="76a5e29d-c6ed-4c12-88b7-fefcf35c6ff1">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>

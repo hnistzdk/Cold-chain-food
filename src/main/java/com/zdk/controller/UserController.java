@@ -81,6 +81,7 @@ public class UserController {
     @CrossOrigin
     public Object addUser(AddUserMeta user) {
         user.setId(UUIDUtil.getUUID(5));
+        user.setPwd(passwordEncoder.encode(user.getPwd()));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -117,6 +118,7 @@ public class UserController {
     @CrossOrigin
     public Object primaryRegister(AddUserMeta user){
         user.setId(UUIDUtil.getUUID(5));
+        user.setPwd(passwordEncoder.encode(user.getPwd()));
         int count = userService.addUser(UserConvert.getAddUser(user, "普通用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -127,6 +129,7 @@ public class UserController {
     @CrossOrigin
     public Object primaryPwdChange(AddUserMeta user){
         if(userService.login(user.getId(), null,user.getEmail())!=null){
+            user.setPwd(passwordEncoder.encode(user.getPwd()));
             int count = userService.modifyUserPwd(user);
             return JSON.toJSONString(CommonMessage.returnStatus(count>0));
         }

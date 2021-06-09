@@ -85,6 +85,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object addEnterprise(AddEnterpriseMeta enterpriseUser) {
         enterpriseUser.setId(UUIDUtil.getUUID(6));
+        enterpriseUser.setPwd(passwordEncoder.encode(enterpriseUser.getPwd()));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -124,7 +125,7 @@ public class EnterpriseUserController {
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
         enterpriseUser.setId(UUIDUtil.getUUID(6));
         String encode = passwordEncoder.encode(enterpriseUser.getPwd());
-        enterpriseUser.setPwd(encode);
+        enterpriseUser.setPwd(passwordEncoder.encode(encode));
         int count = enterpriseService.addEnterprise(UserConvert.getAddUser(enterpriseUser, "企业用户"));
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
@@ -134,6 +135,7 @@ public class EnterpriseUserController {
     @CrossOrigin
     public Object enterprisePwdChange(AddEnterpriseMeta enterpriseUser){
         if(enterpriseService.enterpriseLogin(enterpriseUser.getId(), null,enterpriseUser.getEmail())!=null){
+            enterpriseUser.setPwd(passwordEncoder.encode(enterpriseUser.getPwd()));
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
             return CommonMessage.returnStatus(count>0);
         }
