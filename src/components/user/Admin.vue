@@ -11,7 +11,7 @@
       <!--    查询框布局区域-->
       <el-row :gutter="20">
         <el-col :span="6">
-          <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable @clear="getAdminList()">
+          <el-input  placeholder="请输入用户昵称" v-model="queryInfo.query" clearable @clear="getAdminList()">
             <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
           </el-input></el-col>
         <el-col :span="4">
@@ -120,15 +120,15 @@
        @close="contributeDialogClose">
         <!--      内容主体区域-->
         <el-form :model="contributeForm" :rules="contributeFormRules" ref="contributeFormRef" label-width="70px">
-          <el-form-item>
+          <el-form-item label="角色" prop="roleName">
             <el-select v-model="contributeForm.roleName"
                        placeholder="请选择角色"
-                       @change="selectModel($event)">
+                       @change="selectModel()">
               <el-option
                 v-for="item in contributeList"
-                :key="item.roleId"
+                :key="item.id"
                 :label="item.roleName"
-                :value="item.roleId">
+                :value="item.id">
               </el-option>
             </el-select>
           </el-form-item>
@@ -184,9 +184,9 @@ export default {
       },
       contributeForm:{
         roleName:'',
-        roleId:''
+        id:''
       },
-      contributeList:{},
+      contributeList:[],
       addFormRules:{
         username:[
           {required:true,message:'请输入用户名',trigger:'blur'},
@@ -240,6 +240,7 @@ export default {
       this.userList=res.data.users;
       this.total =res.data.total
       this.contributeList = res.data.contributeList
+      console.log(this.contributeList)
       console.log(this.total)
     },
     async getUserListPage(){
@@ -369,25 +370,29 @@ export default {
       //重置表单
       await  this.getAdminList()
     },
-    showRoles(id){
-      this.$http.post('jurisdiction')
+    async showRoles(id){
+        const {data : res} = await this.$http.post('jurisdiction')
       if(res.meta.status ==="403")
         return this.$message.error('您无权访问此权限!')
       this.checkedRoleId = id
       this.contributeVisible = true
     },
-    contribute(){
-      const {data : res} = this.$http.post('contribute/'+this.checkedRoleId,
+    async contribute(){
+      const {data : res} =await this.$http.post('contribute/'+this.checkedRoleId,
       qs.stringify(this.contributeForm))
       if(res.meta.status !=="200")
        return this.$message.error('分配权限失败!')
       this.$message.success('分配权限成功!')
       this.checkedRoleId = ''
       this.contributeVisible = false
+      await this.getAdminList()
     },
     //当分配角色的角色名改变时，角色Id也相应改变
     selectModel(eh){
-      this.contributeForm.roleId = this.contributeList[eh].roleId
+      console.log(eh)
+      //console.log(this.contributeForm.roleName)
+      this.contributeForm.id = this.contributeList[eh-1].id
+      //console.log(this.contributeForm.id)
     },
     contributeDialogClose(){
       this.checkedRoleId = ''

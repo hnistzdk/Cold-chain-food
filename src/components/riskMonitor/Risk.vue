@@ -12,11 +12,11 @@
     <!--    查询框布局区域-->
     <el-row :gutter="20">
       <el-col :span="6">
-        <el-input  placeholder="请输入查询内容" v-model="queryInfo.query" clearable >
+        <el-input  placeholder="请输入食品名称" v-model="queryInfo.query" clearable >
           <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
         </el-input></el-col>
       <el-col :span="4">
-        <el-button type="primary" @click="addDialogVisible=true">添加订单</el-button>
+        <el-button type="primary" @click="addDialogVisible=true">添加食品检测信息</el-button>
       </el-col>
     </el-row>
 
