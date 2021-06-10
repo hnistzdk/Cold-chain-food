@@ -15,6 +15,8 @@ import com.zdk.utils.CommonMessage;
 import com.zdk.utils.Permission;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.SendEmail;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.commons.lang.StringEscapeUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,6 +34,7 @@ import java.util.HashMap;
  */
 
 @SuppressWarnings("all")
+@Api(tags = "公共api")
 @RestController
 public class CommonController {
     @Autowired
@@ -49,6 +52,7 @@ public class CommonController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @ApiOperation("获取食品类别信息")
     @PostMapping("/sendCode/{email}")
     @CrossOrigin
     public Object getEmailCode(@PathVariable String email){
@@ -57,6 +61,7 @@ public class CommonController {
         return JSON.toJSONString(coed);
     }
 
+    @ApiOperation("修改密码")
     @RightInfo("")
     @PostMapping("/changePwd")
     @CrossOrigin
@@ -80,6 +85,7 @@ public class CommonController {
         return CommonMessage.returnStatus(result>0);
     }
 
+    @ApiOperation("获取当前登录用户个人信息")
     @RightInfo("")
     @GetMapping("/userInfo/{id}")
     @CrossOrigin
@@ -115,6 +121,7 @@ public class CommonController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("编辑修改当前登录用户信息")
     @RightInfo("")
     @PostMapping("/editUserInfo/{id}")
     @CrossOrigin
@@ -137,6 +144,7 @@ public class CommonController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("修改用户锁定状态")
     @RightInfo(Permission.CHANGESTATE)
     @PutMapping("/changeState/{id}/state/{mg_state}/{role}")
     @CrossOrigin
@@ -155,6 +163,7 @@ public class CommonController {
         return JSON.toJSONString(CommonMessage.returnStatus(result>0));
     }
 
+    @ApiOperation("据用户角色获取菜单")
     @GetMapping("/menus")
     @CrossOrigin
     public Object getMenuList(HttpServletRequest request) throws IOException {

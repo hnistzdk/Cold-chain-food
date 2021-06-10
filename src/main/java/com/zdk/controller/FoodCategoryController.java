@@ -23,7 +23,7 @@ import java.util.Map;
  * @author zdk
  * @date 2021/5/23 14:37
  */
-@Api("食品分类api")
+@Api(tags = "食品分类api")
 @RestController
 public class FoodCategoryController {
 

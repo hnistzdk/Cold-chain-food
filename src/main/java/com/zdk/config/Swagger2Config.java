@@ -21,10 +21,10 @@ public class Swagger2Config {
     @Bean
     public Docket getUserDocket(){
         ApiInfo apiInfo=new ApiInfoBuilder()
-                .title("用户管理")//api标题
-                .description("用户管理相关接口描述")//api描述
+                .title("冷链食品后台管理系统")//api标题
+                .description("冷链食品后台管理系统相关接口描述")//api描述
                 .version("1.0.0")//版本号
-                .contact("zdk")//本API负责人的联系信息
+                .contact("张迪凯")//本API负责人的联系信息
                 .build();
         return new Docket(DocumentationType.SWAGGER_2)//文档类型（swagger2）
                 .apiInfo(apiInfo)//设置包含在json ResourceListing响应中的api元信息

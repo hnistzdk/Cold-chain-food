@@ -9,6 +9,8 @@ import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.lang.Nullable;
@@ -22,6 +24,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/17 19:21
  */
+@Api(tags = "权限api")
 @RestController
 public class RightController {
     @Autowired
@@ -32,6 +35,7 @@ public class RightController {
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
+    @ApiOperation("获取展示权限列表")
     @RightInfo(Permission.RIGHTLIST)
     @GetMapping("/rights/list")
     @CrossOrigin
@@ -55,6 +59,7 @@ public class RightController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("分配权限弹出框数据")
     @RightInfo(Permission.RIGHTLISTROLE)
     @GetMapping("/rights/list/{id}")
     @CrossOrigin

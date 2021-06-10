@@ -1,5 +1,6 @@
 package com.zdk.config;
 
+import com.zdk.utils.Permission;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.*;
@@ -30,7 +31,7 @@ public class CorsFilter implements Filter {
         response.setHeader("Access-Control-Allow-Headers", "x-requested-with,Authorization");
         response.setHeader("Access-Control-Allow-Credentials", "true");
         String method = request.getMethod();
-        if("OPTIONS".equalsIgnoreCase(method)){
+        if(Permission.OPTIONS.equalsIgnoreCase(method)){
             servletResponse.getOutputStream().write("Success".getBytes("utf-8"));
         }else{
             filterChain.doFilter(servletRequest, servletResponse);

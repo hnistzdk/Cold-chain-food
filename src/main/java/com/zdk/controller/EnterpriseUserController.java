@@ -13,6 +13,8 @@ import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -32,7 +34,7 @@ import java.util.List;
  * @Date 2021/4/20 16:04
  * BeanUtils.copyProperties(, );
  */
-
+@Api(tags = "企业用户api")
 @RestController
 public class EnterpriseUserController {
     @Autowired
@@ -45,6 +47,7 @@ public class EnterpriseUserController {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+    @ApiOperation("企业用户登录")
     @PostMapping("/enterpriseLogin")
     @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
@@ -53,6 +56,7 @@ public class EnterpriseUserController {
         return judgeLoginUtil.judgeLogin(enterpriseUser, id, password, request);
     }
 
+    @ApiOperation("企业用户列表")
     @RightInfo(Permission.ENTERPRISELIST)
     @PostMapping("/enterpriseUsers")
     @CrossOrigin
@@ -73,6 +77,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("删除企业用户")
     @RightInfo(Permission.REMOVEENTERPRISE)
     @DeleteMapping("/enterpriseUsers/{id}")
     @CrossOrigin
@@ -81,6 +86,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("添加企业用户")
     @RightInfo(Permission.ADDENTERPRISE)
     @PostMapping("/addEnterpriseUsers")
     @CrossOrigin
@@ -91,6 +97,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("展示当前要编辑的企业用户信息")
     @RightInfo(Permission.SHOWENTERPRISEUSERS)
     @GetMapping("/showEditEnterpriseUsers/{id}")
     @CrossOrigin
@@ -112,6 +119,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("修改企业用户信息")
     @RightInfo(Permission.EDITENTERPRISEUSERS)
     @PostMapping("/editEnterpriseUsers/{id}")
     @CrossOrigin
@@ -120,6 +128,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("企业用户注册")
     @RightInfo("")
     @PostMapping("/enterpriseRegister")
     @CrossOrigin
@@ -139,6 +148,7 @@ public class EnterpriseUserController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("企业用户修改密码")
     @RightInfo("")
     @PostMapping("/enterprisePwdChange")
     @CrossOrigin

@@ -15,6 +15,8 @@ import com.zdk.utils.CommonMessage;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
 import com.zdk.utils.UUIDUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +30,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/23 17:10
  */
+@Api(tags = "货单管理api")
 @RestController
 public class ManifestController {
     @Autowired
@@ -41,6 +44,7 @@ public class ManifestController {
     @Qualifier("FoodServiceImpl")
     private FoodServiceImpl foodService;
 
+    @ApiOperation("管理员获取货单列表")
     @RightInfo(Permission.GETMANIFEST)
     @PostMapping("/getManifest")
     @CrossOrigin
@@ -76,6 +80,7 @@ public class ManifestController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("添加货单")
     @RightInfo(Permission.ADDMANIFEST)
     @PostMapping("/addManifest")
     @CrossOrigin
@@ -104,6 +109,7 @@ public class ManifestController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("据货单号获取当前要修改的货单信息")
     @RightInfo(Permission.GETMANIFESTBYID)
     @GetMapping("/manifests/{id}")
     @CrossOrigin
@@ -119,6 +125,7 @@ public class ManifestController {
         return JSON.toJSONString(map);
     }
 
+    @ApiOperation("修改货单信息")
     @RightInfo(Permission.MODIFYMANIFEST)
     @PostMapping("/modifyManifest")
     @CrossOrigin
@@ -133,6 +140,7 @@ public class ManifestController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("删除货单")
     @RightInfo(Permission.DELETEMANIFEST)
     @PostMapping("/deleteManifest/{id}")
     @CrossOrigin
@@ -141,6 +149,7 @@ public class ManifestController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("企业用户获取发货人为自己的货单列表")
     @RightInfo(Permission.GETSENDMANIFEST)
     @PostMapping("/getSendManifest")
     @CrossOrigin
@@ -176,6 +185,7 @@ public class ManifestController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("企业用户获取收货人为自己的货单列表")
     @RightInfo(Permission.GETSENDMANIFEST)
     @PostMapping("/getReceiveManifest")
     @CrossOrigin
@@ -211,6 +221,7 @@ public class ManifestController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("企业用户进行收货确认")
     @RightInfo(Permission.RECEIVE)
     @PostMapping("/receive/{id}")
     @CrossOrigin

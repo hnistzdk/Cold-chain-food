@@ -8,6 +8,8 @@ import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
@@ -21,12 +23,14 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/5/10 17:14
  */
+@Api(tags = "角色api")
 @RestController
 public class RoleController {
     @Autowired
     @Qualifier("RoleServiceImpl")
     private RoleServiceImpl roleService;
 
+    @ApiOperation("获取角色列表")
     @RightInfo(Permission.ROLELIST)
     @GetMapping("/roles")
     @CrossOrigin
@@ -39,6 +43,7 @@ public class RoleController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("添加角色")
     @RightInfo(Permission.ADDROLES)
     @PostMapping("/roles")
     @CrossOrigin
@@ -47,6 +52,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("显示要修改的角色的信息")
     @RightInfo(Permission.SHOWROLES)
     @GetMapping("/roles/{id}")
     @CrossOrigin
@@ -63,6 +69,7 @@ public class RoleController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("修改角色信息")
     @RightInfo(Permission.MODIFYROLES)
     @PostMapping("/roles/{id}")
     @CrossOrigin
@@ -71,6 +78,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("删除角色")
     @RightInfo(Permission.DELETEROLES)
     @DeleteMapping("/roles/{id}")
     @CrossOrigin
@@ -79,6 +87,7 @@ public class RoleController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("分配权限操作")
     @RightInfo(Permission.ASSIGNRIGHT)
     @PostMapping("/roles/{id}/rights")
     @CrossOrigin

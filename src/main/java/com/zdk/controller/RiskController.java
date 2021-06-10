@@ -10,6 +10,8 @@ import com.zdk.service.risk.RiskServiceImpl;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -22,7 +24,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/30 10:57
  */
-@CrossOrigin
+@Api(tags = "风险监测api")
 @RestController
 public class RiskController {
     @Autowired
@@ -33,6 +35,7 @@ public class RiskController {
     @Qualifier("FoodServiceImpl")
     private FoodServiceImpl foodService;
 
+    @ApiOperation("获取风险检测列表")
     @RightInfo(Permission.GETRISKLIST)
     @PostMapping("/getRiskList")
     @CrossOrigin
@@ -65,6 +68,7 @@ public class RiskController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("添加风险检测信息")
     @RightInfo(Permission.ADDRISK)
     @PostMapping("/addRisk")
     @CrossOrigin
@@ -74,6 +78,7 @@ public class RiskController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("删除风险检测信息")
     @RightInfo(Permission.DELETERISK)
     @PostMapping("/deleteRisk/{id}")
     @CrossOrigin
@@ -82,6 +87,7 @@ public class RiskController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("展示要修改的风险检测记录")
     @RightInfo(Permission.SHOWRISKINFO)
     @GetMapping("/risks/{id}")
     @CrossOrigin
@@ -100,6 +106,7 @@ public class RiskController {
         return JSON.toJSONString(data);
     }
 
+    @ApiOperation("修改食品风险检测信息")
     @RightInfo(Permission.MODIFYRISKS)
     @PostMapping("/modifyRisks")
     @CrossOrigin

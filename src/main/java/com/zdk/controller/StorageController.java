@@ -8,6 +8,8 @@ import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -20,12 +22,14 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/30 10:57
  */
+@Api(tags = "储存站点api")
 @RestController
 public class StorageController {
     @Autowired
     @Qualifier("StorageServiceImpl")
     StorageServiceImpl storageService;
 
+    @ApiOperation("获取储存站点列表")
     @RightInfo(Permission.GETSTORAGE)
     @PostMapping("/getStorage")
     @CrossOrigin
@@ -54,6 +58,7 @@ public class StorageController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("获取要修改的储存站点的信息")
     @RightInfo(Permission.SHOWSTORAGE)
     @PostMapping("/showStorage/{id}")
     @CrossOrigin
@@ -71,6 +76,7 @@ public class StorageController {
         return JSON.toJSONString(data);
     }
 
+    @ApiOperation("修改储存站点信息")
     @RightInfo(Permission.MODIFYSTORAGE)
     @PostMapping("/modifyStorage")
     @CrossOrigin
@@ -79,6 +85,7 @@ public class StorageController {
         return CommonMessage.returnStatus(count>0);
     }
 
+    @ApiOperation("删除储存站点")
     @RightInfo(Permission.DELETESTORAGE)
     @PostMapping("/deleteStorage/{id}")
     @CrossOrigin

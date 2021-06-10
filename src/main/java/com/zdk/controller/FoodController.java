@@ -24,7 +24,7 @@ import java.util.List;
  * @author zdk
  * @date 2021/5/23 14:37
  */
-@Api("食品管理api")
+@Api(tags = "食品管理api")
 @RestController
 public class FoodController {
 

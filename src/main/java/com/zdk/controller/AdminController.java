@@ -9,6 +9,8 @@ import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.utils.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -26,6 +28,7 @@ import java.util.Map;
  * @Author zdk
  * @Date 2021/4/20 16:04
  */
+@Api(tags = "管理员api")
 @RestController
 public class AdminController {
     @Autowired
@@ -38,6 +41,7 @@ public class AdminController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @ApiOperation("管理员登录")
     @PostMapping("/adminLogin")
     @CrossOrigin
     public Object login(String id, String password,HttpServletRequest request){
@@ -46,6 +50,7 @@ public class AdminController {
         return judgeLoginUtil.judgeLogin(admin, id, password, request);
     }
 
+    @ApiOperation("管理员列表")
     @RightInfo(Permission.ADMINLIST)
     @PostMapping("/adminUsers")
     @CrossOrigin
@@ -66,6 +71,7 @@ public class AdminController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("删除管理员")
     @RightInfo(Permission.REMOVEADMIN)
     @DeleteMapping("/users/{id}")
     @CrossOrigin
@@ -74,6 +80,7 @@ public class AdminController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("添加管理员")
     @RightInfo(Permission.ADDADMIN)
     @PostMapping("/addAdmin")
     @CrossOrigin

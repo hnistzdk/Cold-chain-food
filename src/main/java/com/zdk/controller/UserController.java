@@ -13,6 +13,8 @@ import com.zdk.service.right.RightService;
 import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.*;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -28,6 +30,7 @@ import java.util.List;
 /**
  * @author fengzhu
  */
+@Api(tags = "普通用户api")
 @RestController
 public class UserController {
 
@@ -41,6 +44,7 @@ public class UserController {
     @Autowired
     PasswordEncoder passwordEncoder;
 
+    @ApiOperation("普通用户登录")
     @PostMapping("/primaryLogin")
     @CrossOrigin
     public Object login(String id, String password, String email, HttpServletRequest request){
@@ -48,6 +52,7 @@ public class UserController {
         return judgeLoginUtil.judgeLogin(result, id, password, request);
     }
 
+    @ApiOperation("获取普通用户列表")
     @RightInfo(Permission.PRIMARYLIST)
     @PostMapping("/PrimaryUsers")
     @CrossOrigin
@@ -68,6 +73,7 @@ public class UserController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("删除普通用户")
     @RightInfo(Permission.REMOVEPRIMARYUSERS)
     @DeleteMapping("/PrimaryUsers/{id}")
     @CrossOrigin
@@ -76,6 +82,7 @@ public class UserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("添加普通用户")
     @RightInfo(Permission.ADDUSER)
     @PostMapping("/addUsers")
     @CrossOrigin
@@ -86,6 +93,7 @@ public class UserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("获取要修改的普通用户的信息")
     @RightInfo(Permission.SHOWEDITPRIMARYUSERS)
     @GetMapping("/showEditPrimaryUsers/{id}")
     @CrossOrigin
@@ -105,6 +113,7 @@ public class UserController {
         return JSON.toJSONString(new Meta(msg,data));
     }
 
+    @ApiOperation("修改普通用户信息")
     @RightInfo(Permission.EDITPRIMARYUSERS)
     @PostMapping("/editPrimaryUsers/{id}")
     @CrossOrigin
@@ -113,6 +122,7 @@ public class UserController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @ApiOperation("普通用户注册")
     @RightInfo("")
     @PostMapping("/primaryRegister")
     @CrossOrigin
@@ -132,9 +142,9 @@ public class UserController {
         return JSON.toJSONString(new Meta(msg, data));
     }
 
+    @ApiOperation("普通用户修改密码")
     @RightInfo("")
     @PostMapping("/primaryPwdChange")
-
     @CrossOrigin
     public Object primaryPwdChange(AddUserMeta user){
         if(userService.login(user.getId(), null,user.getEmail())!=null){
