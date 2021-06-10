@@ -1,7 +1,7 @@
 <template>
-  <div class="register_container">
+  <div class="register_container" >
     <div class="login_button">
-      <el-button type="danger" @click="login_request">登录</el-button>
+      <el-button class="login" @click="login_request">登录</el-button>
     </div>
     <div class="register_box">
       <div class="register_Form">
@@ -195,12 +195,13 @@ export  default {
 
 <style Lang="less" scoped>
 .register_container{
+
   height: 100%;
   width: 100%;
-  background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
-
+  background: url("../../assets/bg4.jpg");
+  background-size:100% 100% ;
 }
+
 
 .register_box{
   width: 550px;
@@ -212,7 +213,7 @@ export  default {
   top: 50%;
   transform: translate(-50%,-50%);
   opacity: 0.9;
-  border: 1px solid red;
+
 
 }
 .register_container span{
@@ -230,7 +231,7 @@ export  default {
   display: flex;
   left: 50%;
   top: 50%;
-  transform: translate(95%,50%);
+  transform: translate(90%,50%);
 
 }
 .radio{
@@ -249,5 +250,28 @@ export  default {
 }
 .el-input{
   width: 300px;
+}
+
+
+  .login {background-image: linear-gradient(to right, #EF3B36 0%, #FFFFFF  51%, #EF3B36  100%)}
+  .login {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .login:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+
+
 }
 </style>

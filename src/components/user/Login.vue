@@ -1,12 +1,12 @@
 <template>
-  <div class="login_container">
+  <div class="login_container" >
     <div class="Register_button">
-      <el-button type="danger" @click="register_request">注册</el-button>
+      <el-button class="register" @click="register_request">注册</el-button>
     </div>
     <div class="login_box">
       <!--    头像区-->
       <div class="avatar_box">
-
+        <img src="../../assets/写轮眼.png" alt="">
       </div>
       <!--      登录表单区域-->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0" class="login_form">
@@ -124,10 +124,10 @@ export default {
 .login_container {
 
   height: 100%;
-  width: 100%;
-  background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
-
+  width:100%;
+  //background-color: #0093E9;
+  background: url("../../assets/bg.jpg");
+  background-size:100% 100% ;
 }
 
 .login_box {
@@ -140,7 +140,7 @@ export default {
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
-  opacity: 0.9;
+  opacity: 0.8;
 
 }
 
@@ -181,10 +181,31 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transform: translate(95%, 50%);
+  transform: translate(90%, 50%);
 }
 
 .radio {
   line-height: 20px;
 }
+
+.register {background-image: linear-gradient(to right, #70e1f5 0%, #ffd194  51%, #70e1f5  100%)}
+.register {
+  margin: 10px;
+  padding: 15px 45px;
+  text-align: center;
+  text-transform: uppercase;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 10px;
+  display: block;
+}
+
+.register:hover {
+  background-position: right center; /* change the direction of the change here */
+  color: #fff;
+  text-decoration: none;
+}
+
 </style>

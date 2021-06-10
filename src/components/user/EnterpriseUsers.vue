@@ -125,6 +125,9 @@
 
 
     </el-card>
+    <div class="bottom">
+      <span>有问题请咨询qq:369365576</span>
+    </div>
   </div>
 </template>
 

@@ -6,7 +6,7 @@
         <span>冷链食品后台管理系统</span>
       </div>
       <!--  点击”退出“按钮,将token删除，使用户页面跳转至登录页面-->
-      <el-button type="info" @click="logout">退出</el-button>
+      <el-button  @click="logout" class="close">退出</el-button>
     </el-header>
     <!--    主体区域-->
     <el-container>
@@ -110,15 +110,19 @@ export default {
 
 .el-header{
   padding-left: 0;
-  background-color: #373d41;
+  //background-color: #1368c9;
   display: flex;
   justify-content: space-between;
   align-items: center;
   color: white;
   font-size: 20px;
-
+  background-image: linear-gradient(to right, #83a4d4 0%, #b6fbff  51%, #83a4d4  100%)
 
 }
+
+
+
+
 .el-header div{
   display: flex;
   align-items: center;
@@ -140,6 +144,7 @@ export default {
 }
 .el-menu{
   border-right: none;
+  //height: 50px;
 
 }
 .toggle-button{
@@ -152,5 +157,28 @@ export default {
   cursor: pointer;
 
 }
+
+
+  .close {background-image: linear-gradient(to right, #556270 0%, #FF6B6B  51%, #556270  100%)}
+  .close {
+    margin: 10px;
+    padding: 15px 45px;
+    text-align: center;
+    text-transform: uppercase;
+    transition: 0.5s;
+    background-size: 200% auto;
+    color: white;
+    box-shadow: 0 0 20px #eee;
+    border-radius: 10px;
+    display: block;
+  }
+
+  .close:hover {
+    background-position: right center; /* change the direction of the change here */
+    color: #fff;
+    text-decoration: none;
+  }
+
+
 
 </style>

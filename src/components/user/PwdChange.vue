@@ -2,7 +2,7 @@
 <div class="pwdChange_container">
   <div class="pwdChange_box">
     <div class="pwdChange_Form">
-      <el-form :model="changeForm" ref="changeFormRef" :rules="changeFormRules" label-width="100px" >
+      <el-form :model="changeForm" ref="changeFormRef" :rules="changeFormRules" label-width="200px" >
         <el-form-item prop="id" label="id">
           <el-input v-model="changeForm.id" ></el-input>
         </el-form-item>
@@ -13,10 +13,13 @@
 
         <el-button type="warning" @click="sendCode" id="verification_button">发送验证码</el-button>
         <!--        角色选择-->
-        <el-radio-group v-model="radio" class="radio" prop="role">
-          <el-radio :label="1">普通用户</el-radio>
-          <el-radio :label="2">企业用户</el-radio>
-        </el-radio-group>
+        <el-form-item>
+          <el-radio-group v-model="radio" class="radio" prop="role">
+            <el-radio :label="1">普通用户</el-radio>
+            <el-radio :label="2">企业用户</el-radio>
+          </el-radio-group>
+        </el-form-item>
+
         <el-form-item prop="code" label="验证码" class="email_verification">
           <el-input type="text" v-model="changeForm.code" ></el-input>
         </el-form-item>
@@ -142,9 +145,9 @@ export default {
 
 <style Lang="less" scoped>
 .pwdChange_container{
-  height: 800px;
-  background-color: #0093E9;
-  background-image: linear-gradient(160deg, #0093E9 0%, #80D0C7 99%);
+  height: 100%;
+  background: url("../../assets/668.jpg");
+  background-size:100% 100% ;
 }
 .pwdChange_box{
   width: 550px;
@@ -156,7 +159,7 @@ export default {
   top: 50%;
   transform: translate(-50%,-50%);
   opacity: 0.9;
-  border: 1px solid red;
+
 
 }
 .pwdChange_container span{
@@ -166,20 +169,28 @@ export default {
 .pwdChange_Form{
   position: absolute;
   left: 30%;
-  top: 60%;
+  top: 65%;
   transform: translate(-50%,-70%);
-
+}
+.el-input{
+  width: 250px;
 }
 
 .radio{
   margin-top: 20px;
   display: flex;
   left: 50%;
-  transform: translate(45%,-100%);
+  transform: translate(5%,-100%);
 }
 
 .email_verification{
   margin-bottom: 20px;
+
+}
+#verification_button{
+  left: 100%;
+  margin-bottom: 10px;
+  transform: translate(180%);
 }
 
 </style>

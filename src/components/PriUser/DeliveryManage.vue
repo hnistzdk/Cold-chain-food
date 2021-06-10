@@ -40,6 +40,9 @@
       :total="total">
     </el-pagination>
   </el-card>
+  <div class="bottom">
+    <span>有问题请咨询qq:369365576</span>
+  </div>
   <!--    添加的对话框-->
   <el-dialog
     title="添加货单"

@@ -16,9 +16,6 @@
         <el-input  placeholder="请输入货单号" v-model="queryInfo.query" clearable @clear="getAdminList()">
           <el-button slot="append" icon="el-icon-search" @click="getUserListPage"></el-button>
         </el-input></el-col>
-      <el-col :span="4">
-        <el-button type="primary" @click="addDialogVisible=true">添加货单</el-button>
-      </el-col>
     </el-row>
 
     <!--   货单列表区域-->
@@ -54,70 +51,9 @@
       :total="total">
     </el-pagination>
   </el-card>
-  <!--    添加的对话框-->
-  <el-dialog
-    title="添加货单"
-    :visible.sync="addDialogVisible"
-    width="40%" @close="addCloseDialog" >
-    <!--      内容主体区域-->
-    <el-form :model="addForm" :rules="addFormRules" ref="addFormRef" label-width="100px">
-<!--      <el-form-item label="货单号" prop="manifestId">-->
-<!--        <el-input v-model="addForm.manifestId"></el-input>-->
-<!--      </el-form-item>-->
-
-      <el-form-item label="食品名称" prop="foodName">
-        <el-select v-model="addForm.foodName"
-                   placeholder="请选择食品"
-                    @change="selectModel($event)">
-          <el-option
-            v-for="item in foodList"
-            :key="item.foodId"
-            :label="item.foodName"
-            :value="item.foodId">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="发货人姓名" prop="consignorName">
-        <el-input v-model="addForm.consignorName"></el-input>
-      </el-form-item>
-      <el-form-item label="收货人姓名" prop="consigneeName">
-        <el-input v-model="addForm.consigneeName"></el-input>
-      </el-form-item>
-      <el-form-item label="发货地址" prop="startingSite">
-        <el-input v-model="addForm.startingSite"></el-input>
-      </el-form-item>
-      <el-form-item label="收货地址" prop="receivedSite">
-        <el-input v-model="addForm.receivedSite"></el-input>
-      </el-form-item>
-      <el-form-item label="运输状态" prop="travelStatus">
-        <el-select v-model="addForm.travelStatus"
-                   placeholder="请选择运输状态">
-          <el-option
-            v-for="item in travelStatusList"
-            :key="item.opt"
-            :label="item.opt"
-            :value="item.opt">
-          </el-option>
-        </el-select>
-      </el-form-item>
-      <el-form-item label="到达站点" prop="storageId">
-        <el-select v-model="addForm.storageId"
-                   placeholder="请选择站点">
-          <el-option
-            v-for="item in arrivedPointList"
-            :key="item.storageId"
-            :label="item.storageArea"
-            :value="item.storageId">
-          </el-option>
-        </el-select>
-      </el-form-item>
-    </el-form>
-    <!--      底部区域-->
-    <span slot="footer" class="dialog-footer">
-    <el-button @click="addDialogVisible = false">取 消</el-button>
-    <el-button type="primary" @click="addOrder">确 定</el-button>
-  </span>
-  </el-dialog>
+  <div class="bottom">
+    <span>有问题请咨询qq:369365576</span>
+  </div>
 
   <!--    修改用户的对话框-->
   <el-dialog
@@ -129,10 +65,10 @@
       <el-form-item label="货单号" prop="manifestId">
         <el-input v-model="editForm.manifestId" disabled></el-input>
       </el-form-item>
-      <el-form-item label="食品名称" prop="foodName">
-        <el-select v-model="editForm.foodName"
+      <el-form-item label="食品名称" prop="foodId">
+        <el-select v-model="editForm.foodId"
                    placeholder="请选择食品"
-                   @change="selectChangeModel($event)">
+                   >
           <el-option
             v-for="item in foodList"
             :key="item.foodId"
@@ -211,8 +147,7 @@ export default {
         manifestId:'',
         //食品id
         foodId:'',
-        //食品名称
-        foodName:'',
+
         //发货人姓名
         consignorName:'',
         //收货人姓名

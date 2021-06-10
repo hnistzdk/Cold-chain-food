@@ -52,6 +52,9 @@
       :total="total">
     </el-pagination>
   </el-card>
+  <div class="bottom">
+    <span>有问题请咨询qq:369365576</span>
+  </div>
 
   <!--    添加食品的对话框-->
   <el-dialog

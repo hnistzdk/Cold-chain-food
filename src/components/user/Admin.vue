@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="container">
     <!--  面包屑导航区域-->
     <el-breadcrumb separator-class="el-icon-arrow-right">
       <el-breadcrumb-item :to="{ path: '/home' }">首页</el-breadcrumb-item>
@@ -36,7 +36,7 @@
         <el-table-column label="操作" width="200px">
           <template slot-scope="scope">
             <!--          编辑按钮-->
-            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>
+<!--            <el-button type="primary" icon="el-icon-edit" size="small" @click="showEdit(scope.row.id)"></el-button>-->
             <!--          删除按钮-->
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
             <!--          分配角色按钮-->
@@ -123,7 +123,7 @@
           <el-form-item label="角色" prop="roleName">
             <el-select v-model="contributeForm.roleName"
                        placeholder="请选择角色"
-                       @change="selectModel()">
+                       @change="selectModel($event)">
               <el-option
                 v-for="item in contributeList"
                 :key="item.id"
@@ -142,6 +142,9 @@
 
 
     </el-card>
+    <div class="bottom">
+      <span>有问题请咨询qq:369365576</span>
+    </div>
   </div>
 </template>
 

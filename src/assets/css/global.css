@@ -14,6 +14,15 @@ body
 .el-aside{
     height: 100% !important;
     background-color: #ffd04b;
+    /*background-image: linear-gradient(to right, #bdc3c7 0%, #2c3e50  71%, #bdc3c7  100%)*/
+}
+.bottom{
+    height: 50px;
+    top: 200%;
+    transform: translate(0,550%);
+    text-align: center;
+    font-size:13px ;
+    color: #b69a9a;
 }
 body,html{
     height: 100%;

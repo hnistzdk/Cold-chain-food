@@ -48,6 +48,9 @@
     </el-form>
 
   </el-card>
+  <div class="bottom">
+    <span>有问题请咨询qq:369365576</span>
+  </div>
   <!--    修改用户密码的对话框-->
   <el-dialog
     title="修改密码"
@@ -206,5 +209,6 @@ export default {
 
   transform: translate(1200%,0);
 }
+
 
 </style>

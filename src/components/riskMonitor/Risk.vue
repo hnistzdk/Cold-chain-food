@@ -49,6 +49,9 @@
       :total="total">
     </el-pagination>
   </el-card>
+  <div class="bottom">
+    <span>有问题请咨询qq:369365576</span>
+  </div>
   <!--    添加的对话框-->
   <el-dialog
     title="添加食品风险监控"
@@ -60,10 +63,10 @@
 <!--      <el-form-item label="食品名称" prop="foodName">-->
 <!--        <el-input v-model="addForm.foodName"></el-input>-->
 <!--      </el-form-item>-->
-      <el-form-item label="食品名称" prop="foodName">
-        <el-select v-model="addForm.foodName"
+      <el-form-item label="食品名称" prop="foodId">
+        <el-select v-model="addForm.foodId"
                    placeholder="请选择食品名称"
-                    @change="selectModel($event)">
+                   >
           <el-option
             v-for="item in addFoodList"
             :key="item.id"
@@ -95,12 +98,12 @@
   </el-dialog>
   <!--    修改用户的对话框-->
   <el-dialog
-    title="修改用户"
+    title="修改食品检测信息"
     :visible.sync="editDialogVisible"
     width="30%" >
     <!--      内容主体区域-->
     <el-form :model="editForm" :rules="editFormRules" ref="editFormRef" label-width="70px">
-      <el-form-item label="食品id" prop="foodName">
+      <el-form-item label="食品名称" prop="foodName">
         <el-input v-model="editForm.foodName" disabled></el-input>
       </el-form-item>
       <el-form-item label="风险等级" prop="riskDegree">
@@ -156,9 +159,9 @@ export default {
         riskEditor:''
       },
       addFormRules:{
-        foodName: [
-          {required:true,message:'请输入食品名称',trigger:'blur'}
-        ]
+        // foodName: [
+        //   {required:true,message:'请输入食品名称',trigger:'blur'}
+        // ]
       },
       editForm:{
 

@@ -35,6 +35,9 @@
         :total="total">
       </el-pagination>
     </el-card>
+    <div class="bottom">
+      <span>有问题请咨询qq:369365576</span>
+    </div>
 
     <!--  添加分类的表单-->
     <el-dialog title="添加分类"
@@ -264,4 +267,5 @@ export default {
 .el-cascader{
   width: 100%;
 }
+
 </style>
