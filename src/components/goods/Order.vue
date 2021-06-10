@@ -326,8 +326,12 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addManifest',
           qs.stringify(this.addForm))
-        if(res.meta.status !=="200")
-          return this.$message.error('添加货单失败!')
+        if(res.meta.status !=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('添加货单失败!')
+        }
+
         this.$message.success('添加货单成功!')
         await this.getOrderList()
         this.addDialogVisible = false
@@ -338,10 +342,13 @@ export default {
     },
     async showEdit(id){
       const {data : res} = await this.$http.get('manifests/'+id)
-      this.editForm = res.data
       console.log(this.editForm)
-      if(res.status !== "200")
-        return this.$message.error('查询货单信息失败!')
+      if(res.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('查询货单信息失败!')
+      }
+      this.editForm = res.data
       this.editDialogVisible = true
     },
 
@@ -351,8 +358,12 @@ export default {
         console.log(this.editForm.id)
         const {data:res} =
           await this.$http.post('modifyManifest',qs.stringify(this.editForm))
-        if(res.meta.status !== "200")
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }
           return this.$message.error('修改货单信息失败!')
+        }
         this.$message.success('修改货单信息成功!')
         this.editDialogVisible = false
         await this.getOrderList()
@@ -376,8 +387,11 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data : res} = await  this.$http.post('deleteManifest/'+id)
-      if(res.meta.status !== "200")
-        this.$message.error('删除货单失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }this.$message.error('删除货单失败!')
+      }
       else
         this.$message.success('删除货单成功!')
 

@@ -152,8 +152,12 @@ export default {
         if(!valid) return
         const {data:res} = await this.$http.post('roles',qs.stringify(this.addForm))
         console.log("添加表"+qs.stringify(this.addForm));
-        if(res.meta.status !== "200")
-          this.$message.error('添加角色失败!')
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }this.$message.error('添加角色失败!')
+        }
+
         else
           this.$message.success('添加角色成功!')
         //将对话框隐藏
@@ -165,8 +169,11 @@ export default {
     //展示编辑角色的信息
     async showEdit(id){
       const {data:res} = await  this.$http.get('roles/'+id)
-      if(res.meta.status !== "200")
-        return this.$message.error('查询角色信息失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('查询角色信息失败!')
+      }
       this.editForm = res.data.role
       this.editDialogVisible = true
     },
@@ -178,8 +185,12 @@ export default {
           roleName:this.editForm.roleName,
           roleDescription:this.editForm.roleDescription
         }))
-        if(res.meta.status !=="200")
-          this.$message.error('修改角色信息失败!')
+        if(res.meta.status !=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }this.$message.error('修改角色信息失败!')
+        }
+
         else
           this.$message.success('修改角色信息成功!')
         this.editDialogVisible =false
@@ -200,6 +211,9 @@ export default {
       }
       const {data:res} = await this.$http.delete('roles/'+id)
       if(res.meta.status!=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         this.$message.error('删除失败!')
       }
       else
@@ -213,8 +227,11 @@ export default {
       this.Id = id
       //获取所有权限的数据
       const {data : res} = await this.$http.get('rights/list/'+id)
-      if(res.meta.status !== "200")
-      return this.$message.error('获取权限信息失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('获取权限信息失败!')
+      }
       console.log(res.data)
       //把获取到的权限保存到data中
       this.rightsList = res.data.rightsList
@@ -235,6 +252,9 @@ export default {
         qs.stringify({rightList:right}))
       console.log(res)
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('分配权限失败')
       }
       this.$message.success('分配权限成功')

@@ -29,7 +29,7 @@
         @size-change="handleSizeChange"
         @current-change="handleCurrentChange"
         :current-page="queryInfo.pageNum"
-        :page-sizes="[2,5,10,15]"
+        :page-sizes="[5,10,15]"
         :page-size="queryInfo.pageSize"
         layout="total, sizes, prev, pager, next, jumper"
         :total="total">
@@ -115,11 +115,9 @@ export default {
 
       addCateForm:{
         //将要添加的分类的名称
-        categoryName:'',
+        categoryName:''
 
       },
-      //父级分类的列表
-      parentCateList:[],
       addCateFormRules:{
         categoryName: [
           {required:true,message:'请输入分类名称',trigger:'blur'}
@@ -197,7 +195,6 @@ export default {
     async showEdit(id){
       console.log(id)
       const{ data:res } = await this.$http.get("categories/"+id)
-      this.editForm = res.data
       console.log(res.data)
       if(res.status !== "200"){
         if(res.meta.status==="403"){
@@ -205,6 +202,7 @@ export default {
         }
         return this.$message.error('查询分类信息失败!')
       }
+      this.editForm = res.data
       this.editDialogVisible = true
     },
     async editUser(){
@@ -215,8 +213,11 @@ export default {
           id:this.editForm.id,
           categoryName:this.editForm.categoryName
         }))
-        if(res.meta.status !== "200")
-          return this.$message.error('修改分类信息失败!')
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('修改分类信息失败!')
+        }
         this.$message.success('修改分类信息成功!')
         this.editDialogVisible = false
         await this.getCateList()
@@ -237,8 +238,11 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data : res} = await  this.$http.post('deleteFoodCategory/'+id)
-      if(res.meta.status !== "200")
-        this.$message.error('删除分类失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }this.$message.error('删除分类失败!')
+      }
       else
         this.$message.success('删除分类成功!')
 

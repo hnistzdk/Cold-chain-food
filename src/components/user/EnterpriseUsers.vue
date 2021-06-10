@@ -231,6 +231,9 @@ export default {
         qs.stringify(this.queryInfo)
       )
       if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取用户列表失败！')
       }
       this.userList=res.data.users
@@ -253,6 +256,9 @@ export default {
       console.log(userinfo)
       const {data:res}=await  this.$http.put(`changeState/${userinfo.id}/state/${userinfo.state}/${userinfo.role}`)
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         userinfo.state =!userinfo.state
         return this.$message.error('更新用户状态失败!')
       }
@@ -264,8 +270,12 @@ export default {
         if(!valid) return
         //console.log(valid)
         const {data:res}= await this.$http.post('addEnterpriseUsers',qs.stringify(this.addForm))
-        if(res.meta.status!=="200")
-          this.$message.error('添加用户失败！')
+        if(res.meta.status!=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }this.$message.error('添加用户失败！')
+        }
+
         else
           this.$message.success('添加用户成功！')
         //将对话框隐藏
@@ -286,8 +296,12 @@ export default {
           enterpriseName:this.editForm.enterpriseName
         }))
         //console.log(this.editForm.id)
-        if(res.meta.status!=="200")
-          this.$message.error('修改用户信息失败！')
+        if(res.meta.status!=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }this.$message.error('修改用户信息失败！')
+        }
+
         else
           this.$message.success('修改用户信息成功！')
         this.editDialogVisible =false
@@ -299,8 +313,11 @@ export default {
     async showEdit(id){
       //console.log(this.editForm.id)
       const {data:res} = await this.$http.get("showEditEnterpriseUsers/"+id)
-      if(res.meta.status!=="200")
-        return this.$message.error('查询用户信息失败!')
+      if(res.meta.status!=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('查询用户信息失败!')
+      }
       this.editForm = res.data
       this.editDialogVisible =true
     },
@@ -328,6 +345,9 @@ export default {
       //console.log('确认了删除')
       const {data:res} = await this.$http.delete("enterpriseUsers/"+id)
       if(res.meta.status!=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         this.$message.error('删除失败!')
       }
       else

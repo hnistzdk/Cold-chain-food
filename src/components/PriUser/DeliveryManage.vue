@@ -177,9 +177,12 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addManifest',
           qs.stringify(this.addForm))
-        if(res.meta.status !=="200")
-          return this.$message.error('添加货单失败!')
-        this.$message.success('添加货单成功!')
+        if(res.meta.status !=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('发货失败!')
+        }
+        this.$message.success('发货成功!')
         await this.getOrderList()
         this.addDialogVisible = false
       })

@@ -136,8 +136,12 @@ export default {
      async getOrderListerList() {
      const{data : res} =await this.$http.post('getSiteOrderList',
         qs.stringify(this.queryInfo))
-      if(res.meta.status !=="200")
-        return this.$message.error('获取站点货单信息失败!')
+      if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('获取站点货单信息失败!')
+      }
+
       this.orderList = res.data.orderList
       this.total =res.data.total
       this.arrivedPointList = res.data.arrivedPointList
@@ -158,8 +162,12 @@ export default {
     },
     showEdit(id){
       const {data : res} =  this.$http.post('showOrder/'+id)
-      if(res.meta.status !== "200")
-        return this.$message.error('获取货单信息失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('获取货单信息失败!')
+      }
+
       this.editForm = res.data.orderInfo
       this.editDialogVisible = true
     },
@@ -168,8 +176,12 @@ export default {
           if(!valid) return
           const {data : res} = this.$http.post('changeOrder',
           qs.stringify(this.editForm))
-          if(res.meta.status !=="200")
-            return this.$message.error('修改订单状态失败!')
+          if(res.meta.status !=="200"){
+            if(res.meta.status==="403"){
+              return this.$message.error('你无权访问!')
+            }return this.$message.error('修改订单状态失败!')
+          }
+
           this.$message.success('修改订单状态成功!')
           this.editDialogVisible =false
 

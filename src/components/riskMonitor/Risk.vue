@@ -207,8 +207,12 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addRisk',
           qs.stringify(this.addForm))
-        if(res.meta.status !=="200")
-          return this.$message.error('添加监测食品失败!')
+        if(res.meta.status !=="200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('添加监测食品失败!')
+        }
+
         this.$message.success('添加监测食品成功!')
         await this.getRiskList()
         this.addDialogVisible = false
@@ -216,10 +220,12 @@ export default {
     },
     async showEdit(id){
       const {data : res} = await this.$http.get('risks/'+id)
+      if(res.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('查询货单信息失败!')
+      }
       this.editForm = res.data
-      if(res.status !== "200")
-        return this.$message.error('查询货单信息失败!')
-
       this.editDialogVisible = true
     },
     editUser(){
@@ -228,8 +234,12 @@ export default {
         console.log(this.editForm.id)
         const {data:res} =
           await this.$http.post('modifyRisks',qs.stringify(this.editForm))
-        if(res.meta.status !== "200")
-          return this.$message.error('修改风险信息失败!')
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('修改风险信息失败!')
+        }
+
         this.$message.success('修改风险信息成功!')
         this.editDialogVisible = false
         await this.getRiskList()
@@ -250,8 +260,12 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data : res} = await  this.$http.post('deleteRisk/'+id)
-      if(res.meta.status !== "200")
-        this.$message.error('删除货单失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }this.$message.error('删除货单失败!')
+      }
+
       else
         this.$message.success('删除货单成功!')
 

@@ -128,8 +128,12 @@ export default {
     async getSiteList(){
      const {data : res} =await this.$http.post('getStorage',
        qs.stringify(this.queryInfo))
-      if(res.meta.status !== "200")
-        return this.$message.error('获取站点信息失败!')
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('获取站点信息失败!')
+      }
+
       this.siteList = res.data.siteList
       this.total = res.data.total
     },
@@ -139,6 +143,9 @@ export default {
       const { data:res } = await this.$http.post('getStorage',
         qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取食品列表失败!')
       }
       this.siteList = res.data.siteList
@@ -156,10 +163,13 @@ export default {
     },
     async showEdit(id) {
       const {data: res} = await this.$http.post("showStorage/" + id)
-      this.editForm = res.data
       console.log(res.data)
-      if (res.status !== "200")
-        return this.$message.error('查询站点信息失败!')
+      if (res.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }return this.$message.error('查询站点信息失败!')
+      }
+      this.editForm = res.data
       this.editDialogVisible = true
     },
     editSite(){
@@ -168,8 +178,11 @@ export default {
         console.log(this.editForm.storageId)
         const {data:res} =
           await this.$http.post('modifyStorage',qs.stringify(this.editForm))
-        if(res.meta.status !== "200")
-          return this.$message.error('修改站点信息失败!')
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }return this.$message.error('修改站点信息失败!')
+        }
         this.$message.success('修改站点信息成功!')
         this.editDialogVisible = false
         await this.getSiteList()
@@ -189,8 +202,12 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data: res} = await this.$http.post('deleteStorage/'+ id)
-      if (res.meta.status !== "200")
-        this.$message.error('删除站点失败!')
+      if (res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }this.$message.error('删除站点失败!')
+      }
+
       else
         this.$message.success('删除站点成功!')
       this.queryInfo.pageNum = 1

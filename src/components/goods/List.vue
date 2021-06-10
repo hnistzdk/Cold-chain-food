@@ -288,9 +288,6 @@ export default {
       const { data:res } = await this.$http.post('getFood',
       qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
-        if(res.meta.status==="403"){
-          return this.$message.error('你无权访问!')
-        }
         return this.$message.error('获取食品列表失败!')
       }
       this.foodList = res.data.foodList
@@ -306,6 +303,9 @@ export default {
       const { data:res } = await this.$http.post('getFood',
         qs.stringify(this.queryInfo))
       if(res.meta.status !=="200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('获取食品列表失败!')
       }
       this.foodList = res.data.foodList
@@ -327,8 +327,10 @@ export default {
         if(!valid) return
         const {data : res} = await this.$http.post('addFood',
           qs.stringify(this.addForm))
-
         if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }
           return this.$message.error('添加食品失败!')
         }
         this.$message.success('添加食品成功!')
@@ -344,11 +346,16 @@ export default {
     async showEdit(id){
       console.log(id)
       const{ data:res } = await this.$http.get("foods/"+id)
-      this.editForm = res.data
-      console.log(res.data)
-      if(res.status !== "200")
-        return this.$message.error('查询食品信息失败!')
 
+      console.log(res.data)
+      if(res.status !== "200"){
+        if(res.meta.status==="403"){
+          await this.getFoodList()
+          return this.$message.error('你无权访问!')
+        }
+        return this.$message.error('查询食品信息失败!')
+      }
+      this.editForm = res.data
       this.editDialogVisible = true
     },
     editUser(){
@@ -357,8 +364,13 @@ export default {
         console.log(this.editForm.id)
         const {data:res} =
           await this.$http.post('modifyFood',qs.stringify(this.editForm))
-        if(res.meta.status !== "200")
+        if(res.meta.status !== "200"){
+          if(res.meta.status==="403"){
+            return this.$message.error('你无权访问!')
+          }
           return this.$message.error('修改食品信息失败!')
+        }
+
         this.$message.success('修改食品信息成功!')
         this.editDialogVisible = false
         await this.getFoodList()
@@ -380,8 +392,12 @@ export default {
         return this.$message.info('已取消删除')
       }
       const {data : res} = await  this.$http.post('deleteFood/'+id)
-      if(res.meta.status !== "200")
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         this.$message.error('删除食品失败!')
+      }
       else
         this.$message.success('删除食品成功!')
       this.queryInfo.pageNum = 1

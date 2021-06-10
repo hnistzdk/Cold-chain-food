@@ -98,9 +98,13 @@ export default {
     },
     async receiveManifest(id){
       const {data : res} =await this.$http.post('receive/'+id)
-      if(res.meta.status !== "200")
+      if(res.meta.status !== "200"){
+        if(res.meta.status==="403"){
+          return this.$message.error('你无权访问!')
+        }
         return this.$message.error('收货失败!')
-      this.$message.success('收获成功!')
+      }
+      this.$message.success('收货成功!')
       await this.getOrderList()
     }
   }
