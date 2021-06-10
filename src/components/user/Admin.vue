@@ -41,7 +41,7 @@
             <el-button type="danger" icon="el-icon-delete" size="small" @click="removeUserById(scope.row.id)"></el-button>
             <!--          分配角色按钮-->
             <el-tooltip class="item" effect="dark" content="分配角色" placement="top" :enterable="false">
-              <el-button type="warning" icon="el-icon-share" size="small"></el-button>
+              <el-button type="warning" icon="el-icon-share" size="small" @click="showRoles(scope.row.id)"></el-button>
             </el-tooltip>
           </template>
         </el-table-column>
@@ -112,6 +112,33 @@
     <el-button type="primary" @click="editUser()">确 定</el-button>
   </span>
       </el-dialog>
+      <!--    分配角色的对话框-->
+      <el-dialog
+        title="分配角色"
+        :visible.sync="contributeVisible"
+        width="30%"
+       @close="contributeDialogClose">
+        <!--      内容主体区域-->
+        <el-form :model="contributeForm" :rules="contributeFormRules" ref="contributeFormRef" label-width="70px">
+          <el-form-item>
+            <el-select v-model="contributeForm.roleName"
+                       placeholder="请选择角色"
+                       @change="selectModel($event)">
+              <el-option
+                v-for="item in contributeList"
+                :key="item.roleId"
+                :label="item.roleName"
+                :value="item.roleId">
+              </el-option>
+            </el-select>
+          </el-form-item>
+        </el-form>
+
+        <span slot="footer" class="dialog-footer">
+    <el-button @click="contributeVisible = false">取 消</el-button>
+    <el-button type="primary" @click="contribute()">确 定</el-button>
+  </span>
+      </el-dialog>
 
 
     </el-card>
@@ -142,6 +169,8 @@ export default {
       total:0,
       addDialogVisible:false,
       editDialogVisible:false,
+      contributeVisible:false,
+      checkedRoleId:'',
       addForm:{
         id:'',
         username:'',
@@ -153,6 +182,11 @@ export default {
       editForm:{
 
       },
+      contributeForm:{
+        roleName:'',
+        roleId:''
+      },
+      contributeList:{},
       addFormRules:{
         username:[
           {required:true,message:'请输入用户名',trigger:'blur'},
@@ -180,7 +214,8 @@ export default {
           {required:true,message:'请输入电话号码',trigger:'blur'},
           {validator:checkMobile,trigger: 'blur'}
         ]
-      }
+      },
+      contributeFormRules:{}
 
     }
   },
@@ -204,6 +239,7 @@ export default {
       }
       this.userList=res.data.users;
       this.total =res.data.total
+      this.contributeList = res.data.contributeList
       console.log(this.total)
     },
     async getUserListPage(){
@@ -332,6 +368,29 @@ export default {
         this.$message.success('删除成功!')
       //重置表单
       await  this.getAdminList()
+    },
+    showRoles(id){
+      this.$http.post('jurisdiction')
+      if(res.meta.status ==="403")
+        return this.$message.error('您无权访问此权限!')
+      this.checkedRoleId = id
+      this.contributeVisible = true
+    },
+    contribute(){
+      const {data : res} = this.$http.post('contribute/'+this.checkedRoleId,
+      qs.stringify(this.contributeForm))
+      if(res.meta.status !=="200")
+       return this.$message.error('分配权限失败!')
+      this.$message.success('分配权限成功!')
+      this.checkedRoleId = ''
+      this.contributeVisible = false
+    },
+    //当分配角色的角色名改变时，角色Id也相应改变
+    selectModel(eh){
+      this.contributeForm.roleId = this.contributeList[eh].roleId
+    },
+    contributeDialogClose(){
+      this.checkedRoleId = ''
     }
   }
 }
