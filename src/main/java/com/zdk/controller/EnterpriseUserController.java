@@ -124,8 +124,8 @@ public class EnterpriseUserController {
     @PostMapping("/enterpriseRegister")
     @CrossOrigin
     public Object enterpriseRegister(AddEnterpriseMeta enterpriseUser){
-        HashMap msg = new HashMap<>();
-        HashMap data = new HashMap<>();
+        HashMap msg = new HashMap<>(2);
+        HashMap data = new HashMap<>(2);
         String id=UUIDUtil.getUUID(6);
         enterpriseUser.setId(id);
         enterpriseUser.setPwd(passwordEncoder.encode(enterpriseUser.getPwd()));

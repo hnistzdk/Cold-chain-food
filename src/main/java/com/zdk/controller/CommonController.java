@@ -12,6 +12,7 @@ import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.CommonMessage;
+import com.zdk.utils.Permission;
 import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.SendEmail;
 import org.apache.commons.lang.StringEscapeUtils;
@@ -136,6 +137,7 @@ public class CommonController {
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 
+    @RightInfo(Permission.CHANGESTATE)
     @PutMapping("/changeState/{id}/state/{mg_state}/{role}")
     @CrossOrigin
     public Object modifyState(@PathVariable String id,

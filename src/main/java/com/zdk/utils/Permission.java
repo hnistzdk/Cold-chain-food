@@ -226,4 +226,10 @@ public class Permission {
      * 显示企业用户收货的货单列表
      */
     public static final String RECEIVE="receive";
+
+    /**
+     * 修改用户是否锁定
+     */
+    public static final String CHANGESTATE="changeState";
+
 }

@@ -40,7 +40,6 @@ public class JudgeLoginUtil {
 
     public String judgeLogin(AdminAndUser adminAndUser, String id, String password, HttpServletRequest request){
         if(adminAndUser!=null){
-            System.out.println("adminAndUser.getState():"+adminAndUser.getState());
             if(!adminAndUser.getState()){
                 return JSON.toJSONString(CommonMessage.returnMsg(ReturnMessage.ISLOCKED));
             }
@@ -64,9 +63,6 @@ public class JudgeLoginUtil {
             if(!enterpriseUser.getState()){
                 return JSON.toJSONString(CommonMessage.returnMsg(ReturnMessage.ISLOCKED));
             }
-            System.out.println("未加密密码"+password);
-            System.out.println("加密密码"+enterpriseUser.getPwd());
-            System.out.println("密码匹配结果："+passwordEncoder.matches(password, enterpriseUser.getPwd()));
             if(passwordEncoder.matches(password, enterpriseUser.getPwd())){
                 if(enterpriseUser.getRole().equals(ReturnMessage.PRIMARY)){
                     userService.updateLoginInfo(id, DateConversion.getNowDate());
