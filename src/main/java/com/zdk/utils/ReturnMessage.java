@@ -41,4 +41,8 @@ public class ReturnMessage {
      * 管理员
      */
     public static final String ADMIN="管理员";
+    /**
+     * 超级管理员
+     */
+    public static final String SUPERADMIN="超级管理员";
 }

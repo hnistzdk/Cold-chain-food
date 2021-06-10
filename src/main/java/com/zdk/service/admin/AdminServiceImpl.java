@@ -89,4 +89,10 @@ public class AdminServiceImpl implements AdminService{
     public int addAdmin(AdminAndUser admin) {
         return adminMapper.addAdmin(admin);
     }
+
+    @Transactional(rollbackFor = Exception.class)
+    @Override
+    public int assignRoleForAdmin(Map map) {
+        return adminMapper.assignRoleForAdmin(map);
+    }
 }

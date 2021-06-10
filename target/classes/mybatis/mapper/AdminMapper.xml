@@ -94,4 +94,10 @@
         set tb_admin.state= #{mg_state}
         where id=#{id};
     </update>
+    
+    <update id="assignRoleForAdmin" parameterType="map">
+        update food.tb_admin
+        set role_id = #{roleId},food.tb_admin.role=#{role}
+        where food.tb_admin.id=#{id};
+    </update>
 </mapper>

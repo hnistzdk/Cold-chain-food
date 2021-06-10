@@ -993,7 +993,7 @@ SELECT|sys.sys_config
       <Position>11</Position>
       <DataType>varchar(20)|0s</DataType>
     </column>
-    <column id="313" parent="291" name="roleId">
+    <column id="313" parent="291" name="role_id">
       <Position>12</Position>
       <Comment>角色id</Comment>
       <DataType>int|0s</DataType>

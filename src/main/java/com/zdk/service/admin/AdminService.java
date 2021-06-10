@@ -8,6 +8,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author zdk
@@ -97,5 +98,12 @@ public interface AdminService {
      * @return
      */
     int updateStateAdmin(String id,Boolean mg_state);
+
+    /**
+     * 给管理员分配详细角色
+     * @param map
+     * @return
+     */
+    int assignRoleForAdmin(Map map);
 }
 

@@ -232,4 +232,13 @@ public class Permission {
      */
     public static final String CHANGESTATE="changeState";
 
+    /**
+     * 给管理员分配详细角色
+     */
+    public static final String ASSIGNROLEFORADMIN="assignRoleForAdmin";
+
+    /**
+     * 判断当前用户是否有分配管理员角色的权限
+     */
+    public static final String JURISDICTION="jurisdiction";
 }

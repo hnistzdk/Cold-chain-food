@@ -7,7 +7,9 @@ import com.zdk.dto.AdminMeta;
 import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
+import com.zdk.pojo.Role;
 import com.zdk.service.admin.AdminServiceImpl;
+import com.zdk.service.role.RoleServiceImpl;
 import com.zdk.utils.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -35,6 +37,10 @@ public class AdminController {
     @Qualifier("AdminServiceImpl")
     private AdminServiceImpl adminService;
 
+    @Autowired
+    @Qualifier("RoleServiceImpl")
+    private RoleServiceImpl roleService;
+    
     @Autowired
     private JudgeLoginUtil judgeLoginUtil;
 
@@ -66,7 +72,9 @@ public class AdminController {
         }else {
             result = adminService.fuzzyQueryAdminList(query, (pagenum - 1) * pagesize, pagesize);
         }
+        List<Role> contributeList = roleService.getRoles(null);
         data.put("users",JSON.toJSON(result.toArray()));
+        data.put("contributeList",JSON.toJSON(contributeList.toArray()));
         msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
         return JSON.toJSONString(new Meta(msg,data));
     }
@@ -88,6 +96,35 @@ public class AdminController {
         admin.setId(UUIDUtil.getUUID(7));
         admin.setPwd(passwordEncoder.encode(admin.getPwd()));
         int count = adminService.addAdmin(UserConvert.getAddUser(admin, "管理员"));
+        return JSON.toJSONString(CommonMessage.returnStatus(count>0));
+    }
+
+    @ApiOperation("判断当前用户是否有权限分配")
+    @PostMapping("/jurisdiction")
+    @RightInfo()
+    public Object jurisdiction(HttpServletRequest request){
+        Map msg = new HashMap<>();
+        String role = (String) request.getSession().getAttribute("role");
+        if(role.equals(ReturnMessage.SUPERADMIN)){
+            msg.put("status", "200");
+        }else{
+            msg.put("status", "403");
+        }
+        return JSON.toJSONString(new Meta(msg, null));
+    }
+
+
+    @ApiOperation("给管理员分配详细角色")
+    @RightInfo(Permission.ASSIGNROLEFORADMIN)
+    @PostMapping("/contribute/{userid}")
+    @CrossOrigin
+    public Object assignRoleForAdmin(@PathVariable String userid,String roleName){
+        Map params = new HashMap<>();
+        params.put("id", userid);
+        params.put("role", roleService.getRoles(Integer.valueOf(roleName)).get(0).getRoleName());
+        params.put("roleId", roleName);
+        System.out.println("收到的参数"+params);
+        int count = adminService.assignRoleForAdmin(params);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 }

@@ -105,4 +105,11 @@ public interface AdminMapper {
      * @return
      */
     int updateStateAdmin(String id,Boolean mg_state);
+
+    /**
+     * 给管理员分配详细角色
+     * @param map
+     * @return
+     */
+    int assignRoleForAdmin(Map map);
 }
