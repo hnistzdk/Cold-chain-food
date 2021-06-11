@@ -4,10 +4,7 @@ import com.alibaba.fastjson.JSON;
 import com.zdk.dto.Meta;
 import com.zdk.dto.SelectFoodMeta;
 import com.zdk.interceptor.RightInfo;
-import com.zdk.pojo.EnterpriseUser;
-import com.zdk.pojo.Food;
-import com.zdk.pojo.Manifest;
-import com.zdk.pojo.Storage;
+import com.zdk.pojo.*;
 import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.service.storage.StorageServiceImpl;
@@ -85,7 +82,7 @@ public class ManifestController {
     @PostMapping("/addManifest")
     @CrossOrigin
     public Object addManifest(Manifest manifest,HttpServletRequest request){
-        EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
+        AdminAndUser loginUser = (AdminAndUser) request.getSession().getAttribute("loginUser");
         HashMap<Object,Object> params=new HashMap<>();
         //设置发货人id
         manifest.setConsignorId(loginUser.getId());
@@ -167,7 +164,7 @@ public class ManifestController {
         params.put("pageSize",pageSize);
         params.put("query", query);
         EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
-        params.put("consigneeId", loginUser.getId());
+        params.put("consignorId", loginUser.getId());
         List<Manifest> orderList = manifestService.getManifestBySendOrGet(params);
         if(orderList!=null){
             data.put("orderList", orderList.toArray());
@@ -203,7 +200,7 @@ public class ManifestController {
         params.put("pageSize",pageSize);
         params.put("query", query);
         EnterpriseUser loginUser = (EnterpriseUser) request.getSession().getAttribute("loginUser");
-        params.put("consignorId", loginUser.getId());
+        params.put("consigneeId", loginUser.getId());
         List<Manifest> orderList = manifestService.getManifestBySendOrGet(params);
         if(orderList!=null){
             data.put("orderList", orderList.toArray());

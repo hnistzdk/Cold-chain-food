@@ -40,4 +40,12 @@ public interface StorageMapper {
      * @return int
      */
     int getStorageCount();
+
+    /**
+     *企业用户修改站点信息时添加站点
+     * @param uid
+     * @param storageArea
+     * @return int
+     */
+    int addStorage(String uid,String storageArea);
 }

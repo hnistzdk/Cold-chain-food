@@ -23,9 +23,9 @@ public class Storage {
     @ApiModelProperty("储存站点的地区")
     private String storageArea;
     @ApiModelProperty("空气温度")
-    private double temper;
+    private Double temper;
     @ApiModelProperty("空气湿度")
-    private double humidity;
+    private Double humidity;
     @ApiModelProperty("报警记录")
     private String alarmRecord;
     @ApiModelProperty("市电监控")

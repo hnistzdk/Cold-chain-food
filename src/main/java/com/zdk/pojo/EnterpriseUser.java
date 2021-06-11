@@ -26,4 +26,5 @@ public class EnterpriseUser extends AdminAndUser{
     private String role;
     private Integer roleId;
     private Boolean state;
+    private String site;
 }

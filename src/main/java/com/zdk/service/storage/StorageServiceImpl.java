@@ -39,4 +39,9 @@ public class StorageServiceImpl implements StorageService{
     public int getStorageCount() {
         return storageMapper.getStorageCount();
     }
+
+    @Override
+    public int addStorage(String uid, String storageArea) {
+        return storageMapper.addStorage(uid, storageArea);
+    }
 }

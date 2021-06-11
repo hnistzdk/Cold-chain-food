@@ -20,4 +20,5 @@ public class EditMeta {
     private String tel;
     private String email;
     private String enterpriseName;
+    private String site;
 }

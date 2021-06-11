@@ -8,8 +8,10 @@ import com.zdk.dto.Meta;
 import com.zdk.interceptor.RightInfo;
 import com.zdk.pojo.AdminAndUser;
 import com.zdk.pojo.EnterpriseUser;
+import com.zdk.pojo.Storage;
 import com.zdk.service.admin.AdminServiceImpl;
 import com.zdk.service.enterprise.EnterpriseServiceImpl;
+import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.service.user.UserService;
 import com.zdk.utils.CommonMessage;
 import com.zdk.utils.Permission;
@@ -26,6 +28,8 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Description
@@ -48,6 +52,10 @@ public class CommonController {
     @Autowired
     @Qualifier("UserServiceImpl")
     private UserService userService;
+
+    @Autowired
+    @Qualifier("StorageServiceImpl")
+    StorageServiceImpl storageService;
 
     @Autowired
     PasswordEncoder passwordEncoder;
@@ -104,6 +112,14 @@ public class CommonController {
         }else if(role.equals(ReturnMessage.ENTERPRISE)){
             EnterpriseUser enterpriseUser = enterpriseService.enterpriseLogin(id, null, null);
             if(enterpriseUser!=null){
+                List<Storage> storage = storageService.getStorage(null);
+                System.out.println("enterpriseUser.getId()"+enterpriseUser.getId());
+                for (int i = 0; i < storage.size(); i++) {
+                    if(storage.get(i).getUId().trim().equals(enterpriseUser.getId().trim())){
+                        enterpriseUser.setSite(storage.get(i).getStorageArea());break;
+                    }
+                }
+                System.out.println("enterpriseUser"+enterpriseUser);
                 data.put("userInfo", enterpriseUser);
                 msg.put(ReturnMessage.STATUS, ReturnMessage.SUCCESS);
             }else{
@@ -132,15 +148,22 @@ public class CommonController {
         if(role.equals(ReturnMessage.PRIMARY)){
             count=userService.modifyPrimaryUser(user);
         }else if(role.equals(ReturnMessage.ENTERPRISE)){
+            List<Storage> storage = storageService.getStorage(null);
+            boolean flag=false;
+            for (Storage storage1 : storage){
+                if(storage1.getUId().trim().equals(user.getId().trim())){
+                    Storage storage2=new Storage(storage1.getStorageId(),user.getId(),user.getSite(),null,null,null,null);
+                    storageService.modifyStorage(storage2);user.setSite(storage2.getStorageArea());
+                    flag=true;break;
+                }
+            }
+            if(!flag){
+                storageService.addStorage(user.getId(), user.getSite());
+            }
             count=enterpriseService.modifyEnterpriseUser(user);
         }else if(role.contains(ReturnMessage.ADMIN)){
             count = adminService.editUserInfo(user);
         }
-//        AdminAndUser xxx = (AdminAndUser) request.getSession().getAttribute(user.getId());
-//        AdminAndUser admin= adminService.adminLogin(user.getId(), xxx.getPwd());
-//        request.getSession().setAttribute("admin", admin);
-//        request.getSession().setAttribute(admin.getId(), admin);
-//        request.getSession().setAttribute("loginUser", admin);
         return JSON.toJSONString(CommonMessage.returnStatus(count>0));
     }
 

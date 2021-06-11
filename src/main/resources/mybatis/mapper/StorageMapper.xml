@@ -29,11 +29,23 @@
     </select>
     <update id="modifyStorage" parameterType="Storage">
         update tb_storage
-        set storage_area = #{storageArea},
-            temper=#{temper},
-            humidity=#{humidity},
-            alarm_record=#{alarmRecord},
-            power_supply=#{powerSupply}
+        <set>
+            <if test="storageArea!=null">
+                storage_area = #{storageArea},
+            </if>
+            <if test="temper!=null">
+                temper=#{temper},
+            </if>
+            <if test="humidity!=null">
+                humidity=#{humidity},
+            </if>
+            <if test="alarmRecord!=null">
+                alarm_record=#{alarmRecord},
+            </if>
+            <if test="powerSupply!=null">
+                power_supply=#{powerSupply}
+            </if>
+        </set>
         where storage_id=#{storageId};
     </update>
     <delete id="deleteStorage" parameterType="int">
@@ -43,4 +55,9 @@
     <select id="getStorageCount" resultType="int">
         select count(*) from tb_storage;
     </select>
+
+    <insert id="addStorage">
+        insert into tb_storage (uid, storage_area, temper, humidity, alarm_record, power_supply)
+        values (#{uid},#{storageArea},36,50,'无','无');
+    </insert>
 </mapper>

@@ -1238,12 +1238,12 @@ SELECT|sys.sys_config
     <column id="363" parent="296" name="consignor_id">
       <Position>11</Position>
       <Comment>收货人id</Comment>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(30)|0s</DataType>
     </column>
     <column id="364" parent="296" name="consignee_id">
       <Position>12</Position>
       <Comment>发货人id</Comment>
-      <DataType>int|0s</DataType>
+      <DataType>varchar(30)|0s</DataType>
     </column>
     <column id="365" parent="296" name="risk_editor">
       <Position>13</Position>
