@@ -6,7 +6,7 @@
     <div class="login_box">
       <!--    头像区-->
       <div class="avatar_box">
-        <img src="../../assets/写轮眼.png" alt="">
+        <img src="../../assets/xielunyan.png" alt="">
       </div>
       <!--      登录表单区域-->
       <el-form ref="loginFormRef" :model="loginForm" :rules="loginFormRules" label-width="0" class="login_form">
@@ -42,8 +42,8 @@ export default {
     return {
       radio: 1,
       loginForm: {
-        id: '369365576',
-        password: '123456',
+        id: '',
+        password: '',
 
       },
       loginFormRules: {

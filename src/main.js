@@ -17,9 +17,9 @@ axios.interceptors.request.use(config=>{
   //console.log(config.headers.Authorization);
   return config
 })
-axios.defaults.baseURL="http://localhost:8088/"
+// axios.defaults.baseURL="http://localhost:8088/"
 // axios.defaults.baseURL="http://116.62.232.194:8088/"
-// axios.defaults.baseURL='/api'
+axios.defaults.baseURL='/api'
 axios.defaults.withCredentials=true
 Vue.prototype.$http=axios
 Vue.component('tree-table',TreeTable)
