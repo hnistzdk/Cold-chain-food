@@ -40,10 +40,15 @@
         <el-input type="text" v-model="userInfo.enterpriseName"
                   v-else ></el-input>
       </el-form-item>
+      <el-form-item label="站点:" prop="site">
+        <el-input type="text" v-model="userInfo.site" v-if="this.userInfo.role ==='企业用户'"></el-input>
+        <el-input type="text" v-model="userInfo.site" v-else disabled ></el-input>
+      </el-form-item>
 
       <el-form-item>
         <el-button type="primary" @click="editUserInfo">保存</el-button>
       </el-form-item>
+
 
     </el-form>
 
@@ -125,7 +130,8 @@ export default {
         tel:'',
         email:'',
         role:'',
-        enterpriseName:''
+        enterpriseName:'',
+        site:''
       },
       userInfoRules:{
        username:[

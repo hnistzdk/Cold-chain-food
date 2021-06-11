@@ -52,9 +52,9 @@
     <el-form :model="addForm" :rules="addFormRules" ref="addFormRef"
              label-width="70px">
       <el-form-item label="食品名称" prop="foodName">
-        <el-select v-model="addForm.foodName"
+        <el-select v-model="addForm.foodId"
                    placeholder="请选择食品"
-                   @change="selectModel($event)">
+                   >
           <el-option
             v-for="item in foodList"
             :key="item.id"
@@ -105,7 +105,7 @@ export default {
       queryInfo:{
         query:'',
         pageNum:1,
-        pageSize:2
+        pageSize:5
       },
       total:'',
       foodList:[],
@@ -116,7 +116,6 @@ export default {
       addDialogVisible:false,
       addForm:{
         foodId:'',
-        foodName:'',
         //收货地址
         receivedSite:'',
         //收货地址id
@@ -126,9 +125,6 @@ export default {
         consigneeId:''
       },
       addFormRules:{
-        foodName:[
-          {required:true,message:'请填写食品名称',trigger:'blur'}
-        ],
         receivedSite:[
           {required:true,message:'请填写收货地址',trigger:'blur'}
         ],

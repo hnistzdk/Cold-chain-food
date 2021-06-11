@@ -59,7 +59,7 @@ export default {
       queryInfo:{
         query:'',
         pageNum:1,
-        pageSize:2
+        pageSize:5
       },
       total:'',
       orderList:{
