@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : localhost_3306
+ Source Server         : myaliyun
  Source Server Type    : MySQL
- Source Server Version : 80021
- Source Host           : localhost:3306
+ Source Server Version : 80025
+ Source Host           : 116.62.126.207:3306
  Source Schema         : food
 
  Target Server Type    : MySQL
- Target Server Version : 80021
+ Target Server Version : 80025
  File Encoding         : 65001
 
- Date: 11/06/2021 20:12:43
+ Date: 12/06/2021 10:58:52
 */
 
 SET NAMES utf8mb4;
@@ -40,13 +40,13 @@ CREATE TABLE `tb_admin`  (
 -- ----------------------------
 -- Records of tb_admin
 -- ----------------------------
-INSERT INTO `tb_admin` VALUES ('277804', '张五风', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '王恩龙', '男', '18492857685', '369365576@qq.com', '2021-04-04', '2021-04-23', 5, '货单管理员', 4, 1);
+INSERT INTO `tb_admin` VALUES ('277804', '张五风', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '王恩龙', '男', '18492857685', '369365576@qq.com', '2021-04-04', '2021-06-12', 6, '货单管理员', 4, 1);
 INSERT INTO `tb_admin` VALUES ('436839', 'fawai', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张三', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-05-23', 15, '食品管理员', 3, 1);
 INSERT INTO `tb_admin` VALUES ('701670', 'fengli', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '李兴峰', '女', '13859375831', '369365576@qq.com', '2021-04-10', '2021-05-30', 7, '货单管理员', 4, 1);
 INSERT INTO `tb_admin` VALUES ('763366', 'xiaxia', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '夏雅慧', '女', '18594738675', '369365576@qq.com', '2021-04-08', '2021-05-29', 8, '用户管理员', 2, 1);
 INSERT INTO `tb_admin` VALUES ('941623', 'kuangtu', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '李四', '男', '14672849303', '369365576@qq.com', '2021-04-01', '2021-04-23', 5, '管理员', 5, 1);
 INSERT INTO `tb_admin` VALUES ('981498', 'xiaoyu', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '李玉婷', '女', '18435758454', '369365576@qq.com', '2021-04-03', '2021-06-10', 6, '管理员', 5, 1);
-INSERT INTO `tb_admin` VALUES ('369365576', 'zdk2', '$2a$10$N0rT1IGdwVfpJ90C5MzU/uKm2m8Fi.352xGXBNfEeHJ0ewY0b9Om6', '张迪凯', '男', '13696086376', '369365576@qq.com', '2021-04-03', '2021-06-11', 276, '超级管理员', 1, 1);
+INSERT INTO `tb_admin` VALUES ('369365576', 'zdk', '$2a$10$N0rT1IGdwVfpJ90C5MzU/uKm2m8Fi.352xGXBNfEeHJ0ewY0b9Om6', '张迪凯', '男', '13696086376', '369365576@qq.com', '2021-04-03', '2021-06-12', 282, '超级管理员', 1, 1);
 INSERT INTO `tb_admin` VALUES ('edc8d43', '测试添加3', '$2a$10$iKIu2rr3IBnkGsd3vAw4NOW5g/1vMWp1KTkQu/YPQ1BHBwG2PzFsu', NULL, '男', '13222222221', '1221', '2021-06-09', NULL, 0, '管理员', 5, 1);
 
 -- ----------------------------
@@ -66,9 +66,6 @@ INSERT INTO `tb_category` VALUES (1, '蔬菜');
 INSERT INTO `tb_category` VALUES (2, '水果');
 INSERT INTO `tb_category` VALUES (3, '肉类');
 INSERT INTO `tb_category` VALUES (4, '零食');
-INSERT INTO `tb_category` VALUES (10, '测试222');
-INSERT INTO `tb_category` VALUES (11, '测试');
-INSERT INTO `tb_category` VALUES (12, '测试222');
 
 -- ----------------------------
 -- Table structure for tb_employee
@@ -116,22 +113,22 @@ CREATE TABLE `tb_enterprise_user`  (
 -- ----------------------------
 INSERT INTO `tb_enterprise_user` VALUES ('1fdb0c', 'ceshi ', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', 'ceshi', '女', '测试', '13213213111', '222@qq.com', '2021-05-30', NULL, 0, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('2255ed', '企业用户再测试', '$2a$10$Df8kByV71ZC.d2R4MbR19O697kUYLq9N.HKcTQBI.uM67KCw0GhV6', '6.112', '男', '测试', '13333333333', '369365576@qq.com', '2021-06-11', '2021-06-11', 19, '企业用户', 7, 1);
-INSERT INTO `tb_enterprise_user` VALUES ('2518 ', '测试企业用户修改', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张嘉玲22', '男', '华为', '18594738675', '369365576@qq.com', '2021-04-09', '2021-06-11', 78, '企业用户', 7, 1);
-INSERT INTO `tb_enterprise_user` VALUES ('259587', '测试2222', '$2a$10$JS84bug6vze8o0U8NSM2I.G8mEDCTwC8XjRuEDjIYdq5qnIIOhSvi', '打开22', NULL, NULL, NULL, '369365576@qq.com', '2021-06-09', NULL, 0, '企业用户', 7, 1);
-INSERT INTO `tb_enterprise_user` VALUES ('2d0fbf', '再次测试注册加密', '$2a$10$W8u5M8PLrePfLyhM3OkadelkqSXUqq1piNqBJm6HaMI/WYc8XZ8Im', '张迪凯', NULL, NULL, NULL, '369365576@qq.com', '2021-06-09', '2021-06-09', 1, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('2518 ', '测试企业用户修改', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张嘉玲22', '男', '华为', '18594738675', '369365576@qq.com', '2021-04-09', '2021-06-12', 84, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('259587', '测试2222', '$2a$10$JS84bug6vze8o0U8NSM2I.G8mEDCTwC8XjRuEDjIYdq5qnIIOhSvi', '打开22', NULL, '京东', '1365464', '369365576@qq.com', '2021-06-09', NULL, 0, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('2d0fbf', '再次测试注册加密', '$2a$10$W8u5M8PLrePfLyhM3OkadelkqSXUqq1piNqBJm6HaMI/WYc8XZ8Im', '张迪凯', NULL, '拼多多', '16165161', '369365576@qq.com', '2021-06-09', '2021-06-09', 1, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('305296', '测试5302', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '测试修改真实姓名', '男', NULL, '13212369521', '369365576@qq.com', '2021-05-30', '2021-06-09', 1, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('36ef0d', 'salj', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '打艾克', '女', 'asdasd', '11111111111', '11@qq.com', '2021-05-23', NULL, 0, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('386f78', '测试id回显', '$2a$10$Gf/4tydU/ledjD8dB88Kt.Lmy0Ygx.UsFjLnXGOpF6C/qCawPtdKW', '张迪凯', NULL, NULL, NULL, '369365576@qq.com', '2021-06-09', NULL, 0, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('508cd6', '张振明', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张振明', '男', '小米', '11111111111', '222@qq.com', '2021-04-25', '2021-06-11', 3, '企业用户', 7, 1);
-INSERT INTO `tb_enterprise_user` VALUES ('5632 ', 'yihui', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '蔡宜慧', '女', '华环', '13859375831', '369365576@qq.com', '2021-04-07', '2021-04-11', 5, '企业用户', 7, 0);
+INSERT INTO `tb_enterprise_user` VALUES ('5632 ', 'yihui', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '蔡宜慧', '女', '华环', '13859375831', '369365576@qq.com', '2021-04-07', '2021-06-12', 9, '企业用户', 7, 1);
 INSERT INTO `tb_enterprise_user` VALUES ('5da045', '风主主', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '测试', '女', '测试', '13211111111', '369365576@qq.com', '2021-06-09', '2021-06-11', 2, '企业用户', 7, 1);
-INSERT INTO `tb_enterprise_user` VALUES ('6933 ', 'xiaowen', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '黄静雯', '女', '庆万', '19284736584', '369365576@qq.com', '2021-04-06', '2021-04-10', 5, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('71dc65', '测试密码加密', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, NULL, '369365576@qq.com', '2021-06-07', '2021-06-07', 7, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('7225 ', 'daniao', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张鸿信', '男', '腾达', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('76636d', '邮箱测试', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, '女', '腾讯', '16161718181', '369365576@qq.com', '2021-04-28', '2021-04-28', 1, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('8729', 'jiajia', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '何佳佳', '女', '生源', '13958475869', '369365576@qq.com', '2021-04-10', '2021-04-12', 2, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('8893 ', 'junan', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '苏俊安', '男', '振韦', '18492857685', '369365576@qq.com', '2021-04-05', '2021-04-12', 15, '企业用户', 7, 0);
-INSERT INTO `tb_enterprise_user` VALUES ('97c6d8', '6.9测试', '$2a$10$qHr3NH5pQlXK4.PTP80Ece9llfoXe0TAqjUkMXeewlBM.1oxp.Dy2', '张振明', NULL, NULL, NULL, '369365576@qq.com', '2021-06-09', NULL, 0, '企业用户', 7, NULL);
+INSERT INTO `tb_enterprise_user` VALUES ('6933 ', 'xiaowen', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '黄静雯', '女', '庆万', '19284736584', '369365576@qq.com', '2021-04-06', '2021-04-10', 5, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('71dc65', '测试密码加密', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, NULL, '369365576@qq.com', '2021-06-07', '2021-06-07', 7, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('7225 ', 'daniao', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张鸿信', '男', '腾达', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('76636d', '邮箱测试', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, '女', '腾讯', '16161718181', '369365576@qq.com', '2021-04-28', '2021-04-28', 1, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('8729', 'jiajia', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '何佳佳', '女', '生源', '13958475869', '369365576@qq.com', '2021-04-10', '2021-04-12', 2, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('8893 ', 'junan', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '苏俊安', '男', '振韦', '18492857685', '369365576@qq.com', '2021-04-05', '2021-04-12', 15, '企业用户', 7, 1);
+INSERT INTO `tb_enterprise_user` VALUES ('97c6d8', '6.9测试', '$2a$10$qHr3NH5pQlXK4.PTP80Ece9llfoXe0TAqjUkMXeewlBM.1oxp.Dy2', '张振明', NULL, NULL, NULL, '369365576@qq.com', '2021-06-09', NULL, 0, '企业用户', 7, 1);
 
 -- ----------------------------
 -- Table structure for tb_food
@@ -201,13 +198,14 @@ CREATE TABLE `tb_manifest`  (
 -- Records of tb_manifest
 -- ----------------------------
 INSERT INTO `tb_manifest` VALUES ('30c90841a2', 2, '手撕面包', '张嘉玲22', '张迪凯', '青岛', '厦门', '未发货', 9, '厦门', '2518', '2518', NULL, '已收货');
-INSERT INTO `tb_manifest` VALUES ('3f90d57e0e', 2, '泰国炒米', '测试', '测试', '测试', '测试', '未发货', NULL, '岳阳', NULL, NULL, NULL, NULL);
-INSERT INTO `tb_manifest` VALUES ('520', 2, '泰国炒米', '张迪凯', '张振明', '岳阳', '成都', '运输中', 1, '岳阳', '1', '1', NULL, NULL);
-INSERT INTO `tb_manifest` VALUES ('8d637e8b23', 5, '芒果干', '张嘉玲', '测试', '青岛', '武汉', NULL, 10, '武汉', '2518', '2518', NULL, '已收货');
-INSERT INTO `tb_manifest` VALUES ('9c515e992b', 25, '牛腩', '张嘉玲22', '25615', '青岛', '青岛', NULL, 8, '青岛', '2518 ', '2518', NULL, '已收货');
+INSERT INTO `tb_manifest` VALUES ('3d3d5330f4', 23, '测试531', '张嘉玲22', '测试发货', '青岛', '南京', NULL, 11, '南京', '2518 ', '5632', NULL, '已收货');
+INSERT INTO `tb_manifest` VALUES ('3f90d57e0e', 2, '泰国炒米', '测试', '测试', '测试', '测试', '未发货', 18, '岳阳', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_manifest` VALUES ('520', 2, '泰国炒米', '张迪凯', '张振明', '岳阳', '成都', '运输中', 2, '上海', '2518', '2518', NULL, NULL);
+INSERT INTO `tb_manifest` VALUES ('8d637e8b23', 5, '芒果干', '张嘉玲', '测试', '青岛', '武汉', '运输中', 10, '武汉', '2518', '2518', NULL, '已收货');
+INSERT INTO `tb_manifest` VALUES ('9c515e992b', 25, '牛腩', '张嘉玲22', '25615', '青岛', '青岛', '运输中', 8, '青岛', '2518 ', '2518', NULL, '已收货');
 INSERT INTO `tb_manifest` VALUES ('a831291248', 2, '泰国炒米', '测试5.30', '测试5.30', '测试5.30', '测试5.30', '已送达', 2, '长沙', NULL, NULL, NULL, NULL);
-INSERT INTO `tb_manifest` VALUES ('a9ed179271', 4, '炭烧腰果', '张振明', '张迪凯', '北京', '天津', NULL, 7, '天津', '508cd6', '2518', NULL, '已收货');
-INSERT INTO `tb_manifest` VALUES ('b4fac61a21', 4, '炭烧腰果', '测试61', '测试61', '测试61', '测试61', '未发货', NULL, '天津', NULL, NULL, NULL, NULL);
+INSERT INTO `tb_manifest` VALUES ('a9ed179271', 4, '炭烧腰果', '张振明', '张迪凯', '北京', '天津', '运输中', 7, '天津', '508cd6', '2518', NULL, '已收货');
+INSERT INTO `tb_manifest` VALUES ('b4fac61a21', 4, '炭烧腰果', '测试61', '测试61', '测试61', '测试61', '已送达', 2, '长沙', NULL, NULL, NULL, NULL);
 
 -- ----------------------------
 -- Table structure for tb_right
@@ -321,13 +319,13 @@ CREATE TABLE `tb_role`  (
 -- Records of tb_role
 -- ----------------------------
 INSERT INTO `tb_role` VALUES (1, '超级管理员', '至高', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53');
-INSERT INTO `tb_role` VALUES (2, '用户管理员', '管理用户', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,53');
-INSERT INTO `tb_role` VALUES (3, '食品管理员', '管理食品', '20,21,22,23,24,25,28,29,30,31,33');
-INSERT INTO `tb_role` VALUES (4, '货单管理员', '管理货单', '1,2,3,6,7,8,9,10,11,12,13,14,20,21,22,23,24,25,26,27,28,29,30,31,33,34,35,36');
-INSERT INTO `tb_role` VALUES (5, '管理员', '不能分配权限的管理员', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46,47,48,49,50,51,53');
-INSERT INTO `tb_role` VALUES (6, '普通用户', '普普通通的人罢了', '20,24,26,38,40,41');
-INSERT INTO `tb_role` VALUES (7, '企业用户', '资本家', '24,25,26,27,39,40,41,49,50,51');
-INSERT INTO `tb_role` VALUES (8, '风险监测管理员', '有风险！！！！', '1,2,3,6,7,8,9,10,11,12,13,14,20,21,22,23,24,25,26,27,28,29,30,31,33,34,35,36,38,40,41,42,43,44,45,46,47,48');
+INSERT INTO `tb_role` VALUES (2, '用户管理员', '管理用户', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,19,20,24,25,26,38,39,40,41,53');
+INSERT INTO `tb_role` VALUES (3, '食品管理员', '管理食品', '1,2,3,4,5,20,21,22,23,24,25,28,29,30,31,33,38,39,40,41');
+INSERT INTO `tb_role` VALUES (4, '货单管理员', '管理货单', '1,2,3,4,5,20,24,25,26,27,34,35,36,41');
+INSERT INTO `tb_role` VALUES (5, '二号管理员', '不能分配权限的管理员', '1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,26,27,28,29,30,31,32,33,34,35,36,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53');
+INSERT INTO `tb_role` VALUES (6, '普通用户', '普普通通的人罢了', '24,25,26,40,41');
+INSERT INTO `tb_role` VALUES (7, '企业用户', '资本家', '20,24,25,26,27,34,35,38,39,40,41,49,50,51');
+INSERT INTO `tb_role` VALUES (8, '风险监测管理员', '有风险！！！！', '1,2,3,4,5,20,24,25,26,38,40,41,42,43,44,45,46,47,48');
 INSERT INTO `tb_role` VALUES (9, '工作人员', '工具人', NULL);
 
 -- ----------------------------
@@ -344,7 +342,7 @@ CREATE TABLE `tb_storage`  (
   `power_supply` varchar(6) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '市电监控',
   PRIMARY KEY (`storage_id`) USING BTREE,
   INDEX `uid`(`uid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
+) ENGINE = InnoDB AUTO_INCREMENT = 22 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci ROW_FORMAT = Compact;
 
 -- ----------------------------
 -- Records of tb_storage
@@ -359,9 +357,8 @@ INSERT INTO `tb_storage` VALUES (8, '2518', '青岛', 36, 50, '无', '无');
 INSERT INTO `tb_storage` VALUES (9, '76636d', '厦门', 36, 50, '无', '无');
 INSERT INTO `tb_storage` VALUES (10, '8729', '武汉', 36, 50, '无', '无');
 INSERT INTO `tb_storage` VALUES (11, '8893 ', '南京', 36, 50, '无', '无');
-INSERT INTO `tb_storage` VALUES (13, '369365576', '眉山', 36, 50, '无', '无');
-INSERT INTO `tb_storage` VALUES (18, '2255ed', '测试22', 36, 50, '无', '无');
-INSERT INTO `tb_storage` VALUES (21, '5da045', '测', 36, 50, '无', '无');
+INSERT INTO `tb_storage` VALUES (18, '2255ed', '岳阳', 36, 50, '无', '无');
+INSERT INTO `tb_storage` VALUES (21, '5da045', '济南', 36, 50, '无', '无');
 
 -- ----------------------------
 -- Table structure for tb_user
@@ -389,23 +386,23 @@ CREATE TABLE `tb_user`  (
 -- ----------------------------
 INSERT INTO `tb_user` VALUES ('078ca', '测试1', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '卡德加', '男', '13216516511', '131@qq.com', '2021-05-23', '2021-06-07', 1, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('15fe4', '测试531', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-31', '2021-06-06', 1, '普通用户', 6, 1);
-INSERT INTO `tb_user` VALUES ('1a451', '张三丰', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张三丰', '男', '11222222222', '222@qq.com', '2021-04-26', NULL, 0, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('39611 ', '吴凯', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '黄雅慧', '女', '14672849303', '369365576@qq.com', '2021-04-01', '2021-04-04', 4, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('48856', 'yizhongge', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '谢一忠', '男', '13958475869', '369365576@qq.com', '2021-04-07', '2021-04-12', 10, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('60913 ', 'meiling', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '王美玲', '女', '13859375831', '369365576@qq.com', '2021-04-10', '2021-04-11', 2, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('61bc7', '再次测试', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-31', NULL, 0, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('62448 ', 'tingting', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '林依婷', '女', '19284736584', '369365576@qq.com', '2021-04-06', '2021-04-10', 5, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('69556', '张振明', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张振明', '男', '11111111111', '222@qq.com', '2021-04-25', NULL, 0, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('6f1a6', '测试531', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-31', NULL, 0, '普通用户', 6, 0);
+INSERT INTO `tb_user` VALUES ('1a451', '张三丰', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张三丰', '男', '11222222222', '222@qq.com', '2021-04-26', NULL, 0, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('39611 ', '吴凯', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '黄雅慧', '女', '14672849303', '369365576@qq.com', '2021-04-01', '2021-06-12', 5, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('48856', 'yizhongge', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '谢一忠', '男', '13958475869', '369365576@qq.com', '2021-04-07', '2021-04-12', 10, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('60913 ', 'meiling', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '王美玲', '女', '13859375831', '369365576@qq.com', '2021-04-10', '2021-04-11', 2, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('61bc7', '再次测试', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-31', NULL, 0, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('62448 ', 'tingting', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '林依婷', '女', '19284736584', '369365576@qq.com', '2021-04-06', '2021-04-10', 5, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('69556', '张振明', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张振明', '男', '11111111111', '222@qq.com', '2021-04-25', NULL, 0, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('6f1a6', '测试531', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-31', NULL, 0, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('70903', '测试登录跳转', '$2a$10$a05/cH0EWMcuSl0o2qtk9.T75XmRCzLNMJPCpuFPQaKOEtSxlOD2e', '张迪凯', NULL, NULL, '369365576@qq.com', '2021-06-09', '2021-06-09', 1, '普通用户', 6, 1);
-INSERT INTO `tb_user` VALUES ('72050', '测试密码加密', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-06-07', NULL, 0, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('72905', '测试530', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-30', NULL, 0, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('78013', 'wosjo', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '我是', '男', '11100000000', '000@qq.com', '2021-04-26', NULL, 0, '普通用户', 6, 0);
+INSERT INTO `tb_user` VALUES ('72050', '测试密码加密', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-06-07', NULL, 0, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('72905', '测试530', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', NULL, NULL, NULL, '369365576@qq.com', '2021-05-30', NULL, 0, '普通用户', 6, 1);
+INSERT INTO `tb_user` VALUES ('78013', 'wosjo', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '我是', '男', '11100000000', '000@qq.com', '2021-04-26', NULL, 0, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('80383 ', 'shengwang', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '王圣如', '男', '18492857685', '369365576@qq.com', '2021-04-04', '2021-04-12', 15, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('81963 ', 'rongge', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '陈伟荣', '男', '18594738675', '369365576@qq.com', '2021-04-08', '2021-04-12', 6, '普通用户', 6, 0);
+INSERT INTO `tb_user` VALUES ('81963 ', 'rongge', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '陈伟荣', '男', '18594738675', '369365576@qq.com', '2021-04-08', '2021-04-12', 6, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('8598a', '普通用户再测试', '$2a$10$RjHdiwxp7AgvoCaetzFFluWWG/b3CqbYEaLGE91VkX4Ie5yvZGaLG', '6.11', NULL, NULL, '369365576@qq.com', '2021-06-11', '2021-06-11', 1, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('87375 ', 'zihao', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '郭子豪', '男', '18435758454', '369365576@qq.com', '2021-04-03', '2021-04-06', 4, '普通用户', 6, 0);
-INSERT INTO `tb_user` VALUES ('95001', 'jiege', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张冠杰', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '普通用户', 6, 0);
+INSERT INTO `tb_user` VALUES ('95001', 'jiege', '$2a$10$MDNQzgggcbg9RY/RhdlXz.LfFkcsXPYoAv3R/DCFKb29eebonsfmS', '张冠杰', '男', '13427584359', '369365576@qq.com', '2021-04-01', '2021-04-06', 8, '普通用户', 6, 1);
 INSERT INTO `tb_user` VALUES ('e59b7', '普通用户注册加密测试', '$2a$10$.zB5HYAxnxVN99owxHwOIegrh/CvRbMN3etMVW31vJEk9wAvAk/U6', '张迪凯', '女', '13696086376', '369365576@qq.com', '2021-06-09', '2021-06-11', 2, '普通用户', 6, 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
