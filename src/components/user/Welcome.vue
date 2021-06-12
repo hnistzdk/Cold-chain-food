@@ -1,6 +1,6 @@
 <template>
 <div class="bg">
-<span class="text">welcome</span>
+<span class="text">welcome 请及时完善个人信息</span>
 </div>
 </template>
 
