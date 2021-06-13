@@ -152,6 +152,6 @@ public class UserController {
             int count = userService.modifyUserPwd(user);
             return JSON.toJSONString(CommonMessage.returnStatus(count>0));
         }
-        return null;
+        return CommonMessage.returnStatus(false);
     }
 }
