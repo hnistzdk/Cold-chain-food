@@ -158,6 +158,6 @@ public class EnterpriseUserController {
             int count = enterpriseService.modifyEnterprisePwd(enterpriseUser);
             return CommonMessage.returnStatus(count>0);
         }
-        return null;
+        return CommonMessage.returnStatus(false);
     }
 }
