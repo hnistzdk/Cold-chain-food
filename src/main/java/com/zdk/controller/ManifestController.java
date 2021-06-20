@@ -9,8 +9,8 @@ import com.zdk.service.food.FoodServiceImpl;
 import com.zdk.service.mainfest.ManifestServiceImpl;
 import com.zdk.service.storage.StorageServiceImpl;
 import com.zdk.utils.CommonMessage;
-import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.Permission;
+import com.zdk.utils.ReturnMessage;
 import com.zdk.utils.UUIDUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -90,6 +90,8 @@ public class ManifestController {
         manifest.setConsignorName(loginUser.getTrueName());
         //设置未收货
         manifest.setIsReceived("未收货");
+        //设置运输状态
+        manifest.setTravelStatus("未发货");
         //设置发货站点
         params.put("uid", loginUser.getId());
         manifest.setStartingSite(storageService.getStorage(params).get(0).getStorageArea());
