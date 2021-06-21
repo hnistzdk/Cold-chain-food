@@ -1,5 +1,23 @@
 <template>
   <div class="login_container" >
+    <vue-particles
+      color="#fff"
+      :particleOpacity="0.7"
+      :particlesNumber="80"
+      shapeType="edge"
+      :particleSize="4"
+      linesColor="#fff"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.3"
+      :linesDistance="200"
+      :moveSpeed="2"
+      :hoverEffect="true"
+      hoverMode="grab"
+      :clickEffect="true"
+      clickMode="remove"
+    >
+    </vue-particles>
     <div class="Register_button">
       <el-button class="register" @click="register_request">注册</el-button>
     </div>
@@ -126,7 +144,7 @@ export default {
   height: 100%;
   width:100%;
   //background-color: #0093E9;
-  background: url("../../assets/bg.jpg");
+  background: url("../../assets/bg8.jpg");
   background-size:100% 100% ;
 }
 
@@ -181,7 +199,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  transform: translate(90%, 50%);
+  transform: translate(90%, -1350%);
 }
 
 .radio {

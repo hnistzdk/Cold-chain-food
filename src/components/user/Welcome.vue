@@ -1,6 +1,6 @@
 <template>
 <div class="bg">
-<span class="text">welcome 请及时完善个人信息</span>
+<span class="text">welcome 请完善个人信息</span>
 </div>
 </template>
 
@@ -13,14 +13,14 @@ export default {
 <style Lang="less" scoped>
 .bg{
   height: 100%;
-  background: url("../../assets/bg5.jpg");
+  background: url("../../assets/bg7.jpg");
   background-size:100% 100% ;
 
   text-align: center;
 }
 .text{
   height:500px;
-  font-size: 50px;
+  font-size: 30px;
   //text-align: center;
   top: 50%;
   transform: translate(100%,150%);

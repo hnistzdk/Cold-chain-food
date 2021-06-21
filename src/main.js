@@ -5,9 +5,10 @@ import './plugins/element.js'
 import './assets/css/global.css'
 import './assets/fonts/iconfont.css'
 import TreeTable from  'vue-table-with-tree-grid'
+import VueParticles from 'vue-particles'
 
 Vue.config.productionTip = false
-
+Vue.use(VueParticles)
 import axios from 'axios'
 //在连接端口之前，通过axios拦截器添加token，保证拥有获取数据的权限.
 axios.interceptors.request.use(config=>{

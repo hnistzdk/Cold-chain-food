@@ -1,5 +1,24 @@
 <template>
   <div class="register_container" >
+    <vue-particles
+      color="#fff"
+      :particleOpacity="0.7"
+      :particlesNumber="60"
+      shapeType="polygon"
+      :particleSize="4"
+      linesColor="#fff"
+      :linesWidth="1"
+      :lineLinked="true"
+      :lineOpacity="0.3"
+      :linesDistance="180"
+      :moveSpeed="2"
+      :hoverEffect="true"
+      hoverMode="repulse"
+      :clickEffect="true"
+      clickMode="repulse"
+      class="lizi"
+    >
+    </vue-particles>
     <div class="login_button">
       <el-button class="login" @click="login_request">登录</el-button>
     </div>
@@ -112,11 +131,11 @@ export  default {
       registerFormRules:{
         username:[
           { required: true, message: '请输入昵称', trigger: 'blur'},//blur 鼠标焦点事件
-          {min: 3, max: 10, message: '长度在 3 到 10 个字符', trigger: 'blur'}
+          {min: 2, max: 10, message: '长度在 2 到 10 个字符', trigger: 'blur'}
         ],
         trueName:[
           { required: true, message: '请输入真实姓名', trigger: 'blur'},//blur 鼠标焦点事件
-          {min: 3, max: 6, message: '长度在 3 到 6 个字符', trigger: 'blur'}
+          {min: 2, max: 6, message: '长度在 2 到 6 个字符', trigger: 'blur'}
         ],
         //验证账号和密码是否合法
         pwd:[
@@ -231,7 +250,7 @@ export  default {
   display: flex;
   left: 50%;
   top: 50%;
-  transform: translate(90%,50%);
+  transform: translate(90%,-1350%);
 
 }
 .radio{

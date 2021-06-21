@@ -1,5 +1,24 @@
 <template>
 <div class="pwdChange_container">
+  <vue-particles
+    color="#fff"
+    :particleOpacity="0.7"
+    :particlesNumber="60"
+    shapeType="star"
+    :particleSize="4"
+    linesColor="#fff"
+    :linesWidth="1"
+    :lineLinked="true"
+    :lineOpacity="0.3"
+    :linesDistance="160"
+    :moveSpeed="2"
+    :hoverEffect="true"
+    hoverMode="grab"
+    :clickEffect="true"
+    clickMode="push"
+    class="lizi"
+  >
+  </vue-particles>
   <div class="pwdChange_box">
     <div class="pwdChange_Form">
       <el-form :model="changeForm" ref="changeFormRef" :rules="changeFormRules" label-width="200px" >
@@ -69,6 +88,13 @@ export default {
          callback();
       }
      };
+    const checkCode = (rule, value, cb) => {
+      const regCode = this.verification
+      if (regCode === value) {
+        return cb()
+      }
+      cb(new Error('请输入正确的验证码'))
+    };
     const checkEmail = (rule, value, cb) => {
       const regEmail = /^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(\.[a-zA-Z0-9_-])+/
       if (regEmail.test(value)) {
@@ -101,6 +127,10 @@ export default {
         ],
         rule:[
           { required: true, message: '请填写角色框！', trigger: 'blur'}
+        ],
+        code:[
+          { required: true, message: '请填写验证码', trigger: 'blur'},
+          { validator: checkCode, trigger: 'blur' }
         ]
       },
       radio:1,
