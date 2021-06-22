@@ -3,10 +3,10 @@ spring:
     date-format: yyyy-MM-dd HH:mm:ss
     time-zone: GMT+8
   datasource:
-    username: root
-    password: root
+    username: 
+    password: 
     #    url: jdbc:mysql://localhost:3306/food?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
-    url: jdbc:mysql://116.62.232.194:3306/food?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=utf8
+    url: 
     driver-class-name: com.mysql.cj.jdbc.Driver
     type: com.alibaba.druid.pool.DruidDataSource
     #SpringBoot默认是不注入这些的，需要自己绑定
